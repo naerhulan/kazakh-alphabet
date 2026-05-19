@@ -1,0 +1,382 @@
+﻿﻿﻿﻿﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 哈萨克西里尔字母入门 - 点击发音</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 30%, #e8eaf6 70%, #e0f7fa 100%);
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 40px 35px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #7b1fa2;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+  }
+  h1 span { font-size: 32px; }
+  .subtitle {
+    text-align: center;
+    color: #9c27b0;
+    font-size: 14px;
+    margin-bottom: 30px;
+    opacity: 0.7;
+  }
+  h2 {
+    font-size: 18px;
+    color: #6a1b9a;
+    margin: 25px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #ce93d8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .letter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .letter-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 2px solid #f3e5f5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    user-select: none;
+  }
+  .letter-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(156,39,176,0.15);
+    border-color: #ce93d8;
+  }
+  .letter-card:active {
+    transform: scale(0.95);
+  }
+  .letter-card .cyr { font-size: 28px; font-weight: 700; color: #4a148c; }
+  .letter-card .ipa { font-size: 12px; color: #999; margin-top: 3px; }
+  .letter-card .zh { font-size: 12px; color: #7b1fa2; margin-top: 2px; }
+  .letter-card .sound-icon {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 12px;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+  }
+  .letter-card:hover .sound-icon { opacity: 0.8; }
+  .letter-card.playing {
+    border-color: #e91e63;
+    box-shadow: 0 0 20px rgba(233,30,99,0.2);
+    animation: pulse 0.5s;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  .special-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .special-table th {
+    background: #ce93d8;
+    color: #fff;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .special-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f3e5f5;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .special-table tr:last-child td { border-bottom: none; }
+  .special-table tr:hover td { background: #fce4ec; }
+  .special-table .cyr { font-weight: 700; color: #4a148c; font-size: 18px; cursor: pointer; }
+  .special-table .ipa-tag {
+    display: inline-block;
+    background: #e8eaf6;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #3949ab;
+  }
+  .special-table td:hover .cyr {
+    color: #e91e63;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 4px solid #e91e63;
+  }
+  .highlight-box h3 { color: #c2185b; font-size: 16px; margin-bottom: 10px; }
+  .highlight-box p { font-size: 14px; line-height: 1.8; color: #555; }
+
+  .word-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .word-table th {
+    background: #f48fb1;
+    color: #fff;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  .word-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #fce4ec;
+    font-size: 14px;
+  }
+  .word-table tr:last-child td { border-bottom: none; }
+  .word-table .cyr { font-weight: 700; color: #6a1b9a; cursor: pointer; }
+
+  .tip {
+    background: #fff9c4;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 15px 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #f57f17;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #ce93d8;
+    font-size: 13px;
+  }
+  .ko-label { text-align: center; font-size: 11px; color: #e91e63; background: #fce4ec; border-radius: 6px; padding: 2px 6px; margin: 10px 0 3px; }
+.ab { font-size: 20px; color: #1a237e; margin-top: 2px; direction: rtl; font-family: "Noto Naskh Arabic", "Traditional Arabic", "Scheherazade", serif; text-align: center; }
+.speaker-hint {
+    text-align: center;
+    font-size: 13px;
+    color: #9c27b0;
+    margin-bottom: 15px;
+    background: #f3e5f577;
+    padding: 8px;
+    border-radius: 10px;
+  }
+  @media (max-width: 600px) {
+    .container { padding: 25px 18px; }
+    .letter-grid { grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); }
+    .letter-card .cyr { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1><span>🌸</span> 哈萨克西里尔字母 · 入门指南</h1>
+<p class="subtitle">Қазақ Кирил Әліпбиі · 点击字母听发音 🔊</p>
+
+<div class="speaker-hint">
+🔊 点击任意字母或单词听发音 🔊
+</div>
+
+<div style="text-align:center;margin-bottom:15px;">
+  <button onclick="new Audio(\'sounds/kazakh_alphabet.mp3\').play()" style="background:#1a237e;color:#fff;border:none;padding:12px 24px;border-radius:12px;font-size:15px;cursor:pointer;box-shadow:0 2px 10px rgba(26,35,126,0.3);">
+    🎵 播放完整字母表（哈语母语者录音）
+  </button>
+  <div style="font-size:11px;color:#999;margin-top:5px;">⚠️ 当前单字母音频为合成音，不准</div>
+</div>
+
+<div class="highlight-box">
+<h3>💡 先记住这9个特殊字母</h3>
+<p>这9个是哈萨克语独有的西里尔字母，其他语言（俄语、乌克兰语等）没有。认识了它们，你就认出了一大半！</p>
+</div>
+
+<h2>🌸 特殊字母 · 哈萨克独有的9个</h2>
+<table class="special-table" id="specialTable">
+<tr><th width="60">字母</th><th width="60">发音</th><th>像什么</th><th>栗子🌰</th><th width="50">عرب</th></tr>
+<tr onclick="speak('Ә ә')"><td class="cyr">Ә ә</td><td><span class="ipa-tag">/æ/</span></td><td>英语 cat 的 a</td><td>Сәлем 你好</td><td class="ab">اە</td></tr>
+<tr onclick="speak('Ғ ғ')"><td class="cyr">Ғ ғ</td><td><span class="ipa-tag">/ʁ/</span></td><td>小舌音，像漱口</td><td>Аға 哥哥</td><td class="ab">ع</td></tr>
+<tr onclick="speak('Қ қ')"><td class="cyr">Қ қ</td><td><span class="ipa-tag">/q/</span></td><td>喉咙处的 k</td><td>Қазақ 哈萨克</td><td class="ab">ق</td></tr>
+<tr onclick="speak('Ң ң')"><td class="cyr">Ң ң</td><td><span class="ipa-tag">/ŋ/</span></td><td>拼音 eng</td><td>Таң 早晨</td><td class="ab">ڭ</td></tr>
+<tr onclick="speak('Ө ө')"><td class="cyr">Ө ө</td><td><span class="ipa-tag">/ɵ/</span></td><td>英语 bird 的 ir</td><td>Өзен 河流</td><td class="ab">و</td></tr>
+<tr onclick="speak('Ұ ұ')"><td class="cyr">Ұ ұ</td><td><span class="ipa-tag">/ʊ/</span></td><td>短促的"呜"</td><td>Ұлт 民族</td><td class="ab">و</td></tr>
+<tr onclick="speak('Ү ү')"><td class="cyr">Ү ү</td><td><span class="ipa-tag">/ʉ/</span></td><td>靠前一点的"乌"</td><td>Үй 房子</td><td class="ab">ۇ</td></tr>
+<tr onclick="speak('І і')"><td class="cyr">І і</td><td><span class="ipa-tag">/ɪ/</span></td><td>短促的"衣"</td><td>Іні 弟弟</td><td class="ab">ى</td></tr>
+<tr onclick="speak('Һ һ')"><td class="cyr">Һ һ</td><td><span class="ipa-tag">/h/</span></td><td>哈哈的"哈"</td><td>(借词中用)</td><td class="ab">ھ</td></tr>
+</table>
+
+<h2>🌸 元音 · 15个 <span style="font-size:13px;color:#666;font-weight:normal;">⚡ 注意元音和谐！</span></h2>
+
+<h3 style="font-size:15px;color:#7b1fa2;margin:10px 0 6px;">🔴 后元音（硬） Жуан</h3>
+<div class="letter-grid" id="vowelHard">
+  <div class="letter-card" onclick="speak('А а')"><span class="sound-icon">🔊</span><div class="cyr">А а</div><div class="ipa">/ɑ/ a</div><div class="zh">啊</div><div class="ab">ا</div></div>
+  <div class="letter-card" onclick="speak('О о')"><span class="sound-icon">🔊</span><div class="cyr">О о</div><div class="ipa">/o/ o</div><div class="zh">喔</div><div class="ab">و</div></div>
+  <div class="letter-card" onclick="speak('Ұ ұ')"><span class="sound-icon">🔊</span><div class="cyr">Ұ ұ</div><div class="ipa">/ʊ/ ű</div><div class="zh">乌</div><div class="ab">و</div></div>
+  <div class="letter-card" onclick="speak('Ы ы')"><span class="sound-icon">🔊</span><div class="cyr">Ы ы</div><div class="ipa">/ɤ/ y</div><div class="zh">呃</div><div class="ab">ى</div></div>
+</div>
+
+<h3 style="font-size:15px;color:#7b1fa2;margin:10px 0 6px;">🟣 前元音（软） Жіңішке</h3>
+<div class="letter-grid" id="vowelSoft">
+  <div class="letter-card" onclick="speak('Ә ә')"><span class="sound-icon">🔊</span><div class="cyr">Ә ә</div><div class="ipa">/æ/ ä</div><div class="zh">哎</div><div class="ab">اە</div></div>
+  <div class="letter-card" onclick="speak('Е е')"><span class="sound-icon">🔊</span><div class="cyr">Е е</div><div class="ipa">/je/ e</div><div class="zh">耶</div><div class="ab">ە</div></div>
+  <div class="letter-card" onclick="speak('Ө ө')"><span class="sound-icon">🔊</span><div class="cyr">Ө ө</div><div class="ipa">/ɵ/ ö</div><div class="zh">鹅</div><div class="ab">و</div></div>
+  <div class="letter-card" onclick="speak('Ү ү')"><span class="sound-icon">🔊</span><div class="cyr">Ү ү</div><div class="ipa">/ʉ/ ű</div><div class="zh">淤</div><div class="ab">ۇ</div></div>
+  <div class="letter-card" onclick="speak('І і')"><span class="sound-icon">🔊</span><div class="cyr">І і</div><div class="ipa">/ɪ/ i</div><div class="zh">伊</div><div class="ab">ى</div></div>
+</div>
+
+<h2>🌸 辅音 · 25个 <span style="font-size:13px;color:#666;font-weight:normal;">🔊 点击听发音</span></h2>
+<div class="letter-grid" id="consonants">
+  <div class="letter-card" onclick="speak('Б б')"><span class="sound-icon">🔊</span><div class="cyr">Б б</div><div class="ipa">b</div><div class="zh">波</div><div class="ab">ب</div></div>
+  <div class="letter-card" onclick="speak('В в')"><span class="sound-icon">🔊</span><div class="cyr">В в</div><div class="ipa">乌夫</div><div class="zh">V</div><div class="ab">ۋ</div></div>
+  <div class="letter-card" onclick="speak('Г г')"><span class="sound-icon">🔊</span><div class="cyr">Г г</div><div class="ipa">ɡ</div><div class="zh">哥</div><div class="ab">گ</div></div>
+  <div class="letter-card" onclick="speak('Ғ ғ')"><span class="sound-icon">🔊</span><div class="cyr">Ғ ғ</div><div class="ipa">ʁ</div><div class="zh">哈</div><div class="ab">ع</div></div>
+  <div class="letter-card" onclick="speak('Д д')"><span class="sound-icon">🔊</span><div class="cyr">Д д</div><div class="ipa">d</div><div class="zh">德</div><div class="ab">د</div></div>
+  <div class="letter-card" onclick="speak('Ж ж')"><span class="sound-icon">🔊</span><div class="cyr">Ж ж</div><div class="ipa">ʒ</div><div class="zh">浊</div><div class="ab">ج</div></div>
+  <div class="letter-card" onclick="speak('З з')"><span class="sound-icon">🔊</span><div class="cyr">З з</div><div class="ipa">z</div><div class="zh">兹</div><div class="ab">ز</div></div>
+  <div class="letter-card" onclick="speak('К к')"><span class="sound-icon">🔊</span><div class="cyr">К к</div><div class="ipa">k</div><div class="zh">科</div><div class="ab">ك</div></div>
+  <div class="letter-card" onclick="speak('Қ қ')"><span class="sound-icon">🔊</span><div class="cyr">Қ қ</div><div class="ipa">q</div><div class="zh">克</div><div class="ab">ق</div></div>
+  <div class="letter-card" onclick="speak('Л л')"><span class="sound-icon">🔊</span><div class="cyr">Л л</div><div class="ipa">l</div><div class="zh">勒</div><div class="ab">ل</div></div>
+  <div class="letter-card" onclick="speak('М м')"><span class="sound-icon">🔊</span><div class="cyr">М м</div><div class="ipa">m</div><div class="zh">姆</div><div class="ab">م</div></div>
+  <div class="letter-card" onclick="speak('Н н')"><span class="sound-icon">🔊</span><div class="cyr">Н н</div><div class="ipa">n</div><div class="zh">讷</div><div class="ab">ن</div></div>
+  <div class="letter-card" onclick="speak('Ң ң')"><span class="sound-icon">🔊</span><div class="cyr">Ң ң</div><div class="ipa">ŋ</div><div class="zh">昂</div><div class="ab">ڭ</div></div>
+  <div class="letter-card" onclick="speak('П п')"><span class="sound-icon">🔊</span><div class="cyr">П п</div><div class="ipa">p</div><div class="zh">坡</div><div class="ab">پ</div></div>
+  <div class="letter-card" onclick="speak('Р р')"><span class="sound-icon">🔊</span><div class="cyr">Р р</div><div class="ipa">r</div><div class="zh">勒</div><div class="ab">ر</div></div>
+  <div class="letter-card" onclick="speak('С с')"><span class="sound-icon">🔊</span><div class="cyr">С с</div><div class="ipa">s</div><div class="zh">斯</div><div class="ab">س</div></div>
+  <div class="letter-card" onclick="speak('Т т')"><span class="sound-icon">🔊</span><div class="cyr">Т т</div><div class="ipa">t</div><div class="zh">特</div><div class="ab">ت</div></div>
+  <div class="letter-card" onclick="speak('У у')"><span class="sound-icon">🔊</span><div class="cyr">У у</div><div class="ipa">w</div><div class="zh">乌</div><div class="ab">ۋ</div></div>
+  <div class="letter-card" onclick="speak('Ф ф')"><span class="sound-icon">🔊</span><div class="cyr">Ф ф</div><div class="ipa">f</div><div class="zh">夫</div><div class="ab">ف</div></div>
+  <div class="letter-card" onclick="speak('Х х')"><span class="sound-icon">🔊</span><div class="cyr">Х х</div><div class="ipa">x</div><div class="zh">哈</div><div class="ab">ح</div></div>
+  <div class="letter-card" onclick="speak('Ш ш')"><span class="sound-icon">🔊</span><div class="cyr">Ш ш</div><div class="ipa">ʃ</div><div class="zh">师</div><div class="ab">ش</div></div>
+</div>
+
+<h2>🌸 常见词 · 点击听发音</h2>
+<table class="word-table" id="wordTable">
+<tr><th>哈萨克语</th><th>读音</th><th>意思</th></tr>
+<tr onclick="speak('Сәлем')"><td class="cyr">Сәлем</td><td>/sæˈlʲem/</td><td>你好 👋</td></tr>
+<tr onclick="speak('Рахмет')"><td class="cyr">Рахмет</td><td>/rɑχˈmʲet/</td><td>谢谢 🙏</td></tr>
+<tr onclick="speak('Қош бол')"><td class="cyr">Қош бол</td><td>/qoʃˈbol/</td><td>再见 👋</td></tr>
+<tr onclick="speak('Жақсы')"><td class="cyr">Жақсы</td><td>/ʒɑqˈsə/</td><td>好 👍</td></tr>
+<tr onclick="speak('Қазақ')"><td class="cyr">Қазақ</td><td>/qɑˈzɑq/</td><td>哈萨克</td></tr>
+<tr onclick="speak('Махаббат')"><td class="cyr">Махаббат</td><td>/mɑχɑbˈbɑt/</td><td>爱 ❤️</td></tr>
+<tr onclick="speak('Алма')"><td class="cyr">Алма</td><td>/ɑlˈmɑ/</td><td>苹果 🍎</td></tr>
+<tr onclick="speak('Гүл')"><td class="cyr">Гүл</td><td>/ɡʉl/</td><td>花 🌸</td></tr>
+<tr onclick="speak('Күн')"><td class="cyr">Күн</td><td>/kʉn/</td><td>太阳 / 天 ☀️</td></tr>
+<tr onclick="speak('Ай')"><td class="cyr">Ай</td><td>/ɑj/</td><td>月亮 🌙</td></tr>
+</table>
+
+<div class="tip">
+🌟 <b>小技巧：</b>想快速学习？先记住 <b>Сәлем</b>（你好）和 <b>Рахмет</b>（谢谢），见到哈萨克朋友直接说，效果超好！
+</div>
+
+<div class="tip">
+🌸 <b>元音和谐：</b>这是哈萨克语的灵魂规则！<br>
+🔴 后元音词例：<b>бала</b>（孩子）— 里面全是 а<br>
+🟣 前元音词例：<b>көше</b>（街道）— 里面全是 ө, е<br>
+如果一个词混了两种元音，基本就是外来词～
+</div>
+
+<div class="footer">
+🌸 胡兰的包尔萨克制作 · 2026.5.18
+</div>
+
+</div>
+
+
+<script>
+// Letter to sound file mapping (for audio.play() to work with file://)
+function speak(text) {
+  const parts = text.trim().split(' ');
+  const speakText = parts.length > 1 ? parts[parts.length - 1] : text;
+  const lower = speakText.toLowerCase();
+  
+  // Sound file map: Kazakh character → WAV filename
+  const soundFiles = {
+    'a': 'a', 'b': 'b', 'v': 'v', 'g': 'g', 'd': 'd',
+    'e': 'e', 'zh': 'zh', 'z': 'z', 'i': 'i', 'y': 'y',
+    'k': 'k', 'l': 'l', 'm': 'm', 'n': 'n',
+    'o': 'o', 'p': 'p', 'r': 'r', 's': 's', 't': 't',
+    'f': 'f', 'kh': 'kh', 'ts': 'ts', 'ch': 'ch', 'sh': 'sh',
+    'yh': 'yh', 'eh': 'eh', 'yoo': 'yoo', 'yah': 'yah',
+    'ae': 'ae', 'gh_': 'gh_', 'q_': 'q_', 'ng_': 'ng_',
+    'oe_': 'oe_', 'uu_': 'uu_', 'ue_': 'ue_', 'ii_': 'ii_',
+    'h_': 'h_'
+  };
+  
+  // Word mapping
+  const wordMap = {
+    'salem': 'salem', 'rahmet': 'rahmet', 'kosh_bol': 'kosh_bol',
+    'zhaksy': 'zhaksy', 'qazaq': 'qazaq', 'mahabbat': 'mahabbat',
+    'alma': 'alma', 'gul': 'gul', 'kun': 'kun', 'ay': 'ay'
+  };
+  
+  // Map Kazakh Cyrillic lowercase to sound key
+  function cyrillicToKey(lowerText) {
+    // Word check
+    const wordKey = lowerText.replace(/  +/g, ' ').trim();
+    const wordMapKey = {
+      'сәлем': 'salem', 'рахмет': 'rahmet', 'қош бол': 'kosh_bol',
+      'жақсы': 'zhaksy', 'қазақ': 'qazaq', 'махаббат': 'mahabbat',
+      'алма': 'alma', 'гүл': 'gul', 'күн': 'kun', 'ай': 'ay'
+    };
+    if (wordMapKey[wordKey]) return wordMapKey[wordKey];
+    
+    return lowerText;
+  }
+  
+  const key = cyrillicToKey(lower);
+  
+  // Try word first
+  if (wordMap[key]) {
+    new Audio('sounds/' + wordMap[key] + '.wav').play();
+  } else {
+    // Play individual letters
+    const chars = lower.split('');
+    chars.forEach((ch, i) => {
+      const searchKey = {
+        'а': 'a', 'ә': 'ae', 'б': 'b', 'в': 'v', 'г': 'g', 'ғ': 'gh_',
+        'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i',
+        'й': 'y', 'к': 'k', 'қ': 'q_', 'л': 'l', 'м': 'm', 'н': 'n',
+        'ң': 'ng_', 'о': 'o', 'ө': 'oe_', 'п': 'p', 'р': 'r', 'с': 's',
+        'т': 't', 'у': 'oo', 'ұ': 'uu_', 'ү': 'ue_', 'ф': 'f', 'х': 'kh',
+        'һ': 'h_', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sh', 'ъ': '',
+        'ы': 'yh', 'і': 'ii_', 'ь': '', 'э': 'eh', 'ю': 'yoo', 'я': 'yah'
+      }[ch];
+      if (searchKey) {
+        setTimeout(() => new Audio('sounds/' + searchKey + '.wav').play(), i * 350);
+      }
+    });
+  }
+}
+</script>
+
+</body>
+</html>

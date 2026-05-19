@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哈萨克西里尔字母学习</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .container {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+  }
+  .title {
+    color: #fff;
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  .subtitle {
+    color: rgba(255,255,255,0.8);
+    font-size: 18px;
+    margin-bottom: 40px;
+    direction: rtl;
+  }
+  .card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    text-decoration: none;
+    display: block;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+  .card:active {
+    transform: scale(0.98);
+  }
+  .card .icon { font-size: 48px; margin-bottom: 15px; }
+  .card h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  .card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+  }
+  .card.option1 { border-left: 5px solid #e91e63; }
+  .card.option2 { border-left: 5px solid #1a237e; }
+  .card.option2 h2 { font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif; }
+  .card.option3 { border-left: 5px solid #ff6f00; }
+  .footer {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    margin-top: 30px;
+  }
+  @media (max-width: 500px) {
+    .title { font-size: 26px; }
+    .card { padding: 25px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="title">🇰🇿 哈萨克西里尔字母学习</div>
+  <div class="subtitle">Қазақ Кирил Әліпбиін үйрену</div>
+
+  <a class="card option1" href="cyrillic.html">
+    <div class="icon">🀄</div>
+    <h2>汉语 → 西里尔文</h2>
+    <p>适合只会汉语的人学习哈萨克西里尔字母<br>
+    从零开始，看中文谐音和音标学发音</p>
+  </a>
+
+  <a class="card option2" href="arabic-to-cyrillic.html">
+    <div class="icon" style="font-size:48px; direction:rtl;">قازاق</div>
+    <h2 style="direction:rtl;">قازاقشا → كيريل</h2>
+    <p>中国哈萨克族从阿拉伯字母转学西里尔字母<br>
+    对照阿拉伯文学习新文字</p>
+  </a>
+
+  <a class="card option3" href="learn-kazakh.html">
+    <div class="icon" style="font-size:48px;">🌍</div>
+    <h2>用中文 · 学哈萨克语</h2>
+    <p>适合中国人学习日常哈萨克语口语<br>
+    常用句 + 你录的真发音，直接跟读</p>
+  </a>
+
+  <div class="footer">🌸 胡兰的包尔萨克制作 · 2026.5.18</div>
+</div>
+</body>
+</html>

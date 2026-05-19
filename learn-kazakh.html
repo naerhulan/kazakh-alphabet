@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 用中文 · 学哈语阿拉伯字母</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', serif;
+    background: linear-gradient(135deg, #e0f7fa 0%, #fff3e0 50%, #fce4ec 100%);
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  .container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 40px 35px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  }
+  h1 { text-align: center; font-size: 30px; color: #00695c; margin-bottom: 5px; }
+  .subtitle { text-align: center; color: #00897b; font-size: 15px; margin-bottom: 25px; direction: rtl; }
+  .speaker-hint { text-align: center; font-size: 14px; color: #00695c; margin-bottom: 15px; }
+
+  h2 {
+    font-size: 20px;
+    color: #00695c;
+    margin: 30px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #b2dfdb;
+  }
+  h3 {
+    font-size: 16px;
+    color: #00897b;
+    margin: 15px 0 8px;
+  }
+
+  .letter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .letter-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 2px solid #e0f2f1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .letter-card:hover {
+    transform: translateY(-3px);
+    border-color: #80cbc4;
+    box-shadow: 0 6px 20px rgba(0,137,123,0.12);
+  }
+  .letter-card .ar { font-size: 28px; color: #004d40; font-weight: 700; direction: rtl; font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif; }
+  .letter-card .cyr { font-size: 14px; color: #999; margin-top: 2px; }
+  .letter-card .zh { font-size: 13px; color: #00695c; margin-top: 3px; font-weight: 500; }
+  .letter-card .sound-icon { position: absolute; top: 4px; left: 6px; font-size: 12px; opacity: 0.4; }
+
+  .special-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .special-table th {
+    background: #00897b;
+    color: #fff;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  .special-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0f2f1;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .special-table tr:hover td { background: #e0f2f1; }
+  .special-table .ar { font-size: 22px; color: #004d40; font-weight: 700; direction: rtl; }
+  .special-table .cyr { color: #00695c; font-weight: 700; }
+
+  .footer { text-align: center; margin-top: 30px; color: #80cbc4; font-size: 13px; }
+
+  @media (max-width: 600px) {
+    .container { padding: 25px 18px; }
+    .letter-grid { grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🀄 用中文 · 学哈语阿拉伯字母</h1>
+<p class="subtitle">قازاق ٵلىپبئى · 中国哈萨克族使用的阿拉伯文字</p>
+<div class="speaker-hint">🔊 点击字母听中文谐音发音 🔊</div>
+
+<h2>🌸 哈萨克阿拉伯字母 · 简介</h2>
+<div style="background:#e0f2f1;border-radius:12px;padding:15px;margin:10px 0;font-size:14px;line-height:1.8;">
+中国哈萨克族使用阿拉伯字母书写哈萨克语（俗称"老哈文"）。这里的每个阿拉伯字母都配有<b>对应西里尔字母</b>和<b>中文谐音</b>，方便中国人对照学习。点击就可听到真人发音！
+</div>
+
+<h2>🌸 字母表</h2>
+<div class="letter-grid" id="alphabet">
+  <div class="letter-card" onclick="play('a')"><span class="sound-icon">🔊</span><div class="ar">ا</div><div class="cyr">А а</div><div class="zh">啊</div></div>
+  <div class="letter-card" onclick="play('ae')"><span class="sound-icon">🔊</span><div class="ar">اە</div><div class="cyr">Ә ә</div><div class="zh">哎</div></div>
+  <div class="letter-card" onclick="play('b')"><span class="sound-icon">🔊</span><div class="ar">ب</div><div class="cyr">Б б</div><div class="zh">波</div></div>
+  <div class="letter-card" onclick="play('v')"><span class="sound-icon">🔊</span><div class="ar">ۋ</div><div class="cyr">В в</div><div class="zh">V</div></div>
+  <div class="letter-card" onclick="play('g')"><span class="sound-icon">🔊</span><div class="ar">گ</div><div class="cyr">Г г</div><div class="zh">哥</div></div>
+  <div class="letter-card" onclick="play('gh_')"><span class="sound-icon">🔊</span><div class="ar">ع</div><div class="cyr">Ғ ғ</div><div class="zh">哈</div></div>
+  <div class="letter-card" onclick="play('d')"><span class="sound-icon">🔊</span><div class="ar">د</div><div class="cyr">Д д</div><div class="zh">德</div></div>
+  <div class="letter-card" onclick="play('e')"><span class="sound-icon">🔊</span><div class="ar">ە</div><div class="cyr">Е е</div><div class="zh">耶</div></div>
+  <div class="letter-card" onclick="play('zh')"><span class="sound-icon">🔊</span><div class="ar">ج</div><div class="cyr">Ж ж</div><div class="zh">浊</div></div>
+  <div class="letter-card" onclick="play('z')"><span class="sound-icon">🔊</span><div class="ar">ز</div><div class="cyr">З з</div><div class="zh">兹</div></div>
+  <div class="letter-card" onclick="play('i')"><span class="sound-icon">🔊</span><div class="ar">ي</div><div class="cyr">И и</div><div class="zh">伊</div></div>
+  <div class="letter-card" onclick="play('y')"><span class="sound-icon">🔊</span><div class="ar">ي</div><div class="cyr">Й й</div><div class="zh">耶</div></div>
+  <div class="letter-card" onclick="play('k')"><span class="sound-icon">🔊</span><div class="ar">ك</div><div class="cyr">К к</div><div class="zh">科</div></div>
+  <div class="letter-card" onclick="play('q_')"><span class="sound-icon">🔊</span><div class="ar">ق</div><div class="cyr">Қ қ</div><div class="zh">克</div></div>
+  <div class="letter-card" onclick="play('l')"><span class="sound-icon">🔊</span><div class="ar">ل</div><div class="cyr">Л л</div><div class="zh">勒</div></div>
+  <div class="letter-card" onclick="play('m')"><span class="sound-icon">🔊</span><div class="ar">م</div><div class="cyr">М м</div><div class="zh">姆</div></div>
+  <div class="letter-card" onclick="play('n')"><span class="sound-icon">🔊</span><div class="ar">ن</div><div class="cyr">Н н</div><div class="zh">讷</div></div>
+  <div class="letter-card" onclick="play('ng_')"><span class="sound-icon">🔊</span><div class="ar">ڭ</div><div class="cyr">Ң ң</div><div class="zh">昂</div></div>
+  <div class="letter-card" onclick="play('o')"><span class="sound-icon">🔊</span><div class="ar">و</div><div class="cyr">О о</div><div class="zh">喔</div></div>
+  <div class="letter-card" onclick="play('oe_')"><span class="sound-icon">🔊</span><div class="ar">و</div><div class="cyr">Ө ө</div><div class="zh">鹅</div></div>
+  <div class="letter-card" onclick="play('p')"><span class="sound-icon">🔊</span><div class="ar">پ</div><div class="cyr">П п</div><div class="zh">坡</div></div>
+  <div class="letter-card" onclick="play('r')"><span class="sound-icon">🔊</span><div class="ar">ر</div><div class="cyr">Р р</div><div class="zh">勒</div></div>
+  <div class="letter-card" onclick="play('s')"><span class="sound-icon">🔊</span><div class="ar">س</div><div class="cyr">С с</div><div class="zh">斯</div></div>
+  <div class="letter-card" onclick="play('t')"><span class="sound-icon">🔊</span><div class="ar">ت</div><div class="cyr">Т т</div><div class="zh">特</div></div>
+  <div class="letter-card" onclick="play('oo')"><span class="sound-icon">🔊</span><div class="ar">ۋ</div><div class="cyr">У у</div><div class="zh">乌</div></div>
+  <div class="letter-card" onclick="play('uu_')"><span class="sound-icon">🔊</span><div class="ar">و</div><div class="cyr">Ұ ұ</div><div class="zh">乌</div></div>
+  <div class="letter-card" onclick="play('ue_')"><span class="sound-icon">🔊</span><div class="ar">ۇ</div><div class="cyr">Ү ү</div><div class="zh">淤</div></div>
+  <div class="letter-card" onclick="play('f')"><span class="sound-icon">🔊</span><div class="ar">ف</div><div class="cyr">Ф ф</div><div class="zh">夫</div></div>
+  <div class="letter-card" onclick="play('kh')"><span class="sound-icon">🔊</span><div class="ar">ح</div><div class="cyr">Х х</div><div class="zh">哈</div></div>
+  <div class="letter-card" onclick="play('h_')"><span class="sound-icon">🔊</span><div class="ar">ھ</div><div class="cyr">Һ һ</div><div class="zh">哈</div></div>
+  <div class="letter-card" onclick="play('ts')"><span class="sound-icon">🔊</span><div class="ar">تس</div><div class="cyr">Ц ц</div><div class="zh">次</div></div>
+  <div class="letter-card" onclick="play('ch')"><span class="sound-icon">🔊</span><div class="ar">چ</div><div class="cyr">Ч ч</div><div class="zh">吃</div></div>
+  <div class="letter-card" onclick="play('sh')"><span class="sound-icon">🔊</span><div class="ar">ش</div><div class="cyr">Ш ш</div><div class="zh">师</div></div>
+  <div class="letter-card" onclick="play('yh')"><span class="sound-icon">🔊</span><div class="ar">ى</div><div class="cyr">Ы ы</div><div class="zh">呃</div></div>
+  <div class="letter-card" onclick="play('ii_')"><span class="sound-icon">🔊</span><div class="ar">ى</div><div class="cyr">І і</div><div class="zh">伊</div></div>
+  <div class="letter-card" onclick="play('eh')"><span class="sound-icon">🔊</span><div class="ar">ە</div><div class="cyr">Э э</div><div class="zh">诶</div></div>
+  <div class="letter-card" onclick="play('yoo')"><span class="sound-icon">🔊</span><div class="ar">يۋ</div><div class="cyr">Ю ю</div><div class="zh">优</div></div>
+  <div class="letter-card" onclick="play('yah')"><span class="sound-icon">🔊</span><div class="ar">يا</div><div class="cyr">Я я</div><div class="zh">亚</div></div>
+</div>
+
+<h2>🌸 9个哈语特有阿拉伯字母</h2>
+<table class="special-table">
+<tr><th>阿拉伯文</th><th>西里尔</th><th>中文谐音</th><th>说明</th></tr>
+<tr onclick="play('ae')"><td class="ar">اە</td><td class="cyr">Ә ә</td><td>爱</td><td>cat的a</td></tr>
+<tr onclick="play('gh_')"><td class="ar">ع</td><td class="cyr">Ғ ғ</td><td>喝</td><td>小舌音</td></tr>
+<tr onclick="play('q_')"><td class="ar">ق</td><td class="cyr">Қ қ</td><td>科</td><td>喉咙深处</td></tr>
+<tr onclick="play('ng_')"><td class="ar">ڭ</td><td class="cyr">Ң ң</td><td>eng</td><td>后鼻音</td></tr>
+<tr onclick="play('oe_')"><td class="ar">و</td><td class="cyr">Ө ө</td><td>厄圆</td><td>圆唇厄</td></tr>
+<tr onclick="play('uu_')"><td class="ar">و</td><td class="cyr">Ұ ұ</td><td>短乌</td><td>短促乌</td></tr>
+<tr onclick="play('ue_')"><td class="ar">ۇ</td><td class="cyr">Ү ү</td><td>淤</td><td>前圆唇</td></tr>
+<tr onclick="play('ii_')"><td class="ar">ى</td><td class="cyr">І і</td><td>短伊</td><td>短促衣</td></tr>
+<tr onclick="play('h_')"><td class="ar">ھ</td><td class="cyr">Һ һ</td><td>哈</td><td>轻哈</td></tr>
+</table>
+
+<h2>🌸 常见词 · 对照</h2>
+<table class="special-table">
+<tr><th>阿拉伯文</th><th>西里尔</th><th>中文意思</th></tr>
+<tr onclick="play('salem')"><td class="ar">سالەم</td><td class="cyr">Сәлем</td><td>你好</td></tr>
+<tr onclick="play('rahmet')"><td class="ar">راحمەت</td><td class="cyr">Рахмет</td><td>谢谢</td></tr>
+<tr onclick="play('kosh_bol')"><td class="ar">قوش بول</td><td class="cyr">Қош бол</td><td>再见</td></tr>
+<tr onclick="play('zhaksy')"><td class="ar">جاقسى</td><td class="cyr">Жақсы</td><td>好</td></tr>
+<tr onclick="play('qazaq')"><td class="ar">قازاق</td><td class="cyr">Қазақ</td><td>哈萨克</td></tr>
+<tr onclick="play('alma')"><td class="ar">الما</td><td class="cyr">Алма</td><td>苹果</td></tr>
+</table>
+
+<div class="footer">🌸 胡兰的包尔萨克制作 · 2026.5.18</div>
+</div>
+
+<script>
+const wordMap = {
+  'salem': 'salem', 'rahmet': 'rahmet', 'kosh_bol': 'kosh_bol',
+  'zhaksy': 'zhaksy', 'qazaq': 'qazaq', 'mahabbat': 'mahabbat',
+  'alma': 'alma', 'gul': 'gul', 'kun': 'kun', 'ay': 'ay'
+};
+function play(key) {
+  if (wordMap[key]) { new Audio('sounds/' + wordMap[key] + '.wav').play(); return; }
+  const sk = {
+    'a':'a', 'ae':'ae', 'b':'b', 'v':'v', 'g':'g', 'gh_':'gh_',
+    'd':'d', 'e':'e', 'zh':'zh', 'z':'z', 'i':'i', 'y':'y',
+    'k':'k', 'q_':'q_', 'l':'l', 'm':'m', 'n':'n', 'ng_':'ng_',
+    'o':'o', 'oe_':'oe_', 'p':'p', 'r':'r', 's':'s', 't':'t',
+    'oo':'oo', 'uu_':'uu_', 'ue_':'ue_', 'f':'f', 'kh':'kh', 'h_':'h_',
+    'ts':'ts', 'ch':'ch', 'sh':'sh', 'yh':'yh', 'ii_':'ii_', 'eh':'eh',
+    'yoo':'yoo', 'yah':'yah'
+  };
+  if (sk[key]) new Audio('sounds/' + sk[key] + '.wav').play();
+}
+</script>
+</body>
+</html>
