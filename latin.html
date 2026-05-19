@@ -326,10 +326,9 @@ function speak(text) {
     return;
   }
   
-  // Try direct Latin char mapping
-  const chars = text.toLowerCase().split('');
-  chars.forEach((ch, i) => {
-    // Normalize: remove diacritics for matching
+  // Play each unique letter only once (dedup: 'A a' -> plays just 'a')
+  const uniqueChars = [...new Set(text.toLowerCase().split(''))].filter(c => c.trim());
+  uniqueChars.forEach((ch, i) => {
     const normalized = ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const sound = latToSound[ch] || latToSound[normalized];
     if (sound) {
