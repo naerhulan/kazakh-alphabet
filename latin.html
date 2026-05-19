@@ -324,7 +324,9 @@ function speak(text) {
   
   // Check if it's a known word
   if (wordSounds[lower]) {
-    new Audio('sounds/' + wordSounds[lower] + '.wav').play();
+    var audio = new Audio('sounds/' + wordSounds[lower] + '.mp3');
+    audio.onerror = function() { new Audio('sounds/' + wordSounds[lower] + '.wav').play(); };
+    audio.play().catch(function() { new Audio('sounds/' + wordSounds[lower] + '.wav').play(); });
     return;
   }
   

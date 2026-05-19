@@ -354,9 +354,11 @@ function speak(text) {
   
   const key = cyrillicToKey(lower);
   
-  // Try word first
+  // Try word first (try mp3 first, fallback to wav)
   if (wordMap[key]) {
-    new Audio('sounds/' + wordMap[key] + '.wav').play();
+    var audio = new Audio('sounds/' + wordMap[key] + '.mp3');
+    audio.onerror = function() { new Audio('sounds/' + wordMap[key] + '.wav').play(); };
+    audio.play().catch(function() { new Audio('sounds/' + wordMap[key] + '.wav').play(); });
   } else {
     // Play individual letters
     const chars = lower.split('');
