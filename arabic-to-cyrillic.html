@@ -357,7 +357,7 @@ function speak(text) {
       'ы': 'yh', 'і': 'ii_', 'ь': '', 'э': 'eh', 'ю': 'yoo', 'я': 'yah'
     }[ch];
     if (searchKey) {
-      setTimeout(() => { var a=new Audio('sounds/'+searchKey+'.mp3'); a.onerror=function(){new Audio('sounds/'+searchKey+'.wav').play()}; a.play().catch(function(){new Audio('sounds/'+searchKey+'.wav').play()}); }, i * 350);
+      setTimeout(() => { var a=new Audio('sounds/'+searchKey+'.mp3'); a.onerror=function(){new Audio('sounds/'+searchKey+'.wav').play()}; a.play().catch(function(){}); }, i * 350);
     }
   });
 }
