@@ -1,118 +1,260 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>哈萨克西里尔字母学习</title>
+<title>🇰🇿 哈萨克字母学习 · Qazaq Álipbii</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;600;700;800&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  
   body {
-    font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 30%, #24243e 70%, #1a1a2e 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    position: relative;
+    overflow-x: hidden;
   }
+
+  /* Background particles */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.15), transparent),
+      radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.1), transparent),
+      radial-gradient(2px 2px at 60% 20%, rgba(255,255,255,0.12), transparent),
+      radial-gradient(2px 2px at 80% 80%, rgba(255,255,255,0.08), transparent),
+      radial-gradient(1px 1px at 10% 50%, rgba(255,255,255,0.2), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.15), transparent),
+      radial-gradient(1px 1px at 50% 90%, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .container {
-    max-width: 700px;
+    max-width: 720px;
     width: 100%;
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
-  .title {
-    color: #fff;
-    font-size: 36px;
-    font-weight: 900;
-    margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
+  /* Hero section */
+  .hero {
+    margin-bottom: 35px;
   }
-  .subtitle {
-    color: rgba(255,255,255,0.8);
-    font-size: 18px;
-    margin-bottom: 40px;
-    direction: rtl;
-  }
-  .card {
-    background: rgba(255,255,255,0.95);
-    border-radius: 20px;
-    padding: 40px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    text-decoration: none;
+  .hero-icon {
+    font-size: 64px;
     display: block;
+    margin-bottom: 12px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 20px rgba(255,255,255,0.1));
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .hero h1 {
+    color: #fff;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .sub {
+    color: rgba(255,255,255,0.5);
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    direction: rtl;
+    margin-top: 4px;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* Cards */
+  .card {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 28px 30px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    opacity: 0;
+    transition: opacity 0.4s;
   }
   .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    transform: translateY(-4px) scale(1.01);
+    border-color: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.1);
   }
   .card:active {
     transform: scale(0.98);
   }
-  .card .icon { font-size: 48px; margin-bottom: 15px; }
-  .card h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 8px;
+  .card:hover::before { opacity: 1; }
+
+  .card .icon-box {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
   }
-  .card p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
+  .card.option1 .icon-box { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .card.option2 .icon-box { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .card.option3 .icon-box { background: linear-gradient(135deg, #f6d365, #fda085); }
+  .card.option4 .icon-box { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
+
+  .card .card-body { flex: 1; }
+  .card .card-body h2 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
   }
-  .card.option1 { border-left: 5px solid #e91e63; }
-  .card.option2 { border-left: 5px solid #1a237e; }
-  .card.option2 h2 { font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif; }
-  .card.option3 { border-left: 5px solid #ff6f00; }
-  .card.option4 { border-left: 5px solid #00695c; }
+  .card .card-body p {
+    color: rgba(255,255,255,0.45);
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .card .arrow {
+    color: rgba(255,255,255,0.2);
+    font-size: 22px;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+  .card:hover .arrow {
+    color: rgba(255,255,255,0.6);
+    transform: translateX(4px);
+  }
+
+  /* Option-specific accent borders */
+  .card.option1 { border-left: 4px solid #f5576c; }
+  .card.option2 { border-left: 4px solid #4facfe; }
+  .card.option3 { border-left: 4px solid #fda085; }
+  .card.option4 { border-left: 4px solid #84fab0; }
+
+  /* Footer */
   .footer {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.2);
     font-size: 12px;
     margin-top: 30px;
+    letter-spacing: 1px;
   }
+  .footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+  .footer a:hover { color: rgba(255,255,255,0.5); }
+
+  /* Responsive */
   @media (max-width: 500px) {
-    .title { font-size: 26px; }
-    .card { padding: 25px; }
+    .hero h1 { font-size: 26px; }
+    .hero-icon { font-size: 48px; }
+    .card { padding: 20px; gap: 14px; }
+    .card .icon-box { width: 44px; height: 44px; min-width: 44px; font-size: 20px; border-radius: 12px; }
+    .card .card-body h2 { font-size: 16px; }
   }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="title">🇰🇿 哈萨克西里尔字母学习</div>
-  <div class="subtitle">Қазақ Кирил Әліпбиін үйрену</div>
+
+  <div class="hero">
+    <span class="hero-icon">🇰🇿</span>
+    <h1>哈萨克<span class="highlight">字母</span>学习</h1>
+    <p class="sub">Qazaq Álipbii • قازاق ٵلىپبئى</p>
+    <span class="badge">✦ 4种字母系统 ✦ 点击发音 ✦ 零基础入门</span>
+  </div>
 
   <a class="card option1" href="cyrillic.html">
-    <div class="icon">🀄</div>
-    <h2>汉语 → 西里尔文</h2>
-    <p>适合只会汉语的人学习哈萨克西里尔字母<br>
-    从零开始，看中文谐音和音标学发音</p>
+    <div class="icon-box">🀄</div>
+    <div class="card-body">
+      <h2>汉语 → 西里尔文</h2>
+      <p>看中文谐音和音标学发音 · 零基础入门</p>
+    </div>
+    <span class="arrow">→</span>
   </a>
 
   <a class="card option2" href="arabic-to-cyrillic.html">
-    <div class="icon" style="font-size:48px; direction:rtl;">قازاق</div>
-    <h2 style="direction:rtl;">قازاقشا → كيريل</h2>
-    <p>中国哈萨克族从阿拉伯字母转学西里尔字母<br>
-    对照阿拉伯文学习新文字</p>
+    <div class="icon-box" style="font-family: 'Noto Naskh Arabic', serif;">ق</div>
+    <div class="card-body">
+      <h2 style="direction:rtl;">قازاقشا → كيريل</h2>
+      <p>对照阿拉伯文学习西里尔新文字</p>
+    </div>
+    <span class="arrow">→</span>
   </a>
 
   <a class="card option3" href="learn-kazakh.html">
-    <div class="icon" style="font-size:48px;">🌍</div>
-    <h2>用中文 · 学哈萨克语</h2>
-    <p>适合中国人学习日常哈萨克语口语<br>
-    常用句 + 你录的真发音，直接跟读</p>
+    <div class="icon-box">🌏</div>
+    <div class="card-body">
+      <h2>用中文 · 学哈萨克语</h2>
+      <p>日常口语 + 发音跟读</p>
+    </div>
+    <span class="arrow">→</span>
   </a>
 
   <a class="card option4" href="latin.html">
-    <div class="icon" style="font-size:48px;">🇰🇿</div>
-    <h2>Qazaq Latın · 2025</h2>
-    <p>哈萨克斯坦2025官方新拉丁字母表<br>
-    Қазақ латын әліпбиі · 哈国亲戚100%认可</p>
+    <div class="icon-box">🇰🇿</div>
+    <div class="card-body">
+      <h2>Qazaq Latın · 2025</h2>
+      <p>哈萨克斯坦官方新拉丁字母表</p>
+    </div>
+    <span class="arrow">→</span>
   </a>
 
-  <div class="footer">🌸 胡兰的包尔萨克制作 · 2026.5.18</div>
+  <div class="footer">
+    🌸 胡兰的包尔萨克 · 2026
+  </div>
+
 </div>
 </body>
 </html>
