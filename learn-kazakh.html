@@ -209,13 +209,18 @@ function play(key) {
       <input id="srcText" placeholder="翻译 · 输入中文或Қазақша" style="flex:1;min-width:150px;padding:9px 14px;border:1.5px solid #e8eaf6;border-radius:10px;font-size:13px;outline:none;transition:all 0.2s;background:#fff;" onfocus="this.style.borderColor='#f5576c';this.style.boxShadow='0 0 0 3px rgba(245,87,108,0.08)'" onblur="this.style.borderColor='#e8eaf6';this.style.boxShadow='none'">
       <button onclick="translateText()" style="padding:9px 20px;background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">翻译</button>
     </div>
-    <div id="dstBox" style="display:none;margin-top:10px;padding:10px 14px;background:#f8f9ff;border-radius:10px;border:1px solid #e8eaf6;font-size:13px;color:#444;line-height:1.6;word-break:break-word;" id="dstText"></div>
+    <div id="dstBox" style="display:none;margin-top:10px;padding:10px 14px;background:#f8f9ff;border-radius:10px;border:1px solid #e8eaf6;font-size:13px;color:#444;line-height:1.6;word-break:break-word;">
+      <span id="dstText"></span>
+      <button onclick="speakResult()" id="speakBtn" style="display:none;margin-left:8px;padding:4px 10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer;vertical-align:middle;" title="朗读">🔊 朗读</button>
+    </div>
   </div>
 </div>
 <script>
 function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
-  var d=document.getElementById('dstBox');d.style.display='block';d.textContent='翻译中...';
+  var d=document.getElementById('dstBox');d.style.display='block';
+  document.getElementById('dstText').textContent='翻译中...';
+  document.getElementById('speakBtn').style.display='none';
   var x=new XMLHttpRequest();
   x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
   x.onload=function(){
@@ -225,13 +230,26 @@ function translateText(){
       if(!t||t===s){
         var x2=new XMLHttpRequest();
         x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-        x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];d.textContent=t2||'无法翻译'}catch(e){d.textContent='翻译失败'}};
+        x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];showResult(t2)}catch(e){showResult('翻译失败')}};
         x2.send();
-      }else{d.textContent=t;}
-    }catch(e){d.textContent='翻译出错'}
+      }else{showResult(t);}
+    }catch(e){showResult('翻译出错')}
   };
-  x.onerror=function(){d.textContent='网络错误，请检查网络连接'};
+  x.onerror=function(){showResult('网络错误')};
   x.send();
+}
+function showResult(t){
+  document.getElementById('dstText').textContent=t||'无法翻译';
+  document.getElementById('speakBtn').style.display=t&&t!='翻译中...'&&t!='翻译出错'&&t!='网络错误'&&t!='翻译失败'&&t!='无法翻译'?'inline-block':'none';
+}
+function speakResult(){
+  var t=document.getElementById('dstText').textContent;
+  if(!t||t=='翻译中...'||t=='翻译出错'||t=='网络错误')return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(t);
+  u.lang=t.match(/[\u0400-\u04ff]/)?'kk-KZ':'zh-CN';
+  u.rate=0.9;
+  window.speechSynthesis.speak(u);
 }
 document.addEventListener('DOMContentLoaded',function(){
   var e=document.getElementById('srcText');if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();translateText();}});
