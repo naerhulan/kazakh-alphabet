@@ -338,7 +338,7 @@ function speak(text) {
     const normalized = ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const sound = latToSound[ch] || latToSound[normalized];
     if (sound) {
-      setTimeout(() => new Audio('sounds/' + sound + '.wav').play(), i * 350);
+      setTimeout(() => { var a=new Audio('sounds/'+sound+'.mp3'); a.onerror=function(){new Audio('sounds/'+sound+'.wav').play()}; a.play().catch(function(){new Audio('sounds/'+sound+'.wav').play()}); }, i * 350);
     }
   });
 }
