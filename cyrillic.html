@@ -203,7 +203,50 @@
   <a href="./" style="display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:15px;font-weight:600;padding:10px 20px;border-radius:12px;background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:0 4px 15px rgba(102,126,234,0.4);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 25px rgba(102,126,234,0.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.4)'">← 返回主页</a>
 </div>
 
-<div class="container">
+<!-- Translation Bar -->
+<div style="max-width:800px;margin:15px auto;padding:0 20px;">
+  <div style="background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-radius:16px;padding:18px 20px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(255,255,255,0.5);">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <span style="font-size:18px;">🌐</span>
+      <span style="font-size:15px;font-weight:700;color:#333;letter-spacing:0.5px;">智能翻译</span>
+      <span style="font-size:11px;color:#999;">中文 ↔ Қазақша</span>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <input id="srcText" placeholder="输入中文或哈萨克语..." style="flex:1;padding:10px 14px;border:2px solid #e8eaf6;border-radius:12px;font-size:14px;outline:none;transition:all 0.2s;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e8eaf6';this.style.boxShadow='none'">
+      <button onclick="translateText()" style="padding:10px 22px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(102,126,234,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.3)'">翻 译</button>
+      <button onclick="clearTranslate()" style="padding:10px 14px;background:rgba(0,0,0,0.04);color:#666;border:1px solid #eee;border-radius:12px;font-size:13px;cursor:pointer;white-space:nowrap;">✕</button>
+    </div>
+    <div id="dstBox" style="margin-top:8px;display:none;">
+      <div style="padding:10px 14px;background:#f8f9ff;border-radius:10px;border:1px solid #e8eaf6;font-size:14px;color:#444;line-height:1.6;word-break:break-word;" id="dstText"></div>
+    </div>
+  </div>
+</div>
+<script>
+function translateText() {
+  var s=document.getElementById('srcText').value.trim();if(!s)return;
+  document.getElementById('dstBox').style.display='block';
+  document.getElementById('dstText').textContent='翻译中...';
+  var x=new XMLHttpRequest();
+  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
+  x.onload=function(){
+    try{
+      var r=JSON.parse(x.responseText);var txt='';
+      if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])txt+=r[0][i][0];
+      if(!txt||txt===s){
+        x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
+        x.onload=function(){try{var r2=JSON.parse(this.responseText);var txt2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])txt2+=r2[0][i][0];document.getElementById('dstText').textContent=txt2||'无法翻译'}catch(e){document.getElementById('dstText').textContent='翻译失败'}};
+        x.send();
+      }else{document.getElementById('dstText').textContent=txt;}
+    }catch(e){document.getElementById('dstText').textContent='翻译出错'}
+  };
+  x.onerror=function(){document.getElementById('dstText').textContent='网络错误'};
+  x.send();
+}
+function clearTranslate(){document.getElementById('srcText').value='';document.getElementById('dstBox').style.display='none';}
+document.addEventListener('DOMContentLoaded',function(){
+  var el=document.getElementById('srcText');if(el)el.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();translateText();}});
+});
+</script><div class="container">
 
 <h1><span>🌸</span> 哈萨克西里尔字母 · 入门指南</h1>
 <p class="subtitle">Қазақ Кирил Әліпбиі · 点击字母听发音 🔊</p>
@@ -377,113 +420,4 @@ function speak(text) {
 }
 </script>
 
-<!-- Translation Section -->
-<div style="max-width:800px;margin:20px auto;padding:0 20px;">
-  <div style="background:rgba(255,255,255,0.95);border-radius:20px;padding:25px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(255,255,255,0.5);">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:15px;">
-      <span style="font-size:20px;">🌐</span>
-      <span style="font-size:16px;font-weight:700;color:#333;">翻译 / Translate</span>
-      <span style="font-size:12px;color:#999;margin-left:auto;">选择语言 ↓</span>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <textarea id="srcText" placeholder="输入要翻译的文本..." style="width:100%;height:120px;padding:14px;border:2px solid #e8eaf6;border-radius:12px;font-size:15px;font-family:inherit;resize:vertical;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e8eaf6'"></textarea>
-      <textarea id="dstText" placeholder="翻译结果..." style="width:100%;height:120px;padding:14px;border:2px solid #e8eaf6;border-radius:12px;font-size:15px;font-family:inherit;resize:vertical;outline:none;background:#f8f9ff;transition:border 0.2s;" readonly onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e8eaf6'"></textarea>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-      <select id="langFrom" style="flex:1;padding:8px 12px;border:2px solid #e8eaf6;border-radius:10px;font-size:13px;outline:none;cursor:pointer;background:#fff;">
-        <option value="auto">自动检测</option>
-        <option value="zh-CN">中文</option>
-        <option value="kk">Қазақша (西里尔)</option>
-        <option value="kk-arab">قازاقشا (阿拉伯)</option>
-        <option value="kk-latn">Qazaqşa (拉丁)</option>
-      </select>
-      <button onclick="translateText()" style="padding:8px 24px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">翻 译</button>
-      <button onclick="document.getElementById('srcText').value='';document.getElementById('dstText').value=''" style="padding:8px 16px;background:#f5f5f5;color:#666;border:1px solid #ddd;border-radius:10px;font-size:13px;cursor:pointer;">清空</button>
-    </div>
-    <div style="font-size:11px;color:#aaa;margin-top:10px;text-align:center;">
-      使用 Google 翻译 · 支持中文 ↔ 哈萨克语互译
-    </div>
-  </div>
-</div>
-<script>
-function translateText() {
-  var src = document.getElementById('srcText').value.trim();
-  if (!src) return;
-  var from = document.getElementById('langFrom').value;
-  var to = (from === 'kk' || from === 'kk-arab' || from === 'kk-latn') ? 'zh-CN' : 'kk';
-  
-  // Google Translate API
-  var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=' + from + '&tl=' + to + '&dt=t&q=' + encodeURIComponent(src);
-  
-  document.getElementById('dstText').value = '翻译中...';
-  
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
-  xhr.onload = function() {
-    try {
-      var result = JSON.parse(xhr.responseText);
-      var translated = '';
-      if (result && result[0]) {
-        for (var i = 0; i < result[0].length; i++) {
-          if (result[0][i] && result[0][i][0]) {
-            translated += result[0][i][0];
-          }
-        }
-      }
-      document.getElementById('dstText').value = translated || '翻译失败';
-    } catch(e) {
-      document.getElementById('dstText').value = '翻译出错: ' + e.message;
-    }
-  };
-  xhr.onerror = function() {
-    document.getElementById('dstText').value = '网络错误，请重试';
-  };
-  xhr.send();
-}
-// Enter key to translate
-document.addEventListener('DOMContentLoaded', function() {
-  var src = document.getElementById('srcText');
-  if (src) {
-    src.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); translateText(); }
-    });
-  }
-});
-</script>
-<!-- Translation -->
-<div style="max-width:800px;margin:20px auto;padding:0 20px;">
-  <div style="background:rgba(255,255,255,0.95);border-radius:20px;padding:25px;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:15px;">
-      <span style="font-size:20px;">🌐</span>
-      <span style="font-size:16px;font-weight:700;color:#333;">翻译</span>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <textarea id="srcText" placeholder="输入文本..." style="width:100%;height:100px;padding:12px;border:2px solid #e8eaf6;border-radius:12px;font-size:14px;font-family:inherit;resize:vertical;outline:none;"></textarea>
-      <textarea id="dstText" placeholder="翻译结果..." style="width:100%;height:100px;padding:12px;border:2px solid #e8eaf6;border-radius:12px;font-size:14px;font-family:inherit;resize:vertical;outline:none;background:#f8f9ff;" readonly></textarea>
-    </div>
-    <div style="display:flex;gap:8px;margin-top:10px;">
-      <select id="langFrom" style="flex:1;padding:8px;border:2px solid #e8eaf6;border-radius:10px;font-size:13px;">
-        <option value="auto">自动</option>
-        <option value="zh-CN">中文</option>
-        <option value="kk">Қазақша</option>
-      </select>
-      <button onclick="translateText()" style="padding:8px 24px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;">翻译</button>
-      <button onclick="clearTranslate()" style="padding:8px 16px;background:#f5f5f5;color:#666;border:1px solid #ddd;border-radius:10px;font-size:13px;cursor:pointer;">清空</button>
-    </div>
-  </div>
-</div>
-<script>
-function translateText() {
-  var s=document.getElementById('srcText').value.trim();if(!s)return;
-  var f=document.getElementById('langFrom').value;
-  var t=(f=='kk'||f=='kk-arab'||f=='kk-latn')?'zh-CN':'kk';
-  document.getElementById('dstText').value='翻译中...';
-  var x=new XMLHttpRequest();
-  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl='+f+'&tl='+t+'&dt=t&q='+encodeURIComponent(s),true);
-  x.onload=function(){try{var r=JSON.parse(x.responseText);var txt='';if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])txt+=r[0][i][0];document.getElementById('dstText').value=txt||'失败'}catch(e){document.getElementById('dstText').value='翻译出错'}};
-  x.onerror=function(){document.getElementById('dstText').value='网络错误'};
-  x.send();
-}
-function clearTranslate(){document.getElementById('srcText').value='';document.getElementById('dstText').value='';}
-</script>
 </body>
