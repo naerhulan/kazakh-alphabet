@@ -323,15 +323,45 @@
 
 <!-- Audio JS -->
 <script>
-let lastAudio = null;
-let playingTimer = null;
+// Letter to sound file mapping
+const wordMap = {
+  'salem': 'salem', 'rahmet': 'rahmet', 'kosh_bol': 'kosh_bol',
+  'zhaksy': 'zhaksy', 'qazaq': 'qazaq', 'mahabbat': 'mahabbat',
+  'alma': 'alma', 'gul': 'gul', 'kun': 'kun', 'ay': 'ay'
+};
+
 function speak(text) {
-  let key = text.toLowerCase().replace(/ /g, '_').replace(/[^a-z0-9а-яәғқңөұүіһ_]/g, '');
-  let src = 'sounds/' + key + '.wav';
-  if (lastAudio) { lastAudio.pause(); lastAudio.currentTime = 0; }
-  let audio = new Audio(src);
-  lastAudio = audio;
-  audio.play().catch(e => {});
+  const parts = text.trim().split(' ');
+  const speakText = parts.length > 1 ? parts[parts.length - 1] : text;
+  const lower = speakText.toLowerCase();
+
+  // Word mapping
+  const kkWordMap = {
+    'сәлем': 'salem', 'рахмет': 'rahmet', 'қош бол': 'kosh_bol',
+    'жақсы': 'zhaksy', 'қазақ': 'qazaq', 'махаббат': 'mahabbat',
+    'алма': 'alma', 'гүл': 'gul', 'күн': 'kun', 'ай': 'ay'
+  };
+  if (kkWordMap[lower.trim()]) {
+    new Audio('sounds/' + kkWordMap[lower.trim()] + '.wav').play();
+    return;
+  }
+
+  // Play individual letters
+  const chars = lower.split('');
+  chars.forEach((ch, i) => {
+    const searchKey = {
+      'а': 'a', 'ә': 'ae', 'б': 'b', 'в': 'v', 'г': 'g', 'ғ': 'gh_',
+      'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i',
+      'й': 'y', 'к': 'k', 'қ': 'q_', 'л': 'l', 'м': 'm', 'н': 'n',
+      'ң': 'ng_', 'о': 'o', 'ө': 'oe_', 'п': 'p', 'р': 'r', 'с': 's',
+      'т': 't', 'у': 'oo', 'ұ': 'uu_', 'ү': 'ue_', 'ф': 'f', 'х': 'kh',
+      'һ': 'h_', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sh', 'ъ': '',
+      'ы': 'yh', 'і': 'ii_', 'ь': '', 'э': 'eh', 'ю': 'yoo', 'я': 'yah'
+    }[ch];
+    if (searchKey) {
+      setTimeout(() => new Audio('sounds/' + searchKey + '.wav').play(), i * 350);
+    }
+  });
 }
 </script>
 
