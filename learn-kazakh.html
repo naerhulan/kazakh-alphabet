@@ -101,7 +101,77 @@
 <div style="max-width:800px;margin:0 auto 15px;padding:0 20px;">
   <a href="./" style="display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:15px;font-weight:600;padding:10px 20px;border-radius:12px;background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:0 4px 15px rgba(102,126,234,0.4);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 25px rgba(102,126,234,0.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.4)'">← 返回主页</a>
 </div>
-<div class="container">
+<!-- Translator Top -->
+<div style="max-width:800px;margin:15px auto;padding:0 20px;">
+  <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <span style="font-size:20px;">🌍</span>
+      <span style="font-size:14px;font-weight:700;color:#444;letter-spacing:0.5px;">翻译</span>
+      <span style="font-size:11px;color:#999;">中文 ↔ Қазақша</span>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <input id="srcText" placeholder="输入中文或哈萨克语..." style="flex:1;min-width:180px;padding:10px 14px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 4px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'">
+      <div style="display:flex;gap:6px;">
+        <button onclick="speakInput()" style="padding:10px 12px;background:rgba(102,126,234,0.1);color:#667eea;border:1.5px solid rgba(102,126,234,0.2);border-radius:12px;font-size:16px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(102,126,234,0.2)'" onmouseout="this.style.background='rgba(102,126,234,0.1)'" title="朗读输入">🔊</button>
+        <button onclick="translateText()" style="padding:10px 24px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(102,126,234,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.3)'">翻译</button>
+        <button onclick="clearTrans()" style="padding:10px 12px;background:rgba(0,0,0,0.03);color:#999;border:1.5px solid #eee;border-radius:12px;font-size:14px;cursor:pointer;transition:all 0.2s;" title="清空">✕</button>
+      </div>
+    </div>
+    <div id="dstBox" style="display:none;margin-top:10px;padding:12px 14px;background:#fff;border-radius:12px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;">
+      <span id="dstText" style="display:block;margin-bottom:8px;"></span>
+      <button onclick="speakOutput()" style="padding:6px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer;transition:all 0.2s;" title="朗读结果">🔊 朗读结果</button>
+    </div>
+  </div>
+</div>
+<script>
+function translateText(){
+  var s=document.getElementById('srcText').value.trim();if(!s)return;
+  var d=document.getElementById('dstBox');d.style.display='block';
+  document.getElementById('dstText').textContent='⏳ 翻译中...';
+  var x=new XMLHttpRequest();
+  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
+  x.onload=function(){
+    try{
+      var r=JSON.parse(x.responseText);var t='';
+      if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])t+=r[0][i][0];
+      if(!t||t===s){
+        var x2=new XMLHttpRequest();
+        x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
+        x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];document.getElementById('dstText').textContent=t2||'无法翻译'}catch(e){document.getElementById('dstText').textContent='翻译失败'}};
+        x2.send();
+      }else{document.getElementById('dstText').textContent=t;}
+    }catch(e){document.getElementById('dstText').textContent='翻译出错'}
+  };
+  x.onerror=function(){document.getElementById('dstText').textContent='⚠ 网络错误，请检查连接'};
+  x.send();
+}
+function speakInput(){
+  var t=document.getElementById('srcText').value.trim();
+  if(!t)return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(t);
+  u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';
+  u.rate=0.85;
+  window.speechSynthesis.speak(u);
+}
+function speakOutput(){
+  var t=document.getElementById('dstText').textContent;
+  if(!t||t.startsWith('⏳')||t.startsWith('⚠')||t.startsWith('无法')||t.startsWith('翻译'))return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(t);
+  u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';
+  u.rate=0.85;
+  window.speechSynthesis.speak(u);
+}
+function clearTrans(){
+  document.getElementById('srcText').value='';
+  document.getElementById('dstBox').style.display='none';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var e=document.getElementById('srcText');
+  if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();translateText();}});
+});
+</script><div class="container">
 
 <h1>🀄 用中文 · 学哈语阿拉伯字母</h1>
 <p class="subtitle">قازاق ٵلىپبئى · 中国哈萨克族使用的阿拉伯文字</p>
@@ -200,60 +270,6 @@ function play(key) {
   };
   if (sk[key]) new Audio('sounds/' + sk[key] + '.wav').play();
 }
-</script>
-<!-- Translate Bar -->
-<div style="max-width:800px;margin:25px auto 10px;padding:0 20px;">
-  <div style="background:linear-gradient(135deg,#f093fb22,#f5576c22);border:1px solid rgba(245,87,108,0.15);border-radius:16px;padding:16px 20px;">
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-      <span style="font-size:16px;">🌐</span>
-      <input id="srcText" placeholder="翻译 · 输入中文或Қазақша" style="flex:1;min-width:150px;padding:9px 14px;border:1.5px solid #e8eaf6;border-radius:10px;font-size:13px;outline:none;transition:all 0.2s;background:#fff;" onfocus="this.style.borderColor='#f5576c';this.style.boxShadow='0 0 0 3px rgba(245,87,108,0.08)'" onblur="this.style.borderColor='#e8eaf6';this.style.boxShadow='none'">
-      <button onclick="translateText()" style="padding:9px 20px;background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">翻译</button>
-    </div>
-    <div id="dstBox" style="display:none;margin-top:10px;padding:10px 14px;background:#f8f9ff;border-radius:10px;border:1px solid #e8eaf6;font-size:13px;color:#444;line-height:1.6;word-break:break-word;">
-      <span id="dstText"></span>
-      <button onclick="speakResult()" id="speakBtn" style="display:none;margin-left:8px;padding:4px 10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer;vertical-align:middle;" title="朗读">🔊 朗读</button>
-    </div>
-  </div>
-</div>
-<script>
-function translateText(){
-  var s=document.getElementById('srcText').value.trim();if(!s)return;
-  var d=document.getElementById('dstBox');d.style.display='block';
-  document.getElementById('dstText').textContent='翻译中...';
-  document.getElementById('speakBtn').style.display='none';
-  var x=new XMLHttpRequest();
-  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
-  x.onload=function(){
-    try{
-      var r=JSON.parse(x.responseText);var t='';
-      if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])t+=r[0][i][0];
-      if(!t||t===s){
-        var x2=new XMLHttpRequest();
-        x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-        x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];showResult(t2)}catch(e){showResult('翻译失败')}};
-        x2.send();
-      }else{showResult(t);}
-    }catch(e){showResult('翻译出错')}
-  };
-  x.onerror=function(){showResult('网络错误')};
-  x.send();
-}
-function showResult(t){
-  document.getElementById('dstText').textContent=t||'无法翻译';
-  document.getElementById('speakBtn').style.display=t&&t!='翻译中...'&&t!='翻译出错'&&t!='网络错误'&&t!='翻译失败'&&t!='无法翻译'?'inline-block':'none';
-}
-function speakResult(){
-  var t=document.getElementById('dstText').textContent;
-  if(!t||t=='翻译中...'||t=='翻译出错'||t=='网络错误')return;
-  window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(t);
-  u.lang=t.match(/[\u0400-\u04ff]/)?'kk-KZ':'zh-CN';
-  u.rate=0.9;
-  window.speechSynthesis.speak(u);
-}
-document.addEventListener('DOMContentLoaded',function(){
-  var e=document.getElementById('srcText');if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();translateText();}});
-});
 </script>
 </body>
 </html>
