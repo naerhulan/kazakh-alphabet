@@ -186,7 +186,7 @@ const wordMap = {
   'alma': 'alma', 'gul': 'gul', 'kun': 'kun', 'ay': 'ay'
 };
 function play(key) {
-  if (wordMap[key]) { new Audio('sounds/' + wordMap[key] + '.wav').play(); return; }
+  if (wordMap[key]) { var a=new Audio('sounds/'+wordMap[key]+'.mp3');a.onerror=function(){new Audio('sounds/'+wordMap[key]+'.wav').play()};a.play().catch(function(){new Audio('sounds/'+wordMap[key]+'.wav').play()}); return; }
   const sk = {
     'a':'a', 'ae':'ae', 'b':'b', 'v':'v', 'g':'g', 'gh_':'gh_',
     'd':'d', 'e':'e', 'zh':'zh', 'z':'z', 'i':'i', 'y':'y',

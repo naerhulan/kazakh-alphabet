@@ -342,7 +342,9 @@ function speak(text) {
     'алма': 'alma', 'гүл': 'gul', 'күн': 'kun', 'ай': 'ay'
   };
   if (kkWordMap[lower.trim()]) {
-    new Audio('sounds/' + kkWordMap[lower.trim()] + '.wav').play();
+    var audio = new Audio('sounds/' + kkWordMap[lower.trim()] + '.mp3');
+    audio.onerror = function() { new Audio('sounds/' + kkWordMap[lower.trim()] + '.wav').play(); };
+    audio.play().catch(function() { new Audio('sounds/' + kkWordMap[lower.trim()] + '.wav').play(); });
     return;
   }
 
