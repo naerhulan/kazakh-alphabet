@@ -3,427 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>Qazaq Converter - 哈萨克文字转换</title>
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Qazaq Conv - قازاقشا اۋدارۋ</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Sans:wght@300;400;500;700&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Noto Sans SC', 'Noto Sans', -apple-system, sans-serif;
-    background: linear-gradient(135deg, #f8f9ff, #fce4ec);
-    min-height: 100vh; padding: 20px;
-  }
-  .app {
-    max-width: 600px; margin: 0 auto;
-  }
-  /* Header */
-  .header {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 20px; padding: 20px 24px; color: #fff;
-    margin-bottom: 16px; box-shadow: 0 8px 30px rgba(102,126,234,0.3);
-  }
-  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
-  .header p { font-size: 12px; opacity: 0.7; margin-top: 4px; }
-  .header .badge {
-    display: inline-block; background: rgba(255,255,255,0.15);
-    padding: 3px 10px; border-radius: 10px; font-size: 10px; margin-top: 8px;
-  }
-  /* Usage counter */
-  .counter {
-    text-align: center; font-size: 12px; color: #999; margin-bottom: 10px;
-  }
-  .counter span { color: #667eea; font-weight: 700; }
-  /* Converter */
-  .converter {
-    background: #fff; border-radius: 16px; padding: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06); margin-bottom: 12px;
-  }
-  .conv-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 10px;
-  }
-  .conv-header .label {
-    font-size: 12px; font-weight: 600; color: #666;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .conv-header .label .dir { font-size: 11px; color: #999; font-weight: 400; }
-  .arrow-btn {
-    background: linear-gradient(135deg,#667eea,#764ba2); color: #fff;
-    border: none; border-radius: 50%; width: 36px; height: 36px;
-    font-size: 18px; cursor: pointer; transition: all 0.2s;
-    box-shadow: 0 4px 10px rgba(102,126,234,0.3);
-  }
-  .arrow-btn:hover { transform: scale(1.05); }
-  .text-area {
-    width: 100%; min-height: 100px; padding: 14px;
-    border: 2px solid #e8eaf6; border-radius: 12px;
-    font-size: 16px; font-family: 'Noto Naskh Arabic', 'Noto Sans', serif;
-    outline: none; resize: vertical; transition: border 0.2s;
-    line-height: 1.8; direction: rtl;
-  }
-  .text-area:focus { border-color: #667eea; }
-  .text-area.cyr { direction: ltr; font-family: 'Noto Sans', sans-serif; }
-  .result-area {
-    width: 100%; min-height: 80px; padding: 14px;
-    border: 2px solid #e8eaf6; border-radius: 12px;
-    font-size: 16px; font-family: 'Noto Naskh Arabic', 'Noto Sans', serif;
-    outline: none; resize: vertical; line-height: 1.8;
-    background: #f8f9ff; margin-top: 8px; direction: rtl;
-  }
-  .result-area.cyr { direction: ltr; font-family: 'Noto Sans', sans-serif; }
-  .action-bar {
-    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
-  }
-  .btn {
-    padding: 10px 20px; border: none; border-radius: 10px;
-    font-size: 13px; font-weight: 600; cursor: pointer;
-    transition: all 0.2s; white-space: nowrap;
-  }
-  .btn-primary { background: linear-gradient(135deg,#667eea,#764ba2); color: #fff; flex: 1; }
-  .btn-secondary { background: rgba(102,126,234,0.1); color: #667eea; }
-  .btn-danger { background: rgba(245,87,108,0.1); color: #f5576c; }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .btn-sm { padding: 6px 12px; font-size: 11px; }
-  /* Speak button */
-  .speak-btn {
-    padding: 6px 12px; background: linear-gradient(135deg,#f093fb,#f5576c);
-    color: #fff; border: none; border-radius: 8px; font-size: 12px;
-    cursor: pointer; transition: all 0.2s;
-  }
-  /* Letter cards */
-  .letters { margin-top: 12px; }
-  .letters h3 {
-    font-size: 13px; color: #666; margin-bottom: 8px;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .letter-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
-    gap: 6px; margin-bottom: 8px;
-  }
-  .letter-card {
-    background: #fff; border-radius: 10px; padding: 8px 4px;
-    text-align: center; border: 1.5px solid #e8eaf6;
-    cursor: pointer; transition: all 0.2s;
-    font-size: 20px; font-weight: 700; color: #333;
-  }
-  .letter-card:hover { border-color: #667eea; transform: translateY(-2px); }
-  .letter-card.playing { border-color: #f5576c; animation: pulse 0.3s; }
-  @keyframes pulse { 50% { transform: scale(1.1); } }
-  .letter-card .sub {
-    display: block; font-size: 9px; color: #999; font-weight: 400;
-    margin-top: 2px; font-family: 'Noto Sans', sans-serif;
-  }
-  /* History */
-  .history {
-    background: #fff; border-radius: 16px; padding: 16px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06); margin-bottom: 12px;
-  }
-  .history h3 {
-    font-size: 13px; color: #666; margin-bottom: 8px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .history-item {
-    padding: 10px 0; border-bottom: 1px solid #f0f0f0;
-    font-size: 13px; line-height: 1.6;
-  }
-  .history-item:last-child { border-bottom: none; }
-  .history-item .src { color: #333; direction: rtl; }
-  .history-item .dst { color: #667eea; margin-top: 2px; direction: rtl; }
-  .history-item .time { font-size: 10px; color: #ccc; }
-  /* Pro upgrade */
-  .pro-banner {
-    background: linear-gradient(135deg,#fff9c4,#ffe082);
-    border-radius: 16px; padding: 16px 20px; text-align: center;
-    margin-bottom: 12px; cursor: pointer;
-  }
-  .pro-banner h3 { font-size: 16px; color: #e65100; }
-  .pro-banner p { font-size: 12px; color: #bf360c; margin-top: 4px; }
-  .pro-banner .price {
-    display: inline-block; background: #e65100; color: #fff;
-    padding: 6px 20px; border-radius: 20px; font-size: 14px;
-    font-weight: 700; margin-top: 8px;
-  }
-  .pro-feature { opacity: 0.4; pointer-events: none; position: relative; }
-  .pro-feature::after {
-    content: '🔒'; position: absolute; right: 8px; top: 8px; font-size: 14px;
-  }
-  .pro-feature.unlocked { opacity: 1; pointer-events: auto; }
-  .pro-feature.unlocked::after { display: none; }
-  /* Lock overlay */
-  .locked-msg { font-size: 11px; color: #999; text-align: center; margin-top: 6px; }
-  /* Footer */
-  .footer { text-align: center; font-size: 11px; color: #ccc; margin-top: 20px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:linear-gradient(135deg,#f8f9ff,#fce4ec);min-height:100vh;padding:16px}
+.app{max-width:520px;margin:0 auto}
+.header{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:16px;padding:18px 20px;color:#fff;margin-bottom:12px}
+.header h1{font-size:20px;font-weight:700}
+.header p{font-size:11px;opacity:.7;margin-top:3px}
+.conv-box{background:#fff;border-radius:14px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-bottom:10px}
+.dir-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.dir-row .lbl{font-size:12px;font-weight:600;color:#666}
+.dir-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;box-shadow:0 3px 10px rgba(102,126,234,.3)}
+textarea{width:100%;min-height:90px;padding:12px;border:2px solid #e8eaf6;border-radius:10px;font-size:16px;font-family:'Noto Naskh Arabic',serif;outline:none;resize:vertical;line-height:1.7;transition:border .2s}
+textarea:focus{border-color:#667eea}
+textarea.cyr{direction:ltr;font-family:-apple-system,sans-serif}
+.result{width:100%;min-height:70px;padding:12px;border:2px solid #e8eaf6;border-radius:10px;font-size:16px;font-family:'Noto Naskh Arabic',serif;background:#f8f9ff;margin-top:8px;line-height:1.7;word-break:break-word}
+.result.cyr{direction:ltr;font-family:-apple-system,sans-serif}
+.btn-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.btn{padding:9px 16px;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-pri{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;flex:1}
+.btn-sec{background:rgba(102,126,234,.1);color:#667eea}
+.btn-pink{background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff}
+.btn-red{background:rgba(245,87,108,.1);color:#f5576c}
+.btn-gry{background:rgba(0,0,0,.04);color:#999}
+.his-box{background:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.his-box h3{font-size:13px;color:#666;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.his-item{padding:8px 0;border-bottom:1px solid #f3f3f3;font-size:13px;line-height:1.5}
+.his-item:last-child{border-bottom:none}
+.his-src{color:#333}
+.his-dst{color:#667eea;margin-top:1px}
+.his-time{font-size:10px;color:#ccc}
+.empty-his{text-align:center;color:#ccc;padding:16px;font-size:13px}
+.let-box{background:#fff;border-radius:14px;padding:12px 16px;margin-top:10px}
+.let-box h3{font-size:12px;color:#666;margin-bottom:8px}
+.let-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:5px}
+.let-card{background:#fff;border-radius:8px;padding:6px 3px;text-align:center;border:1.5px solid #e8eaf6;cursor:pointer;transition:all .15s;font-size:17px;font-weight:700;color:#333}
+.let-card:active{border-color:#667eea;transform:scale(.95)}
+.let-card .sub{display:block;font-size:8px;color:#999;font-weight:400;margin-top:1px}
+.footer{text-align:center;font-size:10px;color:#ccc;margin-top:16px}
 </style>
 </head>
 <body>
 <div class="app">
 
 <div class="header">
-  <h1>🇰🇿 Qazaq Converter</h1>
-  <p>哈萨克阿拉伯字母 ⇄ 西里尔字母 · 双向转换</p>
-  <div class="badge">v1.0</div>
+<h1>🇰🇿 Qazaq Conv</h1>
+<p>قازاقشا اۋدارۋ · 哈萨克文字转换</p>
 </div>
 
-<div class="counter" id="counterDisplay">
-  今日剩余 <span id="remainCount">5</span> 次转换
+<div class="conv-box">
+<div class="dir-row">
+<span class="lbl" id="dirLabel">قازاقشا → كيريل</span>
+<button class="dir-btn" onclick="swDir()">⇄</button>
+</div>
+<textarea id="inp" placeholder="جازۋ جازىڭىز ..."></textarea>
+<div class="result" id="out"></div>
+<div class="btn-row">
+<button class="btn btn-pri" onclick="conv()">🔄 اۋدار</button>
+<button class="btn btn-pink" onclick="spkInp()">🔊 وقۋ</button>
+<button class="btn btn-gry" onclick="clr()">✕</button>
+</div>
 </div>
 
-<!-- PRO Upgrade Banner -->
-<div class="pro-banner" id="proBanner" onclick="purchase()">
-  <h3>🌟 升级完整版</h3>
-  <p>无限转换 · 整句朗读 · 无限制历史 · 纯净体验</p>
-  <div class="price">¥3.90 永久买断</div>
+<div class="let-box">
+<h3>🔤 اريپتەر</h3>
+<div class="let-grid" id="letGrid"></div>
 </div>
 
-<!-- Converter -->
-<div class="converter" id="converter">
-  <div class="conv-header">
-    <div class="label">
-      <span id="dirLabel">قازاقشا</span>
-      <span class="dir">← جازۋ →</span>
-    </div>
-    <button class="arrow-btn" onclick="switchDirection()">⇄</button>
-  </div>
-  
-  <textarea class="text-area" id="inputText" placeholder="جازۋ جازىڭىز ..." oninput="autoConvert()"></textarea>
-  
-  <div class="result-area" id="outputText"></div>
-  
-  <div class="action-bar">
-    <button class="btn btn-primary" onclick="convertText()" id="convertBtn">🔄 اۋدار</button>
-    <button class="speak-btn" onclick="speakInput()">🔊 وقۋ</button>
-    <button class="btn btn-secondary btn-sm" onclick="clearText()">✕ تازالاۋ</button>
-  </div>
+<div class="his-box" style="margin-top:10px">
+<h3><span>📋 تارىح</span><button class="btn btn-red" style="padding:4px 10px;font-size:11px" onclick="clrHis()">تازالاۋ</button></h3>
+<div id="hisList"><div class="empty-his">جازۋ جوق</div></div>
 </div>
 
-<!-- Letter Cards -->
-<div class="converter" id="letterSection">
-  <div class="letters">
-    <h3>🔤 اريپتەر · 字母卡片</h3>
-    <div class="letter-grid" id="letterGrid"></div>
-  </div>
-</div>
+<div class="footer">🌸 Qazaq Conv · v1.0 · толىق وفسلاين</div>
 
-<!-- History -->
-<div class="history" id="historySection">
-  <h3>
-    <span>📋 تارىح · 转换历史</span>
-    <button class="btn btn-danger btn-sm" onclick="clearHistory()">تازالاۋ</button>
-  </h3>
-  <div id="historyList"></div>
-  <div class="locked-msg" id="historyLock">🔒 完整版可查看无限历史记录</div>
 </div>
-
-<div class="footer">🌸 Qazaq Converter · 2026</div>
 
 <script>
-// ==================== Cyrillic ↔ Arabic Conversion Table ====================
-const cyr2arab = {
-  'а':'ا', 'ә':'اە', 'б':'ب', 'в':'ۋ', 'г':'گ', 'ғ':'ع',
-  'д':'د', 'е':'ە', 'ё':'يو', 'ж':'ج', 'з':'ز', 'и':'ي',
-  'й':'ي', 'к':'ك', 'қ':'ق', 'л':'ل', 'м':'م', 'н':'ن',
-  'ң':'ڭ', 'о':'و', 'ө':'و', 'п':'پ', 'р':'ر', 'с':'س',
-  'т':'ت', 'у':'ۋ', 'ұ':'ۇ', 'ү':'ۇ', 'ф':'ف', 'х':'ح',
-  'һ':'ھ', 'ц':'تس', 'ч':'چ', 'ш':'ش', 'щ':'شش', 'ъ':'',
-  'ы':'ى', 'і':'ى', 'ь':'', 'э':'ە', 'ю':'يۋ', 'я':'يا',
-  'А':'ا', 'Ә':'اە', 'Б':'ب', 'В':'ۋ', 'Г':'گ', 'Ғ':'ع',
-  'Д':'د', 'Е':'ە', 'Ё':'يو', 'Ж':'ج', 'З':'ز', 'И':'ي',
-  'Й':'ي', 'К':'ك', 'Қ':'ق', 'Л':'ل', 'М':'م', 'Н':'ن',
-  'Ң':'ڭ', 'О':'و', 'Ө':'و', 'П':'پ', 'Р':'ر', 'С':'س',
-  'Т':'ت', 'У':'ۋ', 'Ұ':'ۇ', 'Ү':'ۇ', 'Ф':'ف', 'Х':'ح',
-  'Һ':'ھ', 'Ц':'تس', 'Ч':'چ', 'Ш':'ش', 'Щ':'شش', 'Ъ':'',
-  'Ы':'ى', 'І':'ى', 'Ь':'', 'Э':'ە', 'Ю':'يۋ', 'Я':'يا'
-};
+// === Conversion Table ===
+const c2a={'а':'ا','ә':'اە','б':'ب','в':'ۋ','г':'گ','ғ':'ع','д':'د','е':'ە','ё':'يو','ж':'ج','з':'ز','и':'ي','й':'ي','к':'ك','қ':'ق','л':'ل','м':'م','н':'ن','ң':'ڭ','о':'و','ө':'و','п':'پ','р':'ر','с':'س','т':'ت','у':'ۋ','ұ':'ۇ','ү':'ۇ','ف':'ف','х':'ح','һ':'ھ','ц':'تس','ч':'چ','ш':'ش','щ':'شش','ъ':'','ы':'ى','і':'ى','ь':'','э':'ە','ю':'يۋ','я':'يا',
+'А':'ا','Ә':'اە','Б':'ب','В':'ۋ','Г':'گ','Ғ':'ع','Д':'د','Е':'ە','Ё':'يو','Ж':'ج','З':'ز','И':'ي','Й':'ي','К':'ك','Қ':'ق','Л':'ل','М':'م','Н':'ن','Ң':'ڭ','О':'و','Ө':'و','П':'پ','Р':'ر','С':'س','Т':'ت','У':'ۋ','Ұ':'ۇ','Ү':'ۇ','Ф':'ف','Х':'ح','Һ':'ھ','Ц':'تس','Ч':'چ','Ш':'ش','Щ':'شش','Ъ':'','Ы':'ى','І':'ى','Ь':'','Э':'ە','Ю':'يۋ','Я':'يا'}
 
-const arab2cyr = {};
-for (let k in cyr2arab) { arab2cyr[cyr2arab[k]] = k; }
+const a2c={}
+for(let k in c2a)a2c[c2a[k]]=k
 
-// Fix specific mappings
-arab2cyr['و'] = 'و'; // ambiguous: о/ө/ұ all map to و
-arab2cyr['ۇ'] = 'ۇ'; // ambiguous: ұ/ү
-arab2cyr['ى'] = 'ى'; // ambiguous: ы/і
-arab2cyr['ە'] = 'ە'; // ambiguous: ә/е/э
+let dir='a2c'
+let his=JSON.parse(localStorage.getItem('qch')||'[]')
 
-// ==================== State ====================
-let isPro = localStorage.getItem('qazaq_pro') === 'true';
-let today = new Date().toDateString();
-let dailyCount = parseInt(localStorage.getItem('qazaq_count_' + today) || '0');
-let direction = 'arab2cyr'; // or 'cyr2arab'
-let history = JSON.parse(localStorage.getItem('qazaq_history') || '[]');
-
-// ==================== Init ====================
-function init() {
-  updateCounter();
-  renderLetters();
-  renderHistory();
-  if (isPro) { document.querySelectorAll('.pro-feature').forEach(e => e.classList.add('unlocked')); document.getElementById('proBanner').style.display = 'none'; }
+function init(){
+  renderLet()
+  renderHis()
 }
 
-function updateCounter() {
-  document.getElementById('remainCount').textContent = Math.max(0, isPro ? 999 : 5 - dailyCount);
-}
-
-// ==================== Convert ====================
-function convertText() {
-  let input = document.getElementById('inputText').value.trim();
-  if (!input) return;
-  
-  if (!isPro && dailyCount >= 5) { alert('⚠️ 每日免费次数已用完，升级完整版可无限使用！'); return; }
-  
-  let result = '';
-  if (direction === 'arab2cyr') {
-    // Arabic → Cyrillic
-    let chars = input.split('');
-    let i = 0;
-    while (i < chars.length) {
-      if (i + 1 < chars.length && arab2cyr[chars[i] + chars[i+1]]) {
-        result += arab2cyr[chars[i] + chars[i+1]] || chars[i];
-        i += 2;
-      } else if (arab2cyr[chars[i]]) {
-        result += arab2cyr[chars[i]];
-        i++;
-      } else {
-        result += chars[i];
-        i++;
-      }
+function conv(){
+  let s=document.getElementById('inp').value
+  if(!s)return
+  let r=''
+  if(dir==='a2c'){
+    for(let i=0;i<s.length;i++){
+      let t=s[i]+(i+1<s.length?s[i+1]:'')
+      if(a2c[t]){r+=a2c[t];i++}
+      else if(a2c[s[i]])r+=a2c[s[i]]
+      else r+=s[i]
     }
-  } else {
-    // Cyrillic → Arabic
-    result = input.split('').map(ch => cyr2arab[ch] || ch).join('');
+  }else{
+    r=s.split('').map(c=>c2a[c]||c).join('')
   }
-  
-  document.getElementById('outputText').textContent = result;
-  
-  if (!isPro) { dailyCount++; localStorage.setItem('qazaq_count_' + today, dailyCount); updateCounter(); }
-  
-  // Save history
-  history.unshift({ src: input, dst: result, time: new Date().toLocaleString(), dir: direction });
-  if (!isPro && history.length > 5) history = history.slice(0, 5);
-  localStorage.setItem('qazaq_history', JSON.stringify(history));
-  renderHistory();
+  document.getElementById('out').textContent=r
+  his.unshift({s,dst:r,t:new Date().toLocaleString()})
+  if(his.length>50)his=his.slice(0,50)
+  localStorage.setItem('qch',JSON.stringify(his))
+  renderHis()
 }
 
-function autoConvert() {
-  if (document.getElementById('inputText').value.trim().length > 0) {
-    convertText();
+function swDir(){
+  dir=dir==='a2c'?'c2a':'a2c'
+  let inp=document.getElementById('inp'),out=document.getElementById('out')
+  if(dir==='a2c'){
+    document.getElementById('dirLabel').textContent='قازاقشا → كيريل'
+    inp.placeholder='جازۋ جازىڭىز ...'
+    inp.className=''
+    out.className='result cyr'
+  }else{
+    document.getElementById('dirLabel').textContent='Кирил → قازاقشا'
+    inp.placeholder='Кирилше жазыңыз...'
+    inp.className='cyr'
+    out.className='result'
   }
+  clr()
 }
 
-function switchDirection() {
-  direction = direction === 'arab2cyr' ? 'cyr2arab' : 'arab2cyr';
-  let input = document.getElementById('inputText');
-  let output = document.getElementById('outputText');
-  let label = document.getElementById('dirLabel');
-  
-  if (direction === 'arab2cyr') {
-    label.textContent = 'قازاقشا';
-    input.placeholder = 'جازۋ جازىڭىز ...';
-    input.className = 'text-area';
-    output.className = 'result-area cyr';
-  } else {
-    label.textContent = 'Қазақша';
-    input.placeholder = 'Кирилше жазыңыз...';
-    input.className = 'text-area cyr';
-    output.className = 'result-area';
-  }
-  clearText();
+function clr(){
+  document.getElementById('inp').value=''
+  document.getElementById('out').textContent=''
 }
 
-function clearText() {
-  document.getElementById('inputText').value = '';
-  document.getElementById('outputText').textContent = '';
+function spkInp(){
+  let t=document.getElementById('inp').value.trim()
+  if(!t){spkOut();return}
+  speechSynthesis.cancel()
+  let u=new SpeechSynthesisUtterance(t)
+  u.lang='kk-KZ';u.rate=.85
+  speechSynthesis.speak(u)
+}
+function spkOut(){
+  let t=document.getElementById('out').textContent
+  if(!t)return
+  speechSynthesis.cancel()
+  let u=new SpeechSynthesisUtterance(t)
+  u.lang='kk-KZ';u.rate=.85
+  speechSynthesis.speak(u)
 }
 
-// ==================== Speak ====================  
-function speakInput() {
-  if (!isPro) { alert('🔒 完整版支持整句朗读。升级后解锁此功能！'); return; }
-  let text = document.getElementById('inputText').value.trim();
-  if (!text) return;
-  window.speechSynthesis.cancel();
-  let u = new SpeechSynthesisUtterance(text);
-  u.lang = 'kk-KZ'; u.rate = 0.85;
-  window.speechSynthesis.speak(u);
+function spkLet(t){
+  speechSynthesis.cancel()
+  let u=new SpeechSynthesisUtterance(t)
+  u.lang='kk-KZ';u.rate=.7
+  speechSynthesis.speak(u)
 }
 
-function speakLetter(text) {
-  window.speechSynthesis.cancel();
-  let u = new SpeechSynthesisUtterance(text);
-  u.lang = 'kk-KZ'; u.rate = 0.7;
-  window.speechSynthesis.speak(u);
+function renderLet(){
+  const ls=[['ا','А'],['اە','Ә'],['ب','Б'],['ۋ','В'],['گ','Г'],['ع','Ғ'],['د','Д'],['ە','Е'],['ج','Ж'],['ز','З'],['ي','И'],['ك','К'],['ق','Қ'],['ل','Л'],['م','М'],['ن','Н'],['ڭ','Ң'],['و','О'],['پ','П'],['ر','Р'],['س','С'],['ت','Т'],['ۇ','Ұ/Ү'],['ف','Ф'],['ح','Х'],['ھ','Һ'],['چ','Ч'],['ش','Ш'],['ى','Ы/І'],['يۋ','Ю'],['يا','Я']]
+  document.getElementById('letGrid').innerHTML=ls.map(l=>`<div class="let-card" onclick="spkLet('${l[1].split('/')[0]}')"><span style="font-size:15px;font-family:'Noto Naskh Arabic',serif;display:block">${l[0]}</span><span class="sub">${l[1]}</span></div>`).join('')
 }
 
-// ==================== Letter Cards ====================
-function renderLetters() {
-  const grid = document.getElementById('letterGrid');
-  const letters = [
-    ['ا','А'], ['اە','Ә'], ['ب','Б'], ['ۋ','В'], ['گ','Г'], ['ع','Ғ'],
-    ['د','Д'], ['ە','Е'], ['ج','Ж'], ['ز','З'], ['ي','И'], ['ي','Й'],
-    ['ك','К'], ['ق','Қ'], ['ل','Л'], ['م','М'], ['ن','Н'], ['ڭ','Ң'],
-    ['و','О'], ['و','Ө'], ['پ','П'], ['ر','Р'], ['س','С'], ['ت','Т'],
-    ['ۋ','У'], ['ۇ','Ұ'], ['ۇ','Ү'], ['ف','Ф'], ['ح','Х'], ['ھ','Һ'],
-    ['تس','Ц'], ['چ','Ч'], ['ش','Ш'], ['شش','Щ'], ['ى','Ы'], ['ى','І'],
-    ['ە','Э'], ['يۋ','Ю'], ['يا','Я']
-  ];
-  
-  grid.innerHTML = letters.map(l => 
-    `<div class="letter-card" onclick="speakLetter('${l[1]}')">
-      <span style="font-size:18px;font-family:'Noto Naskh Arabic',serif;display:block;">${l[0]}</span>
-      <span class="sub">${l[1]}</span>
-    </div>`
-  ).join('');
+function renderHis(){
+  let el=document.getElementById('hisList')
+  if(!his.length){el.innerHTML='<div class="empty-his">جازۋ جوق</div>';return}
+  el.innerHTML=his.map(h=>`<div class="his-item"><div class="his-src">${h.s}</div><div class="his-dst">${h.dst}</div><div class="his-time">${h.t}</div></div>`).join('')
 }
 
-// ==================== History ====================
-function renderHistory() {
-  const list = document.getElementById('historyList');
-  if (history.length === 0) { list.innerHTML = '<div style="text-align:center;color:#ccc;padding:20px;font-size:13px;">尚无转换记录</div>'; return; }
-  
-  let showItems = isPro ? history : history.slice(0, 5);
-  list.innerHTML = showItems.map(h => 
-    `<div class="history-item">
-      <div class="src">${h.src}</div>
-      <div class="dst">${h.dst}</div>
-      <div class="time">${h.time}</div>
-    </div>`
-  ).join('');
-  
-  document.getElementById('historyLock').style.display = (isPro || history.length <= 5) ? 'none' : 'block';
+function clrHis(){
+  if(!confirm('تازالاۋ?')&&his.length>0)return
+  his=[]
+  localStorage.setItem('qch',JSON.stringify(his))
+  renderHis()
 }
 
-function clearHistory() {
-  if (!isPro) { alert('🔒 完整版支持手动清空历史'); return; }
-  history = [];
-  localStorage.setItem('qazaq_history', JSON.stringify(history));
-  renderHistory();
-}
+document.getElementById('inp').addEventListener('input',function(){if(this.value.trim())conv()})
+document.getElementById('inp').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();conv()}})
 
-// ==================== Purchase ====================
-function purchase() {
-  alert('🌟 升级完整版 · ¥3.90\n\n' +
-    '✅ 无限次文本双向转换\n' +
-    '✅ 整句哈萨克语朗读发音\n' +
-    '✅ 无限历史记录\n' +
-    '✅ 无任何升级提示\n\n' +
-    '💡 上架商店后可直接内购购买\n' +
-    '📱 支持 Windows / Android / iOS\n\n' +
-    '🔑 演示模式：点击确定立即解锁');
-  
-  // Demo unlock for now
-  if (confirm('演示模式：点击"确定"解锁完整版功能')) {
-    isPro = true;
-    localStorage.setItem('qazaq_pro', 'true');
-    document.querySelectorAll('.pro-feature').forEach(e => e.classList.add('unlocked'));
-    document.getElementById('proBanner').style.display = 'none';
-    updateCounter();
-    renderHistory();
-    alert('✅ 已解锁完整版！所有功能可用');
-  }
-}
-
-// ==================== Init ====================
-init();
+init()
 </script>
 </body>
 </html>
