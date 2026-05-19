@@ -176,7 +176,11 @@
     border-radius: 10px;
   }
 
-  @media (max-width: 600px) {\n    .special-table th:nth-child(4),.special-table td:nth-child(4),.special-table th:nth-child(5),.special-table td:nth-child(5) { display: none; }
+  @media (max-width: 600px) {
+    .special-table { font-size: 11px; }
+    .special-table th, .special-table td { padding: 6px 4px; }
+    .special-table .lat { font-size: 15px; }
+    .container { padding: 15px 10px; }\n    
     .container { padding: 25px 18px; }
     .letter-grid { grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); }
     .letter-card .lat { font-size: 22px; }
