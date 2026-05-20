@@ -267,21 +267,23 @@ body::after {
 function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
   var d=document.getElementById('dstBox');d.style.display='block';
+  document.getElementById('dstText').textContent='⏳ 翻译中...';
   
-  // Cyrillic → Latin
-  var cyr2lat={'а':'a','ә':'á','б':'b','в':'v','г':'g','ғ':'ǵ','д':'d',
-    'е':'e','ё':'ë','ж':'j','з':'z','и':'i','й':'ı','к':'k',
-    'қ':'q','л':'l','м':'m','н':'n','ң':'ń','о':'o','ө':'ó',
-    'п':'p','р':'r','с':'s','т':'t','у':'ý','ұ':'u','ү':'ú',
-    'ф':'f','х':'x','һ':'h','ц':'c','ч':'č','ш':'ş','щ':'şş',
-    'ы':'y','і':'ı','э':'e','ю':'ıý','я':'ıá'};
-  
-  var result='';
-  for(var c of s.toLowerCase()){
-    if(cyr2lat[c])result+=cyr2lat[c];
-    else result+=c;
-  }
-  document.getElementById('dstText').textContent=result;
+  // Google Translate API
+  var x=new XMLHttpRequest();
+  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
+  x.onload=function(){
+    try{
+      var r=JSON.parse(x.responseText);
+      if(r&&r[0]&&r[0][0]){
+        document.getElementById('dstText').textContent=r[0][0][0];
+      }else{
+        document.getElementById('dstText').textContent='❌ 翻译无结果';
+      }
+    }catch(e){document.getElementById('dstText').textContent='❌ '+e.message}
+  };
+  x.onerror=function(){document.getElementById('dstText').textContent='❌ 网络错误，请检查连接'};
+  x.send();
 }
 function speakInput(){
   var t=document.getElementById('srcText').value.trim();
