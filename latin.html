@@ -267,23 +267,21 @@ body::after {
 function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
   var d=document.getElementById('dstBox');d.style.display='block';
-  document.getElementById('dstText').textContent='⏳ 翻译中...';
-  var x=new XMLHttpRequest();
-  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
-  x.onload=function(){
-    try{
-      var r=JSON.parse(x.responseText);var t='';
-      if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])t+=r[0][i][0];
-      if(!t||t===s){
-        var x2=new XMLHttpRequest();
-        x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-        x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];document.getElementById('dstText').textContent=t2||'无法翻译'}catch(e){document.getElementById('dstText').textContent='翻译失败'}};
-        x2.send();
-      }else{document.getElementById('dstText').textContent=t;}
-    }catch(e){document.getElementById('dstText').textContent='翻译出错'}
-  };
-  x.onerror=function(){document.getElementById('dstText').textContent='⚠ 网络错误，请检查连接'};
-  x.send();
+  
+  // Cyrillic → Latin
+  var cyr2lat={'а':'a','ә':'á','б':'b','в':'v','г':'g','ғ':'ǵ','д':'d',
+    'е':'e','ё':'ë','ж':'j','з':'z','и':'i','й':'ı','к':'k',
+    'қ':'q','л':'l','м':'m','н':'n','ң':'ń','о':'o','ө':'ó',
+    'п':'p','р':'r','с':'s','т':'t','у':'ý','ұ':'u','ү':'ú',
+    'ф':'f','х':'x','һ':'h','ц':'c','ч':'č','ш':'ş','щ':'şş',
+    'ы':'y','і':'ı','э':'e','ю':'ıý','я':'ıá'};
+  
+  var result='';
+  for(var c of s.toLowerCase()){
+    if(cyr2lat[c])result+=cyr2lat[c];
+    else result+=c;
+  }
+  document.getElementById('dstText').textContent=result;
 }
 function speakInput(){
   var t=document.getElementById('srcText').value.trim();
