@@ -243,26 +243,27 @@ body::after {
 </div>
 <!-- Translator Top -->
 <div style="max-width:800px;margin:15px auto;padding:0 20px;">
-  <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-      <span style="font-size:20px;">🌍</span>
-      <span style="font-size:14px;font-weight:700;color:#444;letter-spacing:0.5px;">翻译</span>
-      <span style="font-size:11px;color:#999;">中文 ↔ Қазақша</span>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <div style="font-size:11px;color:#9c8f7c;margin-bottom:4px;letter-spacing:0.5px;">任意 → 拉丁 (Google翻译)</div>
-       placeholder="输入任意文字，翻译为拉丁哈语..." style="flex:1;min-width:180px;padding:10px 14px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 4px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'">
-      <div style="display:flex;gap:6px;">
-        <button onclick="speakInput()" style="padding:10px 12px;background:rgba(102,126,234,0.1);color:#667eea;border:1.5px solid rgba(102,126,234,0.2);border-radius:12px;font-size:16px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(102,126,234,0.2)'" onmouseout="this.style.background='rgba(102,126,234,0.1)'" title="朗读输入">🔊</button>
-        <button onclick="translateText()" style="padding:10px 24px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(102,126,234,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.3)'">翻译</button>
-        <button onclick="clearTrans()" style="padding:10px 12px;background:rgba(0,0,0,0.03);color:#999;border:1.5px solid #eee;border-radius:12px;font-size:14px;cursor:pointer;transition:all 0.2s;" title="清空">✕</button>
+  
+      <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="font-size:16px;">🌐</span>
+          <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 任意语言 → 拉丁哈语</span>
+        </div>
+        <div style="margin-bottom:8px;">
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▼ 输入: 任意语言</div>
+          <input id="srcText" placeholder="在此输入任意语言..." style="width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}">
+        </div>
+        <div style="text-align:center;margin:8px 0;">
+          <button onclick="translateText()" style="padding:8px 28px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">↓ 翻译 ↓</button>
+        </div>
+        <div>
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▲ 输出: 拉丁哈语</div>
+          <div id="dstBox" style="display:none;padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:44px;">
+            <span id="dstText" style="display:block;margin-bottom:6px;"></span>
+            <button onclick="speakOutput()" style="padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;transition:all 0.2s;">🔊 朗读结果</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="dstBox" style="display:none;margin-top:10px;padding:12px 14px;background:#fff;border-radius:12px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;">
-      <span id="dstText" style="display:block;margin-bottom:8px;"></span>
-      <button onclick="speakOutput()" style="padding:6px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer;transition:all 0.2s;" title="朗读结果">🔊 朗读结果</button>
-    </div>
-  </div>
 </div>
 <script>
 function translateText(){
