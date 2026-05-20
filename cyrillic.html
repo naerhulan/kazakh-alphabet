@@ -249,79 +249,56 @@ body::after {
 <div style="max-width:800px;margin:15px auto;padding:0 20px;">
   
       
+            
       <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
           <span style="font-size:16px;">🌐</span>
-          <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 中文 ↔ 西里尔哈语</span>
+          <span style="font-size:13px;color:#666;font-weight:500;">中文 ↔ 西里尔哈语</span>
         </div>
-        <!-- Source box -->
-        <div style="margin-bottom:10px;">
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
-            <span>▼ 输入: 中文</span>
-          </div>
+        <div style="margin-bottom:6px;">
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">中文</div>
           <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
-            <textarea id="srcText" placeholder="在此输入中文..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea';this.parentElement.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.parentElement.style.borderColor='#e0e0e0';this.parentElement.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}"></textarea>
+            <textarea id="box1" placeholder="输入中文..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea'" onblur="this.parentElement.style.borderColor='#e0e0e0'" oninput="translate1to2()" onkeydown="if(event.key==='Enter'){event.preventDefault();translate1to2();}"></textarea>
           </div>
         </div>
-        <div style="text-align:center;margin:8px 0;">
-          <button onclick="translateText()" style="padding:8px 28px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">↓ 翻译 ↓</button>
+        <div style="text-align:center;margin:4px 0;">
+          <span style="color:#b5a89a;font-size:11px;">⇅ 双向翻译，任一方输入</span>
         </div>
-        <!-- Target box (always visible) -->
         <div>
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
-            <span>▲ 输出: 西里尔哈语</span>
-          </div>
-          <div id="dstBox" style="padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:48px;">
-            <span id="dstText" style="display:block;">等待翻译...</span>
-            <button onclick="speakOutput()" style="margin-top:6px;padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;">🔊 朗读结果</button>
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">西里尔哈语</div>
+          <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
+            <textarea id="box2" placeholder="输入西里尔哈语..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea'" onblur="this.parentElement.style.borderColor='#e0e0e0'" oninput="translate2to1()" onkeydown="if(event.key==='Enter'){event.preventDefault();translate2to1();}"></textarea>
           </div>
         </div>
+      </div>
+      </div>
       </div>
       </div>
 </div>
 <script>
-
-
-function translateText(){
-  var s=document.getElementById('srcText').value.trim();if(!s)return;
-  var d=document.getElementById('dstBox');d.style.display='block';
-  document.getElementById('dstText').textContent='⏳ 翻译中...';
-  
-  var isCyrillic=/[а-яәіңғүұқөһ']/i.test(s);
-  var fromLang=isCyrillic?'kk':'zh';
-  var toLang=isCyrillic?'zh':'en'; // Chinese→Kazakh not supported by Baidu, use English as bridge
-  
-  if(!isCyrillic){
-    // Chinese→Kazakh: Use Google Translate (via proxy)
-    var x=new XMLHttpRequest();
-    x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-    x.onload=function(){
-      try{
-        var r=JSON.parse(x.responseText);
-        if(r&&r[0]&&r[0][0]){
-          document.getElementById('dstText').textContent=r[0][0][0];
-        }else{document.getElementById('dstText').textContent='❌ 翻译无结果';}
-      }catch(e){document.getElementById('dstText').textContent='❌ '+e.message}
-    };
-    x.onerror=function(){document.getElementById('dstText').textContent='❌ 网络错误'};
-    x.send();
-  } else {
-    // Kazakh→Chinese: Use Baidu API via proxy
-    var x=new XMLHttpRequest();
-    x.open('POST','/api/translate',true);
-    x.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-    x.onload=function(){
-      try{
-        var r=JSON.parse(x.responseText);
-        if(r.trans_result&&r.trans_result.length>0){
-          document.getElementById('dstText').textContent=r.trans_result.map(function(i){return i.dst}).join('\n');
-        }else{document.getElementById('dstText').textContent='❌ 翻译失败';}
-      }catch(e){document.getElementById('dstText').textContent='❌ 翻译失败';}
-    };
-    x.onerror=function(){document.getElementById('dstText').textContent='❌ 网络错误'};
-    x.send('q='+encodeURIComponent(s)+'&from=kk&to=zh');
-  }
+function translate1to2(){
+  var s=document.getElementById('box1').value.trim();if(!s)return;
+  document.getElementById('box2').value='⏳';
+  var x=new XMLHttpRequest();
+  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=kk&dt=t&q='+encodeURIComponent(s),true);
+  x.onload=function(){try{var r=JSON.parse(x.responseText);if(r&&r[0]&&r[0][0]){document.getElementById('box2').value=r[0][0][0];}else{document.getElementById('box2').value='';}}catch(e){document.getElementById('box2').value='';}};
+  x.onerror=function(){document.getElementById('box2').value='网络错误';};
+  x.send();
 }
+function translate2to1(){
+  var s=document.getElementById('box2').value.trim();if(!s)return;
+  document.getElementById('box1').value='⏳';
+  var x=new XMLHttpRequest();
+  x.open('POST','/api/translate',true);
+  x.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  x.onload=function(){try{var r=JSON.parse(x.responseText);if(r.trans_result&&r.trans_result.length>0){document.getElementById('box1').value=r.trans_result.map(function(i){return i.dst}).join('\n');}else{document.getElementById('box1').value='';}}catch(e){document.getElementById('box1').value='';}};
+  x.onerror=function(){document.getElementById('box1').value='网络错误';};
+  x.send('q='+encodeURIComponent(s)+'&from=kk&to=zh');
+}
+
+
+
+
 function speakInput(){
   var t=document.getElementById('srcText').value.trim();
   if(!t)return;
@@ -555,6 +532,7 @@ function speak(text) {
 </script>
 
 </body>
+
 
 
 
