@@ -268,6 +268,19 @@ body::after {
   </div>
 </div>
 <script>
+
+var KAZ_DICT={
+  "сәлем":"你好","рахмет":"谢谢","қош бол":"再见","жақсы":"好","қазақ":"哈萨克",
+  "махаббат":"爱","алма":"苹果","гүл":"花","күн":"太阳","ай":"月亮",
+  "бала":"孩子","ана":"妈妈","әке":"爸爸","аға":"哥哥","іні":"弟弟",
+  "апай":"姐姐","қала":"城市","су":"水","от":"火","жер":"土地",
+  "көл":"湖","тау":"山","жол":"路","үй":"家","ит":"狗","мысық":"猫",
+  "адам":"人","бас":"头","қол":"手","аяқ":"脚","көз":"眼睛","тіл":"语言",
+  "дос":"朋友","отбасы":"家庭","мектеп":"学校","кітап":"书","мұғалім":"老师",
+  "оқушы":"学生","тамақ":"饭","ақ":"白","қара":"黑","қызыл":"红","көк":"蓝",
+  "жасыл":"绿","аспан":"天空","бір":"一","екі":"二","үш":"三","төрт":"四","бес":"五"
+};
+
 function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
   var d=document.getElementById('dstBox');d.style.display='block';
@@ -279,8 +292,7 @@ function translateText(){
   
   document.getElementById('dstText').textContent='⏳ 翻译中...';
   // Try Baidu API: auto detect, translate to zh (Kazakh→Chinese) or to kk (Chinese→Kazakh)
-  var isKazakh=/[а-яәіңғүұқөһ']/i.test(s);
-  var toLang=isKazakh?'zh':'zh'; 
+  var toLang='zh'; 
   var x=new XMLHttpRequest();
   x.open('POST','/api/translate',true);
   x.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
