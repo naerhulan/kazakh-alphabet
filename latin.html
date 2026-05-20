@@ -7,7 +7,7 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
+  body { overflow-x: hidden;
     font-family: 'Noto Sans', 'Arial', sans-serif;
     background: #f5f0e8;
     min-height: 100vh;
@@ -176,8 +176,7 @@
     border-radius: 10px;
   }
 
-  @media (max-width: 600px) {
-  .highlight-box { padding: 14px !important; border-left-width: 3px !important; }
+  
   .tip { padding: 10px 12px !important; }
   .word-table { font-size: 11px !important; }
     .special-table { font-size: 11px; }
@@ -199,8 +198,7 @@
 
 /* Mobile fix: prevent border overflow */
 .letter-card { background-clip: padding-box; -webkit-background-clip: padding-box; overflow: hidden; }
-@media (max-width: 600px) {
-  .highlight-box { padding: 14px !important; border-left-width: 3px !important; }
+
   .tip { padding: 10px 12px !important; }
   .word-table { font-size: 11px !important; }
   .letter-card { border-width: 1.5px !important; padding: 10px 6px !important; }
@@ -210,7 +208,7 @@
 }
 
 /* Background & horn motifs */
-body {
+body { overflow-x: hidden;
   background: #f5f0e8 !important;
   position: relative;
 }
@@ -244,9 +242,35 @@ body::after {
   padding: 8px 10px;
   font-size: 13px;
 }
-@media (max-width: 600px) {
-  .special-table th, .special-table td { padding: 5px 6px; font-size: 11px; }
+
   .word-table th, .word-table td { padding: 5px 6px; font-size: 11px; }
+}
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .container { padding: 20px 16px !important; border-radius: 16px !important; }
+  body { overflow-x: hidden; padding: 10px !important; }
+  h1 { font-size: 22px !important; }
+  h2 { font-size: 15px !important; }
+  .highlight-box { padding: 14px !important; border-left-width: 3px !important; margin: 14px 0 !important; }
+  .highlight-box h3 { font-size: 14px !important; }
+  .highlight-box p { font-size: 12px !important; }
+  .letter-grid { grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)) !important; gap: 6px !important; }
+  .letter-card { padding: 8px 4px !important; border-radius: 10px !important; }
+  .letter-card .cyr, .letter-card .lat { font-size: 18px !important; }
+  .letter-card .ipa { font-size: 9px !important; }
+  .letter-card .zh, .letter-card .cyr-ref { font-size: 9px !important; }
+  .special-table th, .special-table td { padding: 5px 6px !important; font-size: 10px !important; }
+  .special-table .cyr, .special-table .lat { font-size: 14px !important; }
+  .word-table th, .word-table td { padding: 5px 6px !important; font-size: 10px !important; }
+  .word-table .cyr, .word-table .lat { font-size: 13px !important; }
+  .tip { font-size: 11px !important; padding: 10px 12px !important; }
+  .footer { font-size: 10px !important; margin-top: 20px !important; }
+  .speaker-hint { font-size: 11px !important; padding: 6px !important; }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .container { padding: 30px 25px !important; }
+  .letter-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)) !important; }
 }
 </style>
 </head>
@@ -520,6 +544,7 @@ function speak(text) {
 </script>
 
 </body>
+
 
 
 
