@@ -247,25 +247,35 @@ body::after {
 <!-- Translator Top -->
 <div style="max-width:800px;margin:15px auto;padding:0 20px;">
   
+      
       <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
           <span style="font-size:16px;">🌐</span>
-          <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 老哈文(阿拉伯) → 西里尔文</span>
+          <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 老哈文(阿拉伯) ↔ 西里尔</span>
         </div>
-        <div style="margin-bottom:8px;">
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▼ 输入: 老哈文(阿拉伯)</div>
-          <input id="srcText" placeholder="在此输入老哈文(阿拉伯)..." style="width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}">
+        <!-- Source box -->
+        <div style="margin-bottom:10px;">
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
+            <span>▼ 输入: 老哈文(阿拉伯)</span>
+          </div>
+          <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
+            <textarea id="srcText" placeholder="在此输入老哈文(阿拉伯)..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea';this.parentElement.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.parentElement.style.borderColor='#e0e0e0';this.parentElement.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}"></textarea>
+          </div>
         </div>
         <div style="text-align:center;margin:8px 0;">
           <button onclick="translateText()" style="padding:8px 28px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">↓ 翻译 ↓</button>
         </div>
+        <!-- Target box (always visible) -->
         <div>
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▲ 输出: 西里尔文</div>
-          <div id="dstBox" style="display:none;padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:44px;">
-            <span id="dstText" style="display:block;margin-bottom:6px;"></span>
-            <button onclick="speakOutput()" style="padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;transition:all 0.2s;">🔊 朗读结果</button>
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
+            <span>▲ 输出: 西里尔文</span>
+          </div>
+          <div id="dstBox" style="padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:48px;">
+            <span id="dstText" style="display:block;">等待翻译...</span>
+            <button onclick="speakOutput()" style="margin-top:6px;padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;">🔊 朗读结果</button>
           </div>
         </div>
+      </div>
       </div>
 </div>
 <script>
@@ -273,21 +283,16 @@ function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
   var d=document.getElementById('dstBox');d.style.display='block';
   
-  // Arabic ↔ Cyrillic character mapping
   var arb2cyr={'ا':'а','ٵ':'ә','ب':'б','ۆ':'в','گ':'г','ع':'ғ','د':'د','ە':'е','ج':'ж','ز':'ز','ى':'и','ي':'й','ك':'ك','ق':'ق','ل':'ل','م':'م','ن':'ن','ڭ':'ң','و':'و','ۇ':'ұ','ٷ':'ү','پ':'п','ر':'ر','س':'س','ت':'ت','ف':'ف','ح':'ح','ھ':'һ','چ':'ش','ش':'ش'};
   
   var hasArabic=/[\u0600-\u06FF]/.test(s);
   if(hasArabic){
-    // Arabic → Cyrillic
-    var result='';
-    for(var c of s){result+=arb2cyr[c]||c;}
-    document.getElementById('dstText').textContent=result;
+    var r='';for(var c of s){r+=arb2cyr[c]||c;}
+    document.getElementById('dstText').textContent=r;
   }else{
-    // Cyrillic → Arabic (reverse mapping)
     var rev={};for(var k in arb2cyr)rev[arb2cyr[k]]=k;
-    var result='';
-    for(var c of s.toLowerCase()){result+=rev[c]||c;}
-    document.getElementById('dstText').textContent=result;
+    var r='';for(var c of s.toLowerCase()){r+=rev[c]||c;}
+    document.getElementById('dstText').textContent=r;
   }
 }
 function speakInput(){
