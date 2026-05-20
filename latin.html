@@ -244,25 +244,35 @@ body::after {
 <!-- Translator Top -->
 <div style="max-width:800px;margin:15px auto;padding:0 20px;">
   
+      
       <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
           <span style="font-size:16px;">🌐</span>
           <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 任意语言 → 拉丁哈语</span>
         </div>
-        <div style="margin-bottom:8px;">
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▼ 输入: 任意语言</div>
-          <input id="srcText" placeholder="在此输入任意语言..." style="width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}">
+        <!-- Source box -->
+        <div style="margin-bottom:10px;">
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
+            <span>▼ 输入: 任意语言</span>
+          </div>
+          <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
+            <textarea id="srcText" placeholder="在此输入任意语言..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea';this.parentElement.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.parentElement.style.borderColor='#e0e0e0';this.parentElement.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}"></textarea>
+          </div>
         </div>
         <div style="text-align:center;margin:8px 0;">
           <button onclick="translateText()" style="padding:8px 28px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">↓ 翻译 ↓</button>
         </div>
+        <!-- Target box (always visible) -->
         <div>
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▲ 输出: 拉丁哈语</div>
-          <div id="dstBox" style="display:none;padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:44px;">
-            <span id="dstText" style="display:block;margin-bottom:6px;"></span>
-            <button onclick="speakOutput()" style="padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;transition:all 0.2s;">🔊 朗读结果</button>
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
+            <span>▲ 输出: 拉丁哈语</span>
+          </div>
+          <div id="dstBox" style="padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:48px;">
+            <span id="dstText" style="display:block;">等待翻译...</span>
+            <button onclick="speakOutput()" style="margin-top:6px;padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;">🔊 朗读结果</button>
           </div>
         </div>
+      </div>
       </div>
 </div>
 <script>
@@ -271,28 +281,17 @@ function translateText(){
   var d=document.getElementById('dstBox');d.style.display='block';
   document.getElementById('dstText').textContent='⏳ 翻译中...';
   
-  // Cyrillic → Latin mapping
-  var c2l={'а':'a','ә':'á','б':'b','в':'v','г':'g','ғ':'ǵ','д':'d',
-    'е':'e','ё':'ë','ж':'j','з':'z','и':'i','й':'ı','к':'k',
-    'қ':'q','л':'l','м':'m','н':'n','ң':'ń','о':'o','ө':'ó',
-    'п':'p','р':'r','с':'s','т':'t','у':'ý','ұ':'u','ү':'ú',
-    'ф':'f','х':'x','һ':'h','ц':'c','ч':'č','ш':'ş','щ':'şş',
-    'ы':'y','і':'ı','э':'e','ю':'ıý','я':'ıá'};
+  var c2l={'а':'a','ә':'á','б':'b','в':'v','г':'g','ғ':'ǵ','д':'d','е':'e','ё':'ë','ж':'j','з':'z','и':'i','й':'ı','к':'k','қ':'q','л':'l','м':'m','н':'n','ң':'ń','о':'o','ө':'ó','п':'p','р':'r','с':'s','т':'t','у':'ý','ұ':'u','ү':'ú','ф':'f','х':'x','һ':'h','ц':'c','ч':'č','ш':'ş','щ':'şş','ы':'y','і':'ı','э':'e','ю':'ıý','я':'ıá'};
   function cyrToLat(t){var r='';for(var c of t.toLowerCase()){r+=c2l[c]||c}return r;}
   
-  // Google Translate API → output in Latin
   var x=new XMLHttpRequest();
   x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
   x.onload=function(){
     try{
       var r=JSON.parse(x.responseText);
       if(r&&r[0]&&r[0][0]){
-        var text=r[0][0][0];
-        // Convert Cyrillic result to Latin
-        document.getElementById('dstText').textContent=cyrToLat(text);
-      }else{
-        document.getElementById('dstText').textContent='❌ 翻译无结果';
-      }
+        document.getElementById('dstText').textContent=cyrToLat(r[0][0][0]);
+      }else{document.getElementById('dstText').textContent='❌ 翻译无结果';}
     }catch(e){document.getElementById('dstText').textContent='❌ '+e.message}
   };
   x.onerror=function(){document.getElementById('dstText').textContent='❌ 网络错误'};
