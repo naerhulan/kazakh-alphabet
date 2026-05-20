@@ -245,33 +245,27 @@ body::after {
 <div style="max-width:800px;margin:15px auto;padding:0 20px;">
   
       
-      <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
           <span style="font-size:16px;">🌐</span>
-          <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 任意语言 → 拉丁哈语</span>
+          <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 任意 → 拉丁哈语</span>
         </div>
-        <!-- Source box -->
-        <div style="margin-bottom:10px;">
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
-            <span>▼ 输入: 任意语言</span>
-          </div>
+        <div style="margin-bottom:8px;">
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▼ 输入任意文字</div>
           <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
-            <textarea id="srcText" placeholder="在此输入任意语言..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea';this.parentElement.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.parentElement.style.borderColor='#e0e0e0';this.parentElement.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}"></textarea>
+            <textarea id="srcText" placeholder="输入中文、哈萨克语..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea';this.parentElement.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.parentElement.style.borderColor='#e0e0e0';this.parentElement.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}"></textarea>
           </div>
         </div>
         <div style="text-align:center;margin:8px 0;">
           <button onclick="translateText()" style="padding:8px 28px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">↓ 翻译 ↓</button>
         </div>
-        <!-- Target box (always visible) -->
         <div>
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
-            <span>▲ 输出: 拉丁哈语</span>
-          </div>
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▲ 输出: 拉丁哈语</div>
           <div id="dstBox" style="padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:48px;">
-            <span id="dstText" style="display:block;">等待翻译...</span>
-            <button onclick="speakOutput()" style="margin-top:6px;padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;">🔊 朗读结果</button>
+            <span id="dstText">等待翻译...</span>
           </div>
         </div>
+      </div>
       </div>
       </div>
 </div>
@@ -507,6 +501,7 @@ function speak(text) {
 </script>
 
 </body>
+
 
 
 
