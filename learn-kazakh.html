@@ -173,40 +173,8 @@ body::after {
       </div>
 </div>
 <script>
-var D={
-  "сәлем":"你好","рахмет":"谢谢","қош бол":"再见","жақсы":"好",
-  "махаббат":"爱","алма":"苹果","гүл":"花","күн":"太阳","ай":"月亮",
-  "бала":"孩子","ана":"妈妈","әке":"爸爸","аға":"哥哥","іні":"弟弟",
-  "апай":"姐姐","үй":"家","ит":"狗","адам":"人","дос":"朋友",
-  "мектеп":"学校","кітап":"书","мұғалім":"老师","оқушы":"学生","тамақ":"饭",
-  "ақ":"白","қара":"黑","қызыл":"红","көк":"蓝","жасыл":"绿",
-  "бір":"一","екі":"二","үш":"三","төрт":"四","бес":"五"
-};
-var R={};for(var k in D)R[D[k]]=k;
 
-function translate1to2(){
-  var s=document.getElementById('box1').value.trim().toLowerCase();if(!s)return;
-  for(var k in R){if(s.indexOf(k)>=0||k.indexOf(s)>=0){document.getElementById('box2').value=R[k];return;}}
-  document.getElementById('box2').value='❌ 无此词';
-}
-function translate2to1(){
-  var s=document.getElementById('box2').value.trim().toLowerCase();if(!s)return;
-  for(var k in D){if(k.indexOf(s)>=0||s.indexOf(k)>=0){document.getElementById('box1').value=D[k];return;}}
-  document.getElementById('box1').value='❌ 无此词';
-}
 
-var ZH_DICT={};
-for(var k in KAZ_DICT)ZH_DICT[KAZ_DICT[k]]=k;
-
-var D={
-  "сәлем":"你好","рахмет":"谢谢","қош бол":"再见","жақсы":"好",
-  "махаббат":"爱","алма":"苹果","гүл":"花","күн":"太阳","ай":"月亮",
-  "бала":"孩子","ана":"妈妈","әке":"爸爸","аға":"哥哥","іні":"弟弟",
-  "апай":"姐姐","үй":"家","ит":"狗","адам":"人","дос":"朋友",
-  "мектеп":"学校","кітап":"书","мұғалім":"老师","оқушы":"学生","тамақ":"饭",
-  "ақ":"白","қара":"黑","қызыл":"红","көк":"蓝","жасыл":"绿",
-  "бір":"一","екі":"二","үш":"三","төрт":"四","бес":"五"
-};
 var R={};for(var k in D)R[D[k]]=k;
 
 function translate1to2(){
