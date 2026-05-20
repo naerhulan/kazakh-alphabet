@@ -359,10 +359,16 @@ var _AT=null,_CA=null;
 function playSound(k){
   if(_AT){clearTimeout(_AT);_AT=null;}
   if(_CA){try{_CA.pause();_CA.currentTime=0;}catch(e){}}
-  _CA=new Audio('sounds/'+k+'.wav');
-  _CA.onerror=function(){speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(k);u.lang='kk-KZ';u.rate=0.85;speechSynthesis.speak(u);_CA=null;};
+  _CA=new Audio('sounds/'+k+'.mp3');
+  _CA.onerror=function(){
+    var w=new Audio('sounds/'+k+'.wav');
+    w.onerror=function(){
+      speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(k);u.lang='kk-KZ';u.rate=0.85;speechSynthesis.speak(u);_CA=null;
+    };
+    _CA=null;w.play().catch(function(){});
+  };
   _CA.onended=function(){_CA=null;};
-  _CA.play().catch(function(){});
+  _CA.play().catch(function(){var w=new Audio('sounds/'+k+'.wav');w.play().catch(function(){});});
 }
 function speak(t){
   t=t.trim().split(' ').pop().toLowerCase().replace(/[ьъ]/g,'');
