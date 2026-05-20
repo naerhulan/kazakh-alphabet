@@ -251,12 +251,22 @@ body::after {
       
             
       
+      
       <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
           <span style="font-size:16px;">🌐</span>
           <span style="font-size:13px;color:#666;font-weight:500;">中文 ↔ 西里尔哈语</span>
         </div>
         <div style="margin-bottom:6px;">
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">中文</div>
+          <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
+            <textarea id="box1" placeholder="在此输入中文..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea'" onblur="this.parentElement.style.borderColor='#e0e0e0'" oninput="translate1to2()"></textarea>
+          </div>
+        </div>
+        <div style="text-align:center;margin:4px 0;">
+          <span style="color:#b5a89a;font-size:11px;">⇅ 双向翻译</span>
+        </div>
+        <div>
           <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">西里尔哈语</div>
           <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
             <textarea id="box2" placeholder="Кирил жазбасын енгізіңіз..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea'" onblur="this.parentElement.style.borderColor='#e0e0e0'" oninput="translate2to1()"></textarea>
