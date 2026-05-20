@@ -146,25 +146,35 @@ body::after {
 <!-- Translator Top -->
 <div style="max-width:800px;margin:15px auto;padding:0 20px;">
   
+      
       <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
           <span style="font-size:16px;">🌐</span>
-          <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 中文 → 老哈文(阿拉伯)</span>
+          <span style="font-size:13px;color:#666;font-weight:500;">翻译 · 中文 ↔ 老哈文</span>
         </div>
-        <div style="margin-bottom:8px;">
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▼ 输入: 中文</div>
-          <input id="srcText" placeholder="在此输入中文..." style="width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:10px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;box-sizing:border-box;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}">
+        <!-- Source box -->
+        <div style="margin-bottom:10px;">
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
+            <span>▼ 输入: 中文</span>
+          </div>
+          <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
+            <textarea id="srcText" placeholder="在此输入中文..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea';this.parentElement.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'" onblur="this.parentElement.style.borderColor='#e0e0e0';this.parentElement.style.boxShadow='none'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();translateText();}"></textarea>
+          </div>
         </div>
         <div style="text-align:center;margin:8px 0;">
           <button onclick="translateText()" style="padding:8px 28px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">↓ 翻译 ↓</button>
         </div>
+        <!-- Target box (always visible) -->
         <div>
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">▲ 输出: 老哈文(阿拉伯)</div>
-          <div id="dstBox" style="display:none;padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:44px;">
-            <span id="dstText" style="display:block;margin-bottom:6px;"></span>
-            <button onclick="speakOutput()" style="padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;transition:all 0.2s;">🔊 朗读结果</button>
+          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;display:flex;justify-content:space-between;">
+            <span>▲ 输出: 老哈文(阿拉伯)</span>
+          </div>
+          <div id="dstBox" style="padding:12px 14px;background:#fff;border-radius:10px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;min-height:48px;">
+            <span id="dstText" style="display:block;">等待翻译...</span>
+            <button onclick="speakOutput()" style="margin-top:6px;padding:4px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;">🔊 朗读结果</button>
           </div>
         </div>
+      </div>
       </div>
 </div>
 <script>
@@ -182,31 +192,27 @@ var KAZ_DICT={
 var ZH_DICT={};
 for(var k in KAZ_DICT)ZH_DICT[KAZ_DICT[k]]=k;
 
+var KAZ_DICT2={
+  "сәлем":"你好","рахмет":"谢谢","қош бол":"再见","жақсы":"好","қазақ":"哈萨克",
+  "махаббат":"爱","алма":"苹果","гүл":"花","күн":"太阳","ай":"月亮",
+  "бала":"孩子","ана":"妈妈","әке":"爸爸","аға":"哥哥","іні":"弟弟",
+  "апай":"姐姐","қала":"城市","су":"水","от":"火","жер":"土地",
+  "көл":"湖","тау":"山","жол":"路","үй":"家","ит":"狗","мысық":"猫",
+  "адам":"人","бас":"头","қол":"手","аяқ":"脚","көз":"眼睛","тіл":"语言",
+  "дос":"朋友","отбасы":"家庭","мектеп":"学校","кітап":"书","мұғалім":"老师",
+  "оқушы":"学生","тамақ":"饭","ақ":"白","қара":"黑","қызыл":"红","көк":"蓝",
+  "жасыл":"绿","аспан":"天空","бір":"一","екі":"二","үш":"三","төрт":"四","бес":"五"
+};
+var ZH_DICT2={};for(var k in KAZ_DICT2)ZH_DICT2[KAZ_DICT2[k]]=k;
+
 function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
   var d=document.getElementById('dstBox');d.style.display='block';
   var lower=s.toLowerCase().trim();
-  
-  // Check Kazakh → Chinese
-  if(KAZ_DICT[lower]){document.getElementById('dstText').textContent=KAZ_DICT[lower];return;}
-  
-  // Check Chinese → Kazakh
-  for(var k in ZH_DICT){
-    if(lower.indexOf(k)>=0||k.indexOf(lower)>=0){
-      document.getElementById('dstText').textContent=ZH_DICT[k];
-      return;
-    }
-  }
-  
-  // Check partial Kazakh match
-  for(var k in KAZ_DICT){
-    if(k.indexOf(lower)>=0||lower.indexOf(k)>=0){
-      document.getElementById('dstText').textContent=KAZ_DICT[k];
-      return;
-    }
-  }
-  
-  document.getElementById('dstText').textContent='❌ 词典无此词，请稍后添加';
+  if(KAZ_DICT2[lower]){document.getElementById('dstText').textContent=KAZ_DICT2[lower];return;}
+  for(var k in ZH_DICT2){if(lower.indexOf(k)>=0||k.indexOf(lower)>=0){document.getElementById('dstText').textContent=ZH_DICT2[k];return;}}
+  for(var k in KAZ_DICT2){if(k.indexOf(lower)>=0||lower.indexOf(k)>=0){document.getElementById('dstText').textContent=KAZ_DICT2[k];return;}}
+  document.getElementById('dstText').textContent='❌ 词典无此词';
 }
 function speakInput(){
   var t=document.getElementById('srcText').value.trim();
