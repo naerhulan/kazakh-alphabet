@@ -270,23 +270,23 @@ body::after {
 function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
   var d=document.getElementById('dstBox');d.style.display='block';
-  document.getElementById('dstText').textContent='⏳ 翻译中...';
-  var x=new XMLHttpRequest();
-  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
-  x.onload=function(){
-    try{
-      var r=JSON.parse(x.responseText);var t='';
-      if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])t+=r[0][i][0];
-      if(!t||t===s){
-        var x2=new XMLHttpRequest();
-        x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-        x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];document.getElementById('dstText').textContent=t2||'无法翻译'}catch(e){document.getElementById('dstText').textContent='翻译失败'}};
-        x2.send();
-      }else{document.getElementById('dstText').textContent=t;}
-    }catch(e){document.getElementById('dstText').textContent='翻译出错'}
-  };
-  x.onerror=function(){document.getElementById('dstText').textContent='⚠ 网络错误，请检查连接'};
-  x.send();
+  
+  // Arabic ↔ Cyrillic character mapping
+  var arb2cyr={'ا':'а','ٵ':'ә','ب':'б','ۆ':'в','گ':'г','ع':'ғ','د':'د','ە':'е','ج':'ж','ز':'ز','ى':'и','ي':'й','ك':'ك','ق':'ق','ل':'ل','م':'م','ن':'ن','ڭ':'ң','و':'و','ۇ':'ұ','ٷ':'ү','پ':'п','ر':'ر','س':'س','ت':'ت','ف':'ف','ح':'ح','ھ':'һ','چ':'ش','ش':'ش'};
+  
+  var hasArabic=/[\u0600-\u06FF]/.test(s);
+  if(hasArabic){
+    // Arabic → Cyrillic
+    var result='';
+    for(var c of s){result+=arb2cyr[c]||c;}
+    document.getElementById('dstText').textContent=result;
+  }else{
+    // Cyrillic → Arabic (reverse mapping)
+    var rev={};for(var k in arb2cyr)rev[arb2cyr[k]]=k;
+    var result='';
+    for(var c of s.toLowerCase()){result+=rev[c]||c;}
+    document.getElementById('dstText').textContent=result;
+  }
 }
 function speakInput(){
   var t=document.getElementById('srcText').value.trim();
