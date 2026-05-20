@@ -196,6 +196,16 @@
     .letter-card .cyr { font-size: 22px; }
     .letter-card .ab { font-size: 20px; }
   }
+
+/* Mobile fix: prevent border overflow */
+.letter-card { background-clip: padding-box; -webkit-background-clip: padding-box; overflow: hidden; }
+@media (max-width: 600px) {
+  .letter-card { border-width: 1.5px !important; padding: 10px 6px !important; }
+  .letter-card .cyr { font-size: 20px !important; }
+  .letter-card .ipa { font-size: 10px !important; }
+  .letter-card .zh { font-size: 10px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -272,6 +282,38 @@ document.addEventListener('DOMContentLoaded',function(){
   var e=document.getElementById('srcText');
   if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();translateText();}});
 });
+
+
+// ── Kazakh alphabet audio system ──
+const KZ_SOUNDS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ы':'yh','і':'ii_','э':'eh','ю':'yoo','я':'yah',"'":'','ъ':'','ь':''};
+const KZ_WORDS={'сәлем':'salem','рахмет':'rahmet','қош бол':'kosh_bol','жақсы':'zhaksy','қазақ':'qazaq','махаббат':'mahabbat','алма':'alma','гүл':'gul','күн':'kun','ай':'ay'};
+var _AT=null,_CA=null;
+function playSound(k){
+  if(_AT){clearTimeout(_AT);_AT=null;}
+  if(_CA){try{_CA.pause();_CA.currentTime=0;}catch(e){}}
+  _CA=new Audio('sounds/'+k+'.wav');
+  _CA.onerror=function(){speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(k);u.lang='kk-KZ';u.rate=0.85;speechSynthesis.speak(u);_CA=null;};
+  _CA.onended=function(){_CA=null;};
+  _CA.play().catch(function(){});
+}
+function speak(t){
+  t=t.trim().split(' ').pop().toLowerCase().replace(/[ьъ]/g,'');
+  if(_AT){clearTimeout(_AT);_AT=null;}
+  if(KZ_WORDS[t]){playSound(KZ_WORDS[t]);return;}
+  var c=t.replace(/[^а-яәіңғүұқөһ']/g,'');
+  if(KZ_WORDS[c]){playSound(KZ_WORDS[c]);return;}
+  var l=[];for(var x of c){if(KZ_SOUNDS[x])l.push(KZ_SOUNDS[x]);}
+  if(l.length>0){
+    if(l.length===1){playSound(l[0]);}
+    else{
+      playSound(l[0]);var i=1;
+      !function n(){if(i<l.length){playSound(l[i]);i++;_AT=setTimeout(n,350);}}();
+    }
+  }else{
+    speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='kk-KZ';u.rate=0.85;speechSynthesis.speak(u);
+  }
+}
+
 </script><div class="container">
 
 <h1>قازاق كيريل ٵلىپبئى</h1>
