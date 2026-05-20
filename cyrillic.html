@@ -271,23 +271,29 @@ body::after {
 function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
   var d=document.getElementById('dstBox');d.style.display='block';
+  
+  // Check local dictionary first
+  var lower=s.toLowerCase().trim();
+  if(KAZ_DICT[lower]){document.getElementById('dstText').textContent=KAZ_DICT[lower];return;}
+  for(var k in KAZ_DICT){if(k.indexOf(lower)>=0||lower.indexOf(k)>=0){document.getElementById('dstText').textContent=KAZ_DICT[k];return;}}
+  
   document.getElementById('dstText').textContent='⏳ 翻译中...';
+  // Try Baidu API: auto detect, translate to zh (Kazakh→Chinese) or to kk (Chinese→Kazakh)
+  var isKazakh=/[а-яәіңғүұқөһ']/i.test(s);
+  var toLang=isKazakh?'zh':'zh'; 
   var x=new XMLHttpRequest();
-  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
+  x.open('POST','/api/translate',true);
+  x.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
   x.onload=function(){
     try{
-      var r=JSON.parse(x.responseText);var t='';
-      if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])t+=r[0][i][0];
-      if(!t||t===s){
-        var x2=new XMLHttpRequest();
-        x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-        x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];document.getElementById('dstText').textContent=t2||'无法翻译'}catch(e){document.getElementById('dstText').textContent='翻译失败'}};
-        x2.send();
-      }else{document.getElementById('dstText').textContent=t;}
-    }catch(e){document.getElementById('dstText').textContent='翻译出错'}
+      var r=JSON.parse(x.responseText);
+      if(r.trans_result&&r.trans_result.length>0){
+        document.getElementById('dstText').textContent=r.trans_result.map(function(i){return i.dst}).join('\n');
+      }else{document.getElementById('dstText').textContent='❌ 查无此词，试试本地词典';}
+    }catch(e){document.getElementById('dstText').textContent='❌ 翻译失败';}
   };
-  x.onerror=function(){document.getElementById('dstText').textContent='⚠ 网络错误，请检查连接'};
-  x.send();
+  x.onerror=function(){document.getElementById('dstText').textContent='❌ 网络错误，请检查连接'};
+  x.send('q='+encodeURIComponent(s)+'&from=auto&to='+toLang);
 }
 function speakInput(){
   var t=document.getElementById('srcText').value.trim();
