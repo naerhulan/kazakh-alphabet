@@ -235,6 +235,19 @@ body::after {
   right: 0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M20,280 C40,200 80,120 140,60 C160,40 180,30 190,40 C195,45 190,55 180,60 C140,80 100,120 70,180 C50,220 40,260 40,280 Z' fill='%23807768'/%3E%3Cpath d='M30,300 C45,230 80,150 130,90 C150,70 170,55 185,65 C192,70 188,85 175,90 C140,110 105,155 80,210 C65,245 55,280 55,300 Z' fill='%23807768' opacity='0.5'/%3E%3C/svg%3E");
 }
+.special-table th, .special-table td {
+  padding: 8px 10px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.word-table th, .word-table td {
+  padding: 8px 10px;
+  font-size: 13px;
+}
+@media (max-width: 600px) {
+  .special-table th, .special-table td { padding: 5px 6px; font-size: 11px; }
+  .word-table th, .word-table td { padding: 5px 6px; font-size: 11px; }
+}
 </style>
 </head>
 <body>
@@ -507,6 +520,7 @@ function speak(text) {
 </script>
 
 </body>
+
 
 
 
