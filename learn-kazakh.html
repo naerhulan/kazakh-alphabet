@@ -152,7 +152,8 @@ body::after {
       <span style="font-size:11px;color:#999;">中文 ↔ Қазақша</span>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <input id="srcText" placeholder="输入中文或哈萨克语..." style="flex:1;min-width:180px;padding:10px 14px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 4px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'">
+      <div style="font-size:11px;color:#9c8f7c;margin-bottom:4px;letter-spacing:0.5px;">中文 ↔ 老哈文</div>
+       placeholder="输入中文或老哈文..." style="flex:1;min-width:180px;padding:10px 14px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 4px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'">
       <div style="display:flex;gap:6px;">
         <button onclick="speakInput()" style="padding:10px 12px;background:rgba(102,126,234,0.1);color:#667eea;border:1.5px solid rgba(102,126,234,0.2);border-radius:12px;font-size:16px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(102,126,234,0.2)'" onmouseout="this.style.background='rgba(102,126,234,0.1)'" title="朗读输入">🔊</button>
         <button onclick="translateText()" style="padding:10px 24px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(102,126,234,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.3)'">翻译</button>
@@ -367,6 +368,7 @@ function speak(t){
 </script>
 </body>
 </html>
+
 
 
 
