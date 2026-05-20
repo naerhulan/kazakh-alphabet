@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -10,7 +10,7 @@
   
   body {
     font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
-    background: linear-gradient(135deg, #0f0c29 0%, #302b63 30%, #24243e 70%, #1a1a2e 100%);
+    background: url('bg.jpg') center/cover no-repeat;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -203,6 +203,16 @@
     .card .icon-box { width: 44px; height: 44px; min-width: 44px; font-size: 20px; border-radius: 12px; }
     .card .card-body h2 { font-size: 16px; }
   }
+
+/* Mobile fix: prevent border overflow */
+.letter-card { background-clip: padding-box; -webkit-background-clip: padding-box; overflow: hidden; }
+@media (max-width: 600px) {
+  .letter-card { border-width: 1.5px !important; padding: 10px 6px !important; }
+  .letter-card .cyr { font-size: 20px !important; }
+  .letter-card .ipa { font-size: 10px !important; }
+  .letter-card .zh { font-size: 10px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -258,3 +268,4 @@
 </div>
 </body>
 </html>
+
