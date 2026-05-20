@@ -276,57 +276,22 @@ body::after {
 <script>
 function translate1to2(){
   var s=document.getElementById('box1').value.trim();if(!s)return;
-  // Comprehensive Arabic Kazakh → Cyrillic
-  var m={
-    // Isolated forms
-    'ا':'а','ٵ':'ә','ب':'б','ۆ':'в','گ':'г','ع':'ғ','د':'د','ە':'е',
-    'ە':'ە','ج':'ج','ز':'ز','ى':'ي','ي':'ي','ك':'ك','ق':'ق','ل':'ل',
-    'م':'م','ن':'ن','ڭ':'ڭ','و':'و','ۇ':'ۇ','ٷ':'ٷ','پ':'پ','ر':'ر',
-    'س':'س','ت':'ت','ف':'ف','ح':'ح','ھ':'ھ','تس':'تس','چ':'چ',
-    'ش':'ش','شش':'شش','ى':'ى','ي':'ي','ئ':'ئ','ء':'ء',
-    // Full mapping Arabic → Cyrillic
-    'ا':'а','ٵ':'ә','ب':'б','ۆ':'в','گ':'г','ع':'ғ','د':'د',
-    'ە':'е','ج':'ж','ز':'ز','ى':'и','ي':'й','ك':'к',
-    'ق':'қ','ل':'ل','م':'م','ن':'ن','ڭ':'ң','و':'о',
-    'ۇ':'ұ','ٷ':'ү','پ':'п','ر':'ر','س':'с',
-    'ت':'т','ف':'ф','ح':'х','ھ':'һ','چ':'ш','ش':'ш',
-    'شش':'ш','تس':'ц','ى':'ы','ي':'я','ئ':'','ء':'',
-    'ه':'е','ﻩ':'ە',
-    // Ligatures and specials
-    'ﻻ':'ла','ﻵ':'лә','ﮔ':'گ','ﮕ':'گ','ﯓ':'ڭ','ﯔ':'ڭ',
-    'ﯨ':'ى','ﯩ':'ى','ﯪ':'ٵ','ﯫ':'ٵ',
-    'ﻪ':'ە','ﻬ':'ە','ﻫ':'ە'
-  };
-  var r='',i=0;
-  while(i<s.length){
-    // Try 2-char match first (ligatures)
-    var two=s.substring(i,i+2);
-    if(m[two]){r+=m[two];i+=2;continue;}
-    // Single char match
-    var one=s[i];
-    if(m[one]){r+=m[one];}else{r+=one;}
-    i++;
-  }
-  document.getElementById('box2').value=r;
+  document.getElementById('box2').value='⏳';
+  var x=new XMLHttpRequest();
+  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=ar&tl=kk&dt=t&q='+encodeURIComponent(s),true);
+  x.onload=function(){try{var r=JSON.parse(x.responseText);if(r&&r[0]&&r[0][0]){document.getElementById('box2').value=r[0][0][0];}else{document.getElementById('box2').value='';}}catch(e){document.getElementById('box2').value='';}};
+  x.onerror=function(){document.getElementById('box2').value='网络错误';};
+  x.send();
 }
-
 function translate2to1(){
   var s=document.getElementById('box2').value.trim();if(!s)return;
-  // Cyrillic → Arabic Kazakh
-  var m={
-    'а':'ا','ә':'ٵ','б':'ب','в':'ۆ','г':'گ','ғ':'ع','д':'د',
-    'е':'ە','ж':'ج','з':'ز','и':'ىي','й':'ي','к':'ك',
-    'қ':'ق','л':'ل','м':'م','н':'ن','ң':'ڭ','о':'و',
-    'ө':'ٷ','п':'پ','р':'ر','с':'س','т':'ت',
-    'у':'ۇ','ұ':'ۇ','ү':'ٷ','ф':'ف','х':'ح','һ':'ھ',
-    'ц':'تس','ч':'چ','ш':'ش','щ':'شش','ы':'ى','і':'ى',
-    'э':'ە','ю':'يۋ','я':'يا','ъ':'','ь':'',' ':' '
-  };
-  var r='';
-  for(var c of s.toLowerCase()){
-    r+=m[c]||c;
-  }
-  document.getElementById('box1').value=r;
+  document.getElementById('box1').value='⏳';
+  var x=new XMLHttpRequest();
+  x.open('POST','/api/translate',true);
+  x.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  x.onload=function(){try{var r=JSON.parse(x.responseText);if(r.trans_result&&r.trans_result.length>0){document.getElementById('box1').value=r.trans_result.map(function(i){return i.dst}).join('\n');}else{document.getElementById('box1').value='';}}catch(e){document.getElementById('box1').value='';}};
+  x.onerror=function(){document.getElementById('box1').value='网络错误';};
+  x.send('q='+encodeURIComponent(s)+'&from=kk&to=zh');
 }
 
 
