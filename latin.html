@@ -120,7 +120,7 @@
   .special-table .lat { font-weight: 700; color: #004d40; font-size: 18px; }
   .special-table .cyr-ref { color: #666; }
 
-  .highlight-box {
+  .highlight-box { overflow: hidden;
     background: linear-gradient(135deg, #e0f2f1, #fce4ec);
     border-radius: 16px;
     padding: 20px;
@@ -151,7 +151,7 @@
   .word-table tr:last-child td { border-bottom: none; }
   .word-table .lat { font-weight: 700; color: #004d40; cursor: pointer; }
 
-  .tip {
+  .tip { overflow: hidden;
     background: #fff9c4;
     border-radius: 12px;
     padding: 14px 18px;
@@ -177,6 +177,9 @@
   }
 
   @media (max-width: 600px) {
+  .highlight-box { padding: 14px !important; border-left-width: 3px !important; }
+  .tip { padding: 10px 12px !important; }
+  .word-table { font-size: 11px !important; }
     .special-table { font-size: 11px; }
     .special-table th, .special-table td { padding: 5px 3px; }
     .special-table .lat { font-size: 14px; }
@@ -188,7 +191,7 @@
     .letter-card .cyr-ref { font-size: 10px; }
     .word-table td { padding: 5px 6px; font-size: 12px; }
     .word-table .lat { font-size: 14px; }
-    .tip { font-size: 11px; padding: 10px 12px; }\n    
+    .tip { overflow: hidden; font-size: 11px; padding: 10px 12px; }\n    
     .container { padding: 25px 18px; }
     .letter-grid { grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); }
     .letter-card .lat { font-size: 22px; }
@@ -197,6 +200,9 @@
 /* Mobile fix: prevent border overflow */
 .letter-card { background-clip: padding-box; -webkit-background-clip: padding-box; overflow: hidden; }
 @media (max-width: 600px) {
+  .highlight-box { padding: 14px !important; border-left-width: 3px !important; }
+  .tip { padding: 10px 12px !important; }
+  .word-table { font-size: 11px !important; }
   .letter-card { border-width: 1.5px !important; padding: 10px 6px !important; }
   .letter-card .cyr { font-size: 20px !important; }
   .letter-card .ipa { font-size: 10px !important; }
