@@ -166,26 +166,45 @@ body::after {
   </div>
 </div>
 <script>
+var KAZ_DICT={
+  "сәлем":"你好","рахмет":"谢谢","қош бол":"再见","жақсы":"好","қазақ":"哈萨克",
+  "махаббат":"爱","алма":"苹果","гүл":"花","күн":"太阳","ай":"月亮",
+  "бала":"孩子","ана":"妈妈","әке":"爸爸","аға":"哥哥","іні":"弟弟",
+  "апай":"姐姐","қала":"城市","су":"水","от":"火","жер":"土地",
+  "көл":"湖","тау":"山","жол":"路","үй":"家","ит":"狗","мысық":"猫",
+  "адам":"人","бас":"头","қол":"手","аяқ":"脚","көз":"眼睛","тіл":"语言",
+  "дос":"朋友","отбасы":"家庭","мектеп":"学校","кітап":"书","мұғалім":"老师",
+  "оқушы":"学生","тамақ":"饭","ақ":"白","қара":"黑","қызыл":"红","көк":"蓝",
+  "жасыл":"绿","аспан":"天空","бір":"一","екі":"二","үш":"三","төрт":"四","бес":"五"
+};
+var ZH_DICT={};
+for(var k in KAZ_DICT)ZH_DICT[KAZ_DICT[k]]=k;
+
 function translateText(){
   var s=document.getElementById('srcText').value.trim();if(!s)return;
   var d=document.getElementById('dstBox');d.style.display='block';
-  document.getElementById('dstText').textContent='⏳ 翻译中...';
-  var x=new XMLHttpRequest();
-  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
-  x.onload=function(){
-    try{
-      var r=JSON.parse(x.responseText);var t='';
-      if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])t+=r[0][i][0];
-      if(!t||t===s){
-        var x2=new XMLHttpRequest();
-        x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-        x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];document.getElementById('dstText').textContent=t2||'无法翻译'}catch(e){document.getElementById('dstText').textContent='翻译失败'}};
-        x2.send();
-      }else{document.getElementById('dstText').textContent=t;}
-    }catch(e){document.getElementById('dstText').textContent='翻译出错'}
-  };
-  x.onerror=function(){document.getElementById('dstText').textContent='⚠ 网络错误，请检查连接'};
-  x.send();
+  var lower=s.toLowerCase().trim();
+  
+  // Check Kazakh → Chinese
+  if(KAZ_DICT[lower]){document.getElementById('dstText').textContent=KAZ_DICT[lower];return;}
+  
+  // Check Chinese → Kazakh
+  for(var k in ZH_DICT){
+    if(lower.indexOf(k)>=0||k.indexOf(lower)>=0){
+      document.getElementById('dstText').textContent=ZH_DICT[k];
+      return;
+    }
+  }
+  
+  // Check partial Kazakh match
+  for(var k in KAZ_DICT){
+    if(k.indexOf(lower)>=0||lower.indexOf(k)>=0){
+      document.getElementById('dstText').textContent=KAZ_DICT[k];
+      return;
+    }
+  }
+  
+  document.getElementById('dstText').textContent='❌ 词典无此词，请稍后添加';
 }
 function speakInput(){
   var t=document.getElementById('srcText').value.trim();
