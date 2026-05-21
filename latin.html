@@ -108,7 +108,9 @@
     padding: 10px 12px;
     font-size: 14px;
   }
-  .special-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }\n.special-table td {
+  .special-table-wrapper { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; }
+.special-table { border-radius: 12px; overflow: hidden !important; }
+.special-table td {
     padding: 10px 12px;
     border-bottom: 1px solid #e0f2f1;
     font-size: 14px;
@@ -301,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function(){
 </div>
 
 <h2>🌸 9 Unique Kazakh Letters</h2>
-<table class="special-table" id="specialTable">
+<div class="special-table-wrapper"><table class="special-table" id="specialTable">
 <tr><th width="60">Latin</th><th width="60">Sound</th><th>Cyrillic</th><th>Example</th><th>Meaning</th></tr>
 <tr onclick="speak('Ä ä')"><td class="lat">Ä ä</td><td><span class="cyr-ref">/æ/</span></td><td>Ә ә</td><td>Sälem</td><td>Hello</td></tr>
 <tr onclick="speak('Ğ ğ')"><td class="lat">Ğ ğ</td><td><span class="cyr-ref">/ʁ/</span></td><td>Ғ ғ</td><td>Ağa</td><td>Brother</td></tr>
@@ -312,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <tr onclick="speak('Ü ü')"><td class="lat">Ü ü</td><td><span class="cyr-ref">/ʉ/</span></td><td>Ү ү</td><td>Üı</td><td>House</td></tr>
 <tr onclick="speak('I ı')"><td class="lat">I ı</td><td><span class="cyr-ref">/ɪ/</span></td><td>І і</td><td>Ini</td><td>Younger brother</td></tr>
 <tr onclick="speak('H h')"><td class="lat">H h</td><td><span class="cyr-ref">/h/</span></td><td>Һ һ / Х х</td><td>Halıq</td><td>People</td></tr>
-</table>
+</table></div>
 
 <h2>🌸 Vowels · 15</h2>
 
@@ -439,5 +441,7 @@ function speak(text) {
 </script>
 
 </body>
+
+
 
 
