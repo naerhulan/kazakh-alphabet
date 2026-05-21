@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="kk-arab">
 <head>
 <meta charset="UTF-8">
@@ -9,7 +9,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Noto Naskh Arabic', 'Traditional Arabic', 'Scheherazade', serif;
-    background: #f5f0e8;
+    background: linear-gradient(135deg, #e8eaf6 0%, #fce4ec 50%, #fff3e0 100%);
     min-height: 100vh;
     padding: 30px 20px;
     direction: rtl;
@@ -46,12 +46,12 @@
     padding: 10px;
     border-radius: 12px;
   }
-  .highlight-box { overflow: hidden;
+  .highlight-box {
     background: linear-gradient(135deg, #e8eaf6, #f3e5f5);
     border-radius: 16px;
     padding: 20px;
     margin: 20px 0;
-    border-left: 4px solid #e91e63;
+    border-right: 4px solid #1a237e;
   }
   .highlight-box h3 { color: #1a237e; font-size: 18px; margin-bottom: 10px; }
   .highlight-box p { font-size: 15px; line-height: 1.8; color: #444; }
@@ -174,7 +174,7 @@
   .word-table .cyr { font-weight: 700; color: #1a237e; }
   .word-table .ab { font-size: 18px; color: #c62828; font-weight: 700; direction: rtl; }
 
-  .tip { overflow: hidden;
+  .tip {
     background: #fff3e0;
     border-radius: 12px;
     padding: 14px 18px;
@@ -191,190 +191,207 @@
   }
 
   @media (max-width: 600px) {
-  .highlight-box { padding: 14px !important; border-left-width: 3px !important; }
-  .tip { padding: 10px 12px !important; }
-  .word-table { font-size: 11px !important; }
     .container { padding: 25px 18px; }
     .letter-grid { grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); }
     .letter-card .cyr { font-size: 22px; }
     .letter-card .ab { font-size: 20px; }
   }
-
-/* Mobile fix: prevent border overflow */
-.letter-card { background-clip: padding-box; -webkit-background-clip: padding-box; overflow: hidden; }
-@media (max-width: 600px) {
-  .highlight-box { padding: 14px !important; border-left-width: 3px !important; }
-  .tip { padding: 10px 12px !important; }
-  .word-table { font-size: 11px !important; }
-  .letter-card { border-width: 1.5px !important; padding: 10px 6px !important; }
-  .letter-card .cyr { font-size: 20px !important; }
-  .letter-card .ipa { font-size: 10px !important; }
-  .letter-card .zh { font-size: 10px !important; }
-}
-
-/* Background & horn motifs */
-body {
-  background: #f5f0e8 !important;
-  position: relative;
-}
-body::before, body::after {
-  content: '';
-  position: fixed;
-  bottom: 0;
-  width: 120px;
-  height: 200px;
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom;
-}
-body::before {
-  left: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M180,280 C160,200 120,120 60,60 C40,40 20,30 10,40 C5,45 10,55 20,60 C60,80 100,120 130,180 C150,220 160,260 160,280 Z' fill='%23807768'/%3E%3Cpath d='M170,300 C155,230 120,150 70,90 C50,70 30,55 15,65 C8,70 12,85 25,90 C60,110 95,155 120,210 C135,245 145,280 145,300 Z' fill='%23807768' opacity='0.5'/%3E%3C/svg%3E");
-}
-body::after {
-  right: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M20,280 C40,200 80,120 140,60 C160,40 180,30 190,40 C195,45 190,55 180,60 C140,80 100,120 70,180 C50,220 40,260 40,280 Z' fill='%23807768'/%3E%3Cpath d='M30,300 C45,230 80,150 130,90 C150,70 170,55 185,65 C192,70 188,85 175,90 C140,110 105,155 80,210 C65,245 55,280 55,300 Z' fill='%23807768' opacity='0.5'/%3E%3C/svg%3E");
-}
-.special-table th, .special-table td {
-  padding: 8px 10px;
-  font-size: 13px;
-  white-space: nowrap;
-}
-.word-table th, .word-table td {
-  padding: 8px 10px;
-  font-size: 13px;
-}
-@media (max-width: 600px) {
-  .special-table th, .special-table td { padding: 5px 6px; font-size: 11px; }
-  .word-table th, .word-table td { padding: 5px 6px; font-size: 11px; }
-}
 </style>
 </head>
 <body>
 <div style="max-width:850px;margin:0 auto 15px;padding:0 20px;">
   <a href="./" style="display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:15px;font-weight:600;padding:10px 20px;border-radius:12px;background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:0 4px 15px rgba(102,126,234,0.4);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 25px rgba(102,126,234,0.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.4)'">← 返回主页</a>
 </div>
-<!-- Translator Top -->
+<!-- Translator -->
 <div style="max-width:800px;margin:15px auto;padding:0 20px;">
-  
-      
-      
-      
-      
-      <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;margin:15px 0;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
-          <span style="font-size:16px;">🌐</span>
-          <span style="font-size:13px;color:#666;font-weight:500;">老哈文(阿拉伯) ↔ 西里尔哈语</span>
+  <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
+      <span style="font-size:20px;">🌍</span>
+      <span style="font-size:14px;font-weight:700;color:#444;letter-spacing:0.5px;">翻译 中文 ↔ Қазақша</span>
+      <span style="font-size:11px;color:#999;">输入后自动双向翻译</span>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+          <span style="font-size:12px;font-weight:600;color:#e91e63;">🇨🇳 中文</span>
         </div>
-        <div style="margin-bottom:6px;">
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">老哈文(阿拉伯)</div>
-          <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
-            <textarea id="box1" placeholder="أدخل النص العربي هنا..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea'" onblur="this.parentElement.style.borderColor='#e0e0e0'" oninput="translate1to2()"></textarea>
+        <textarea id="srcText" rows="2" placeholder="输入中文..." style="width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;resize:vertical;font-family:inherit;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 4px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'"></textarea>
+        <button onclick="speakSrc()" style="margin-top:4px;padding:6px 12px;background:rgba(102,126,234,0.1);color:#667eea;border:1.5px solid rgba(102,126,234,0.2);border-radius:8px;font-size:13px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(102,126,234,0.2)'" onmouseout="this.style.background='rgba(102,126,234,0.1)'">🔊 发音</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:4px;padding:0 4px;">
+        <button onclick="swapInput()" style="width:36px;height:36px;border-radius:50%;border:1.5px solid #667eea;background:#fff;color:#667eea;font-size:18px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;" title="切换方向">🔄</button>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+          <span style="font-size:12px;font-weight:600;color:#1a237e;">🇰🇿 Қазақша</span>
+        </div>
+        <textarea id="tgtText" rows="2" placeholder="输入哈萨克语..." style="width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;resize:vertical;font-family:inherit;" onfocus="this.style.borderColor='#764ba2';this.style.boxShadow='0 0 0 4px rgba(118,75,162,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'"></textarea>
+        <button onclick="speakTgt()" style="margin-top:4px;padding:6px 12px;background:rgba(118,75,162,0.1);color:#764ba2;border:1.5px solid rgba(118,75,162,0.2);border-radius:8px;font-size:13px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(118,75,162,0.2)'" onmouseout="this.style.background='rgba(118,75,162,0.1)'">🔊 发音</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+      <button onclick="translateToKk()" style="flex:1;padding:10px 16px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;min-width:120px;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(102,126,234,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.3)'">中文 → Қазақша</button>
+      <button onclick="translateToZh()" style="flex:1;padding:10px 16px;background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;min-width:120px;box-shadow:0 4px 15px rgba(240,147,251,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(240,147,251,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(240,147,251,0.3)'">Қазақша → 中文</button>
+      <button onclick="translateBoth()" style="padding:10px 20px;background:linear-gradient(135deg,#43e97b,#38f9d7);color:#1a5c3a;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 15px rgba(67,233,123,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(67,233,123,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(67,233,123,0.3)'">↔ 双向翻译</button>
+      <button onclick="clearTrans()" style="padding:10px 14px;background:rgba(0,0,0,0.03);color:#999;border:1.5px solid #eee;border-radius:12px;font-size:14px;cursor:pointer;transition:all 0.2s;" title="清空">✕ 清空</button>
+    </div>
+    <div id="resultBox" style="display:none;margin-top:12px;">
+      <div style="padding:12px 14px;background:#fff;border-radius:12px;border:2px solid #e8eaf6;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div>
+            <span style="font-size:12px;font-weight:600;color:#e91e63;">🇨🇳 中文 → Қазақша</span>
+            <div id="kkResult" style="font-size:15px;color:#333;padding:8px 0;line-height:1.6;word-break:break-word;min-height:24px;">⚡ 等待翻译...</div>
+            <button onclick="speakKkResult()" id="speakKkBtn" style="display:none;padding:4px 10px;background:rgba(118,75,162,0.1);color:#764ba2;border:1.5px solid rgba(118,75,162,0.2);border-radius:8px;font-size:12px;cursor:pointer;transition:all 0.2s;">🔊 发音 (Қазақша)</button>
+          </div>
+          <div style="border-top:1px dashed #eee;padding-top:10px;">
+            <span style="font-size:12px;font-weight:600;color:#1a237e;">🇰🇿 Қазақша → 中文</span>
+            <div id="zhResult" style="font-size:15px;color:#333;padding:8px 0;line-height:1.6;word-break:break-word;min-height:24px;">⚡ 等待翻译...</div>
+            <button onclick="speakZhResult()" id="speakZhBtn" style="display:none;padding:4px 10px;background:rgba(233,30,99,0.1);color:#e91e63;border:1.5px solid rgba(233,30,99,0.2);border-radius:8px;font-size:12px;cursor:pointer;transition:all 0.2s;">🔊 发音 (中文)</button>
           </div>
         </div>
-        <div style="text-align:center;margin:4px 0;">
-          <span style="color:#b5a89a;font-size:11px;">⇅ 双向翻译</span>
-        </div>
-        <div>
-          <div style="font-size:10px;color:#9c8f7c;margin-bottom:3px;letter-spacing:1px;">西里尔哈语</div>
-          <div style="border:2px solid #e0e0e0;border-radius:10px;overflow:hidden;">
-            <textarea id="box2" placeholder="Кирил жазбасын енгізіңіз..." style="width:100%;padding:10px 14px;font-size:14px;outline:none;border:none;background:#fff;font-family:inherit;resize:none;min-height:48px;box-sizing:border-box;" onfocus="this.parentElement.style.borderColor='#667eea'" onblur="this.parentElement.style.borderColor='#e0e0e0'" oninput="translate2to1()"></textarea>
-          </div>
-        </div>
       </div>
-      </div>
-      </div>
-      </div>
+    </div>
+  </div>
 </div>
 <script>
-function translate1to2(){
-  var s=document.getElementById('box1').value.trim();if(!s)return;
-  document.getElementById('box2').value='⏳';
-  var x=new XMLHttpRequest();
-  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=ar&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-  x.onload=function(){try{var r=JSON.parse(x.responseText);if(r&&r[0]&&r[0][0]){document.getElementById('box2').value=r[0][0][0];}else{document.getElementById('box2').value='';}}catch(e){document.getElementById('box2').value='';}};
-  x.onerror=function(){document.getElementById('box2').value='网络错误';};
+// Google Translate helper
+function gt(sl, tl, q, cb) {
+  var x = new XMLHttpRequest();
+  x.open('GET', 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=' + sl + '&tl=' + tl + '&dt=t&q=' + encodeURIComponent(q), true);
+  x.onload = function() {
+    try {
+      var r = JSON.parse(x.responseText);
+      var t = '';
+      if (r && r[0]) for (var i = 0; i < r[0].length; i++) if (r[0][i] && r[0][i][0]) t += r[0][i][0];
+      cb(t || '');
+    } catch(e) { cb(''); }
+  };
+  x.onerror = function() { cb(''); };
   x.send();
 }
-function translate2to1(){
-  var s=document.getElementById('box2').value.trim();if(!s)return;
-  document.getElementById('box1').value='⏳';
-  var x=new XMLHttpRequest();
-  x.open('POST','/api/translate',true);
-  x.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-  x.onload=function(){try{var r=JSON.parse(x.responseText);if(r.trans_result&&r.trans_result.length>0){document.getElementById('box1').value=r.trans_result.map(function(i){return i.dst}).join('\n');}else{document.getElementById('box1').value='';}}catch(e){document.getElementById('box1').value='';}};
-  x.onerror=function(){document.getElementById('box1').value='网络错误';};
-  x.send('q='+encodeURIComponent(s)+'&from=kk&to=zh');
+
+function detectLang(s) {
+  // Check if text contains Cyrillic (Kazakh) or Arabic script chars
+  if (s.match(/[\u0400-\u04ff\u0600-\u06ff]/)) return 'kk';
+  return 'zh-CN';
 }
 
+function showResult(id, text, isKk) {
+  document.getElementById(id).textContent = text || '⚠ 翻译失败';
+  document.getElementById('resultBox').style.display = 'block';
+  var btnId = isKk ? 'speakKkBtn' : 'speakZhBtn';
+  document.getElementById(btnId).style.display = text ? 'inline-block' : 'none';
+}
 
-function speakInput(){
-  var t=document.getElementById('srcText').value.trim();
-  if(!t)return;
-  window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(t);
-  u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';
-  u.rate=0.85;
-  window.speechSynthesis.speak(u);
+function translateToKk() {
+  var s = document.getElementById('srcText').value.trim();
+  if (!s) { alert('请输入中文'); return; }
+  showResult('kkResult', '⏳ 翻译中...', true);
+  showResult('zhResult', '');
+  document.getElementById('speakZhBtn').style.display = 'none';
+  gt('zh-CN', 'kk', s, function(t) { showResult('kkResult', t, true); });
 }
-function speakOutput(){
-  var t=document.getElementById('dstText').textContent;
-  if(!t||t.startsWith('⏳')||t.startsWith('⚠')||t.startsWith('无法')||t.startsWith('翻译'))return;
-  window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(t);
-  u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';
-  u.rate=0.85;
-  window.speechSynthesis.speak(u);
-}
-function clearTrans(){
-  document.getElementById('srcText').value='';
-  document.getElementById('dstBox').style.display='none';
-}
-document.addEventListener('DOMContentLoaded',function(){
-  var e=document.getElementById('srcText');
-  if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();translateText();}});
-});
 
-
-// ── Kazakh alphabet audio system ──
-const KZ_SOUNDS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ы':'yh','і':'ii_','э':'eh','ю':'yoo','я':'yah',"'":'','ъ':'','ь':''};
-const KZ_WORDS={'сәлем':'salem','рахмет':'rahmet','қош бол':'kosh_bol','жақсы':'zhaksy','қазақ':'qazaq','махаббат':'mahabbat','алма':'alma','гүл':'gul','күн':'kun','ай':'ay'};
-var _AT=null,_CA=null;
-function playSound(k){
-  if(_AT){clearTimeout(_AT);_AT=null;}
-  if(_CA){try{_CA.pause();_CA.currentTime=0;}catch(e){}}
-  _CA=new Audio('sounds/'+k+'.mp3');
-  _CA.onerror=function(){
-    var w=new Audio('sounds/'+k+'.wav');
-    w.onerror=function(){
-      speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(k);u.lang='kk-KZ';u.rate=0.85;speechSynthesis.speak(u);_CA=null;
-    };
-    _CA=null;w.play().catch(function(){});
-  };
-  _CA.onended=function(){_CA=null;};
-  _CA.play().catch(function(){var w=new Audio('sounds/'+k+'.wav');w.play().catch(function(){});});
+function translateToZh() {
+  var s = document.getElementById('tgtText').value.trim();
+  if (!s) { alert('请输入哈萨克语'); return; }
+  showResult('zhResult', '⏳ 翻译中...', false);
+  showResult('kkResult', '');
+  document.getElementById('speakKkBtn').style.display = 'none';
+  gt('kk', 'zh-CN', s, function(t) { showResult('zhResult', t, false); });
 }
-function speak(t){
-  t=t.trim().split(' ').pop().toLowerCase().replace(/[ьъ]/g,'');
-  if(_AT){clearTimeout(_AT);_AT=null;}
-  if(KZ_WORDS[t]){playSound(KZ_WORDS[t]);return;}
-  var c=t.replace(/[^а-яәіңғүұқөһ']/g,'');
-  if(KZ_WORDS[c]){playSound(KZ_WORDS[c]);return;}
-  var l=[];for(var x of c){if(KZ_SOUNDS[x])l.push(KZ_SOUNDS[x]);}
-  if(l.length>0){
-    if(l.length===1){playSound(l[0]);}
-    else{
-      playSound(l[0]);var i=1;
-      !function n(){if(i<l.length){playSound(l[i]);i++;_AT=setTimeout(n,350);}}();
-    }
-  }else{
-    speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='kk-KZ';u.rate=0.85;speechSynthesis.speak(u);
+
+function translateBoth() {
+  var src = document.getElementById('srcText').value.trim();
+  var tgt = document.getElementById('tgtText').value.trim();
+  if (!src && !tgt) { alert('请在任意一个输入框输入文字'); return; }
+  document.getElementById('resultBox').style.display = 'block';
+  document.getElementById('kkResult').textContent = '⏳ 翻译中...';
+  document.getElementById('zhResult').textContent = '⏳ 翻译中...';
+  
+  var kkDone = false, zhDone = false;
+  
+  if (src) {
+    gt('zh-CN', 'kk', src, function(t) {
+      document.getElementById('kkResult').textContent = t || '⚠ 翻译失败';
+      document.getElementById('speakKkBtn').style.display = t ? 'inline-block' : 'none';
+      kkDone = true;
+    });
+  } else {
+    document.getElementById('kkResult').textContent = '';
+    kkDone = true;
+  }
+  
+  if (tgt) {
+    gt('kk', 'zh-CN', tgt, function(t) {
+      document.getElementById('zhResult').textContent = t || '⚠ 翻译失败';
+      document.getElementById('speakZhBtn').style.display = t ? 'inline-block' : 'none';
+      zhDone = true;
+    });
+  } else {
+    document.getElementById('zhResult').textContent = '';
+    zhDone = true;
   }
 }
 
+function speakSrc() {
+  var t = document.getElementById('srcText').value.trim();
+  if (!t) return;
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(t);
+  u.lang = 'zh-CN';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function speakTgt() {
+  var t = document.getElementById('tgtText').value.trim();
+  if (!t) return;
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(t);
+  u.lang = 'kk-KZ';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function speakKkResult() {
+  var t = document.getElementById('kkResult').textContent;
+  if (!t || t.startsWith('⏳') || t.startsWith('⚠')) return;
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(t);
+  u.lang = 'kk-KZ';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function speakZhResult() {
+  var t = document.getElementById('zhResult').textContent;
+  if (!t || t.startsWith('⏳') || t.startsWith('⚠')) return;
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(t);
+  u.lang = 'zh-CN';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function clearTrans() {
+  document.getElementById('srcText').value = '';
+  document.getElementById('tgtText').value = '';
+  document.getElementById('resultBox').style.display = 'none';
+  document.getElementById('kkResult').textContent = '⚡ 等待翻译...';
+  document.getElementById('zhResult').textContent = '⚡ 等待翻译...';
+  document.getElementById('speakKkBtn').style.display = 'none';
+  document.getElementById('speakZhBtn').style.display = 'none';
+}
+
+function swapInput() {
+  var src = document.getElementById('srcText');
+  var tgt = document.getElementById('tgtText');
+  var tmp = src.value;
+  src.value = tgt.value;
+  tgt.value = tmp;
+  clearTrans();
+}
 </script><div class="container">
 
 <h1>قازاق كيريل ٵلىپبئى</h1>
@@ -542,9 +559,3 @@ function speak(text) {
 
 </div>
 </body>
-
-
-
-
-
-
