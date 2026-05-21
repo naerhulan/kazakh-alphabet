@@ -4,191 +4,205 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🇰🇿 哈萨克字母学习 · Qazaq Álipbii</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 30%, #24243e 70%, #1a1a2e 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
 
-body {
-  font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
-  background: url('bg.jpg') center/cover no-repeat;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  position: relative;
-  overflow-x: hidden;
-}
+  /* Background particles */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.15), transparent),
+      radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.1), transparent),
+      radial-gradient(2px 2px at 60% 20%, rgba(255,255,255,0.12), transparent),
+      radial-gradient(2px 2px at 80% 80%, rgba(255,255,255,0.08), transparent),
+      radial-gradient(1px 1px at 10% 50%, rgba(255,255,255,0.2), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.15), transparent),
+      radial-gradient(1px 1px at 50% 90%, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-/* Kazakh horn motifs - bottom layer */
-body::before, body::after {
-  content: '';
-  position: fixed;
-  bottom: 0;
-  width: 180px;
-  height: 280px;
-  opacity: 0.06;
-  pointer-events: none;
-  z-index: 0;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom;
-}
-body::before {
-  left: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M180,280 C160,200 120,120 60,60 C40,40 20,30 10,40 C5,45 10,55 20,60 C60,80 100,120 130,180 C150,220 160,260 160,280 Z' fill='%23807768'/%3E%3Cpath d='M170,300 C155,230 120,150 70,90 C50,70 30,55 15,65 C8,70 12,85 25,90 C60,110 95,155 120,210 C135,245 145,280 145,300 Z' fill='%23807768' opacity='0.5'/%3E%3C/svg%3E");
-}
-body::after {
-  right: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M20,280 C40,200 80,120 140,60 C160,40 180,30 190,40 C195,45 190,55 180,60 C140,80 100,120 70,180 C50,220 40,260 40,280 Z' fill='%23807768'/%3E%3Cpath d='M30,300 C45,230 80,150 130,90 C150,70 170,55 185,65 C192,70 188,85 175,90 C140,110 105,155 80,210 C65,245 55,280 55,300 Z' fill='%23807768' opacity='0.5'/%3E%3C/svg%3E");
-}
+  .container {
+    max-width: 720px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
 
-.container {
-  max-width: 460px;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  padding: 10px 0;
-}
+  /* Hero section */
+  .hero {
+    margin-bottom: 35px;
+  }
+  .hero-icon {
+    font-size: 64px;
+    display: block;
+    margin-bottom: 12px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 20px rgba(255,255,255,0.1));
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .hero h1 {
+    color: #fff;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .sub {
+    color: rgba(255,255,255,0.5);
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    direction: rtl;
+    margin-top: 4px;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
 
-/* Hero section */
-.hero { margin-bottom: 32px; }
-.hero-icon {
-  font-size: 28px;
-  display: block;
-  margin-bottom: 6px;
-  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.05));
-}
-.hero h1 {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-.hero h1 .part-kz { color: #0095b6; }     /* Kazakh blue */
-.hero h1 .part-stud { color: #daa520; }    /* Golden yellow */
-.hero h1 .part-letter { color: #7a6a5a; }  /* Warm brown */
-.hero h1 .part-learn { color: #c17a5a; }   /* Terracotta */
-.hero .sub {
-  color: #b5a89a;
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 3px;
-  margin-top: 2px;
-  direction: rtl;
-  font-family: 'Noto Naskh Arabic', serif;
-}
-.badge {
-  display: inline-block;
-  background: rgba(154,140,120,0.08);
-  color: #b5a89a;
-  padding: 3px 12px;
-  border-radius: 20px;
-  font-size: 10px;
-  margin-top: 8px;
-  letter-spacing: 1px;
-  font-weight: 300;
-}
+  /* Cards */
+  .card {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 28px 30px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .card:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.1);
+  }
+  .card:active {
+    transform: scale(0.98);
+  }
+  .card:hover::before { opacity: 1; }
 
-/* Cards / Buttons */
-.card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  padding: 16px 18px;
-  margin-bottom: 12px;
-  border-radius: 18px;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: left;
-  position: relative;
-  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: none;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-}
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-}
-.card:active {
-  transform: scale(0.97);
-}
+  .card .icon-box {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .card.option1 .icon-box { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .card.option2 .icon-box { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .card.option3 .icon-box { background: linear-gradient(135deg, #f6d365, #fda085); }
+  .card.option4 .icon-box { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
 
-/* Morandi gradient backgrounds */
-.card.option1 { background: linear-gradient(135deg, #e8ddd0, #dfd0c0); }
-.card.option2 { background: linear-gradient(135deg, #d5dbd0, #c8cec0); }
-.card.option3 { background: linear-gradient(135deg, #ddd0d5, #d0c0c8); }
-.card.option4 { background: linear-gradient(135deg, #d0d5db, #c0c8ce); }
+  .card .card-body { flex: 1; }
+  .card .card-body h2 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+  .card .card-body p {
+    color: rgba(255,255,255,0.45);
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .card .arrow {
+    color: rgba(255,255,255,0.2);
+    font-size: 22px;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+  .card:hover .arrow {
+    color: rgba(255,255,255,0.6);
+    transform: translateX(4px);
+  }
 
-.card .icon-box {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
-}
-.card.option1 .icon-box { background: linear-gradient(135deg, #c9a88c, #b8917a); }
-.card.option2 .icon-box { background: linear-gradient(135deg, #8fa892, #7a947e); }
-.card.option3 .icon-box { background: linear-gradient(135deg, #b88ca8, #a47a92); }
-.card.option4 .icon-box { background: linear-gradient(135deg, #8ca0b8, #7a8ea4); }
+  /* Option-specific accent borders */
+  .card.option1 { border-left: 4px solid #f5576c; }
+  .card.option2 { border-left: 4px solid #4facfe; }
+  .card.option3 { border-left: 4px solid #fda085; }
+  .card.option4 { border-left: 4px solid #84fab0; }
 
-.card .card-body { flex: 1; min-width: 0; }
-.card .card-body h2 {
-  color: #4a3f35;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 2px;
-  letter-spacing: 0.5px;
-}
-.card .card-body p {
-  color: #9c8f7c;
-  font-size: 11px;
-  line-height: 1.4;
-  font-weight: 300;
-}
-.card .arrow {
-  color: #b5a89a;
-  font-size: 18px;
-  transition: all 0.3s;
-  flex-shrink: 0;
-}
-.card:hover .arrow {
-  color: #7a6a5a;
-  transform: translateX(3px);
-}
+  /* Footer */
+  .footer {
+    color: rgba(255,255,255,0.2);
+    font-size: 12px;
+    margin-top: 30px;
+    letter-spacing: 1px;
+  }
+  .footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+  .footer a:hover { color: rgba(255,255,255,0.5); }
 
-/* Footer */
-.footer {
-  color: #c5b8a8;
-  font-size: 11px;
-  margin-top: 24px;
-  letter-spacing: 1px;
-  font-weight: 300;
-  position: relative;
-  z-index: 1;
-}
-.footer a { color: #b5a89a; text-decoration: none; }
-.footer a:hover { color: #8a7a6a; }
-
-/* Mobile */
-@media (max-width: 500px) {
-  body { padding: 14px; }
-  .container { max-width: 100%; }
-  .hero h1 { font-size: 24px; }
-  .hero-icon { font-size: 24px; }
-  .card { padding: 14px 16px; gap: 12px; margin-bottom: 10px; border-radius: 16px; }
-  .card .icon-box { width: 44px; height: 44px; min-width: 44px; font-size: 20px; border-radius: 12px; }
-  .card .card-body h2 { font-size: 14px; }
-  .card .card-body p { font-size: 10px; }
-  body::before, body::after { width: 100px; height: 160px; }
-}
+  /* Responsive */
+  @media (max-width: 500px) {
+    .hero h1 { font-size: 26px; }
+    .hero-icon { font-size: 48px; }
+    .card { padding: 20px; gap: 14px; }
+    .card .icon-box { width: 44px; height: 44px; min-width: 44px; font-size: 20px; border-radius: 12px; }
+    .card .card-body h2 { font-size: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -196,17 +210,13 @@ body::after {
 
   <div class="hero">
     <span class="hero-icon">🇰🇿</span>
-    <h1>
-      <span class="part-kz">哈萨克</span>
-      <span class="part-letter">字母</span>
-      <span class="part-stud">学习</span>
-    </h1>
-    <p class="sub">قازاق ٵلىپبئى · Qazaq Álipbii</p>
+    <h1>哈萨克<span class="highlight">字母</span>学习</h1>
+    <p class="sub">Qazaq Álipbii • قازاق ٵلىپبئى</p>
     <span class="badge">✦ 4种字母系统 ✦ 点击发音 ✦ 零基础入门</span>
   </div>
 
   <a class="card option1" href="cyrillic.html">
-    <div class="icon-box">🇨🇳</div>
+    <div class="icon-box">🀄</div>
     <div class="card-body">
       <h2>汉语 → 西里尔文</h2>
       <p>看中文谐音和音标学发音 · 零基础入门</p>
@@ -215,16 +225,16 @@ body::after {
   </a>
 
   <a class="card option2" href="arabic-to-cyrillic.html">
-    <div class="icon-box" style="font-family:'Noto Naskh Arabic',serif;">ﮎ</div>
+    <div class="icon-box" style="font-family: 'Noto Naskh Arabic', serif;">ق</div>
     <div class="card-body">
-      <h2 style="direction:rtl;">عربية → كيريل</h2>
-      <p>对照阿拉伯文学习哈萨克新文字</p>
+      <h2 style="direction:rtl;">قازاقشا → كيريل</h2>
+      <p>对照阿拉伯文学习西里尔新文字</p>
     </div>
     <span class="arrow">→</span>
   </a>
 
   <a class="card option3" href="learn-kazakh.html">
-    <div class="icon-box">💬</div>
+    <div class="icon-box">🌏</div>
     <div class="card-body">
       <h2>用中文 · 学哈萨克语</h2>
       <p>日常口语 + 发音跟读</p>
@@ -235,14 +245,14 @@ body::after {
   <a class="card option4" href="latin.html">
     <div class="icon-box">🇰🇿</div>
     <div class="card-body">
-      <h2>Qazaq Latin · 2025</h2>
+      <h2>Qazaq Latın · 2025</h2>
       <p>哈萨克斯坦官方新拉丁字母表</p>
     </div>
     <span class="arrow">→</span>
   </a>
 
   <div class="footer">
-    🥟 胡兰的包尔萨克 · 2026
+    🌸 胡兰的包尔萨克 · 2026
   </div>
 
 </div>
