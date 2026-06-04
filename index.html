@@ -343,19 +343,19 @@ input:focus,textarea:focus{border-color:var(--primary)}
 <!-- ===== HOME PAGE ===== -->
 <section id="page-home" class="section">
 <div class="home-btns">
-<button class="home-btn zh-cyr" onclick="navigate('zh-cyrillic')">
+<button class="home-btn zh-cyr" onclick="navigate('zh-cyr')">
 🇨🇳 我会普通话，想学西里尔哈萨克文
 <span class="sub">Мен қытайша сөйлеймін, кириллица үйренгім келеді</span>
 </button>
-<button class="home-btn arab-cyr" onclick="navigate('arabic-cyrillic')">
+<button class="home-btn arab-cyr" onclick="navigate('arab-cyr')">
 🇰🇿 ەرەكشە ەرىپتىمەن جازا الامىن، كيريليتسا ۇيرەنەم
 <span class="sub">Мен араб жазуымен жаза аламын, кириллица үйренем</span>
 </button>
-<button class="home-btn zh-arab" onclick="navigate('zh-arabic')">
+<button class="home-btn zh-arab" onclick="navigate('zh-arab')">
 🇨🇳 我会普通话，想学老哈文（阿拉伯字母）
 <span class="sub">Мен қытайша сөйлеймін, қазақ араб жазбасын үйренгім келеді</span>
 </button>
-<button class="home-btn cyr-lat" onclick="navigate('cyrillic-latin')">
+<button class="home-btn cyr-lat" onclick="navigate('cyr-lat')">
 🇰🇿 Кириллица жазамын، لاتىن ءارىپتەرىن ۇيرەنەم
 <span class="sub">Кириллица жазамын, латын әріптерін үйренем</span>
 </button>
@@ -363,7 +363,7 @@ input:focus,textarea:focus{border-color:var(--primary)}
 </section>
 
 <!-- ===== PAGE: ZH-CYRILLIC ===== -->
-<section id="page-zh-cyrillic" class="section hidden">
+<section id="page-zh-cyr" class="section hidden">
 <button class="back-btn" onclick="navigate('home')">← 返回首页</button>
 <div class="tab-bar">
 <button class="active" data-page="zh-cyr" data-tab="alphabet" onclick="switchTab('zh-cyr','alphabet')">🔤 字母表</button>
@@ -380,7 +380,7 @@ input:focus,textarea:focus{border-color:var(--primary)}
 </section>
 
 <!-- ===== PAGE: ARABIC-CYRILLIC ===== -->
-<section id="page-arabic-cyrillic" class="section hidden" dir="rtl">
+<section id="page-arab-cyr" class="section hidden" dir="rtl">
 <button class="back-btn" onclick="navigate('home')">← басты бетке қайту</button>
 <div class="tab-bar">
 <button class="active" data-page="arab-cyr" data-tab="alphabet" onclick="switchTab('arab-cyr','alphabet')">🔤 ءالىپبي</button>
@@ -397,7 +397,7 @@ input:focus,textarea:focus{border-color:var(--primary)}
 </section>
 
 <!-- ===== PAGE: ZH-ARABIC ===== -->
-<section id="page-zh-arabic" class="section hidden" dir="rtl">
+<section id="page-zh-arab" class="section hidden" dir="rtl">
 <button class="back-btn" onclick="navigate('home')">← 返回首页</button>
 <div class="tab-bar">
 <button class="active" data-page="zh-arab" data-tab="alphabet" onclick="switchTab('zh-arab','alphabet')">🔤 حارىپتەر كەستەسى</button>
@@ -414,7 +414,7 @@ input:focus,textarea:focus{border-color:var(--primary)}
 </section>
 
 <!-- ===== PAGE: CYRILLIC-LATIN ===== -->
-<section id="page-cyrillic-latin" class="section hidden">
+<section id="page-cyr-lat" class="section hidden">
 <button class="back-btn" onclick="navigate('home')">← басты бетке қайту</button>
 <div class="tab-bar">
 <button class="active" data-page="cyr-lat" data-tab="alphabet" onclick="switchTab('cyr-lat','alphabet')">🔤 Әліпби</button>
@@ -955,7 +955,7 @@ function navigate(page){
   switchTab(pageId.replace(/-/g,'-'), tabDefault);
   // Set dir
   const el = document.getElementById('page-'+page);
-  if(page==='zh-arabic'||page==='arabic-cyrillic') el.dir='rtl';
+  if(page==='zh-arab'||page==='arab-cyr') el.dir='rtl';
   else el.dir='ltr';
   updateGreeting(page);
 }
