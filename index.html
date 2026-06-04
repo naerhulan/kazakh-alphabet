@@ -961,24 +961,24 @@ function navigate(page){
 }
 
 function switchTab(pageId, tab){
-  const prefix = pageId.replace(/-/g,'');
-  const page = document.getElementById('page-'+pageId.replace(/-/g,'-'));
+  const page = document.getElementById('page-'+pageId);
   if(!page) return;
-  // Hide all sections
-  page.querySelectorAll('.section[id^="'+prefix+'"]').forEach(s=>s.classList.add('hidden'));
+  // Hide all child sections
+  var childSections = page.querySelectorAll('.section');
+  childSections.forEach(function(s){s.classList.add('hidden');});
   // Show target
-  const target = document.getElementById(prefix+'-'+tab);
+  const target = document.getElementById(pageId+'-'+tab);
   if(target) target.classList.remove('hidden');
   // Update tab bar buttons
-  page.querySelectorAll('.tab-bar button').forEach(b=>{
+  page.querySelectorAll('.tab-bar button').forEach(function(b){
     b.classList.toggle('active', b.dataset.tab===tab);
   });
   // Render content
-  if(tab==='alphabet') renderAlphabet(prefix);
-  else if(tab==='translit') renderTranslit(prefix);
-  else if(tab==='practice') renderPractice(prefix);
-  else if(tab==='plan') renderPlan(prefix);
-  else if(tab==='phrases') renderPhrases(prefix);
+  if(tab==='alphabet') renderAlphabet(pageId);
+  else if(tab==='translit') renderTranslit(pageId);
+  else if(tab==='practice') renderPractice(pageId);
+  else if(tab==='plan') renderPlan(pageId);
+  else if(tab==='phrases') renderPhrases(pageId);
 }
 
 function updateGreeting(page){
