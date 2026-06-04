@@ -2,150 +2,524 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>🇰🇿 哈萨克字母学习 · Qazaq Álipbii</title>
+<meta name="description" content="免费哈萨克语字母学习工具 - 西里尔字母、拉丁字母、阿拉伯字母，点击发音，互动测验">
+<meta name="theme-color" content="#e91e63">
+<link rel="manifest" href="manifest.json">
 <style>
-  /* Fonts removed for offline use */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
-  body {
-    font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
-    background: #1a1a2e url('bg-pattern.png') center/cover fixed no-repeat;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
+/* 设计系统内联 - 保证离线可用 */
+:root {
+  --bg-page: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 30%, #e8eaf6 70%, #e0f7fa 100%);
+  --bg-card: rgba(255,255,255,0.92);
+  --bg-glass: rgba(255,255,255,0.6);
+  --text-primary: #2d2d2d;
+  --text-secondary: #666;
+  --text-muted: #999;
+  --border-subtle: rgba(0,0,0,0.08);
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+  --accent-pink: #e91e63;
+  --accent-purple: #7b1fa2;
+  --accent-blue: #2196f3;
+  --accent-green: #4caf50;
+  --accent-gold: #ffc107;
+  --nav-bg: rgba(255,255,255,0.75);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --font-cn: 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  --font-kk: 'Noto Sans', 'Arial', sans-serif;
+}
+[data-theme="dark"] {
+  --bg-page: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #1a1a2e 100%);
+  --bg-card: rgba(30,30,50,0.92);
+  --bg-glass: rgba(30,30,50,0.6);
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaa;
+  --text-muted: #777;
+  --border-subtle: rgba(255,255,255,0.08);
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.5);
+  --nav-bg: rgba(20,20,40,0.85);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-cn);background:var(--bg-page);min-height:100vh;color:var(--text-primary);transition:all .3s ease}
+.top-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-subtle);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nav-left{display:flex;align-items:center;gap:12px}
+.nav-logo{font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--accent-pink),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;letter-spacing:-.5px}
+.nav-logo small{font-size:12px;opacity:.6;-webkit-text-fill-color:var(--text-muted)}
+.nav-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.nav-btn{background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:7px 12px;font-size:12px;font-weight:600;color:var(--text-primary);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-family:var(--font-cn);white-space:nowrap}
+.nav-btn:hover{background:rgba(233,30,99,.08);border-color:var(--accent-pink);transform:translateY(-1px)}
+.theme-toggle{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-subtle);background:var(--bg-glass);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-toggle:hover{background:rgba(233,30,99,.1);border-color:var(--accent-pink);transform:rotate(20deg)}
+.page-wrap{max-width:540px;margin:0 auto;padding:24px 20px 40px}
+.glass-card{background:var(--bg-card);backdrop-filter:blur(12px);border-radius:var(--radius-xl);padding:30px 24px;box-shadow:var(--shadow-card);border:1px solid var(--border-subtle);margin-bottom:16px}
+.hero{text-align:center;padding:30px 20px 24px}
+.hero h1{font-size:32px;font-weight:900;line-height:1.3}
+.hero h1 .flag{font-size:36px}
+.hero h1 .title-zh{background:linear-gradient(135deg,var(--accent-pink),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero h1 .title-kk{font-size:22px;display:block;color:var(--text-muted);font-weight:400;margin-top:2px}
+.hero .tagline{margin-top:10px;font-size:13px;color:var(--text-muted);letter-spacing:1px}
+.card-list{display:flex;flex-direction:column;gap:10px}
+.menu-card{position:relative;background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px 16px;cursor:pointer;transition:all .3s ease;text-decoration:none;display:flex;align-items:center;gap:14px}
+.menu-card:hover{transform:translateX(4px);border-color:var(--accent-pink);box-shadow:var(--shadow-hover)}
+.menu-card:active{transform:scale(.98) translateX(2px)}
+.menu-card .mc-icon{width:42px;height:42px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.menu-card .mc-body{flex:1;min-width:0}
+.menu-card .mc-body h3{font-size:14px;font-weight:700;color:var(--text-primary);line-height:1.3}
+.menu-card .mc-body p{font-size:11px;color:var(--text-muted);line-height:1.3;margin-top:1px}
+.menu-card .mc-arrow{font-size:14px;opacity:0;transition:all .3s ease;color:var(--text-muted);flex-shrink:0}
+.menu-card:hover .mc-arrow{opacity:1;transform:translateX(4px)}
+.mc-cyr .mc-icon{background:linear-gradient(135deg,#e91e63,#c2185b);color:#fff}
+.mc-kz .mc-icon{background:linear-gradient(135deg,#4caf50,#2e7d32);color:#fff}
+.mc-arab .mc-icon{background:linear-gradient(135deg,#2196f3,#1565c0);color:#fff;font-size:18px;font-weight:700}
+.mc-lat .mc-icon{background:linear-gradient(135deg,#ffc107,#f57f17);color:#fff}
+.mc-quiz .mc-icon{background:linear-gradient(135deg,#ff5722,#bf360c);color:#fff}
+.mc-flash .mc-icon{background:linear-gradient(135deg,#9c27b0,#6a1b9a);color:#fff}
+.mc-stats .mc-icon{background:linear-gradient(135deg,#00bcd4,#00838f);color:#fff}
 
-  .container {
-    max-width: 720px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
+.section-label{font-size:13px;font-weight:700;color:var(--text-muted);margin:16px 0 8px;letter-spacing:1px;text-transform:uppercase}
 
-  /* Title */
-  .title {
-    color: #fff;
-    font-size: 36px;
-    font-weight: 900;
-    margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  }
-  .subtitle {
-    color: rgba(255,255,255,0.8);
-    font-size: 18px;
-    margin-bottom: 40px;
-    direction: rtl;
-  }
+.footer{text-align:center;margin-top:24px;color:var(--text-muted);font-size:11px;opacity:.5;line-height:1.8}
+.footer a{color:var(--accent-pink);text-decoration:none}
 
-  /* Cards */
-  .card {
-    background: rgba(255,255,255,0.95);
-    border-radius: 20px;
-    padding: 40px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    text-decoration: none;
-    display: block;
-  }
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-  }
-  .card:active {
-    transform: scale(0.98);
-  }
+/* 进度条 */
+.progress-card{padding:16px 20px;margin-bottom:16px}
+.progress-card .stat-row{display:flex;align-items:center;gap:12px;margin-bottom:0}
+.progress-card .stat-row .big-num{font-size:32px;font-weight:900;color:var(--accent-pink);line-height:1}
+.progress-card .stat-row .stat-info{flex:1}
+.progress-card .stat-row .stat-info .stat-title{font-size:13px;font-weight:600}
+.progress-card .stat-row .stat-info .stat-sub{font-size:11px;color:var(--text-muted)}
+.pbar{height:6px;background:var(--border-subtle);border-radius:8px;overflow:hidden;margin-top:6px;flex:1}
+.pbar .pfill{height:100%;background:linear-gradient(90deg,var(--accent-pink),var(--accent-purple));border-radius:8px;transition:width .5s ease;width:0%}
 
-  .card .icon { font-size: 48px; margin-bottom: 15px; display: block; }
-  .card h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 8px;
-  }
-  .card p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
-  }
-  .card.option1 { border-left: 5px solid #e91e63; }
-  .card.option2 { border-left: 5px solid #1a237e; }
-  .card.option2 h2 { font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif; }
-  .card.option3 { border-left: 5px solid #ff6f00; }
-  .card.option4 { border-left: 5px solid #84fab0; }
+/* 模式弹窗 */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal-box{background:var(--bg-card);border-radius:var(--radius-xl);padding:28px 24px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal-box h2{color:var(--accent-purple);font-size:18px;text-align:center;margin-bottom:4px}
+.quiz-q{font-size:42px;font-weight:800;color:var(--accent-pink);text-align:center;margin:16px 0}
+.quiz-q.sound-only{font-size:36px}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quiz-opt{padding:14px;border-radius:var(--radius-sm);border:2px solid var(--border-subtle);background:var(--bg-card);cursor:pointer;font-size:20px;font-weight:700;transition:all .2s;font-family:var(--font-cn);text-align:center}
+.quiz-opt:hover{border-color:var(--accent-blue);background:rgba(33,150,243,.05)}
+.quiz-opt.correct{border-color:var(--accent-green);background:rgba(76,175,80,.1)}
+.quiz-opt.wrong{border-color:#f44336;background:rgba(244,67,54,.1)}
+.quiz-hint{text-align:center;font-size:13px;color:var(--text-secondary);margin:8px 0}
+.quiz-score-display{text-align:center;font-size:12px;color:var(--text-muted);margin-top:10px}
 
-  /* Footer */
-  .footer {
-    color: rgba(255,255,255,0.2);
-    font-size: 12px;
-    margin-top: 30px;
-    letter-spacing: 1px;
-  }
-  .footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
-  .footer a:hover { color: rgba(255,255,255,0.5); }
+/* 闪卡 */
+.fc-area{text-align:center;margin:16px 0}
+.fc-status{font-size:13px;color:var(--text-muted);margin-bottom:10px}
+.fc-card{width:240px;height:180px;margin:0 auto;cursor:pointer;perspective:1000px}
+.fc-card-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc-card.flipped .fc-card-inner{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px}
+.fc-front{background:linear-gradient(135deg,var(--accent-pink),var(--accent-purple));color:#fff}
+.fc-front .fc-letter{font-size:56px;font-weight:800}
+.fc-back{background:var(--bg-card);color:var(--text-primary);transform:rotateY(180deg);border:2px solid var(--border-subtle)}
+.fc-back .fc-detail{font-size:15px;margin:3px 0}
+.fc-nav{margin-top:12px;display:flex;gap:8px;justify-content:center}
 
-  /* Responsive */
-  @media (max-width: 500px) {
-    .hero h1 { font-size: 26px; }
-    .hero-icon { font-size: 48px; }
-    .card { padding: 20px; gap: 14px; }
-    .card .icon-box { width: 44px; height: 44px; min-width: 44px; font-size: 20px; border-radius: 12px; }
-    .card .card-body h2 { font-size: 16px; }
-  }
+/* 统计面板 */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.stat-item{background:var(--bg-card);border-radius:var(--radius-sm);padding:14px 10px;text-align:center;box-shadow:var(--shadow-card)}
+.stat-item .s-num{font-size:26px;font-weight:800;color:var(--accent-pink);line-height:1.2}
+.stat-item .s-label{font-size:11px;color:var(--text-muted);margin-top:2px}
+
+.streak-bar{display:flex;gap:4px;justify-content:center;margin:10px 0}
+.streak-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px}
+.streak-dot.done{background:var(--accent-pink);color:#fff}
+.streak-dot.today{background:var(--accent-gold);color:#333;font-weight:700}
+.streak-dot.empty{background:var(--border-subtle);color:var(--text-muted)}
+
+/* 响应式 */
+@media(max-width:600px){
+  .page-wrap{padding:16px 12px 30px}
+  .glass-card{padding:24px 16px;border-radius:var(--radius-lg)}
+  .hero h1{font-size:26px}
+  .hero h1 .title-kk{font-size:18px}
+  .top-nav{padding:8px 12px;flex-wrap:wrap}
+  .nav-btn{padding:6px 10px;font-size:11px}
+  .quiz-opts{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<div class="container">
+<!-- 导航栏 -->
+<nav class="top-nav">
+  <div class="nav-left">
+    <a href="./" class="nav-logo">🇰🇿 字母学习 <small>v2.0</small></a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn" onclick="startQuiz('letter')">📝 测验</button>
+    <button class="nav-btn" onclick="startFlashcards()">🃏 闪卡</button>
+    <button class="nav-btn" onclick="toggleStats()">📊 统计</button>
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">🌙</button>
+  </div>
+</nav>
 
-  <div class="title">🇰🇿 哈萨克字母学习</div>
-  <div class="subtitle">Qazaq Álipbii • قازاق ٵلىپبئى</div>
-  <div style="color:rgba(255,255,255,0.5);font-size:11px;margin-top:-25px;margin-bottom:35px;">✦ 4种字母系统 ✦ 点击发音 ✦ 零基础入门</div>
+<div class="page-wrap">
+  <!-- 英雄区 -->
+  <div class="glass-card hero">
+    <h1>
+      <span class="flag">🇰🇿</span>
+      <span class="title-zh">哈萨克字母学习</span>
+      <span class="title-kk">Qazaq Álipbii · قازاق ٵلىپبئى</span>
+    </h1>
+    <p class="tagline">🔊 点击发音 · 🃏 闪卡记忆 · 📝 互动测验 · 🌙 暗色模式</p>
+  </div>
 
-  <a class="card option1" href="cyrillic.html">
-    <div class="icon-box">🀄</div>
-    <div class="card-body">
-      <h2>汉语 → 西里尔文</h2>
-      <p>看中文谐音和音标学发音 · 零基础入门</p>
+  <!-- 进度卡片 -->
+  <div class="glass-card progress-card">
+    <div class="stat-row">
+      <div class="big-num" id="learnedCount">0</div>
+      <div class="stat-info">
+        <div class="stat-title">已学会</div>
+        <div class="stat-sub" id="progressSub">点击右键标记已学</div>
+      </div>
+      <div class="pbar"><div class="pfill" id="progressFill"></div></div>
     </div>
-    <span class="arrow">→</span>
-  </a>
+  </div>
 
-  <a class="card option2" href="arabic-to-cyrillic.html">
-    <div class="icon-box" style="font-family: 'Noto Naskh Arabic', serif;">ق</div>
-    <div class="card-body">
-      <h2 style="direction:rtl;">قازاقشا → كيريل</h2>
-      <p>对照阿拉伯文学习西里尔新文字</p>
-    </div>
-    <span class="arrow">→</span>
-  </a>
+  <!-- 学习菜单 -->
+  <div class="section-label">📖 字母学习</div>
+  <div class="card-list">
+    <a class="menu-card mc-cyr" href="cyrillic.html">
+      <div class="mc-icon">🔤</div>
+      <div class="mc-body">
+        <h3>汉语 → 西里尔字母</h3>
+        <p>看中文标注发音  ·  零基础入门</p>
+      </div>
+      <span class="mc-arrow">→</span>
+    </a>
+    <a class="menu-card mc-kz" href="learn-kazakh.html">
+      <div class="mc-icon">💬</div>
+      <div class="mc-body">
+        <h3>用中文 · 学哈语</h3>
+        <p>日常口语 + 发音跟读</p>
+      </div>
+      <span class="mc-arrow">→</span>
+    </a>
+    <a class="menu-card mc-arab" href="arabic-to-cyrillic.html">
+      <div class="mc-icon">ع</div>
+      <div class="mc-body">
+        <h3 style="direction:rtl;">قازاق كيريل ٵلىپبئى</h3>
+        <p>对照阿拉伯文字学习西里尔字母</p>
+      </div>
+      <span class="mc-arrow">→</span>
+    </a>
+    <a class="menu-card mc-lat" href="latin.html">
+      <div class="mc-icon">🇰🇿</div>
+      <div class="mc-body">
+        <h3>Qazaq Latin Álipbii</h3>
+        <p>2025 哈萨克斯坦新拉丁字母表</p>
+      </div>
+      <span class="mc-arrow">→</span>
+    </a>
+    <a class="menu-card mc-cyr" href="converter.html">
+      <div class="mc-icon">🔄</div>
+      <div class="mc-body">
+        <h3>字母转换器</h3>
+        <p>西里尔 ↔ 拉丁 ↔ 阿拉伯 互转</p>
+      </div>
+      <span class="mc-arrow">→</span>
+    </a>
+  </div>
 
-  <a class="card option3" href="learn-kazakh.html">
-    <div class="icon-box">🌏</div>
-    <div class="card-body">
-      <h2>用中文 · 学哈萨克语</h2>
-      <p>日常口语 + 发音跟读</p>
+  <div class="section-label">🎮 互动学习</div>
+  <div class="card-list">
+    <div class="menu-card mc-quiz" onclick="startQuiz('letter')" style="cursor:pointer">
+      <div class="mc-icon">📝</div>
+      <div class="mc-body">
+        <h3>字母测验</h3>
+        <p>随机10题 · 看字母选读音</p>
+      </div>
+      <span class="mc-arrow">→</span>
     </div>
-    <span class="arrow">→</span>
-  </a>
-
-  <a class="card option4" href="latin.html">
-    <div class="icon-box">🇰🇿</div>
-    <div class="card-body">
-      <h2>Qazaq Latın · 2025</h2>
-      <p>哈萨克斯坦官方新拉丁字母表</p>
+    <div class="menu-card mc-flash" onclick="startFlashcards()" style="cursor:pointer">
+      <div class="mc-icon">🃏</div>
+      <div class="mc-body">
+        <h3>闪卡记忆</h3>
+        <p>翻转卡片 · 强化记忆</p>
+      </div>
+      <span class="mc-arrow">→</span>
     </div>
-    <span class="arrow">→</span>
-  </a>
+    <div class="menu-card mc-stats" onclick="toggleStats()" style="cursor:pointer">
+      <div class="mc-icon">📊</div>
+      <div class="mc-body">
+        <h3>学习统计</h3>
+        <p>学习天数 · 连击 · 掌握率</p>
+      </div>
+      <span class="mc-arrow">→</span>
+    </div>
+  </div>
 
   <div class="footer">
     🌸 胡兰的包尔萨克 · 2026
   </div>
-
 </div>
+
+<!-- 测验弹窗 -->
+<div class="modal-overlay" id="quizOverlay">
+  <div class="modal-box">
+    <h2>📝 字母测验</h2>
+    <div class="quiz-q" id="quizQuestion">А</div>
+    <div class="quiz-hint" id="quizHint">点击选择正确答案</div>
+    <div class="quiz-opts" id="quizOptions"></div>
+    <div class="quiz-score-display" id="quizScore"></div>
+    <div style="text-align:center;margin-top:10px">
+      <button class="nav-btn" onclick="closeQuiz()">✕ 关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 闪卡弹窗 -->
+<div class="modal-overlay" id="flashcardModal">
+  <div class="modal-box">
+    <h2>🃏 闪卡记忆</h2>
+    <div class="fc-area">
+      <div class="fc-status" id="fcStatus">0/15</div>
+      <div class="fc-card" id="fcCard" onclick="flipCard()">
+        <div class="fc-card-inner">
+          <div class="fc-front">
+            <div class="fc-letter" id="fcLetter">А</div>
+          </div>
+          <div class="fc-back">
+            <div class="fc-detail" id="fcZh" style="font-size:18px;font-weight:700;color:var(--accent-pink)"></div>
+            <div class="fc-detail" id="fcIpa"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-nav" id="fcNav">
+        <button class="nav-btn" onclick="prevCard()">← 上一个</button>
+        <button class="nav-btn" onclick="nextCard()">下一个 →</button>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:10px">
+      <button class="nav-btn" onclick="closeFlashcards()">✕ 关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 统计弹窗 -->
+<div class="modal-overlay" id="statsModal">
+  <div class="modal-box">
+    <h2>📊 学习统计</h2>
+    <div class="stats-grid">
+      <div class="stat-item"><div class="s-num" id="sLearned">0</div><div class="s-label">已学字母</div></div>
+      <div class="stat-item"><div class="s-num" id="sPct">0%</div><div class="s-label">完成度</div></div>
+      <div class="stat-item"><div class="s-num" id="sStreak">0</div><div class="s-label">连续学习</div></div>
+      <div class="stat-item"><div class="s-num" id="sDays">0</div><div class="s-label">总学习天数</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:8px">最近7天</div>
+    <div class="streak-bar" id="streakBar"></div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="nav-btn" onclick="closeStats()">✕ 关闭</button>
+      <button class="nav-btn" onclick="resetProgress()" style="color:#f44336">↺ 重置进度</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== 共享工具 =====
+// 暗色模式
+function initTheme(){
+  var s=localStorage.getItem('kazakhTheme')||'light';
+  document.documentElement.setAttribute('data-theme',s);
+  var b=document.getElementById('themeBtn');
+  if(b)b.textContent=s==='dark'?'☀️':'🌙';
+}
+function toggleTheme(){
+  var c=document.documentElement.getAttribute('data-theme');
+  var n=c==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  localStorage.setItem('kazakhTheme',n);
+  var b=document.getElementById('themeBtn');
+  if(b)b.textContent=n==='dark'?'☀️':'🌙';
+}
+
+// 音频
+function playSound(f){
+  return new Promise(function(r){
+    var a=new Audio('sounds/'+f+'.mp3');
+    a.onerror=function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)};
+    a.onended=r;
+    a.play().catch(function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)});
+  });
+}
+
+var LS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo',
+  'ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_',
+  'о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_',
+  'ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'sh',
+  'ы':'yh','і':'ii_','э':'eh','ю':'yoo','я':'yah'};
+var WS={'сәлем':'salem','рахмет':'rahmet','қош бол':'kosh_bol','жақсы':'zhaksy',
+  'қазақ':'qazaq','махаббат':'mahabbat','алма':'alma','гүл':'gul','күн':'kun','ай':'ay'};
+
+function speakLetter(t){
+  var l=t.toLowerCase().trim();
+  if(WS[l]){playSound(WS[l]);return}
+  var d=0;
+  for(var i=0;i<l.length;i++){
+    var ch=l[i];
+    if(LS[ch]){
+      (function(s){setTimeout(function(){playSound(s)},d);d+=350})(LS[ch]);
+    }
+  }
+}
+
+// 进度
+function getP(){try{return JSON.parse(localStorage.getItem('kazakhProgress')||'{}')}catch(e){return{}}}
+function saveP(p){localStorage.setItem('kazakhProgress',JSON.stringify(p))}
+function markL(letter){var p=getP();p[letter]={learned:true,date:new Date().toISOString().split('T')[0]};saveP(p);updateAll()}
+function unmarkL(letter){var p=getP();delete p[letter];saveP(p);updateAll()}
+function isL(letter){var p=getP();return!!(p[letter]&&p[letter].learned)}
+function getLC(){return Object.keys(getP()).length}
+function getTL(){return 42}
+
+function updateAll(){
+  var lc=getLC(),tl=getTL(),pct=tl>0?Math.round(lc/tl*100):0;
+  var e=document.getElementById('learnedCount');if(e)e.textContent=lc;
+  var f=document.getElementById('progressFill');if(f)f.style.width=pct+'%';
+}
+
+// 记录每日学习
+function recordDay(){var d=new Date().toISOString().split('T')[0];var ds=JSON.parse(localStorage.getItem('kazakhDays')||'[]');if(ds.indexOf(d)===-1){ds.push(d);localStorage.setItem('kazakhDays',JSON.stringify(ds))}}
+function getDays(){try{return JSON.parse(localStorage.getItem('kazakhDays')||'[]')}catch(e){return[]}}
+function getStreak(){var ds=getDays().sort(),s=0;if(!ds.length)return 0;var today=new Date();var last=new Date(ds[ds.length-1]);var diff=(today-last)/(86400000);if(diff>1.5)return 0;for(var i=ds.length-1;i>=0;i--){var d=new Date(ds[i]);var prev=i>0?new Date(ds[i-1]):null;var gap=prev?(d-prev)/(86400000):1;if(gap<=1.5)s++;else break}return s}
+
+// 测验
+var QL=[
+  {l:'А',o:['А','О','У','Ы']},{l:'Ә',o:['Ә','Е','Ө','І']},
+  {l:'Б',o:['Б','П','В','М']},{l:'Г',o:['Г','Ғ','К','Қ']},
+  {l:'Ғ',o:['Ғ','Г','Х','Қ']},{l:'Д',o:['Д','Т','З','С']},
+  {l:'Ж',o:['Ж','Ш','З','Ч']},{l:'Қ',o:['Қ','К','Х','Г']},
+  {l:'Ң',o:['Ң','Н','М','Г']},{l:'Ө',o:['Ө','О','Ү','Е']},
+  {l:'Ұ',o:['Ұ','Ү','У','О']},{l:'Ү',o:['Ү','Ұ','І','У']},
+  {l:'І',o:['І','И','Ы','Ү']},{l:'Ш',o:['Ш','С','Ж','Ч']},
+  {l:'Р',o:['Р','Л','Н','М']}
+];
+var QS={qs:[],idx:0,cor:0,tot:0};
+
+function startQuiz(t){
+  var tot=10;
+  var ll=[...QL].sort(function(){return Math.random()-.5}).slice(0,tot);
+  QS={qs:ll.map(function(x){return{l:x.l,o:x.o.sort(function(){return Math.random()-.5})}}),idx:0,cor:0,tot:tot,type:t};
+  showQ();
+  document.getElementById('quizOverlay').classList.add('show');
+}
+function showQ(){
+  var ov=document.getElementById('quizOverlay');
+  if(!ov)return;
+  var qq=document.getElementById('quizQuestion');
+  var qh=document.getElementById('quizHint');
+  var qo=document.getElementById('quizOptions');
+  var qs=document.getElementById('quizScore');
+  if(QS.idx>=QS.tot){
+    qq.innerHTML='🎉<br><span style="font-size:24px;">得分: '+QS.cor+'/'+QS.tot+'</span>';
+    var msg=QS.cor===QS.tot?'🌟 完美！全部正确！':QS.cor>=7?'👍 不错！继续加油！':'💪 再练练会更好的！';
+    qh.textContent=msg;
+    qo.innerHTML='';
+    qs.textContent='';
+    return;
+  }
+  var q=QS.qs[QS.idx];
+  ov.querySelector('h2').textContent='第 '+(QS.idx+1)+'/'+QS.tot+' 题';
+  qq.textContent=q.l;
+  qh.textContent='这个字母读什么？';
+  var html='';
+  for(var i=0;i<q.o.length;i++){
+    (function(c){html+='<div class="quiz-opt" onclick="checkA(this,\''+c+'\')">'+c+'</div>'})(q.o[i]);
+  }
+  qo.innerHTML=html;
+  qs.textContent='已答对: '+QS.cor;
+}
+function checkA(el,c){
+  var q=QS.qs[QS.idx];
+  var cor=c===q.l;
+  if(cor)QS.cor++;
+  var btns=document.querySelectorAll('.quiz-opt');
+  for(var i=0;i<btns.length;i++)btns[i].onclick=null;
+  el.classList.add(cor?'correct':'wrong');
+  if(!cor){for(var i=0;i<btns.length;i++){if(btns[i].textContent===q.l)btns[i].classList.add('correct')}}
+  document.getElementById('quizHint').textContent=cor?'✅ 正确！':'❌ 正确答案: '+q.l;
+  if(cor){recordDay();updateAll()}
+  setTimeout(function(){QS.idx++;showQ()},cor?800:1500);
+}
+function closeQuiz(){document.getElementById('quizOverlay').classList.remove('show')}
+
+// 闪卡
+var FC={ll:[],idx:0};
+function startFlashcards(){
+  FC.ll=[...QL].sort(function(){return Math.random()-.5});
+  FC.idx=0;
+  updateFC();
+  document.getElementById('flashcardModal').classList.add('show');
+}
+function updateFC(){
+  var ov=document.getElementById('flashcardModal');
+  if(!ov)return;
+  if(FC.idx>=FC.ll.length){
+    ov.querySelector('.fc-status').textContent='🎉 全部学完！';
+    document.getElementById('fcCard').style.display='none';
+    document.getElementById('fcNav').innerHTML='<button class="nav-btn" onclick="startFlashcards()">再学一轮</button>';
+    return;
+  }
+  var l=FC.ll[FC.idx];
+  document.getElementById('fcStatus').textContent=(FC.idx+1)+'/'+FC.ll.length;
+  document.getElementById('fcCard').classList.remove('flipped');
+  document.getElementById('fcCard').style.display='';
+  document.getElementById('fcLetter').textContent=l.l;
+  document.getElementById('fcZh').textContent='读音对照';
+  document.getElementById('fcIpa').textContent=l.l+' → '+l.o[0];
+  document.getElementById('fcNav').innerHTML='<button class="nav-btn" onclick="prevCard()">← 上一个</button><button class="nav-btn" onclick="nextCard()">下一个 →</button>';
+}
+function flipCard(){var c=document.getElementById('fcCard');if(c)c.classList.toggle('flipped')}
+function nextCard(){FC.idx++;updateFC()}
+function prevCard(){if(FC.idx>0)FC.idx--;updateFC()}
+function closeFlashcards(){document.getElementById('flashcardModal').classList.remove('show')}
+
+// 统计
+function toggleStats(){
+  var s=document.getElementById('statsModal');
+  if(!s)return;
+  var lc=getLC(),tl=getTL(),pct=tl>0?Math.round(lc/tl*100):0,sk=getStreak(),dy=getDays().length;
+  document.getElementById('sLearned').textContent=lc;
+  document.getElementById('sPct').textContent=pct+'%';
+  document.getElementById('sStreak').textContent=sk;
+  document.getElementById('sDays').textContent=dy;
+  // 最近7天
+  var today=new Date();var html='';
+  for(var i=6;i>=0;i--){
+    var d=new Date(today);d.setDate(d.getDate()-i);
+    var ds=d.toISOString().split('T')[0];
+    var isToday=i===0;
+    var done=getDays().indexOf(ds)!==-1;
+    var cls=done?'done':(isToday?'today':'empty');
+    html+='<div class="streak-dot '+cls+'">'+d.getDate()+'</div>';
+  }
+  document.getElementById('streakBar').innerHTML=html;
+  s.classList.add('show');
+}
+function closeStats(){document.getElementById('statsModal').classList.remove('show')}
+function resetProgress(){
+  if(!confirm('确定要重置所有学习进度吗？'))return;
+  localStorage.removeItem('kazakhProgress');
+  localStorage.removeItem('kazakhDays');
+  closeStats();
+  updateAll();
+}
+
+// 初始化
+initTheme();
+updateAll();
+recordDay();
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+</script>
 </body>
 </html>
-

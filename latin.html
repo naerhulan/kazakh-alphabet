@@ -2,446 +2,98 @@
 <html lang="kk-latn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>🌸 Qazaq Latin Álipbii - 2025</title>
 <style>
-  /* Fonts removed for offline use */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Noto Sans', 'Arial', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa 0%, #fce4ec 30%, #f3e5f5 70%, #e8f5e9 100%);
-    min-height: 100vh;
-    padding: 30px 20px;
-  }
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 40px 35px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    border: 1px solid rgba(255,255,255,0.5);
-  }
-  h1 {
-    text-align: center;
-    font-size: 28px;
-    color: #00695c;
-    margin-bottom: 5px;
-    letter-spacing: 2px;
-  }
-  h1 span { font-size: 32px; }
-  .subtitle {
-    text-align: center;
-    color: #00897b;
-    font-size: 14px;
-    margin-bottom: 30px;
-    opacity: 0.7;
-  }
-  h2 {
-    font-size: 18px;
-    color: #00695c;
-    margin: 25px 0 15px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #80cbc4;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .letter-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  .letter-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 12px 8px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    border: 2px solid #e0f2f1;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    user-select: none;
-  }
-  .letter-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,150,136,0.15);
-    border-color: #80cbc4;
-  }
-  .letter-card:active { transform: scale(0.95); }
-  .letter-card .lat { font-size: 28px; font-weight: 700; color: #004d40; }
-  .letter-card .cyr-ref { font-size: 13px; color: #899; margin-top: 3px; }
-  .letter-card .ipa { font-size: 12px; color: #999; margin-top: 2px; }
-  .letter-card .sound-icon {
-    position: absolute;
-    top: 4px;
-    right: 6px;
-    font-size: 12px;
-    opacity: 0.4;
-    transition: opacity 0.2s;
-  }
-  .letter-card:hover .sound-icon { opacity: 0.8; }
-  .letter-card.playing {
-    border-color: #e91e63;
-    box-shadow: 0 0 20px rgba(233,30,99,0.2);
-    animation: pulse 0.5s;
-  }
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-
-  .special-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .special-table th {
-    background: #00897b;
-    color: #fff;
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-  .special-table-wrapper { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; }
-.special-table { border-radius: 12px; overflow: hidden !important; }
-.special-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid #e0f2f1;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .special-table tr:last-child td { border-bottom: none; }
-  .special-table tr:hover td { background: #e0f2f1; }
-  .special-table .lat { font-weight: 700; color: #004d40; font-size: 18px; }
-  .special-table .cyr-ref { color: #666; }
-
-  .highlight-box {
-    background: linear-gradient(135deg, #e0f2f1, #fce4ec);
-    border-radius: 16px;
-    padding: 20px;
-    margin: 20px 0;
-    border-left: 4px solid #00695c;
-  }
-  .highlight-box h3 { color: #004d40; font-size: 16px; margin-bottom: 10px; }
-  .highlight-box p { font-size: 14px; line-height: 1.8; color: #555; }
-
-  .word-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .word-table th {
-    background: #4db6ac;
-    color: #fff;
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-  .word-table td {
-    padding: 8px 12px;
-    border-bottom: 1px solid #e0f2f1;
-    font-size: 14px;
-  }
-  .word-table tr:last-child td { border-bottom: none; }
-  .word-table .lat { font-weight: 700; color: #004d40; cursor: pointer; }
-
-  .tip {
-    background: #fff9c4;
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin: 15px 0;
-    font-size: 13px;
-    line-height: 1.7;
-    color: #f57f17;
-  }
-  .footer {
-    text-align: center;
-    margin-top: 30px;
-    color: #80cbc4;
-    font-size: 13px;
-  }
-  .speaker-hint {
-    text-align: center;
-    font-size: 13px;
-    color: #00695c;
-    margin-bottom: 15px;
-    background: #e0f2f177;
-    padding: 8px;
-    border-radius: 10px;
-  }
-
-  @media (max-width: 600px) {
-    .special-table { font-size: 11px; }
-    .special-table th, .special-table td { padding: 5px 3px; }
-    .special-table .lat { font-size: 14px; }
-    .container { padding: 15px 10px; }
-    h2 { font-size: 15px; }
-    .letter-grid { grid-template-columns: repeat(auto-fill, minmax(55px, 1fr)); gap: 6px; }
-    .letter-card { padding: 8px 4px; }
-    .letter-card .lat { font-size: 18px; }
-    .letter-card .cyr-ref { font-size: 10px; }
-    .word-table td { padding: 5px 6px; font-size: 12px; }
-    .word-table .lat { font-size: 14px; }
-    .tip { font-size: 11px; padding: 10px 12px; }\n    
-    .container { padding: 25px 18px; }
-    .letter-grid { grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); }
-    .letter-card .lat { font-size: 22px; }
-  }
+:root{--bg-page:linear-gradient(135deg,#e0f7fa 0%,#fce4ec 30%,#f3e5f5 70%,#e8f5e9 100%);--bg-card:rgba(255,255,255,0.92);--bg-glass:rgba(255,255,255,0.6);--text-primary:#2d2d2d;--text-secondary:#666;--text-muted:#999;--border-subtle:rgba(0,0,0,0.08);--shadow-card:0 2px 12px rgba(0,0,0,0.06);--shadow-hover:0 6px 24px rgba(0,0,0,0.10);--accent:#00897b;--accent-light:#80cbc4;--nav-bg:rgba(255,255,255,0.75);--radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:24px;--font-cn:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+[data-theme="dark"]{--bg-page:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--bg-card:rgba(30,30,50,0.92);--bg-glass:rgba(30,30,50,0.6);--text-primary:#e0e0e0;--text-secondary:#aaa;--text-muted:#777;--border-subtle:rgba(255,255,255,0.08);--shadow-card:0 2px 12px rgba(0,0,0,0.3);--shadow-hover:0 6px 24px rgba(0,0,0,0.5);--nav-bg:rgba(20,20,40,0.85)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-cn);background:var(--bg-page);min-height:100vh;color:var(--text-primary);transition:all .3s ease}
+.top-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-subtle);padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.nav-left{display:flex;align-items:center;gap:12px}
+.nav-logo{font-size:18px;font-weight:800;color:var(--accent);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:6px}
+.nav-btn{background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:7px 12px;font-size:12px;font-weight:600;color:var(--text-primary);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-family:var(--font-cn)}
+.nav-btn:hover{background:rgba(0,137,123,.08);border-color:var(--accent);transform:translateY(-1px)}
+.theme-toggle{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-subtle);background:var(--bg-glass);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+.page-wrap{max-width:860px;margin:0 auto;padding:24px 20px 40px}
+.glass-card{background:var(--bg-card);backdrop-filter:blur(12px);border-radius:var(--radius-xl);padding:36px 30px;box-shadow:var(--shadow-card);border:1px solid var(--border-subtle);margin-bottom:20px}
+.page-title{font-size:26px;font-weight:800;text-align:center;color:var(--accent);margin-bottom:4px}
+.page-subtitle{text-align:center;color:var(--text-secondary);font-size:14px;margin-bottom:20px}
+.letter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-bottom:14px}
+.letter-card{background:var(--bg-card);border-radius:var(--radius-md);padding:14px 8px 10px;text-align:center;box-shadow:var(--shadow-card);border:2px solid transparent;cursor:pointer;transition:all .25s ease;position:relative}
+.letter-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--accent)}
+.letter-card .lt{font-size:26px;font-weight:700;color:var(--accent)}
+.letter-card .ipa{font-size:12px;color:var(--text-muted);margin-top:2px}
+.letter-card .zh{font-size:13px;color:var(--text-secondary);margin-top:1px;font-weight:500}
+.letter-card .sound-icon{position:absolute;top:4px;right:6px;font-size:11px;opacity:.3}
+.letter-card:hover .sound-icon{opacity:.8}
+.section-title{font-size:17px;font-weight:700;color:var(--accent);margin:22px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent-light);display:flex;align-items:center;gap:8px}
+.tip-box{background:linear-gradient(135deg,#e0f2f144,#fff9c444);border-radius:var(--radius-md);padding:16px 18px;margin:16px 0;font-size:13px;line-height:1.7;color:var(--text-secondary);border-left:4px solid var(--accent)}
+.data-table{width:100%;border-collapse:collapse;border-radius:var(--radius-md);overflow:hidden;margin:10px 0}
+.data-table th{background:var(--accent);color:#fff;padding:10px 12px;font-size:14px}
+.data-table td{padding:9px 12px;border-bottom:1px solid var(--border-subtle);font-size:14px;cursor:pointer;transition:background .15s}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:rgba(0,137,123,.05)}
+.page-footer{text-align:center;color:var(--text-muted);font-size:12px;margin-top:30px;padding:20px 0;opacity:.6}
+@media(max-width:600px){.page-wrap{padding:16px 12px 30px}.glass-card{padding:24px 16px}.page-title{font-size:22px}.letter-grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}.top-nav{padding:8px 12px}}
 </style>
 </head>
 <body>
-<div style="max-width:800px;margin:0 auto 15px;padding:0 20px;">
-  <a href="./" style="display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:15px;font-weight:600;padding:10px 20px;border-radius:12px;background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:0 4px 15px rgba(102,126,234,0.4);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 25px rgba(102,126,234,0.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.4)'">← 返回主页</a>
+<nav class="top-nav">
+  <div class="nav-left"><a href="./" class="nav-logo">← Qazaqsha</a></div>
+  <div class="nav-right"><button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">🌙</button></div>
+</nav>
+<div class="page-wrap">
+<div class="glass-card">
+<h1 class="page-title">🌸 Qazaq Latin Álipbii - 2025</h1>
+<p class="page-subtitle">Қазақстанның жаңа латын әліпбиі · New Kazakh Latin Alphabet</p>
+<div class="section-title">🇰🇿 Latin Áripter (Latin Letters)</div>
+<div class="letter-grid" id="latGrid"></div>
+<div class="section-title">📖 Sózder (Example Words)</div>
+<table class="data-table" id="wordTable"><tr><th>Latin</th><th>Cyrillic</th><th>Meaning</th></tr></table>
+<div class="tip-box">💡 <b>Tip:</b> Kazakhstan's transition to the Latin alphabet is planned for 2025-2031. This is the official version approved by the government.</div>
 </div>
-<!-- Translator -->
-<div style="max-width:800px;margin:15px auto;padding:0 20px;">
-  <div style="background:linear-gradient(135deg,#f8f9ff,#fce4ec88);border:1.5px solid rgba(102,126,234,0.2);border-radius:16px;padding:16px 20px;box-shadow:0 4px 20px rgba(102,126,234,0.06);">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
-      <span style="font-size:20px;">🌍</span>
-      <span style="font-size:14px;font-weight:700;color:#444;letter-spacing:0.5px;">翻译</span>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
-      <label style="display:flex;align-items:center;gap:4px;font-size:13px;color:#e91e63;cursor:pointer;padding:4px 10px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;" onclick="event.stopPropagation()">
-        <input type="radio" name="transDir" value="zh2kk" checked onchange="updatePlaceholder()" style="accent-color:#667eea;"> 🇨🇳 中文 → Қазақша
-      </label>
-      <label style="display:flex;align-items:center;gap:4px;font-size:13px;color:#1a237e;cursor:pointer;padding:4px 10px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;" onclick="event.stopPropagation()">
-        <input type="radio" name="transDir" value="kk2zh" onchange="updatePlaceholder()" style="accent-color:#764ba2;"> 🇰🇿 Қазақша → 中文
-      </label>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <input id="srcText" placeholder="输入中文..." style="flex:1;min-width:180px;padding:10px 14px;border:2px solid #e0e0e0;border-radius:12px;font-size:14px;outline:none;transition:all 0.25s;background:#fff;" onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 4px rgba(102,126,234,0.1)'" onblur="this.style.borderColor='#e0e0e0';this.style.boxShadow='none'">
-      <div style="display:flex;gap:6px;">
-        <button onclick="speakSrc()" style="padding:10px 12px;background:rgba(102,126,234,0.1);color:#667eea;border:1.5px solid rgba(102,126,234,0.2);border-radius:12px;font-size:16px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(102,126,234,0.2)'" onmouseout="this.style.background='rgba(102,126,234,0.1)'" title="朗读输入">🔊</button>
-        <button onclick="translateText()" style="padding:10px 24px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;box-shadow:0 4px 15px rgba(102,126,234,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(102,126,234,0.4)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 15px rgba(102,126,234,0.3)'">翻译</button>
-        <button onclick="clearTrans()" style="padding:10px 12px;background:rgba(0,0,0,0.03);color:#999;border:1.5px solid #eee;border-radius:12px;font-size:14px;cursor:pointer;transition:all 0.2s;" title="清空">✕</button>
-      </div>
-    </div>
-    <div id="dstBox" style="display:none;margin-top:10px;padding:12px 14px;background:#fff;border-radius:12px;border:2px solid #e8eaf6;font-size:14px;color:#333;line-height:1.7;word-break:break-word;">
-      <span id="dstText" style="display:block;margin-bottom:8px;"></span>
-      <button onclick="speakDst()" style="padding:6px 14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:12px;cursor:pointer;transition:all 0.2s;" title="朗读结果">🔊 朗读结果</button>
-    </div>
-  </div>
+<div class="page-footer">🌸 胡兰的包尔萨克 · 2026</div>
 </div>
 <script>
-function getDir() {
-  var r = document.querySelector('input[name="transDir"]:checked');
-  return r ? r.value : 'zh2kk';
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+function initTheme(){var s=localStorage.getItem('kazakhTheme')||'light';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='dark'?'☀️':'🌙'}
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='dark'?'☀️':'🌙'}
+var LATIN=[
+{l:'A a',ipa:'/ɑ/',zh:'А а'},{l:'Á á',ipa:'/æ/',zh:'Ә ә'},{l:'B b',ipa:'/b/',zh:'Б б'},
+{l:'D d',ipa:'/d/',zh:'Д д'},{l:'E e',ipa:'/je/',zh:'Е е'},{l:'F f',ipa:'/f/',zh:'Ф ф'},
+{l:'G g',ipa:'/ɡ/',zh:'Г г'},{l:'Ǵ ǵ',ipa:'/ʁ/',zh:'Ғ ғ'},{l:'H h',ipa:'/h/',zh:'Һ һ'},
+{l:'I i',ipa:'/ɪ/',zh:'І і'},{l:'Ï ï',ipa:'/ɤ/',zh:'Ы ы'},{l:'J j',ipa:'/ʒ/',zh:'Ж ж'},
+{l:'K k',ipa:'/k/',zh:'К к'},{l:'L l',ipa:'/l/',zh:'Л л'},{l:'M m',ipa:'/m/',zh:'М м'},
+{l:'N n',ipa:'/n/',zh:'Н н'},{l:'Ń ń',ipa:'/ŋ/',zh:'Ң ң'},{l:'O o',ipa:'/o/',zh:'О о'},
+{l:'Ó ó',ipa:'/ɵ/',zh:'Ө ө'},{l:'P p',ipa:'/p/',zh:'П п'},{l:'Q q',ipa:'/q/',zh:'Қ қ'},
+{l:'R r',ipa:'/r/',zh:'Р р'},{l:'S s',ipa:'/s/',zh:'С с'},{l:'T t',ipa:'/t/',zh:'Т т'},
+{l:'U u',ipa:'/w/',zh:'У у'},{l:'Ū ū',ipa:'/ʊ/',zh:'Ұ ұ'},{l:'Ú ú',ipa:'/ʉ/',zh:'Ү ү'},
+{l:'V v',ipa:'/v/',zh:'В в'},{l:'Y y',ipa:'/j/',zh:'Й й'},{l:'Z z',ipa:'/z/',zh:'З з'},
+{l:'C c',ipa:'/ts/',zh:'Ц ц'},{l:'Ç ç',ipa:'/tʃ/',zh:'Ч ч'},{l:'Ş ş',ipa:'/ʃ/',zh:'Ш ш'},
+];
+var WORDS=[
+{lt:'Qazaq',cy:'Қазақ',zh:'Kazakh'},{lt:'Salem',cy:'Сәлем',zh:'Hello'},
+{lt:'Raxmet',cy:'Рахмет',zh:'Thank you'},{lt:'Jaqsı',cy:'Жақсы',zh:'Good'},
+{lt:'Alma',cy:'Алма',zh:'Apple'},{lt:'Gúl',cy:'Гүл',zh:'Flower'},
+{lt:'Kún',cy:'Күн',zh:'Sun / Day'},{lt:'Mahabbat',cy:'Махаббат',zh:'Love'},
+];
+function render(){
+var h='';
+for(var i=0;i<LATIN.length;i++){
+var d=LATIN[i];
+h+='<div class="letter-card" onclick="var u=new SpeechSynthesisUtterance(\''+d.l.split(' ')[0]+'\');u.lang=\'kk-KZ\';u.rate=.85;window.speechSynthesis.speak(u)"><span class="sound-icon">🔊</span><div class="lt">'+d.l+'</div><div class="ipa">'+d.ipa+'</div><div class="zh">'+d.zh+'</div></div>';
 }
-function updatePlaceholder() {
-  var dir = getDir();
-  document.getElementById('srcText').placeholder = dir === 'zh2kk' ? '输入中文...' : 'Қазақша мәтінді енгізіңіз...';
-  clearTrans();
+document.getElementById('latGrid').innerHTML=h;
+var wt='';
+for(var i=0;i<WORDS.length;i++){
+(function(d){wt+='<tr><td style="font-weight:700;color:var(--accent)">'+d.lt+'</td><td>'+d.cy+'</td><td>'+d.zh+'</td></tr>'})(WORDS[i]);
 }
-function translateText(){
-  var s = document.getElementById('srcText').value.trim();
-  if (!s) return;
-  var dir = getDir();
-  var sl = dir === 'zh2kk' ? 'zh-CN' : 'kk';
-  var tl = dir === 'zh2kk' ? 'kk' : 'zh-CN';
-  var d = document.getElementById('dstBox');
-  d.style.display = 'block';
-  document.getElementById('dstText').textContent = '⏳ 翻译中...';
-  var x = new XMLHttpRequest();
-  x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=' + sl + '&tl=' + tl + '&dt=t&q=' + encodeURIComponent(s), true);
-  x.onload = function(){
-    try {
-      var r = JSON.parse(x.responseText);
-      var t = '';
-      if (r && r[0]) for (var i = 0; i < r[0].length; i++) if (r[0][i] && r[0][i][0]) t += r[0][i][0];
-      document.getElementById('dstText').textContent = t || '⚠ 无法翻译';
-    } catch(e) { document.getElementById('dstText').textContent = '⚠ 翻译出错'; }
-  };
-  x.onerror = function(){ document.getElementById('dstText').textContent = '⚠ 网络错误，请检查连接'; };
-  x.send();
+document.querySelector('#wordTable').innerHTML+=wt;
 }
-function speakSrc(){
-  var t = document.getElementById('srcText').value.trim();
-  if (!t) return;
-  window.speechSynthesis.cancel();
-  var u = new SpeechSynthesisUtterance(t);
-  u.lang = getDir() === 'zh2kk' ? 'zh-CN' : 'kk-KZ';
-  u.rate = 0.85;
-  window.speechSynthesis.speak(u);
-}
-function speakDst(){
-  var t = document.getElementById('dstText').textContent;
-  if (!t || t.startsWith('⏳') || t.startsWith('⚠')) return;
-  window.speechSynthesis.cancel();
-  var u = new SpeechSynthesisUtterance(t);
-  u.lang = getDir() === 'zh2kk' ? 'kk-KZ' : 'zh-CN';
-  u.rate = 0.85;
-  window.speechSynthesis.speak(u);
-}
-function clearTrans(){
-  document.getElementById('srcText').value = '';
-  document.getElementById('dstBox').style.display = 'none';
-}
-document.addEventListener('DOMContentLoaded', function(){
-  var e = document.getElementById('srcText');
-  if (e) e.addEventListener('keydown', function(ev){ if (ev.key === 'Enter' && !ev.shiftKey) { ev.preventDefault(); translateText(); } });
-});
+initTheme();render();
 </script>
-<div class="container">
-
-<h1><span>🌸</span> Qazaq Latın Álipbii · 2025</h1>
-<p class="subtitle">Қазақ латын әліпбиі · Kazakhstan 2025 Official Latin Alphabet</p>
-
-<div class="speaker-hint">
-🔊 Basyp tyńdańyz / 点击字母听发音 🔊
-</div>
-<div class="highlight-box">
-<h3>💡 9 unique Kazakh letters in Latin</h3>
-<p>These 9 are unique to Kazakh — other Turkic languages don't use them. Master these and you're halfway there!</p>
-</div>
-
-<h2>🌸 9 Unique Kazakh Letters</h2>
-<div class="special-table-wrapper"><table class="special-table" id="specialTable">
-<tr><th width="60">Latin</th><th width="60">Sound</th><th>Cyrillic</th><th>Example</th><th>Meaning</th></tr>
-<tr onclick="speak('Ä ä')"><td class="lat">Ä ä</td><td><span class="cyr-ref">/æ/</span></td><td>Ә ә</td><td>Sälem</td><td>Hello</td></tr>
-<tr onclick="speak('Ğ ğ')"><td class="lat">Ğ ğ</td><td><span class="cyr-ref">/ʁ/</span></td><td>Ғ ғ</td><td>Ağa</td><td>Brother</td></tr>
-<tr onclick="speak('Q q')"><td class="lat">Q q</td><td><span class="cyr-ref">/q/</span></td><td>Қ қ</td><td>Qazaq</td><td>Kazakh</td></tr>
-<tr onclick="speak('Ñ ñ')"><td class="lat">Ñ ñ</td><td><span class="cyr-ref">/ŋ/</span></td><td>Ң ң</td><td>Tań</td><td>Dawn</td></tr>
-<tr onclick="speak('Ö ö')"><td class="lat">Ö ö</td><td><span class="cyr-ref">/ɵ/</span></td><td>Ө ө</td><td>Özen</td><td>River</td></tr>
-<tr onclick="speak('Ū ū')"><td class="lat">Ū ū</td><td><span class="cyr-ref">/ʊ/</span></td><td>Ұ ұ</td><td>Ūlt</td><td>Nation</td></tr>
-<tr onclick="speak('Ü ü')"><td class="lat">Ü ü</td><td><span class="cyr-ref">/ʉ/</span></td><td>Ү ү</td><td>Üı</td><td>House</td></tr>
-<tr onclick="speak('I ı')"><td class="lat">I ı</td><td><span class="cyr-ref">/ɪ/</span></td><td>І і</td><td>Ini</td><td>Younger brother</td></tr>
-<tr onclick="speak('H h')"><td class="lat">H h</td><td><span class="cyr-ref">/h/</span></td><td>Һ һ / Х х</td><td>Halıq</td><td>People</td></tr>
-</table></div>
-
-<h2>🌸 Vowels · 15</h2>
-
-<h3 style="font-size:15px;color:#00695c;margin:10px 0 6px;">🔴 Back Vowels (Hard) / Jýan</h3>
-<div class="letter-grid" id="vowelHard">
-  <div class="letter-card" onclick="speak('A a')"><span class="sound-icon">🔊</span><div class="lat">A a</div><div class="ipa">/ɑ/</div><div class="cyr-ref">А а</div></div>
-  <div class="letter-card" onclick="speak('O o')"><span class="sound-icon">🔊</span><div class="lat">O o</div><div class="ipa">/o/</div><div class="cyr-ref">О о</div></div>
-  <div class="letter-card" onclick="speak('Ū ū')"><span class="sound-icon">🔊</span><div class="lat">Ū ū</div><div class="ipa">/ʊ/</div><div class="cyr-ref">Ұ ұ</div></div>
-  <div class="letter-card" onclick="speak('Y y')"><span class="sound-icon">🔊</span><div class="lat">Y y</div><div class="ipa">/ɤ/</div><div class="cyr-ref">Ы ы</div></div>
-</div>
-
-<h3 style="font-size:15px;color:#00695c;margin:10px 0 6px;">🟣 Front Vowels (Soft) / Jińishke</h3>
-<div class="letter-grid" id="vowelSoft">
-  <div class="letter-card" onclick="speak('Ä ä')"><span class="sound-icon">🔊</span><div class="lat">Ä ä</div><div class="ipa">/æ/</div><div class="cyr-ref">Ә ә</div></div>
-  <div class="letter-card" onclick="speak('E e')"><span class="sound-icon">🔊</span><div class="lat">E e</div><div class="ipa">/je/</div><div class="cyr-ref">Е е</div></div>
-  <div class="letter-card" onclick="speak('Ö ö')"><span class="sound-icon">🔊</span><div class="lat">Ö ö</div><div class="ipa">/ɵ/</div><div class="cyr-ref">Ө ө</div></div>
-  <div class="letter-card" onclick="speak('Ü ü')"><span class="sound-icon">🔊</span><div class="lat">Ü ü</div><div class="ipa">/ʉ/</div><div class="cyr-ref">Ү ү</div></div>
-  <div class="letter-card" onclick="speak('I ı')"><span class="sound-icon">🔊</span><div class="lat">I ı</div><div class="ipa">/ɪ/</div><div class="cyr-ref">І і</div></div>
-</div>
-
-<h2>🌸 Consonants · 25 <span style="font-size:13px;color:#666;font-weight:normal;">🔊 Click to hear</span></h2>
-<div class="letter-grid" id="consonants">
-  <div class="letter-card" onclick="speak('B b')"><span class="sound-icon">🔊</span><div class="lat">B b</div><div class="ipa">b</div><div class="cyr-ref">Б б</div></div>
-  <div class="letter-card" onclick="speak('V v')"><span class="sound-icon">🔊</span><div class="lat">V v</div><div class="ipa">v</div><div class="cyr-ref">В в</div></div>
-  <div class="letter-card" onclick="speak('G g')"><span class="sound-icon">🔊</span><div class="lat">G g</div><div class="ipa">ɡ</div><div class="cyr-ref">Г г</div></div>
-  <div class="letter-card" onclick="speak('Ğ ğ')"><span class="sound-icon">🔊</span><div class="lat">Ğ ğ</div><div class="ipa">ʁ</div><div class="cyr-ref">Ғ ғ</div></div>
-  <div class="letter-card" onclick="speak('D d')"><span class="sound-icon">🔊</span><div class="lat">D d</div><div class="ipa">d</div><div class="cyr-ref">Д д</div></div>
-  <div class="letter-card" onclick="speak('J j')"><span class="sound-icon">🔊</span><div class="lat">J j</div><div class="ipa">ʒ</div><div class="cyr-ref">Ж ж</div></div>
-  <div class="letter-card" onclick="speak('Z z')"><span class="sound-icon">🔊</span><div class="lat">Z z</div><div class="ipa">z</div><div class="cyr-ref">З з</div></div>
-  <div class="letter-card" onclick="speak('İ i')"><span class="sound-icon">🔊</span><div class="lat">İ i</div><div class="ipa">i</div><div class="cyr-ref">И и / Й й</div></div>
-  <div class="letter-card" onclick="speak('K k')"><span class="sound-icon">🔊</span><div class="lat">K k</div><div class="ipa">k</div><div class="cyr-ref">К к</div></div>
-  <div class="letter-card" onclick="speak('Q q')"><span class="sound-icon">🔊</span><div class="lat">Q q</div><div class="ipa">q</div><div class="cyr-ref">Қ қ</div></div>
-  <div class="letter-card" onclick="speak('L l')"><span class="sound-icon">🔊</span><div class="lat">L l</div><div class="ipa">l</div><div class="cyr-ref">Л л</div></div>
-  <div class="letter-card" onclick="speak('M m')"><span class="sound-icon">🔊</span><div class="lat">M m</div><div class="ipa">m</div><div class="cyr-ref">М м</div></div>
-  <div class="letter-card" onclick="speak('N n')"><span class="sound-icon">🔊</span><div class="lat">N n</div><div class="ipa">n</div><div class="cyr-ref">Н н</div></div>
-  <div class="letter-card" onclick="speak('Ñ ñ')"><span class="sound-icon">🔊</span><div class="lat">Ñ ñ</div><div class="ipa">ŋ</div><div class="cyr-ref">Ң ң</div></div>
-  <div class="letter-card" onclick="speak('P p')"><span class="sound-icon">🔊</span><div class="lat">P p</div><div class="ipa">p</div><div class="cyr-ref">П п</div></div>
-  <div class="letter-card" onclick="speak('R r')"><span class="sound-icon">🔊</span><div class="lat">R r</div><div class="ipa">r</div><div class="cyr-ref">Р р</div></div>
-  <div class="letter-card" onclick="speak('S s')"><span class="sound-icon">🔊</span><div class="lat">S s</div><div class="ipa">s</div><div class="cyr-ref">С с</div></div>
-  <div class="letter-card" onclick="speak('T t')"><span class="sound-icon">🔊</span><div class="lat">T t</div><div class="ipa">t</div><div class="cyr-ref">Т т</div></div>
-  <div class="letter-card" onclick="speak('U u')"><span class="sound-icon">🔊</span><div class="lat">U u</div><div class="ipa">w</div><div class="cyr-ref">У у</div></div>
-  <div class="letter-card" onclick="speak('F f')"><span class="sound-icon">🔊</span><div class="lat">F f</div><div class="ipa">f</div><div class="cyr-ref">Ф ф</div></div>
-  <div class="letter-card" onclick="speak('H h')"><span class="sound-icon">🔊</span><div class="lat">H h</div><div class="ipa">x/h</div><div class="cyr-ref">Х х / Һ һ</div></div>
-  <div class="letter-card" onclick="speak('Ş ş')"><span class="sound-icon">🔊</span><div class="lat">Ş ş</div><div class="ipa">ʃ</div><div class="cyr-ref">Ш ш</div></div>
-  <div class="letter-card" onclick="speak('Ts ts')"><span class="sound-icon">🔊</span><div class="lat">Ts ts</div><div class="ipa">ts</div><div class="cyr-ref">Ц ц</div></div>
-  <div class="letter-card" onclick="speak('Ch ch')"><span class="sound-icon">🔊</span><div class="lat">Ch ch</div><div class="ipa">tʃ</div><div class="cyr-ref">Ч ч</div></div>
-  <div class="letter-card" onclick="speak('Sh sh')"><span class="sound-icon">🔊</span><div class="lat">Sh sh</div><div class="ipa">ʃtʃ</div><div class="cyr-ref">Щ щ</div></div>
-</div>
-
-
-
-<h2>🌸 Common Words · Click to hear</h2>
-<table class="word-table" id="wordTable">
-<tr><th>Latin</th><th>Cyrillic</th><th>Pronunciation</th><th>Meaning</th></tr>
-<tr onclick="speak('Sälem')"><td class="lat">Sälem</td><td>Сәлем</td><td>/sæˈlʲem/</td><td>Hello</td></tr>
-<tr onclick="speak('Raxmet')"><td class="lat">Raxmet</td><td>Рахмет</td><td>/rɑχˈmʲet/</td><td>Thank you</td></tr>
-<tr onclick="speak('Jaqsı')"><td class="lat">Jaqsı</td><td>Жақсы</td><td>/ʒɑqˈsə/</td><td>Good</td></tr>
-<tr onclick="speak('Qazaq')"><td class="lat">Qazaq</td><td>Қазақ</td><td>/qɑˈzɑq/</td><td>Kazakh</td></tr>
-<tr onclick="speak('Maxabbat')"><td class="lat">Maxabbat</td><td>Махаббат</td><td>/mɑχɑbˈbɑt/</td><td>Love</td></tr>
-<tr onclick="speak('Alma')"><td class="lat">Alma</td><td>Алма</td><td>/ɑlˈmɑ/</td><td>Apple</td></tr>
-<tr onclick="speak('Gül')"><td class="lat">Gül</td><td>Гүл</td><td>/ɡʉl/</td><td>Flower</td></tr>
-<tr onclick="speak('Kún')"><td class="lat">Kún</td><td>Күн</td><td>/kʉn/</td><td>Sun</td></tr>
-<tr onclick="speak('Ay')"><td class="lat">Ay</td><td>Ай</td><td>/ɑj/</td><td>Moon</td></tr>
-</table>
-
-<div class="tip">
-🌟 <b>Tip:</b> Start with <b>Sälem</b> (Hello) and <b>Raxmet</b> (Thanks)! The 2025 Latin alphabet is now official in Kazakhstan — perfect for learning the modern script.
-</div>
-
-<div class="tip">
-🌸 <b>Cyrillic → Latin Conversion</b><br>
-<b>Key mappings for 9 unique letters:</b><br>
-Ә=Ä, Ғ=Ğ, Қ=Q, Ң=Ñ, Ө=Ö, Ұ=Ū, Ү=Ü, І=I (ı), Һ=H<br>
-<b>Other differences:</b> Ж=J, Ы=Y, И=İ, Х=H, Ш=Ş, Ч=Ch, Щ=Sh, Ю=Yu, Я=Ya
-</div>
-
-<div class="footer">
-🌸 Naerhulan · 2026 · Qazaq Latın Álipbii 2025
-</div>
-
-</div>
-
-<script>
-// Sound mapping: Latin letter → same audio as Cyrillic counterpart
-const latToSound = {
-  'a': 'a', 'ä': 'ae', 'b': 'b', 'v': 'v', 'g': 'g', 'ğ': 'gh_',
-  'd': 'd', 'e': 'e', 'yo': 'yo', 'j': 'zh', 'z': 'z', 'i': 'ii_',
-  'k': 'k', 'q': 'q_', 'l': 'l', 'm': 'm', 'n': 'n', 'ñ': 'ng_',
-  'o': 'o', 'ö': 'oe_', 'p': 'p', 'r': 'r', 's': 's', 't': 't',
-  'u': 'oo', 'ū': 'uu_', 'ü': 'ue_', 'f': 'f', 'h': 'h_',
-  'ts': 'ts', 'ch': 'ch', 'ş': 'sh', 'y': 'yh',
-  'ı': 'ii_', 'yu': 'yoo', 'ya': 'yah', 'sh': 'shch'
-};
-
-// Word sound mapping
-const wordSounds = {
-  'salem': 'salem', 'raxmet': 'rahmet', 'qoş bol': 'kosh_bol',
-  'jaqsı': 'zhaksy', 'qazaq': 'qazaq', 'maxabbat': 'mahabbat',
-  'alma': 'alma', 'gül': 'gul', 'kún': 'kun', 'ay': 'ay',
-  'sälem': 'salem', 'rahmwet': 'rahmet', 'qos bol': 'kosh_bol'
-};
-
-function speak(text) {
-  const lower = text.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  
-  // Check if it's a known word
-  if (wordSounds[lower]) {
-    var audio = new Audio('sounds/' + wordSounds[lower] + '.mp3');
-    audio.onerror = function() { new Audio('sounds/' + wordSounds[lower] + '.wav').play(); };
-    audio.play().catch(function(){});
-    return;
-  }
-  
-  // Play each unique letter only once (dedup: 'A a' -> plays just 'a')
-  const uniqueChars = [...new Set(text.toLowerCase().split(''))].filter(c => c.trim());
-  uniqueChars.forEach((ch, i) => {
-    const normalized = ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    const sound = latToSound[ch] || latToSound[normalized];
-    if (sound) {
-      setTimeout(() => { var a=new Audio('sounds/'+sound+'.mp3'); a.onerror=function(){new Audio('sounds/'+sound+'.wav').play()}; a.play().catch(function(){}); }, i * 350);
-    }
-  });
-}
-</script>
-
 </body>
-
-
-
-
+</html>
