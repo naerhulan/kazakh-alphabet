@@ -3,24 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Qazaq Álipbii · 哈萨克字母学习</title>
-<meta name="description" content="哈萨克字母学习 - 西里尔文、拉丁文、老哈文互学工具">
+<title>Qazaq Álipbii · 哈萨克字母学习平台</title>
+<meta name="description" content="哈萨克字母学习 - 西里尔文、拉丁文、老哈文互学工具 with dashboard">
 <meta name="theme-color" content="#1a1a2e">
 <link rel="manifest" href="manifest.json">
 <style>
-:root{--bg:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--card-bg:rgba(255,255,255,0.06);--card-hover:rgba(255,255,255,0.1);--text:#fff;--text-sec:rgba(255,255,255,0.55);--text-muted:rgba(255,255,255,0.3);--border:rgba(255,255,255,0.07);--shadow:0 8px 32px rgba(0,0,0,0.4);--accent:#e91e63;--accent2:#2196f3;--accent3:#4caf50;--accent4:#ffc107;--radius:14px;--font:'Noto Sans','Arial',sans-serif}
-[data-theme="light"]{--bg:linear-gradient(135deg,#fce4ec 0%,#f3e5f5 30%,#e8eaf6 70%,#e0f7fa 100%);--card-bg:rgba(255,255,255,0.65);--card-hover:rgba(255,255,255,0.85);--text:#2d2d2d;--text-sec:#666;--text-muted:#aaa;--border:rgba(0,0,0,0.06);--shadow:0 4px 20px rgba(0,0,0,0.07);--accent:#c2185b;--accent2:#1565c0;--accent3:#2e7d32;--accent4:#f57f17}
+:root{--bg:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--card:rgba(255,255,255,0.06);--card-hover:rgba(255,255,255,0.1);--card-solid:rgba(30,30,55,0.92);--text:#f0f0f0;--text-sec:rgba(255,255,255,0.55);--text-muted:rgba(255,255,255,0.3);--border:rgba(255,255,255,0.07);--shadow:0 8px 32px rgba(0,0,0,0.4);--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--accent:#e91e63;--accent2:#2196f3;--accent3:#4caf50;--accent4:#ffc107;--accent5:#9c27b0;--radius:14px;--radius-sm:8px;--radius-md:12px;--radius-lg:18px;--radius-xl:22px;--font:'Noto Sans','Arial',sans-serif;--font-zh:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;--font-ab:'Noto Naskh Arabic','Traditional Arabic','Scheherazade',serif;--nav-bg:rgba(20,20,40,0.88)}
+[data-theme="light"]{--bg:linear-gradient(135deg,#fce4ec 0%,#f3e5f5 30%,#e8eaf6 70%,#e0f7fa 100%);--card:rgba(255,255,255,0.65);--card-hover:rgba(255,255,255,0.85);--card-solid:#fff;--text:#2d2d2d;--text-sec:#666;--text-muted:#aaa;--border:rgba(0,0,0,0.06);--shadow:0 4px 20px rgba(0,0,0,0.07);--shadow-sm:0 2px 6px rgba(0,0,0,0.04);--accent:#c2185b;--accent2:#1565c0;--accent3:#2e7d32;--accent4:#f57f17;--accent5:#7b1fa2;--nav-bg:rgba(255,255,255,0.78)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font);background:var(--bg);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;color:var(--text);transition:all .3s}
-.welcome{max-width:640px;width:100%;text-align:center}
+body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(--text);transition:all .3s;overflow-x:hidden;padding-bottom:70px}
+.theme-btn{position:fixed;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);backdrop-filter:blur(8px);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text);transition:all .2s;z-index:10}
+.theme-btn:hover{background:var(--card-hover);transform:rotate(20deg)}
+
+/* === Welcome Screen === */
+.welcome{max-width:640px;width:100%;margin:0 auto;text-align:center;padding:40px 20px}
 .logo{font-size:48px;margin-bottom:4px}
 h1{font-size:32px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px}
-h1 span{background:linear-gradient(135deg,var(--accent),#9c27b0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+h1 span{background:linear-gradient(135deg,var(--accent),var(--accent5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .sub{font-size:14px;color:var(--text-sec);margin-bottom:6px;direction:rtl}
 .tag{font-size:12px;color:var(--text-muted);margin-bottom:24px;letter-spacing:1px}
 .q{font-size:17px;font-weight:700;margin-bottom:16px;color:var(--text)}
 .cards{display:flex;flex-direction:column;gap:10px}
-.card{background:var(--card-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);text-align:left;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
+.card{background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);text-align:left;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
 .card:hover{background:var(--card-hover);transform:translateX(6px);box-shadow:var(--shadow)}
 .card:active{transform:scale(.97)}
 .card .c-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
@@ -30,19 +34,81 @@ h1 span{background:linear-gradient(135deg,var(--accent),#9c27b0);-webkit-backgro
 .card .c-arrow{font-size:16px;opacity:0;transition:all .3s;color:var(--text-muted)}
 .card:hover .c-arrow{opacity:1;transform:translateX(4px)}
 .type1 .c-icon{background:linear-gradient(135deg,var(--accent),#c2185b)}
-.type2 .c-icon{background:linear-gradient(135deg,var(--accent2),#1565c0);font-family:'Noto Naskh Arabic',serif;font-size:18px}
+.type2 .c-icon{background:linear-gradient(135deg,var(--accent2),#1565c0);font-family:var(--font-ab);font-size:18px}
 .type3 .c-icon{background:linear-gradient(135deg,var(--accent3),#2e7d32)}
 .type4 .c-icon{background:linear-gradient(135deg,var(--accent4),#f57f17)}
-.reset-btn{background:none;border:1px solid var(--border);border-radius:10px;padding:8px 16px;color:var(--text-muted);font-size:12px;cursor:pointer;margin-top:20px;transition:all .2s;font-family:var(--font)}
-.reset-btn:hover{background:var(--card-bg);border-color:var(--accent);color:var(--accent)}
 .footer{color:var(--text-muted);font-size:11px;margin-top:18px;opacity:.5}
-.theme-btn{position:fixed;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card-bg);backdrop-filter:blur(8px);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text);transition:all .2s;z-index:10}
-.theme-btn:hover{background:var(--card-hover);transform:rotate(20deg)}
-@media(max-width:500px){.welcome{max-width:100%}.logo{font-size:36px}h1{font-size:24px}.card{padding:14px}.card .c-icon{width:38px;height:38px;font-size:17px}}
+
+/* === Dashboard Screen === */
+.dashboard{display:none;max-width:640px;width:100%;margin:0 auto;padding:20px 16px 80px}
+.dash-header{text-align:center;margin-bottom:20px}
+.dash-emoji{font-size:40px;margin-bottom:4px}
+.dash-title{font-size:22px;font-weight:900}
+.dash-sub{font-size:12px;color:var(--text-sec);margin-top:2px}
+.dash-type-badge{display:inline-block;margin-top:6px;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;background:var(--card);border:1px solid var(--border);color:var(--text-sec)}
+.dash-type-badge .chg{color:var(--accent);cursor:pointer;margin-left:6px;text-decoration:underline}
+
+/* Stats row */
+.dash-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px}
+.dash-stat{background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 10px;text-align:center;transition:all .2s}
+.dash-stat:hover{background:var(--card-hover);transform:translateY(-2px)}
+.dash-stat .num{font-size:24px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dash-stat .lbl{font-size:10px;color:var(--text-muted);margin-top:2px}
+.dash-stat .subtxt{font-size:10px;color:var(--text-sec);margin-top:1px}
+.dash-stat.fire .num{-webkit-text-fill-color:initial;color:var(--accent4)}
+
+/* Progress bar */
+.progress-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:16px}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text-sec);margin-bottom:6px}
+.progress-bar{height:8px;background:var(--border);border-radius:10px;overflow:hidden}
+.progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent5));transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
+
+/* Learning path */
+.path-card{background:var(--card-solid);border-radius:var(--radius-xl);padding:20px 18px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:16px}
+.path-title{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.path-steps{display:flex;flex-direction:column;gap:8px}
+.path-step{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;cursor:pointer;transition:all .25s;text-decoration:none;color:var(--text)}
+.path-step:hover{background:var(--card-hover);transform:translateX(4px);border-color:var(--accent)}
+.path-step:active{transform:scale(.98)}
+.path-step .step-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent5));color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.path-step .step-num.done{background:var(--accent3)}
+.path-step .step-body{flex:1}
+.path-step .step-body h4{font-size:13px;font-weight:700}
+.path-step .step-body p{font-size:11px;color:var(--text-sec);margin-top:1px}
+.path-step .step-arrow{font-size:14px;color:var(--text-muted)}
+
+/* Bottom Nav */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:8px 0;padding-bottom:max(8px,env(safe-area-inset-bottom))}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;color:var(--text-muted);font-size:10px;cursor:pointer;padding:4px 12px;transition:all .15s;font-family:var(--font-zh);text-decoration:none}
+.nav-item .nav-icon{font-size:18px;line-height:1}
+.nav-item.active{color:var(--accent)}
+.nav-item:hover{color:var(--text-sec)}
+
+/* Quick actions */
+.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.quick-btn{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;text-align:center;cursor:pointer;transition:all .2s;text-decoration:none;color:var(--text)}
+.quick-btn:hover{background:var(--card-hover);transform:translateY(-2px);box-shadow:var(--shadow)}
+.quick-btn .q-icon{font-size:22px}
+.quick-btn .q-label{font-size:12px;font-weight:600;margin-top:4px}
+.quick-btn .q-sub{font-size:10px;color:var(--text-muted);margin-top:1px}
+
+@media(max-width:500px){
+  .welcome{padding:24px 16px}
+  .logo{font-size:36px}h1{font-size:24px}.card{padding:14px}.card .c-icon{width:38px;height:38px;font-size:17px}
+  .dash-stats{grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .dash-stat{padding:10px 6px}.dash-stat .num{font-size:20px}
+  .quick-actions{grid-template-columns:1fr 1fr}
+  .path-step{padding:10px 12px}
+}
+@media(max-width:380px){
+  .dash-stats{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
 <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀️</button>
+
+<!-- === Welcome Screen === -->
 <div class="welcome" id="welcomeScreen">
   <div class="logo">📖</div>
   <h1><span>Qazaq Álipbii</span></h1>
@@ -50,72 +116,311 @@ h1 span{background:linear-gradient(135deg,var(--accent),#9c27b0);-webkit-backgro
   <p class="tag">✦ 字母学习平台 ✦</p>
   <p class="q">Сіз кімсіз? · 您是哪类学习者？</p>
   <div class="cards">
-    <a class="card type1" href="cyrillic.html?type=1">
+    <div class="card type1" data-type="1" data-href="cyrillic.html" onclick="selectType(1,'cyrillic.html','🀄')">
       <div class="c-icon">🀄</div>
       <div class="c-body">
         <h3>汉语 → 西里尔文</h3>
         <p>会普通话，想学习哈萨克西里尔字母 · Қытай тілінен Кирилге</p>
       </div>
       <span class="c-arrow">→</span>
-    </a>
-    <a class="card type2" href="arabic-to-cyrillic.html?type=2">
+    </div>
+    <div class="card type2" data-type="2" data-href="arabic-to-cyrillic.html" onclick="selectType(2,'arabic-to-cyrillic.html','ع')">
       <div class="c-icon">ع</div>
       <div class="c-body">
         <h3 style="direction:rtl">قازاقشا → كيريل</h3>
         <p>会老哈文（阿拉伯哈文），想学西里尔文 · كونە جازۋدان كيريلگە</p>
       </div>
       <span class="c-arrow">→</span>
-    </a>
-    <a class="card type3" href="learn-kazakh.html?type=3">
+    </div>
+    <div class="card type3" data-type="3" data-href="learn-kazakh.html" onclick="selectType(3,'learn-kazakh.html','🌏')">
       <div class="c-icon">🌏</div>
       <div class="c-body">
         <h3>汉语 → 老哈文</h3>
         <p>会普通话，想学习老哈文（阿拉伯字母）</p>
       </div>
       <span class="c-arrow">→</span>
-    </a>
-    <a class="card type4" href="latin.html?type=4">
+    </div>
+    <div class="card type4" data-type="4" data-href="latin.html" onclick="selectType(4,'latin.html','📝')">
       <div class="c-icon">📝</div>
       <div class="c-body">
         <h3>Кирил → Latin</h3>
         <p>会西里尔文，想学习拉丁字母 · كيريلدەن لاتىنعا</p>
       </div>
       <span class="c-arrow">→</span>
-    </a>
+    </div>
   </div>
-  <button class="reset-btn" onclick="resetType()">↺ 重新选择</button>
   <div class="footer">🌸 Бауырсақ · 2026</div>
 </div>
 
+<!-- === Dashboard Screen === -->
+<div class="dashboard" id="dashboardScreen">
+  <div class="dash-header">
+    <div class="dash-emoji" id="dashEmoji">📖</div>
+    <div class="dash-title">Қош келдіңіз!</div>
+    <div class="dash-sub" id="dashSubtitle">哈萨克字母学习 · 欢迎回来</div>
+    <div class="dash-type-badge" id="dashBadge">🀄 汉语 → 西里尔文 <span class="chg" onclick="goHome()">[更换]</span></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="dash-stats">
+    <div class="dash-stat">
+      <div class="num" id="dashLearned">0</div>
+      <div class="lbl">已学字母</div>
+      <div class="subtxt" id="dashTotal">/ 42 总数</div>
+    </div>
+    <div class="dash-stat fire">
+      <div class="num" id="dashStreak">0</div>
+      <div class="lbl">🔥 连续天数</div>
+    </div>
+    <div class="dash-stat">
+      <div class="num" id="dashQuiz">0</div>
+      <div class="lbl">🎯 测验分数</div>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>📚 Оқу барысы · 学习进度</span>
+      <span id="progressText">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Quick actions -->
+  <div class="quick-actions">
+    <a class="quick-btn" id="quickConverter" href="converter.html">
+      <div class="q-icon">🔄</div>
+      <div class="q-label">字母转换器</div>
+      <div class="q-sub">西里尔 ↔ 拉丁 ↔ 阿拉伯</div>
+    </a>
+    <div class="quick-btn" onclick="resetAll()">
+      <div class="q-icon">↺</div>
+      <div class="q-label">重置进度</div>
+      <div class="q-sub">清除所有学习数据</div>
+    </div>
+  </div>
+
+  <!-- Learning path -->
+  <div class="path-card">
+    <div class="path-title">🧭 Бүгінгі жол · 今日推荐学习路径</div>
+    <div class="path-steps">
+      <div class="path-step" id="step1" onclick="goToStep(1)">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>🔴 Дауыстылар · 元音字母</h4>
+          <p>先学9个元音，打好发音基础</p>
+        </div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="path-step" id="step2" onclick="goToStep(2)">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>🌿 Дауыссыздар · 辅音字母</h4>
+          <p>学习辅音，特别是哈语独有的9个字母</p>
+        </div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="path-step" id="step3" onclick="goToStep(3)">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>📖 Сөздер · 常用单词</h4>
+          <p>用单词巩固字母记忆</p>
+        </div>
+        <span class="step-arrow">→</span>
+      </div>
+      <div class="path-step" id="step4" onclick="goToStep(4)">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>🎯 Тест · 测验</h4>
+          <p>听力测试，检验学习成果</p>
+        </div>
+        <span class="step-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Nav -->
+<div class="bottom-nav" id="bottomNav" style="display:none">
+  <button class="nav-item active" onclick="showDashboard()">
+    <span class="nav-icon">🏠</span>
+    Басты бет
+  </button>
+  <a class="nav-item" id="navLearn" href="#">
+    <span class="nav-icon">📚</span>
+    Оқу
+  </a>
+  <button class="nav-item" onclick="toggleQuizDash()">
+    <span class="nav-icon">🎯</span>
+    Тест
+  </button>
+  <button class="nav-item" onclick="showStatsDash()">
+    <span class="nav-icon">📊</span>
+    Стат
+  </button>
+</div>
+
 <script>
-function initTheme(){
-  var s=localStorage.getItem('kazakhTheme')||'dark';
-  document.documentElement.setAttribute('data-theme',s);
-  var b=document.getElementById('themeBtn');
-  if(b)b.textContent=s==='light'?'🌙':'☀️';
+// === Init ===
+function initTheme(){var s=localStorage.getItem('kazakhTheme')||'dark';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='light'?'🌙':'☀️'}
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='light'?'🌙':'☀️'}
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+
+var userType=parseInt(localStorage.getItem('kazakhUserType'))||0;
+var userHref=localStorage.getItem('kazakhUserHref')||'';
+var userIcon=localStorage.getItem('kazakhUserIcon')||'📖';
+var userLabel=localStorage.getItem('kazakhUserLabel')||'';
+var typeNames={1:'🀄 汉语 → 西里尔文',2:'ع قازاقشا → كيريل',3:'🌏 汉语 → 老哈文',4:'📝 Кирил → Latin'};
+var typeHrefs={1:'cyrillic.html',2:'arabic-to-cyrillic.html',3:'learn-kazakh.html',4:'latin.html'};
+
+function getP(){try{return JSON.parse(localStorage.getItem('kazakhProgress')||'{}')}catch(e){return{}}}
+function getTotalCount(){
+  // Rough counts per page
+  var t={1:42,2:42,3:38,4:33};
+  return t[userType]||42;
 }
-function toggleTheme(){
-  var c=document.documentElement.getAttribute('data-theme');
-  var n=c==='light'?'dark':'light';
-  document.documentElement.setAttribute('data-theme',n);
-  localStorage.setItem('kazakhTheme',n);
-  var b=document.getElementById('themeBtn');
-  if(b)b.textContent=n==='light'?'🌙':'☀️';
+
+function getStreak(){
+  var p=getP();
+  var dates=Object.values(p).map(function(v){return v.date}).filter(Boolean);
+  if(!dates.length)return 0;
+  var unique={};
+  dates.forEach(function(d){unique[d]=true});
+  var sorted=Object.keys(unique).sort().reverse();
+  var streak=1;
+  var today=new Date();
+  var todayStr=today.toISOString().split('T')[0];
+  var yesterday=new Date(today);yesterday.setDate(yesterday.getDate()-1);
+  var yesterdayStr=yesterday.toISOString().split('T')[0];
+  // Check if most recent date is today or yesterday
+  if(sorted[0]!==todayStr&&sorted[0]!==yesterdayStr)return 0;
+  for(var i=0;i<sorted.length-1;i++){
+    var cur=new Date(sorted[i]);
+    var prev=new Date(sorted[i+1]);
+    var diff=(cur-prev)/(1000*60*60*24);
+    if(Math.round(diff)===1)streak++;
+    else break;
+  }
+  return streak;
 }
-function resetType(){
+
+function getLearned(){
+  var p=getP();var c=0;
+  for(var k in p){if(p[k]&&p[k].learned)c++}
+  return c;
+}
+
+function getQuizScore(){
+  return parseInt(localStorage.getItem('kazakhQuizScore')||'0');
+}
+
+// === Select Type ===
+function selectType(type,href,icon){
+  userType=type;
+  userHref=href;
+  userIcon=icon;
+  userLabel=typeNames[type]||'';
+  localStorage.setItem('kazakhUserType',type);
+  localStorage.setItem('kazakhUserHref',href);
+  localStorage.setItem('kazakhUserIcon',icon);
+  localStorage.setItem('kazakhUserLabel',userLabel);
+  showDashboard();
+}
+
+// === Show Dashboard ===
+function showDashboard(){
+  document.getElementById('welcomeScreen').style.display='none';
+  document.getElementById('dashboardScreen').style.display='block';
+  document.getElementById('bottomNav').style.display='flex';
+  document.getElementById('navLearn').href=userHref?userHref+'?type='+userType:'#';
+
+  // Update badge
+  document.getElementById('dashBadge').innerHTML=(userLabel||'📖')+' <span class="chg" onclick="goHome()">[更换]</span>';
+
+  // Ger stats
+  var learned=getLearned();
+  var total=getTotalCount();
+  var pct=total>0?Math.round(learned/total*100):0;
+  var streak=getStreak();
+  var quiz=getQuizScore();
+
+  document.getElementById('dashLearned').textContent=learned;
+  document.getElementById('dashTotal').textContent='/ '+total+' 总数';
+  document.getElementById('dashStreak').textContent=streak;
+  document.getElementById('dashQuiz').textContent=quiz;
+
+  document.getElementById('progressText').textContent=pct+'%';
+  document.getElementById('progressFill').style.width=pct+'%';
+
+  // Update steps - which ones are "done" based on progress
+  var steps=['step1','step2','step3','step4'];
+  var stepThresholds=[0.2,0.4,0.6,0.8];
+  for(var i=0;i<steps.length;i++){
+    var el=document.getElementById(steps[i]);
+    if(el){
+      if(pct>=stepThresholds[i]*100){
+        var sn=el.querySelector('.step-num');
+        if(sn){sn.textContent='✓';sn.classList.add('done')}
+      }else{
+        var sn=el.querySelector('.step-num');
+        if(sn){sn.textContent=(i+1);sn.classList.remove('done')}
+      }
+    }
+  }
+}
+
+// === Go to step ===
+function goToStep(step){
+  if(!userHref){return}
+  var base=userHref;
+  var anchors={1:'#secHard',2:'#secCons',3:'#secWords',4:''};
+  // For learn-kazakh and latin, use different anchors
+  if(base==='learn-kazakh.html'){anchors={1:'#letterGrid',2:'#specialTable',3:'#wordTable',4:''}}
+  if(base==='latin.html'){anchors={1:'#latGrid',2:'#latGrid',3:'#wordTable',4:''}}
+  if(base==='arabic-to-cyrillic.html'){anchors={1:'#vowelHard',2:'#consonants',3:'#wordTable',4:''}}
+  window.location.href=base+'?type='+userType+(anchors[step]||'');
+}
+
+// === Go Home (back to type selection) ===
+function goHome(){
+  document.getElementById('dashboardScreen').style.display='none';
+  document.getElementById('bottomNav').style.display='none';
+  document.getElementById('welcomeScreen').style.display='block';
   localStorage.removeItem('kazakhUserType');
+  localStorage.removeItem('kazakhUserHref');
+  localStorage.removeItem('kazakhUserIcon');
+  localStorage.removeItem('kazakhUserLabel');
+}
+
+// === Reset All ===
+function resetAll(){
+  if(!confirm('Барлық деректерді өшіру? · 确认清除所有学习数据？'))return;
   localStorage.removeItem('kazakhProgress');
   localStorage.removeItem('kazakhQuizScore');
-  document.querySelectorAll('.card').forEach(function(c){c.style.opacity=1;c.style.pointerEvents='auto'});
+  showDashboard();
 }
-document.querySelectorAll('.card').forEach(function(c){
-  c.addEventListener('click',function(){
-    var t=this.getAttribute('href').match(/type=(\d)/);
-    if(t)localStorage.setItem('kazakhUserType',t[1]);
-  });
-});
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+
+// === Dashboard Quiz ===
+function toggleQuizDash(){
+  if(!userHref)return;
+  window.location.href=userHref+'?type='+userType+'&quiz=1';
+}
+
+// === Dashboard Stats Modal ===
+function showStatsDash(){
+  if(!userHref)return;
+  window.location.href=userHref+'?type='+userType;
+}
+
+// === Init ===
 initTheme();
+// If user already has a type, show dashboard
+if(userType&&userHref){
+  showDashboard();
+}
 </script>
 </body>
 </html>

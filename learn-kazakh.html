@@ -108,6 +108,17 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
 </nav>
 
 <div class="page-wrap">
+  <!-- Learning path banner -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:11px;color:var(--text-sec)">
+    <span style="font-weight:600;color:var(--text);margin-right:4px">📌 学习路径:</span>
+    <span style="background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">① 字母表</span>
+    <span style="color:var(--text-muted)">→</span>
+    <span>② 特殊字母</span>
+    <span style="color:var(--text-muted)">→</span>
+    <span>③ 常见词</span>
+    <span style="color:var(--text-muted)">→</span>
+    <span>④ 测验</span>
+  </div>
   <!-- Translator box -->
   <div class="section-card" style="padding:20px">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
@@ -324,6 +335,8 @@ function clearTrans(){document.getElementById('srcText').value='';document.getEl
 document.addEventListener('DOMContentLoaded',function(){var e=document.getElementById('srcText');if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();translateText()}})});
 
 initTheme();render();
+var quizParam=new URLSearchParams(window.location.search).get('quiz');
+if(quizParam==='1'){setTimeout(function(){toggleQuiz()},500)}
 </script>
 </body>
 </html>

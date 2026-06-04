@@ -91,6 +91,12 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
 #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent2);color:#fff;padding:10px 24px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.3);z-index:300;display:none;animation:toastIn .3s ease;white-space:nowrap}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
+/* Learning path banner */
+.learning-banner{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:11px;color:var(--text-sec)}
+.learning-banner .path-step-active{background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+.learning-banner .path-arrow{color:var(--text-muted)}
+.learning-banner .path-step{color:var(--text-sec)}
+
 /* Stats modal */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;justify-content:center;align-items:center;padding:20px;backdrop-filter:blur(4px)}
 .modal-overlay.show{display:flex}
@@ -138,6 +144,17 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
 </nav>
 
 <div class="page-wrap">
+  <!-- Learning path banner -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:11px;color:var(--text-sec)">
+    <span style="font-weight:600;color:var(--text);margin-right:4px">📌 Оқу барысы:</span>
+    <span style="background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">① Дауыстылар</span>
+    <span style="color:var(--text-muted)">→</span>
+    <span>② Дауыссыздар</span>
+    <span style="color:var(--text-muted)">→</span>
+    <span>③ Сөздер</span>
+    <span style="color:var(--text-muted)">→</span>
+    <span>④ Тест</span>
+  </div>
   <div class="section-card">
     <div style="text-align:center;margin-bottom:12px">
       <h1 style="font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="pageTitle">🌸 Кирил Әліпбиі</h1>
@@ -585,6 +602,9 @@ function nextQuiz(){
 // === Init ===
 initTheme();
 render();
+// Auto-open quiz from dashboard
+var quizParam=new URLSearchParams(window.location.search).get('quiz');
+if(quizParam==='1'){setTimeout(function(){toggleQuiz()},500)}
 </script>
 </body>
 </html>

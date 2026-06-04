@@ -4,86 +4,137 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="manifest.json">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>Qazaq Conv - قازاقشا اۋدارۋ</title>
+<title>Qazaq Conv - قازاقشا اۋدارۋ · 字母转换器</title>
+<meta name="description" content="哈萨克字母转换器 - 西里尔文、拉丁文、阿拉伯文互转">
 <style>
+:root{--bg:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--card:rgba(255,255,255,0.06);--card-hover:rgba(255,255,255,0.1);--card-solid:rgba(30,30,55,0.92);--text:#f0f0f0;--text-sec:rgba(255,255,255,0.55);--text-muted:rgba(255,255,255,0.3);--border:rgba(255,255,255,0.07);--shadow:0 4px 24px rgba(0,0,0,0.4);--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--accent:#667eea;--accent2:#764ba2;--accent3:#4caf50;--accent4:#ff9800;--nav-bg:rgba(20,20,40,0.88);--radius-sm:8px;--radius-md:12px;--radius-lg:18px;--radius-xl:22px;--font:'Noto Sans','Arial',sans-serif;--font-zh:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;--font-ab:'Noto Naskh Arabic','Traditional Arabic','Scheherazade',serif}
+[data-theme="light"]{--bg:linear-gradient(135deg,#e8eaf6 0%,#fce4ec 50%,#f3e5f5 100%);--card:rgba(255,255,255,0.6);--card-hover:rgba(255,255,255,0.85);--card-solid:#fff;--text:#2d2d2d;--text-sec:#666;--text-muted:#aaa;--border:rgba(0,0,0,0.06);--shadow:0 4px 20px rgba(0,0,0,0.07);--shadow-sm:0 2px 6px rgba(0,0,0,0.04);--accent:#5c6bc0;--accent2:#3949ab;--accent3:#2e7d32;--accent4:#e65100;--nav-bg:rgba(255,255,255,0.78)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Noto Sans SC',sans-serif;background:linear-gradient(135deg,#f8f9ff,#fce4ec);min-height:100vh;padding:16px}
-.app{max-width:520px;margin:0 auto}
-.header{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:16px;padding:18px 20px;color:#fff;margin-bottom:12px}
-.header h1{font-size:20px;font-weight:700}
-.header p{font-size:11px;opacity:.7;margin-top:3px}
-.conv-box{background:#fff;border-radius:14px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-bottom:10px}
-.dir-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.dir-row .lbl{font-size:12px;font-weight:600;color:#666}
-.dir-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;box-shadow:0 3px 10px rgba(102,126,234,.3)}
-textarea{width:100%;min-height:90px;padding:12px;border:2px solid #e8eaf6;border-radius:10px;font-size:16px;font-family:'Noto Naskh Arabic',serif;outline:none;resize:vertical;line-height:1.7;transition:border .2s}
-textarea:focus{border-color:#667eea}
-textarea.cyr{direction:ltr;font-family:-apple-system,sans-serif}
-.result{width:100%;min-height:70px;padding:12px;border:2px solid #e8eaf6;border-radius:10px;font-size:16px;font-family:'Noto Naskh Arabic',serif;background:#f8f9ff;margin-top:8px;line-height:1.7;word-break:break-word}
-.result.cyr{direction:ltr;font-family:-apple-system,sans-serif}
-.btn-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.btn{padding:9px 16px;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
-.btn-pri{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;flex:1}
-.btn-sec{background:rgba(102,126,234,.1);color:#667eea}
-.btn-pink{background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff}
-.btn-red{background:rgba(245,87,108,.1);color:#f5576c}
-.btn-gry{background:rgba(0,0,0,.04);color:#999}
-.his-box{background:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.his-box h3{font-size:13px;color:#666;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
-.his-item{padding:8px 0;border-bottom:1px solid #f3f3f3;font-size:13px;line-height:1.5}
+body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(--text);transition:all .25s;overflow-x:hidden}
+.top-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.nav-left{display:flex;align-items:center;gap:10px}
+.nav-back{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 12px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-back:hover{background:var(--card-hover);border-color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.theme-toggle{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-toggle:hover{background:var(--card-hover);border-color:var(--accent);transform:rotate(20deg)}
+.page-wrap{max-width:640px;margin:0 auto;padding:20px 16px 60px}
+.section-card{background:var(--card-solid);border-radius:var(--radius-xl);padding:24px 20px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:16px;transition:all .25s}
+
+/* Header area */
+.conv-header{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius-lg);padding:16px 18px;color:#fff;margin-bottom:12px}
+.conv-header h1{font-size:20px;font-weight:700}
+.conv-header p{font-size:11px;opacity:.7;margin-top:3px}
+
+/* Direction row */
+.dir-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.dir-row .lbl{font-size:12px;font-weight:600;color:var(--text-sec)}
+.dir-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;box-shadow:0 3px 10px rgba(102,126,234,.3);transition:all .2s}
+.dir-btn:hover{transform:rotate(180deg)}
+
+/* Textarea */
+textarea{width:100%;min-height:100px;padding:12px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:16px;font-family:var(--font-ab);outline:none;resize:vertical;line-height:1.7;transition:border .2s;background:var(--card);color:var(--text)}
+textarea:focus{border-color:var(--accent)}
+textarea.cyr{direction:ltr;font-family:var(--font-zh)}
+
+/* Result */
+.result-box{width:100%;min-height:70px;padding:12px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:16px;font-family:var(--font-ab);background:var(--card);color:var(--text);margin-top:10px;line-height:1.7;word-break:break-word;transition:all .2s}
+.result-box.cyr{direction:ltr;font-family:var(--font-zh)}
+
+/* Buttons */
+.btn-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.btn{padding:10px 18px;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font-zh)}
+.btn-pri{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;flex:1}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(102,126,234,.3)}
+.btn-sec{background:var(--card);color:var(--accent);border:1px solid var(--border)}
+.btn-sec:hover{background:var(--card-hover)}
+.btn-red{background:var(--card);color:var(--text-muted);border:1px solid var(--border)}
+.btn-red:hover{background:var(--card-hover)}
+
+/* Letter grid */
+.let-box{background:var(--card-solid);border-radius:var(--radius-xl);padding:16px 18px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:16px}
+.let-box h3{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--text)}
+.let-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(50px,1fr));gap:5px}
+.let-card{background:var(--card);border-radius:var(--radius-sm);padding:6px 3px;text-align:center;border:1.5px solid var(--border);cursor:pointer;transition:all .15s}
+.let-card:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-2px)}
+.let-card:active{transform:scale(.95)}
+.let-card .ar{display:block;font-size:15px;font-weight:700;font-family:var(--font-ab);color:var(--text)}
+.let-card .sub{display:block;font-size:8px;color:var(--text-muted);font-weight:400;margin-top:1px}
+
+/* History */
+.his-box{background:var(--card-solid);border-radius:var(--radius-xl);padding:16px 18px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.his-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.his-header h3{font-size:13px;font-weight:700;color:var(--text)}
+.his-item{padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5}
 .his-item:last-child{border-bottom:none}
-.his-src{color:#333}
-.his-dst{color:#667eea;margin-top:1px}
-.his-time{font-size:10px;color:#ccc}
-.empty-his{text-align:center;color:#ccc;padding:16px;font-size:13px}
-.let-box{background:#fff;border-radius:14px;padding:12px 16px;margin-top:10px}
-.let-box h3{font-size:12px;color:#666;margin-bottom:8px}
-.let-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:5px}
-.let-card{background:#fff;border-radius:8px;padding:6px 3px;text-align:center;border:1.5px solid #e8eaf6;cursor:pointer;transition:all .15s;font-size:17px;font-weight:700;color:#333}
-.let-card:active{border-color:#667eea;transform:scale(.95)}
-.let-card .sub{display:block;font-size:8px;color:#999;font-weight:400;margin-top:1px}
-.footer{text-align:center;font-size:10px;color:#ccc;margin-top:16px}
+.his-src{color:var(--text)}
+.his-dst{color:var(--accent);margin-top:2px}
+.his-time{font-size:10px;color:var(--text-muted);margin-top:1px}
+.empty-his{text-align:center;color:var(--text-muted);padding:16px;font-size:13px}
+
+.page-footer{text-align:center;color:var(--text-muted);font-size:11px;margin-top:16px;opacity:.5}
+
+@media(max-width:500px){
+  .page-wrap{padding:12px 10px 40px}
+  .section-card{padding:18px 14px}
+  .let-grid{grid-template-columns:repeat(auto-fill,minmax(44px,1fr))}
+}
 </style>
 </head>
 <body>
-<div class="app">
+<nav class="top-nav">
+  <div class="nav-left">
+    <a href="./" class="nav-back">← Басты бет</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☀️</button>
+  </div>
+</nav>
 
-<div class="header">
-<h1>Qazaq Conv</h1>
-<p>قازاقشا اۋدارۋ · 哈萨克文字转换</p>
-</div>
+<div class="page-wrap">
+  <div class="conv-header">
+    <h1>🔄 Qazaq Conv</h1>
+    <p>قازاقشا اۋدارۋ · 哈萨克文字转换器</p>
+  </div>
 
-<div class="conv-box">
-<div class="dir-row">
-<span class="lbl" id="dirLabel">قازاقشا → كيريل</span>
-<button class="dir-btn" onclick="swDir()">⇄</button>
-</div>
-<textarea id="inp" placeholder="جازۋ جازىڭىز ..."></textarea>
-<div class="result" id="out"></div>
-<div class="btn-row">
-<button class="btn btn-pri" onclick="conv()">🔄 اۋدار</button>
-<button class="btn btn-pink" onclick="spkInp()">🔊 وقۋ</button>
-<button class="btn btn-gry" onclick="clr()">✕</button>
-</div>
-</div>
+  <div class="section-card">
+    <div class="dir-row">
+      <span class="lbl" id="dirLabel">قازاقشا → كيريل</span>
+      <button class="dir-btn" onclick="swDir()">⇄</button>
+    </div>
+    <textarea id="inp" placeholder="جازۋ جازىڭىز ..."></textarea>
+    <div class="result-box" id="out"></div>
+    <div class="btn-row">
+      <button class="btn btn-pri" onclick="conv()">🔄 اۋدار · 转换</button>
+      <button class="btn btn-sec" onclick="spkOut()">🔊 تىڭداۋ · 朗读</button>
+      <button class="btn btn-red" onclick="clr()">✕ 清除</button>
+    </div>
+  </div>
 
-<div class="let-box">
-<h3>🔤 اريپتەر</h3>
-<div class="let-grid" id="letGrid"></div>
-</div>
+  <div class="let-box">
+    <h3>🔤 Әріптер · 字母键</h3>
+    <div class="let-grid" id="letGrid"></div>
+  </div>
 
-<div class="his-box" style="margin-top:10px">
-<h3><span>📋 تارىح</span><button class="btn btn-red" style="padding:4px 10px;font-size:11px" onclick="clrHis()">تازالاۋ</button></h3>
-<div id="hisList"><div class="empty-his">جازۋ جوق</div></div>
-</div>
+  <div class="his-box">
+    <div class="his-header">
+      <h3>📋 Тарих · 历史记录</h3>
+      <button class="btn btn-red" style="padding:4px 10px;font-size:11px" onclick="clrHis()">🗑 Тазалау</button>
+    </div>
+    <div id="hisList"><div class="empty-his">جازۋ جوق · 暂无记录</div></div>
+  </div>
 
-<div class="footer">🌸 Qazaq Conv · v1.0 · толىق وفسلاين</div>
-
+  <div class="page-footer">🌸 Бауырсақ · 2026 · толық офлайн</div>
 </div>
 
 <script>
+// === Theme ===
+function initTheme(){var s=localStorage.getItem('kazakhTheme')||'dark';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='light'?'🌙':'☀️'}
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='light'?'🌙':'☀️'}
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+
 // === Conversion Table ===
-const c2a={'а':'ا','ә':'اە','б':'ب','в':'ۋ','г':'گ','ғ':'ع','д':'د','е':'ە','ё':'يو','ж':'ج','з':'ز','и':'ي','й':'ي','к':'ك','қ':'ق','л':'ل','м':'م','н':'ن','ң':'ڭ','о':'و','ө':'و','п':'پ','р':'ر','с':'س','т':'ت','у':'ۋ','ұ':'ۇ','ү':'ۇ','ف':'ف','х':'ح','һ':'ھ','ц':'تس','ч':'چ','ш':'ش','щ':'شش','ъ':'','ы':'ى','і':'ى','ь':'','э':'ە','ю':'يۋ','я':'يا',
+const c2a={'а':'ا','ә':'اە','б':'ب','в':'ۋ','г':'گ','ғ':'ع','д':'د','е':'ە','ё':'يو','ж':'ج','з':'ز','и':'ي','й':'ي','к':'ك','қ':'ق','л':'ل','م':'م','н':'ن','ң':'ڭ','о':'و','ө':'و','п':'پ','р':'ر','с':'س','т':'ت','у':'ۋ','ұ':'ۇ','ү':'ۇ','ф':'ف','х':'ح','һ':'ھ','ц':'تس','ч':'چ','ш':'ش','щ':'شش','ъ':'','ы':'ى','і':'ى','ь':'','э':'ە','ю':'يۋ','я':'يا',
 'А':'ا','Ә':'اە','Б':'ب','В':'ۋ','Г':'گ','Ғ':'ع','Д':'د','Е':'ە','Ё':'يو','Ж':'ج','З':'ز','И':'ي','Й':'ي','К':'ك','Қ':'ق','Л':'ل','М':'م','Н':'ن','Ң':'ڭ','О':'و','Ө':'و','П':'پ','Р':'ر','С':'س','Т':'ت','У':'ۋ','Ұ':'ۇ','Ү':'ۇ','Ф':'ف','Х':'ح','Һ':'ھ','Ц':'تس','Ч':'چ','Ш':'ش','Щ':'شش','Ъ':'','Ы':'ى','І':'ى','Ь':'','Э':'ە','Ю':'يۋ','Я':'يا'}
 
 const a2c={}
@@ -95,6 +146,9 @@ let his=JSON.parse(localStorage.getItem('qch')||'[]')
 function init(){
   renderLet()
   renderHis()
+  // Set initial result class
+  document.getElementById('out').className='result-box cyr'
+  document.getElementById('inp').className=''
 }
 
 function conv(){
@@ -125,12 +179,12 @@ function swDir(){
     document.getElementById('dirLabel').textContent='قازاقشا → كيريل'
     inp.placeholder='جازۋ جازىڭىز ...'
     inp.className=''
-    out.className='result cyr'
+    out.className='result-box cyr'
   }else{
     document.getElementById('dirLabel').textContent='Кирил → قازاقشا'
     inp.placeholder='Кирилше жазыңыз...'
     inp.className='cyr'
-    out.className='result'
+    out.className='result-box'
   }
   clr()
 }
@@ -140,16 +194,8 @@ function clr(){
   document.getElementById('out').textContent=''
 }
 
-function spkInp(){
-  let t=document.getElementById('inp').value.trim()
-  if(!t){spkOut();return}
-  speechSynthesis.cancel()
-  let u=new SpeechSynthesisUtterance(t)
-  u.lang='kk-KZ';u.rate=.85
-  speechSynthesis.speak(u)
-}
 function spkOut(){
-  let t=document.getElementById('out').textContent
+  let t=document.getElementById('out').textContent||document.getElementById('inp').value
   if(!t)return
   speechSynthesis.cancel()
   let u=new SpeechSynthesisUtterance(t)
@@ -166,17 +212,17 @@ function spkLet(t){
 
 function renderLet(){
   const ls=[['ا','А'],['اە','Ә'],['ب','Б'],['ۋ','В'],['گ','Г'],['ع','Ғ'],['د','Д'],['ە','Е'],['ج','Ж'],['ز','З'],['ي','И'],['ك','К'],['ق','Қ'],['ل','Л'],['م','М'],['ن','Н'],['ڭ','Ң'],['و','О'],['پ','П'],['ر','Р'],['س','С'],['ت','Т'],['ۇ','Ұ/Ү'],['ف','Ф'],['ح','Х'],['ھ','Һ'],['چ','Ч'],['ش','Ш'],['ى','Ы/І'],['يۋ','Ю'],['يا','Я']]
-  document.getElementById('letGrid').innerHTML=ls.map(l=>`<div class="let-card" onclick="spkLet('${l[1].split('/')[0]}')"><span style="font-size:15px;font-family:'Noto Naskh Arabic',serif;display:block">${l[0]}</span><span class="sub">${l[1]}</span></div>`).join('')
+  document.getElementById('letGrid').innerHTML=ls.map(l=>`<div class="let-card" onclick="spkLet('${l[1].split('/')[0]}')"><span class="ar">${l[0]}</span><span class="sub">${l[1]}</span></div>`).join('')
 }
 
 function renderHis(){
   let el=document.getElementById('hisList')
-  if(!his.length){el.innerHTML='<div class="empty-his">جازۋ جوق</div>';return}
+  if(!his.length){el.innerHTML='<div class="empty-his">جازۋ جوق · 暂无记录</div>';return}
   el.innerHTML=his.map(h=>`<div class="his-item"><div class="his-src">${h.s}</div><div class="his-dst">${h.dst}</div><div class="his-time">${h.t}</div></div>`).join('')
 }
 
 function clrHis(){
-  if(!confirm('تازالاۋ?')&&his.length>0)return
+  if(!confirm('تازالاۋ? · 确认清空？')&&his.length>0)return
   his=[]
   localStorage.setItem('qch',JSON.stringify(his))
   renderHis()
@@ -186,7 +232,7 @@ document.getElementById('inp').addEventListener('input',function(){if(this.value
 document.getElementById('inp').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();conv()}})
 
 init()
+initTheme()
 </script>
 </body>
-<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js')</script>
 </html>
