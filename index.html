@@ -1,426 +1,1876 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="kk" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Qazaq Álipbii · 哈萨克字母学习平台</title>
-<meta name="description" content="哈萨克字母学习 - 西里尔文、拉丁文、老哈文互学工具 with dashboard">
 <meta name="theme-color" content="#1a1a2e">
-<link rel="manifest" href="manifest.json">
+<title>QazaqTanu - Қазақ Тілі Үйрену / 哈萨克语学习</title>
+<link rel="manifest" href="data:application/json,{}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥟</text></svg>">
 <style>
-:root{--bg:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--card:rgba(255,255,255,0.06);--card-hover:rgba(255,255,255,0.1);--card-solid:rgba(30,30,55,0.92);--text:#f0f0f0;--text-sec:rgba(255,255,255,0.55);--text-muted:rgba(255,255,255,0.3);--border:rgba(255,255,255,0.07);--shadow:0 8px 32px rgba(0,0,0,0.4);--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--accent:#e91e63;--accent2:#2196f3;--accent3:#4caf50;--accent4:#ffc107;--accent5:#9c27b0;--radius:14px;--radius-sm:8px;--radius-md:12px;--radius-lg:18px;--radius-xl:22px;--font:'Noto Sans','Arial',sans-serif;--font-zh:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;--font-ab:'Noto Naskh Arabic','Traditional Arabic','Scheherazade',serif;--nav-bg:rgba(20,20,40,0.88)}
-[data-theme="light"]{--bg:linear-gradient(135deg,#fce4ec 0%,#f3e5f5 30%,#e8eaf6 70%,#e0f7fa 100%);--card:rgba(255,255,255,0.65);--card-hover:rgba(255,255,255,0.85);--card-solid:#fff;--text:#2d2d2d;--text-sec:#666;--text-muted:#aaa;--border:rgba(0,0,0,0.06);--shadow:0 4px 20px rgba(0,0,0,0.07);--shadow-sm:0 2px 6px rgba(0,0,0,0.04);--accent:#c2185b;--accent2:#1565c0;--accent3:#2e7d32;--accent4:#f57f17;--accent5:#7b1fa2;--nav-bg:rgba(255,255,255,0.78)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(--text);transition:all .3s;overflow-x:hidden;padding-bottom:70px}
-.theme-btn{position:fixed;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);backdrop-filter:blur(8px);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--text);transition:all .2s;z-index:10}
-.theme-btn:hover{background:var(--card-hover);transform:rotate(20deg)}
-
-/* === Welcome Screen === */
-.welcome{max-width:640px;width:100%;margin:0 auto;text-align:center;padding:40px 20px}
-.logo{font-size:48px;margin-bottom:4px}
-h1{font-size:32px;font-weight:900;letter-spacing:-.5px;margin-bottom:4px}
-h1 span{background:linear-gradient(135deg,var(--accent),var(--accent5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sub{font-size:14px;color:var(--text-sec);margin-bottom:6px;direction:rtl}
-.tag{font-size:12px;color:var(--text-muted);margin-bottom:24px;letter-spacing:1px}
-.q{font-size:17px;font-weight:700;margin-bottom:16px;color:var(--text)}
-.cards{display:flex;flex-direction:column;gap:10px}
-.card{background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);text-align:left;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
-.card:hover{background:var(--card-hover);transform:translateX(6px);box-shadow:var(--shadow)}
-.card:active{transform:scale(.97)}
-.card .c-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.card .c-body{flex:1;min-width:0}
-.card .c-body h3{font-size:15px;font-weight:700;line-height:1.3}
-.card .c-body p{font-size:12px;color:var(--text-sec);margin-top:2px;line-height:1.3}
-.card .c-arrow{font-size:16px;opacity:0;transition:all .3s;color:var(--text-muted)}
-.card:hover .c-arrow{opacity:1;transform:translateX(4px)}
-.type1 .c-icon{background:linear-gradient(135deg,var(--accent),#c2185b)}
-.type2 .c-icon{background:linear-gradient(135deg,var(--accent2),#1565c0);font-family:var(--font-ab);font-size:18px}
-.type3 .c-icon{background:linear-gradient(135deg,var(--accent3),#2e7d32)}
-.type4 .c-icon{background:linear-gradient(135deg,var(--accent4),#f57f17)}
-.footer{color:var(--text-muted);font-size:11px;margin-top:18px;opacity:.5}
-
-/* === Dashboard Screen === */
-.dashboard{display:none;max-width:640px;width:100%;margin:0 auto;padding:20px 16px 80px}
-.dash-header{text-align:center;margin-bottom:20px}
-.dash-emoji{font-size:40px;margin-bottom:4px}
-.dash-title{font-size:22px;font-weight:900}
-.dash-sub{font-size:12px;color:var(--text-sec);margin-top:2px}
-.dash-type-badge{display:inline-block;margin-top:6px;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;background:var(--card);border:1px solid var(--border);color:var(--text-sec)}
-.dash-type-badge .chg{color:var(--accent);cursor:pointer;margin-left:6px;text-decoration:underline}
-
-/* Stats row */
-.dash-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px}
-.dash-stat{background:var(--card);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 10px;text-align:center;transition:all .2s}
-.dash-stat:hover{background:var(--card-hover);transform:translateY(-2px)}
-.dash-stat .num{font-size:24px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.dash-stat .lbl{font-size:10px;color:var(--text-muted);margin-top:2px}
-.dash-stat .subtxt{font-size:10px;color:var(--text-sec);margin-top:1px}
-.dash-stat.fire .num{-webkit-text-fill-color:initial;color:var(--accent4)}
-
-/* Progress bar */
-.progress-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:16px}
-.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text-sec);margin-bottom:6px}
-.progress-bar{height:8px;background:var(--border);border-radius:10px;overflow:hidden}
-.progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent5));transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
-
-/* Learning path */
-.path-card{background:var(--card-solid);border-radius:var(--radius-xl);padding:20px 18px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:16px}
-.path-title{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:6px}
-.path-steps{display:flex;flex-direction:column;gap:8px}
-.path-step{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;cursor:pointer;transition:all .25s;text-decoration:none;color:var(--text)}
-.path-step:hover{background:var(--card-hover);transform:translateX(4px);border-color:var(--accent)}
-.path-step:active{transform:scale(.98)}
-.path-step .step-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent5));color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
-.path-step .step-num.done{background:var(--accent3)}
-.path-step .step-body{flex:1}
-.path-step .step-body h4{font-size:13px;font-weight:700}
-.path-step .step-body p{font-size:11px;color:var(--text-sec);margin-top:1px}
-.path-step .step-arrow{font-size:14px;color:var(--text-muted)}
-
-/* Bottom Nav */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:8px 0;padding-bottom:max(8px,env(safe-area-inset-bottom))}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;color:var(--text-muted);font-size:10px;cursor:pointer;padding:4px 12px;transition:all .15s;font-family:var(--font-zh);text-decoration:none}
-.nav-item .nav-icon{font-size:18px;line-height:1}
-.nav-item.active{color:var(--accent)}
-.nav-item:hover{color:var(--text-sec)}
-
-/* Quick actions */
-.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.quick-btn{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px;text-align:center;cursor:pointer;transition:all .2s;text-decoration:none;color:var(--text)}
-.quick-btn:hover{background:var(--card-hover);transform:translateY(-2px);box-shadow:var(--shadow)}
-.quick-btn .q-icon{font-size:22px}
-.quick-btn .q-label{font-size:12px;font-weight:600;margin-top:4px}
-.quick-btn .q-sub{font-size:10px;color:var(--text-muted);margin-top:1px}
-
-@media(max-width:500px){
-  .welcome{padding:24px 16px}
-  .logo{font-size:36px}h1{font-size:24px}.card{padding:14px}.card .c-icon{width:38px;height:38px;font-size:17px}
-  .dash-stats{grid-template-columns:1fr 1fr 1fr;gap:6px}
-  .dash-stat{padding:10px 6px}.dash-stat .num{font-size:20px}
-  .quick-actions{grid-template-columns:1fr 1fr}
-  .path-step{padding:10px 12px}
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg1:#0f0f1e;--bg2:#1a1a2e;--bg3:#242440;--text:#e0e0f0;--text2:#a0a0c0;
+  --card:rgba(255,255,255,0.04);--card-hover:rgba(255,255,255,0.08);
+  --glass:rgba(255,255,255,0.05);--glass-border:rgba(255,255,255,0.1);
+  --primary:#6c63ff;--primary2:#5a52d5;--accent:#ff6b6b;--gold:#ffd700;
+  --green:#4ecdc4;--orange:#ff9f43;--pink:#ff6b9d;--radius:14px;
+  --shadow:0 8px 32px rgba(0,0,0,0.3);--blur:12px;
+  --font-sm:14px;--font-md:16px;--font-lg:18px;
+  --zh:#ff6b6b;--cyr:#6c63ff;--arab:#4ecdc4;--lat:#ff9f43;
 }
-@media(max-width:380px){
-  .dash-stats{grid-template-columns:1fr 1fr}
+.light{--bg1:#f0f0f8;--bg2:#ffffff;--bg3:#e8e8f0;--text:#1a1a2e;--text2:#666680;
+  --card:rgba(0,0,0,0.03);--card-hover:rgba(0,0,0,0.06);
+  --glass:rgba(255,255,255,0.7);--glass-border:rgba(0,0,0,0.1);
+  --shadow:0 8px 32px rgba(0,0,0,0.1);}
+.font-sm{--font-sm:13px;--font-md:14px;--font-lg:16px}
+.font-lg{--font-sm:16px;--font-md:18px;--font-lg:20px}
+html{font-size:var(--font-md);scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--text);
+  min-height:100vh;line-height:1.6;overflow-x:hidden}
+a{color:var(--primary);text-decoration:none}
+img{max-width:100%}
+button{cursor:pointer;border:none;outline:none;font-family:inherit;font-size:inherit;
+  min-height:48px;min-width:48px;border-radius:var(--radius);transition:all .2s;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px}
+button:active{transform:scale(0.97)}
+input,textarea,select{font-family:inherit;font-size:inherit;
+  border-radius:var(--radius);border:1px solid var(--glass-border);
+  background:var(--glass);color:var(--text);padding:10px 14px;outline:none;width:100%}
+input:focus,textarea:focus{border-color:var(--primary)}
+::selection{background:var(--primary);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--text2);border-radius:3px}
+
+/* ===== UTILITIES ===== */
+.container{max-width:960px;margin:0 auto;padding:16px}
+.hidden{display:none!important}
+.fade-in{animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes glow{0%,100%{box-shadow:0 0 8px var(--primary)}50%{box-shadow:0 0 20px var(--primary)}}
+.rtl{direction:rtl;text-align:right}
+.ltr{direction:ltr;text-align:left}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;
+  border-radius:20px;font-size:.8em;font-weight:600}
+
+/* ===== HEADER ===== */
+.header{position:sticky;top:0;z-index:100;
+  background:var(--glass);backdrop-filter:blur(var(--blur));
+  -webkit-backdrop-filter:blur(var(--blur));
+  border-bottom:1px solid var(--glass-border);padding:10px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.header-title{font-size:1.2em;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header-actions{display:flex;gap:6px;flex-wrap:wrap}
+.header-actions button{background:var(--card);color:var(--text);border:1px solid var(--glass-border);
+  padding:6px 12px;border-radius:8px;font-size:.85em}
+.header-actions button:hover,.header-actions button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.search-box{display:flex;align-items:center;background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:8px;padding:0 10px;flex:1;min-width:120px;max-width:280px}
+.search-box input{border:none;background:transparent;padding:8px 4px;font-size:.85em}
+.search-box input::placeholder{color:var(--text2)}
+.search-box .icon{color:var(--text2);font-size:.85em}
+
+/* ===== GREETING ===== */
+.greeting{text-align:center;padding:16px 0;animation:fadeIn .6s ease}
+.greeting h2{font-size:1.3em;margin-bottom:4px}
+.greeting p{color:var(--text2);font-size:.9em}
+
+/* ===== HOME BUTTONS ===== */
+.home-btns{display:flex;flex-direction:column;gap:16px;padding:16px 0;max-width:600px;margin:0 auto}
+.home-btn{width:100%;height:80px;border-radius:12px;font-size:1.05em;font-weight:700;
+  padding:12px 24px;color:#fff;border:2px solid transparent;transition:all .25s;
+  position:relative;overflow:hidden;justify-content:center}
+.home-btn::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);pointer-events:none}
+.home-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);border-color:rgba(255,255,255,0.3)}
+.home-btn:active{transform:translateY(0)}
+.home-btn.zh-cyr{background:linear-gradient(135deg,#ff6b6b,#ee5a24)}
+.home-btn.arab-cyr{background:linear-gradient(135deg,#4ecdc4,#2ecc71)}
+.home-btn.zh-arab{background:linear-gradient(135deg,#ff9f43,#e67e22)}
+.home-btn.cyr-lat{background:linear-gradient(135deg,#6c63ff,#5a52d5)}
+.home-btn .sub{display:block;font-size:.65em;font-weight:400;opacity:.85;margin-top:2px}
+
+/* ===== TAB NAV ===== */
+.tab-bar{display:flex;gap:8px;padding:12px 0;flex-wrap:wrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-bar button{background:var(--card);color:var(--text2);border:1px solid var(--glass-border);
+  padding:10px 18px;font-size:.9em;white-space:nowrap;flex-shrink:0}
+.tab-bar button:hover{background:var(--card-hover);color:var(--text)}
+.tab-bar button.active{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:600}
+
+/* ===== BACK BUTTON ===== */
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
+  background:var(--card);color:var(--text);border:1px solid var(--glass-border);
+  border-radius:8px;font-size:.9em;margin:8px 0}
+.back-btn:hover{background:var(--card-hover)}
+
+/* ===== SECTION ===== */
+.section{animation:fadeIn .35s ease;padding:8px 0}
+.section-title{font-size:1.2em;font-weight:700;margin-bottom:16px;padding-bottom:8px;
+  border-bottom:2px solid var(--glass-border)}
+
+/* ===== CARD ===== */
+.card{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);
+  padding:20px;margin-bottom:16px;transition:all .2s}
+.card:hover{background:var(--card-hover)}
+.card.glass{background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* ===== ALPHABET ===== */
+.alphabet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.letter-card{border-radius:var(--radius);padding:20px;background:var(--card);
+  border:1px solid var(--glass-border);transition:all .2s}
+.letter-card:hover{background:var(--card-hover);transform:translateY(-2px)}
+.letter-card .letter-display{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.letter-card .letter-main{font-size:2.4em;font-weight:800;color:var(--primary)}
+.letter-card .letter-hand{font-size:1.6em;opacity:.7;font-style:italic}
+.letter-card .letter-ipa{font-size:.85em;color:var(--text2);background:var(--glass);
+  padding:2px 10px;border-radius:6px}
+.letter-card .mnemonic{font-size:.85em;color:var(--accent);margin-bottom:10px;padding:6px 10px;
+  background:rgba(255,107,107,0.1);border-radius:8px;border-left:3px solid var(--accent)}
+.letter-card .examples{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.letter-card .examples .ex{background:var(--glass);padding:4px 10px;border-radius:6px;font-size:.85em}
+.letter-card .examples .ex .meaning{font-size:.75em;color:var(--text2);display:block}
+.letter-card .sentence{background:var(--glass);padding:10px 14px;border-radius:8px;font-size:.88em;margin-bottom:8px;
+  border-left:3px solid var(--green)}
+.letter-card .tip{font-size:.8em;color:var(--orange);padding:6px 10px;
+  background:rgba(255,159,67,0.1);border-radius:8px;border-left:3px solid var(--orange)}
+.letter-card .source{font-size:.75em;color:var(--text2);margin-top:8px;text-align:right}
+
+/* ===== TRANSLITERATION TOOL ===== */
+.translit-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.translit-tabs button{padding:8px 14px;font-size:.85em;background:var(--card);color:var(--text2);
+  border:1px solid var(--glass-border);border-radius:8px}
+.translit-tabs button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.translit-area{display:flex;flex-direction:column;gap:12px}
+.translit-row{display:flex;gap:8px;align-items:stretch}
+.translit-row textarea{flex:1;min-height:100px;resize:vertical;padding:12px;font-size:1.05em;line-height:1.5}
+.translit-actions{display:flex;gap:8px;flex-wrap:wrap}
+.translit-actions button{font-size:.85em;padding:8px 14px;background:var(--card);color:var(--text);
+  border:1px solid var(--glass-border)}
+.translit-actions button.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.translit-actions button:hover{opacity:.85}
+.translit-actions button.danger{background:var(--accent);color:#fff}
+.highlight-wrap{background:var(--glass);border-radius:8px;padding:12px;margin-top:8px;
+  line-height:2;font-size:1em;word-break:break-all}
+.highlight-wrap .hl-src{color:var(--primary)}
+.highlight-wrap .hl-dst{color:var(--green)}
+.highlight-wrap .hl-pair{display:inline-block;margin:2px 4px;padding:2px 6px;
+  background:rgba(108,99,255,0.1);border-radius:4px;border-bottom:2px solid var(--primary)}
+.error-msg{background:rgba(255,155,0,0.15);color:var(--orange);padding:10px;border-radius:8px;
+  font-size:.85em;margin-top:8px;border:1px solid rgba(255,155,0,0.3)}
+.error-msg::before{content:'⚠️ '}
+.history-list{max-height:200px;overflow-y:auto;margin-top:8px}
+.history-list .h-item{padding:8px;border-bottom:1px solid var(--glass-border);font-size:.85em;
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.history-list .h-item:hover{background:var(--card-hover)}
+
+/* ===== PRACTICE ===== */
+.practice-card{padding:24px;text-align:center}
+.practice-card .q-text{font-size:1.8em;font-weight:700;margin-bottom:16px;min-height:60px}
+.practice-card .options{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:400px;margin:0 auto}
+.practice-card .options button{padding:14px;font-size:1.1em;background:var(--card);color:var(--text);
+  border:2px solid var(--glass-border);border-radius:var(--radius);font-weight:500}
+.practice-card .options button:hover{border-color:var(--primary)}
+.practice-card .options button.correct{border-color:var(--green);background:rgba(78,205,196,0.15);color:var(--green)}
+.practice-card .options button.wrong{border-color:var(--accent);background:rgba(255,107,107,0.15);color:var(--accent)}
+.practice-card .progress{display:flex;gap:4px;justify-content:center;margin-bottom:16px}
+.practice-card .progress .dot{width:12px;height:12px;border-radius:50%;background:var(--glass-border)}
+.practice-card .progress .dot.done{background:var(--green)}
+.practice-card .progress .dot.wrong{background:var(--accent)}
+.practice-card .progress .dot.current{background:var(--primary);animation:pulse 1s infinite}
+.practice-card .result{font-size:1.2em;font-weight:700;margin:12px 0}
+.practice-card .fill-input{display:flex;gap:8px;justify-content:center;margin:16px 0}
+.practice-card .fill-input input{max-width:200px;text-align:center;font-size:1.2em;padding:12px}
+.practice-card .fill-input button{background:var(--primary);color:#fff;padding:12px 24px}
+
+/* ===== ERROR BOOK ===== */
+.error-book .e-item{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);
+  padding:14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.error-book .e-item .e-count{background:var(--accent);color:#fff;border-radius:50%;
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.8em;font-weight:700}
+
+/* ===== PHRASES ===== */
+.phrase-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.phrase-cats button{padding:6px 14px;font-size:.82em;background:var(--card);color:var(--text2);
+  border:1px solid var(--glass-border);border-radius:20px;white-space:nowrap}
+.phrase-cats button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.phrase-list{display:grid;gap:8px}
+.phrase-item{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);
+  padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.phrase-item .kk-text{font-size:1.05em;font-weight:500}
+.phrase-item .zh-text{font-size:.85em;color:var(--text2)}
+.phrase-item .fav-btn{font-size:1.2em;background:none;min-width:36px;min-height:36px;padding:0;
+  color:var(--text2);border-radius:50%}
+.phrase-item .fav-btn.active{color:var(--gold)}
+
+/* ===== LEARNING PLAN ===== */
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.plan-day{background:var(--card);border:1px solid var(--glass-border);border-radius:var(--radius);
+  padding:16px;position:relative;transition:all .2s}
+.plan-day.locked{opacity:.45;pointer-events:none}
+.plan-day.completed{border-color:var(--green)}
+.plan-day.current{border-color:var(--primary);animation:glow 2s infinite}
+.plan-day .day-num{font-size:1.5em;font-weight:800;color:var(--primary);margin-bottom:4px}
+.plan-day .day-title{font-weight:600;margin-bottom:6px}
+.plan-day .day-task{font-size:.85em;color:var(--text2)}
+.plan-day .day-badge{position:absolute;top:10px;right:10px;font-size:.75em;
+  background:var(--green);color:#fff;padding:2px 8px;border-radius:10px}
+.plan-day .day-lock{position:absolute;top:10px;right:10px;font-size:1em;color:var(--text2)}
+.day-quote{background:var(--glass);border-radius:8px;padding:12px;margin-top:12px;
+  border-left:3px solid var(--gold);font-size:.88em}
+.day-quote .dq-text{font-style:italic}
+.day-quote .dq-trans{color:var(--text2);font-size:.9em;margin-top:4px}
+.day-quote .dq-scene{font-size:.8em;color:var(--green);margin-top:4px}
+
+/* ===== ACHIEVEMENTS ===== */
+.achieve-grid{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.achieve-item{width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;font-size:.7em;font-weight:600;
+  background:var(--card);border:2px solid var(--glass-border);color:var(--text2);gap:2px;
+  transition:all .2s}
+.achieve-item.unlocked{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,0.1)}
+.achieve-item .ach-emoji{font-size:1.5em}
+
+/* ===== DICTATION ===== */
+.dictation-area{text-align:center}
+.dict-play{font-size:2em;width:80px;height:80px;border-radius:50%;background:var(--primary);
+  color:#fff;margin:16px auto;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;cursor:pointer;border:none;font-size:1.8em}
+.dict-play:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(108,99,255,0.4)}
+.dict-play:active{transform:scale(0.95)}
+.dict-input{display:flex;gap:8px;justify-content:center;margin:12px 0}
+.dict-input input{max-width:200px;text-align:center;font-size:1.2em}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;
+  padding:12px 24px;border-radius:var(--radius);background:var(--bg3);color:var(--text);
+  border:1px solid var(--glass-border);box-shadow:var(--shadow);
+  animation:fadeIn .3s ease;font-size:.9em;max-width:90vw;text-align:center}
+.toast.success{border-color:var(--green)}.toast.error{border-color:var(--accent)}.toast.info{border-color:var(--primary)}
+
+/* ===== BATCH UPLOAD ===== */
+.batch-zone{border:2px dashed var(--glass-border);border-radius:var(--radius);padding:24px;
+  text-align:center;cursor:pointer;transition:all .2s;margin:8px 0}
+.batch-zone:hover,.batch-zone.dragover{border-color:var(--primary);background:var(--card-hover)}
+.batch-zone input{display:none}
+
+/* SVG WRITING ANIMATION */
+.svg-write{width:200px;height:80px;margin:8px auto;display:block}
+.svg-write path{stroke-dasharray:1000;stroke-dashoffset:1000;animation:writeAnim 3s ease forwards}
+@keyframes writeAnim{to{stroke-dashoffset:0}}
+
+/* ===== RTL OVERRIDES ===== */
+.rtl .letter-card{text-align:right}
+.rtl .letter-card .letter-display{flex-direction:row-reverse}
+.rtl .letter-card .sentence{border-left:none;border-right:3px solid var(--green)}
+.rtl .letter-card .mnemonic{border-left:none;border-right:3px solid var(--accent)}
+.rtl .letter-card .tip{border-left:none;border-right:3px solid var(--orange)}
+
+/* ===== SPECIAL LETTERS SECTION ===== */
+.special-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.special-card{border-radius:var(--radius);padding:16px;background:var(--card);
+  border:1px solid var(--glass-border);transition:all .2s}
+.special-card:hover{background:var(--card-hover)}
+.special-card .sc-title{font-weight:700;font-size:1.1em;margin-bottom:6px;color:var(--primary)}
+.special-card .sc-compare{display:flex;gap:16px;align-items:center;margin:10px 0;flex-wrap:wrap}
+.special-card .sc-compare span{font-size:1.8em;font-weight:700}
+.special-card .sc-note{font-size:.85em;color:var(--text2);padding:6px 10px;
+  background:rgba(255,215,0,0.1);border-radius:8px;border-left:3px solid var(--gold)}
+
+/* ===== EXPORT BUTTON ===== */
+.export-btn{background:var(--card);color:var(--text);border:1px solid var(--glass-border);
+  padding:8px 16px;border-radius:8px;font-size:.85em;display:inline-flex;align-items:center;gap:6px}
+.export-btn:hover{background:var(--card-hover)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .container{padding:10px}
+  .home-btn{height:70px;font-size:.95em;padding:10px 16px}
+  .home-btn .sub{font-size:.6em}
+  .alphabet-grid{grid-template-columns:1fr}
+  .practice-card .options{grid-template-columns:1fr}
+  .header-inner{flex-direction:column;gap:6px}
+  .search-box{max-width:100%}
+  .tab-bar button{padding:8px 12px;font-size:.82em}
+  .letter-card .letter-main{font-size:2em}
+  .plan-grid{grid-template-columns:1fr}
+  .phrase-item{flex-wrap:wrap}
+  .translit-row{flex-direction:column}
+  .translit-row textarea{min-height:80px}
+  .special-grid{grid-template-columns:1fr}
 }
+
+/* ===== LOADING ===== */
+.loading{text-align:center;padding:40px;color:var(--text2)}
+.loading::after{content:'...';animation:dots 1.5s steps(4,end) infinite}
+@keyframes dots{0%{content:''}25%{content:'.'}50%{content:'..'}75%{content:'...'}}
+
+/* ===== PRINT ===== */
+@media print{body{background:#fff;color:#000}.header{position:static}.card,.letter-card{break-inside:avoid}}
 </style>
 </head>
 <body>
-<button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀️</button>
 
-<!-- === Welcome Screen === -->
-<div class="welcome" id="welcomeScreen">
-  <div class="logo">📖</div>
-  <h1><span>Qazaq Álipbii</span></h1>
-  <p class="sub">قازاق ٵلىپبئى</p>
-  <p class="tag">✦ 字母学习平台 ✦</p>
-  <p class="q">Сіз кімсіз? · 您是哪类学习者？</p>
-  <div class="cards">
-    <div class="card type1" data-type="1" data-href="cyrillic.html" onclick="selectType(1,'cyrillic.html','🀄')">
-      <div class="c-icon">🀄</div>
-      <div class="c-body">
-        <h3>汉语 → 西里尔文</h3>
-        <p>会普通话，想学习哈萨克西里尔字母 · Қытай тілінен Кирилге</p>
-      </div>
-      <span class="c-arrow">→</span>
-    </div>
-    <div class="card type2" data-type="2" data-href="arabic-to-cyrillic.html" onclick="selectType(2,'arabic-to-cyrillic.html','ع')">
-      <div class="c-icon">ع</div>
-      <div class="c-body">
-        <h3 style="direction:rtl">قازاقشا → كيريل</h3>
-        <p>会老哈文（阿拉伯哈文），想学西里尔文 · كونە جازۋدان كيريلگە</p>
-      </div>
-      <span class="c-arrow">→</span>
-    </div>
-    <div class="card type3" data-type="3" data-href="learn-kazakh.html" onclick="selectType(3,'learn-kazakh.html','🌏')">
-      <div class="c-icon">🌏</div>
-      <div class="c-body">
-        <h3>汉语 → 老哈文</h3>
-        <p>会普通话，想学习老哈文（阿拉伯字母）</p>
-      </div>
-      <span class="c-arrow">→</span>
-    </div>
-    <div class="card type4" data-type="4" data-href="latin.html" onclick="selectType(4,'latin.html','📝')">
-      <div class="c-icon">📝</div>
-      <div class="c-body">
-        <h3>Кирил → Latin</h3>
-        <p>会西里尔文，想学习拉丁字母 · كيريلدەن لاتىنعا</p>
-      </div>
-      <span class="c-arrow">→</span>
-    </div>
-  </div>
-  <div class="footer">🌸 Бауырсақ · 2026</div>
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+<div class="container header-inner">
+<div class="header-title">🥟 QazaqTanu</div>
+<div class="search-box">
+<span class="icon">🔍</span>
+<input type="text" id="globalSearch" placeholder="搜索字母、词汇..." oninput="doGlobalSearch(this.value)">
+</div>
+<div class="header-actions">
+<button onclick="toggleTheme()" id="themeBtn" title="切换主题">🌙</button>
+<button onclick="cycleFontSize()" id="fontBtn" title="字体大小">A</button>
+</div>
+</div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="container" id="app">
+
+<!-- Greeting -->
+<div class="greeting" id="greeting">
+<h2 id="greetingText">🌅 你好！今天学哈萨克语吧</h2>
+<p>Қазақ тілін үйренуге қош келдіңіз! / 欢迎学习哈萨克语！</p>
 </div>
 
-<!-- === Dashboard Screen === -->
-<div class="dashboard" id="dashboardScreen">
-  <div class="dash-header">
-    <div class="dash-emoji" id="dashEmoji">📖</div>
-    <div class="dash-title">Қош келдіңіз!</div>
-    <div class="dash-sub" id="dashSubtitle">哈萨克字母学习 · 欢迎回来</div>
-    <div class="dash-type-badge" id="dashBadge">🀄 汉语 → 西里尔文 <span class="chg" onclick="goHome()">[更换]</span></div>
-  </div>
-
-  <!-- Stats -->
-  <div class="dash-stats">
-    <div class="dash-stat">
-      <div class="num" id="dashLearned">0</div>
-      <div class="lbl">已学字母</div>
-      <div class="subtxt" id="dashTotal">/ 42 总数</div>
-    </div>
-    <div class="dash-stat fire">
-      <div class="num" id="dashStreak">0</div>
-      <div class="lbl">🔥 连续天数</div>
-    </div>
-    <div class="dash-stat">
-      <div class="num" id="dashQuiz">0</div>
-      <div class="lbl">🎯 测验分数</div>
-    </div>
-  </div>
-
-  <!-- Progress bar -->
-  <div class="progress-wrap">
-    <div class="progress-label">
-      <span>📚 Оқу барысы · 学习进度</span>
-      <span id="progressText">0%</span>
-    </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-  </div>
-
-  <!-- Quick actions -->
-  <div class="quick-actions">
-    <a class="quick-btn" id="quickConverter" href="converter.html">
-      <div class="q-icon">🔄</div>
-      <div class="q-label">字母转换器</div>
-      <div class="q-sub">西里尔 ↔ 拉丁 ↔ 阿拉伯</div>
-    </a>
-    <div class="quick-btn" onclick="resetAll()">
-      <div class="q-icon">↺</div>
-      <div class="q-label">重置进度</div>
-      <div class="q-sub">清除所有学习数据</div>
-    </div>
-  </div>
-
-  <!-- Learning path -->
-  <div class="path-card">
-    <div class="path-title">🧭 Бүгінгі жол · 今日推荐学习路径</div>
-    <div class="path-steps">
-      <div class="path-step" id="step1" onclick="goToStep(1)">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h4>🔴 Дауыстылар · 元音字母</h4>
-          <p>先学9个元音，打好发音基础</p>
-        </div>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="path-step" id="step2" onclick="goToStep(2)">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h4>🌿 Дауыссыздар · 辅音字母</h4>
-          <p>学习辅音，特别是哈语独有的9个字母</p>
-        </div>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="path-step" id="step3" onclick="goToStep(3)">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h4>📖 Сөздер · 常用单词</h4>
-          <p>用单词巩固字母记忆</p>
-        </div>
-        <span class="step-arrow">→</span>
-      </div>
-      <div class="path-step" id="step4" onclick="goToStep(4)">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <h4>🎯 Тест · 测验</h4>
-          <p>听力测试，检验学习成果</p>
-        </div>
-        <span class="step-arrow">→</span>
-      </div>
-    </div>
-  </div>
+<!-- ===== HOME PAGE ===== -->
+<section id="page-home" class="section">
+<div class="home-btns">
+<button class="home-btn zh-cyr" onclick="navigate('zh-cyrillic')">
+🇨🇳 我会普通话，想学西里尔哈萨克文
+<span class="sub">Мен қытайша сөйлеймін, кириллица үйренгім келеді</span>
+</button>
+<button class="home-btn arab-cyr" onclick="navigate('arabic-cyrillic')">
+🇰🇿 ەرەكشە ەرىپتىمەن جازا الامىن، كيريليتسا ۇيرەنەم
+<span class="sub">Мен араб жазуымен жаза аламын, кириллица үйренем</span>
+</button>
+<button class="home-btn zh-arab" onclick="navigate('zh-arabic')">
+🇨🇳 我会普通话，想学老哈文（阿拉伯字母）
+<span class="sub">Мен қытайша сөйлеймін, қазақ араб жазбасын үйренгім келеді</span>
+</button>
+<button class="home-btn cyr-lat" onclick="navigate('cyrillic-latin')">
+🇰🇿 Кириллица жазамын، لاتىن ءارىپتەرىن ۇيرەنەم
+<span class="sub">Кириллица жазамын, латын әріптерін үйренем</span>
+</button>
 </div>
+</section>
 
-<!-- Bottom Nav -->
-<div class="bottom-nav" id="bottomNav" style="display:none">
-  <button class="nav-item active" onclick="showDashboard()">
-    <span class="nav-icon">🏠</span>
-    Басты бет
-  </button>
-  <a class="nav-item" id="navLearn" href="#">
-    <span class="nav-icon">📚</span>
-    Оқу
-  </a>
-  <button class="nav-item" onclick="toggleQuizDash()">
-    <span class="nav-icon">🎯</span>
-    Тест
-  </button>
-  <button class="nav-item" onclick="showStatsDash()">
-    <span class="nav-icon">📊</span>
-    Стат
-  </button>
+<!-- ===== PAGE: ZH-CYRILLIC ===== -->
+<section id="page-zh-cyrillic" class="section hidden">
+<button class="back-btn" onclick="navigate('home')">← 返回首页</button>
+<div class="tab-bar">
+<button class="active" data-page="zh-cyr" data-tab="alphabet" onclick="switchTab('zh-cyr','alphabet')">🔤 字母表</button>
+<button data-page="zh-cyr" data-tab="translit" onclick="switchTab('zh-cyr','translit')">🔄 转写工具</button>
+<button data-page="zh-cyr" data-tab="practice" onclick="switchTab('zh-cyr','practice')">📝 练习</button>
+<button data-page="zh-cyr" data-tab="plan" onclick="switchTab('zh-cyr','plan')">📅 学习计划</button>
+<button data-page="zh-cyr" data-tab="phrases" onclick="switchTab('zh-cyr','phrases')">💬 常用语</button>
 </div>
+<div id="zh-cyr-alphabet" class="section"></div>
+<div id="zh-cyr-translit" class="section hidden"></div>
+<div id="zh-cyr-practice" class="section hidden"></div>
+<div id="zh-cyr-plan" class="section hidden"></div>
+<div id="zh-cyr-phrases" class="section hidden"></div>
+</section>
+
+<!-- ===== PAGE: ARABIC-CYRILLIC ===== -->
+<section id="page-arabic-cyrillic" class="section hidden" dir="rtl">
+<button class="back-btn" onclick="navigate('home')">← басты бетке қайту</button>
+<div class="tab-bar">
+<button class="active" data-page="arab-cyr" data-tab="alphabet" onclick="switchTab('arab-cyr','alphabet')">🔤 ءالىپبي</button>
+<button data-page="arab-cyr" data-tab="translit" onclick="switchTab('arab-cyr','translit')">🔄 اۋدارۋ قۇرالى</button>
+<button data-page="arab-cyr" data-tab="practice" onclick="switchTab('arab-cyr','practice')">📝 جاتتىعۋ</button>
+<button data-page="arab-cyr" data-tab="plan" onclick="switchTab('arab-cyr','plan')">📅 وقۋ جوسپارى</button>
+<button data-page="arab-cyr" data-tab="phrases" onclick="switchTab('arab-cyr','phrases')">💬 سويلەم</button>
+</div>
+<div id="arab-cyr-alphabet" class="section"></div>
+<div id="arab-cyr-translit" class="section hidden"></div>
+<div id="arab-cyr-practice" class="section hidden"></div>
+<div id="arab-cyr-plan" class="section hidden"></div>
+<div id="arab-cyr-phrases" class="section hidden"></div>
+</section>
+
+<!-- ===== PAGE: ZH-ARABIC ===== -->
+<section id="page-zh-arabic" class="section hidden" dir="rtl">
+<button class="back-btn" onclick="navigate('home')">← 返回首页</button>
+<div class="tab-bar">
+<button class="active" data-page="zh-arab" data-tab="alphabet" onclick="switchTab('zh-arab','alphabet')">🔤 حارىپتەر كەستەسى</button>
+<button data-page="zh-arab" data-tab="translit" onclick="switchTab('zh-arab','translit')">🔄 اۋدارۋ قۇرالى</button>
+<button data-page="zh-arab" data-tab="practice" onclick="switchTab('zh-arab','practice')">📝 جاتتىعۋ</button>
+<button data-page="zh-arab" data-tab="plan" onclick="switchTab('zh-arab','plan')">📅 وقۋ جوسپارى</button>
+<button data-page="zh-arab" data-tab="phrases" onclick="switchTab('zh-arab','phrases')">💬 سويلەم</button>
+</div>
+<div id="zh-arab-alphabet" class="section"></div>
+<div id="zh-arab-translit" class="section hidden"></div>
+<div id="zh-arab-practice" class="section hidden"></div>
+<div id="zh-arab-plan" class="section hidden"></div>
+<div id="zh-arab-phrases" class="section hidden"></div>
+</section>
+
+<!-- ===== PAGE: CYRILLIC-LATIN ===== -->
+<section id="page-cyrillic-latin" class="section hidden">
+<button class="back-btn" onclick="navigate('home')">← басты бетке қайту</button>
+<div class="tab-bar">
+<button class="active" data-page="cyr-lat" data-tab="alphabet" onclick="switchTab('cyr-lat','alphabet')">🔤 Әліпби</button>
+<button data-page="cyr-lat" data-tab="translit" onclick="switchTab('cyr-lat','translit')">🔄 Аудару құралы</button>
+<button data-page="cyr-lat" data-tab="practice" onclick="switchTab('cyr-lat','practice')">📝 Жаттығу</button>
+<button data-page="cyr-lat" data-tab="plan" onclick="switchTab('cyr-lat','plan')">📅 Оқу жоспары</button>
+<button data-page="cyr-lat" data-tab="phrases" onclick="switchTab('cyr-lat','phrases')">💬 Сөйлем</button>
+</div>
+<div id="cyr-lat-alphabet" class="section"></div>
+<div id="cyr-lat-translit" class="section hidden"></div>
+<div id="cyr-lat-practice" class="section hidden"></div>
+<div id="cyr-lat-plan" class="section hidden"></div>
+<div id="cyr-lat-phrases" class="section hidden"></div>
+</section>
+
+</main>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div id="toastContainer"></div>
 
 <script>
-// === Init ===
-function initTheme(){var s=localStorage.getItem('kazakhTheme')||'dark';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='light'?'🌙':'☀️'}
-function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='light'?'🌙':'☀️'}
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+'use strict';
 
-var userType=parseInt(localStorage.getItem('kazakhUserType'))||0;
-var userHref=localStorage.getItem('kazakhUserHref')||'';
-var userIcon=localStorage.getItem('kazakhUserIcon')||'📖';
-var userLabel=localStorage.getItem('kazakhUserLabel')||'';
-var typeNames={1:'🀄 汉语 → 西里尔文',2:'ع قازاقشا → كيريل',3:'🌏 汉语 → 老哈文',4:'📝 Кирил → Latin'};
-var typeHrefs={1:'cyrillic.html',2:'arabic-to-cyrillic.html',3:'learn-kazakh.html',4:'latin.html'};
+/* =====================================================================
+   DATA: Alphabet, Phrases, Learning Plan, Practice Questions
+   ===================================================================== */
 
-function getP(){try{return JSON.parse(localStorage.getItem('kazakhProgress')||'{}')}catch(e){return{}}}
-function getTotalCount(){
-  // Rough counts per page
-  var t={1:42,2:42,3:38,4:33};
-  return t[userType]||42;
+// ---- Cyrillic alphabet data ----
+const CYRILLIC_ALPHABET = [
+  {letter:'А а',hand:'А а',ipa:'/ɑ/',mnemonic:'啊 — 嘴巴张大像"啊"',tip:'不要读成英语"a"的短音',
+    examples:[{word:'Ана',meaning:'妈妈'},{word:'Ата',meaning:'爸爸'},{word:'Алма',meaning:'苹果'}],
+    sentence:{kk:'Ана алма жеді.',zh:'妈妈吃了苹果。'}},
+  {letter:'Ә ә',hand:'Ә ә',ipa:'/æ/',mnemonic:'爱 — 像"爱"的开口音，更短促',
+    tip:'这个字母是哈萨克语特有！中文普通话没有这个音',specialSeries:true,
+    examples:[{word:'Әке',meaning:'父亲'},{word:'Әріп',meaning:'字母'},{word:'Әдемі',meaning:'漂亮'}],
+    sentence:{kk:'Әке мен ана үйде.',zh:'爸爸和妈妈在家里。'}},
+  {letter:'Б б',hand:'Б б',ipa:'/b/',mnemonic:'波 — 同汉语拼音b',
+    examples:[{word:'Бала',meaning:'孩子'},{word:'Балық',meaning:'鱼'},{word:'Батпа',meaning:'步骤'}],
+    sentence:{kk:'Бала мектепке барады.',zh:'孩子去学校。'}},
+  {letter:'В в',hand:'В в',ipa:'/v/',mnemonic:'弗 — 上齿咬下唇',
+    tip:'只在俄语借词中出现，哈萨克本族词很少用',
+    examples:[{word:'Вагон',meaning:'车厢'},{word:'Велосипед',meaning:'自行车'},{word:'Ваза',meaning:'花瓶'}],
+    sentence:{kk:'Велосипед жаңа.',zh:'自行车是新的。'}},
+  {letter:'Г г',hand:'Г г',ipa:'/ɡ/',mnemonic:'哥 — 同汉语拼音g',
+    examples:[{word:'Гүл',meaning:'花'},{word:'Газ',meaning:'气体'},{word:'Гарыш',meaning:'宇宙'}],
+    sentence:{kk:'Гүл өте әдемі.',zh:'花很漂亮。'}},
+  {letter:'Ғ ғ',hand:'Ғ ғ',ipa:'/ʁ/',mnemonic:'哈 — 像法语小舌音，喉咙深处发音',
+    tip:'不要读成g！发音位置在喉咙后部',specialSeries:true,
+    examples:[{word:'Ғалым',meaning:'科学家'},{word:'Ғалам',meaning:'宇宙'},{word:'Ғасыр',meaning:'世纪'}],
+    sentence:{kk:'Ғалым ғаламды зерттейді.',zh:'科学家研究宇宙。'}},
+  {letter:'Д д',hand:'Д д',ipa:'/d/',mnemonic:'得 — 同汉语拼音d',
+    examples:[{word:'Дос',meaning:'朋友'},{word:'Дала',meaning:'草原'},{word:'Дәрі',meaning:'药'}],
+    sentence:{kk:'Досың кім?',zh:'你的朋友是谁？'}},
+  {letter:'Е е',hand:'Е е',ipa:'/je/',mnemonic:'耶 — 发音像"耶"，开头带y音',
+    examples:[{word:'Ел',meaning:'国家'},{word:'Ет',meaning:'肉'},{word:'Есік',meaning:'门'}],
+    sentence:{kk:'Ел тыныштығы зор.',zh:'国家的和平很重要。'}},
+  {letter:'Ё ё',hand:'Ё ё',ipa:'/jo/',mnemonic:'哟 — 同俄语ë，带y音',
+    tip:'主要用于俄语借词',
+    examples:[{word:'Ёлка',meaning:'圣诞树'},{word:'Ёж',meaning:'刺猬'}],
+    sentence:{kk:'Ёлка жасыл.',zh:'圣诞树是绿色的。'}},
+  {letter:'Ж ж',hand:'Ж ж',ipa:'/ʒ/',mnemonic:'日 — 同汉语拼音r但浊化',
+    examples:[{word:'Жол',meaning:'路'},{word:'Жан',meaning:'灵魂'},{word:'Жаз',meaning:'夏天'}],
+    sentence:{kk:'Жазда ыстық.',zh:'夏天很热。'}},
+  {letter:'З з',hand:'З з',ipa:'/z/',mnemonic:'兹 — 同英语z，声带振动',
+    examples:[{word:'Зат',meaning:'物品'},{word:'Заң',meaning:'法律'},{word:'Зауыт',meaning:'工厂'}],
+    sentence:{kk:'Заң маңызды.',zh:'法律很重要。'}},
+  {letter:'И и',hand:'И и',ipa:'/ɪ/',mnemonic:'以 — 比汉语"以"更短更紧',
+    examples:[{word:'Ит',meaning:'狗'},{word:'Ине',meaning:'针'},{word:'Иіс',meaning:'气味'}],
+    sentence:{kk:'Ит үреді.',zh:'狗在叫。'}},
+  {letter:'Й й',hand:'Й й',ipa:'/j/',mnemonic:'衣 — 很短，像英语y',
+    examples:[{word:'Қай',meaning:'哪个'},{word:'Ай',meaning:'月亮'},{word:'Бой',meaning:'身高'}],
+    sentence:{kk:'Бүгін ай әдемі.',zh:'今晚的月亮很美。'}},
+  {letter:'К к',hand:'К к',ipa:'/k/',mnemonic:'科 — 同汉语拼音k',
+    examples:[{word:'Күн',meaning:'太阳/日子'},{word:'Кітап',meaning:'书'},{word:'Көл',meaning:'湖'}],
+    sentence:{kk:'Кітап жақсы.',zh:'书很好。'}},
+  {letter:'Қ қ',hand:'Қ қ',ipa:'/q/',mnemonic:'克 — 韩语ㄱ更靠后的发音',
+    tip:'舌头靠后，比k更深',specialSeries:true,
+    examples:[{word:'Қазақ',meaning:'哈萨克'},{word:'Қала',meaning:'城市'},{word:'Қыз',meaning:'女孩'}],
+    sentence:{kk:'Қазақ тілі — ұлт тілі.',zh:'哈萨克语是民族语言。'}},
+  {letter:'Л л',hand:'Л л',ipa:'/l/',mnemonic:'了 — 同汉语拼音l',
+    examples:[{word:'Лақ',meaning:'山羊羔'},{word:'Лауазым',meaning:'职务'},{word:'Ләззат',meaning:'享受'}],
+    sentence:{kk:'Лақ секіреді.',zh:'山羊羔在跳。'}},
+  {letter:'М м',hand:'М м',ipa:'/m/',mnemonic:'摸 — 同汉语拼音m',
+    examples:[{word:'Мен',meaning:'我'},{word:'Мектеп',meaning:'学校'},{word:'Мал',meaning:'牲畜'}],
+    sentence:{kk:'Мен студентпін.',zh:'我是学生。'}},
+  {letter:'Н н',hand:'Н н',ipa:'/n/',mnemonic:'讷 — 同汉语拼音n',
+    examples:[{word:'Не',meaning:'什么'},{word:'Нан',meaning:'面包'},{word:'Нөмір',meaning:'号码'}],
+    sentence:{kk:'Нан дәмді.',zh:'面包好吃。'}},
+  {letter:'Ң ң',hand:'Ң ң',ipa:'/ŋ/',mnemonic:'嗯 — 同汉语"昂"的尾音ng',
+    tip:'中文有这个音但不在开头！英语sing的ng',specialSeries:true,
+    examples:[{word:'Таң',meaning:'早晨'},{word:'Қаңтар',meaning:'一月'},{word:'Оң',meaning:'右'}],
+    sentence:{kk:'Таң асты.',zh:'天亮了。'}},
+  {letter:'О о',hand:'О о',ipa:'/o/',mnemonic:'哦 — 嘴唇圆拢，像公鸡打鸣',
+    examples:[{word:'Ол',meaning:'他/她/它'},{word:'Орман',meaning:'森林'},{word:'От',meaning:'火'}],
+    sentence:{kk:'Ол мектепте.',zh:'他在学校。'}},
+  {letter:'Ө ө',hand:'Ө ө',ipa:'/œ/',mnemonic:'厄 — 嘴唇收圆发"厄"，像德语ö',
+    tip:'汉语没有这个音，需要练习！',specialSeries:true,
+    examples:[{word:'Өзен',meaning:'河流'},{word:'Өнер',meaning:'艺术'},{word:'Өтірік',meaning:'谎言'}],
+    sentence:{kk:'Өзен терең.',zh:'河流很深。'}},
+  {letter:'П п',hand:'П п',ipa:'/p/',mnemonic:'泼 — 同汉语拼音p',
+    examples:[{word:'Піл',meaning:'大象'},{word:'Пәтер',meaning:'公寓'},{word:'Пайда',meaning:'利益'}],
+    sentence:{kk:'Пәтер кең.',zh:'公寓很宽敞。'}},
+  {letter:'Р р',hand:'Р р',ipa:'/r/',mnemonic:'日 — 舌尖颤音，像意大利语r',
+    tip:'需要练习弹舌！',specialSeries:true,
+    examples:[{word:'Рең',meaning:'脸色'},{word:'Рахмет',meaning:'谢谢'},{word:'Рет',meaning:'次'}],
+    sentence:{kk:'Рахмет, достар!',zh:'谢谢，朋友们！'}},
+  {letter:'С с',hand:'С с',ipa:'/s/',mnemonic:'丝 — 同汉语拼音s',
+    examples:[{word:'Су',meaning:'水'},{word:'Сөз',meaning:'话'},{word:'Сағат',meaning:'小时/钟'}],
+    sentence:{kk:'Суық су.',zh:'冷水。'}},
+  {letter:'Т т',hand:'Т т',ipa:'/t/',mnemonic:'特 — 同汉语拼音t',
+    examples:[{word:'Тіл',meaning:'语言/舌头'},{word:'Тау',meaning:'山'},{word:'Түйе',meaning:'骆驼'}],
+    sentence:{kk:'Тау биік.',zh:'山很高。'}},
+  {letter:'У у',hand:'У у',ipa:'/w/',mnemonic:'乌 — 同汉语"乌"',
+    examples:[{word:'Уақыт',meaning:'时间'},{word:'Ұлт',meaning:'民族'},{word:'Университет',meaning:'大学'}],
+    sentence:{kk:'Уақыт алтыннан қымбат.',zh:'时间比黄金珍贵。'}},
+  {letter:'Ұ ұ',hand:'Ұ ұ',ipa:'/u/',mnemonic:'乌 — 嘴唇收圆，同英语boot的oo',
+    tip:'区别于У，Ұ是真正的u音',specialSeries:true,
+    examples:[{word:'Ұл',meaning:'儿子'},{word:'Ұшақ',meaning:'飞机'},{word:'Ұстаз',meaning:'老师'}],
+    sentence:{kk:'Ұшақ тез ұшады.',zh:'飞机飞得快。'}},
+  {letter:'Ү ү',hand:'Ү ү',ipa:'/y/',mnemonic:'于 — 同汉语ü（淤）',
+    tip:'嘴唇收圆，像吹口哨的嘴型',specialSeries:true,
+    examples:[{word:'Үй',meaning:'房子/家'},{word:'Үлкен',meaning:'大'},{word:'Үстел',meaning:'桌子'}],
+    sentence:{kk:'Үй үлкен.',zh:'房子很大。'}},
+  {letter:'Ф ф',hand:'Ф ф',ipa:'/f/',mnemonic:'佛 — 上齿咬下唇，同英语f',
+    tip:'主要在俄语借词中出现',
+    examples:[{word:'Футбол',meaning:'足球'},{word:'Факт',meaning:'事实'},{word:'Ферма',meaning:'农场'}],
+    sentence:{kk:'Футбол тамаша спорт.',zh:'足球是很好的运动。'}},
+  {letter:'Х х',hand:'Х х',ipa:'/χ/',mnemonic:'喝 — 像汉语"喝"但喉咙更用力',
+    examples:[{word:'Халық',meaning:'人民'},{word:'Хат',meaning:'信'},{word:'Хабар',meaning:'消息'}],
+    sentence:{kk:'Халық бірлігі мықты.',zh:'人民的团结是强大的。'}},
+  {letter:'Һ һ',hand:'Һ һ',ipa:'/h/',mnemonic:'哈 — 像英语的h，轻声呼气',
+    tip:'哈萨克语特有，轻呼一下就好',specialSeries:true,
+    examples:[{word:'Һауа',meaning:'空气'},{word:'Һатта',meaning:'立刻'},{word:'Һикая',meaning:'故事'}],
+    sentence:{kk:'Һауа таза.',zh:'空气很清新。'}},
+  {letter:'Ц ц',hand:'Ц ц',ipa:'/ts/',mnemonic:'次 — 同汉语拼音c',
+    tip:'主要在俄语借词',
+    examples:[{word:'Цирк',meaning:'马戏团'},{word:'Цемент',meaning:'水泥'},{word:'Цифр',meaning:'数字'}],
+    sentence:{kk:'Цирк қызық.',zh:'马戏团很有趣。'}},
+  {letter:'Ч ч',hand:'Ч ч',ipa:'/tʃ/',mnemonic:'吃 — 同汉语拼音ch',
+    tip:'俄语借词中常见',
+    examples:[{word:'Чай',meaning:'茶'},{word:'Чемодан',meaning:'行李箱'},{word:'Чек',meaning:'收据'}],
+    sentence:{kk:'Чай ыстық.',zh:'茶是热的。'}},
+  {letter:'Ш ш',hand:'Ш ш',ipa:'/ʃ/',mnemonic:'是 — 同汉语拼音sh',
+    examples:[{word:'Шай',meaning:'茶'},{word:'Шаш',meaning:'头发'},{word:'Шебер',meaning:'师傅'}],
+    sentence:{kk:'Шай дәмді.',zh:'茶很好喝。'}},
+  {letter:'Щ щ',hand:'Щ щ',ipa:'/ɕ/',mnemonic:'细 — 像汉语"西"但更长',
+    tip:'俄语借词，别和Ш混淆',
+    examples:[{word:'Щетка',meaning:'刷子'},{word:'Щи',meaning:'菜汤'},{word:'Щука',meaning:'梭鱼'}],
+    sentence:{kk:'Щетка тіс тазалайды.',zh:'牙刷用来刷牙。'}},
+  {letter:'Ъ ъ',hand:'Ъ ъ',ipa:'-',mnemonic:'硬音符号 — 不发音，分隔音节',
+    tip:'只在俄语借词中出现',
+    examples:[{word:'Объект',meaning:'物体'},{word:'Субъект',meaning:'主体'}],
+    sentence:{kk:'Объект үлкен.',zh:'物体很大。'}},
+  {letter:'Ы ы',hand:'Ы ы',ipa:'/ɯ/',mnemonic:'厄 — 像汉语"饿"但嘴张开',
+    tip:'舌头后缩，喉咙不圆唇，汉语没有这个音',specialSeries:true,
+    examples:[{word:'Ыстық',meaning:'热'},{word:'Ырыс',meaning:'幸福'},{word:'Ыңғай',meaning:'方向'}],
+    sentence:{kk:'Бүгін ыстық.',zh:'今天很热。'}},
+  {letter:'І і',hand:'І і',ipa:'/i/',mnemonic:'一 — 像汉语"一"但更紧',
+    tip:'和汉语"一"很像，区别是嘴更紧张',specialSeries:true,
+    examples:[{word:'Іні',meaning:'弟弟'},{word:'Із',meaning:'足迹'},{word:'Ірі',meaning:'大的'}],
+    sentence:{kk:'Іні мектепке кетті.',zh:'弟弟去学校了。'}},
+  {letter:'Ь ь',hand:'Ь ь',ipa:'-',mnemonic:'软音符号 — 不发音，软化前面辅音',
+    tip:'只在俄语借词中出现',
+    examples:[{word:'Альбом',meaning:'相册'},{word:'Рельс',meaning:'铁轨'}],
+    sentence:{kk:'Альбом әдемі.',zh:'相册很漂亮。'}},
+  {letter:'Э э',hand:'Э э',ipa:'/e/',mnemonic:'诶 — 同汉语"诶"',
+    tip:'主要在感叹词和借词',
+    examples:[{word:'Эхо',meaning:'回声'},{word:'Энергия',meaning:'能量'},{word:'Экран',meaning:'屏幕'}],
+    sentence:{kk:'Экран үлкен.',zh:'屏幕很大。'}},
+  {letter:'Ю ю',hand:'Ю ю',ipa:'/ju/',mnemonic:'由 — 像汉语"由"',
+    examples:[{word:'Юрист',meaning:'律师'},{word:'Юбилей',meaning:'纪念日'},{word:'Юрта',meaning:'毡房'}],
+    sentence:{kk:'Юрта көшпелі үй.',zh:'毡房是游牧房屋。'}},
+  {letter:'Я я',hand:'Я я',ipa:'/ja/',mnemonic:'呀 — 同汉语"呀"',
+    examples:[{word:'Яблоко',meaning:'苹果'},{word:'Язык',meaning:'语言'},{word:'Ярмарка',meaning:'集市'}],
+    sentence:{kk:'Язык — тіл деген мағына.',zh:'Язык意思是"语言"。'}}
+];
+
+// ---- 9 special letters ----
+const SPECIAL_LETTERS = ['Ә ә','Ғ ғ','Қ қ','Ң ң','Ө ө','Ұ ұ','Ү ү','Һ һ','І і'];
+
+// ---- Arabic alphabet (Kazakh Arabic script) ----
+const ARABIC_ALPHABET = [
+  {letter:'ٵ',forms:'ا ,ٵ ,ـا ,ـٵ',ipa:'/ɑ/',mnemonic:'啊 — 长音',
+    examples:[{word:'انا',meaning:'妈妈'},{word:'اتا',meaning:'爸爸'}],
+    sentence:{kk:'انا الما جەدى.',zh:'妈妈吃了苹果。'}},
+  {letter:'ٶ',forms:'ٶ ,ـٶ ,ٶ ,ـٶ',ipa:'/æ/',mnemonic:'爱 — 短促',
+    examples:[{word:'اكە',meaning:'父亲'},{word:'ارىپ',meaning:'字母'}],
+    sentence:{kk:'اكە مەن انا ۇيدە.',zh:'爸爸和妈妈在家里。'}},
+  {letter:'ب',forms:'ب ,ـب ,ـب ,بـ',ipa:'/b/',mnemonic:'波',
+    examples:[{word:'بالا',meaning:'孩子'},{word:'بالىق',meaning:'鱼'}],
+    sentence:{kk:'بالا مەكتەپكە بارادى.',zh:'孩子去学校。'}},
+  {letter:'ۆ',forms:'ۆ ,ـۆ ,ـۆ ,ۆـ',ipa:'/v/',mnemonic:'弗',
+    examples:[{word:'ۆاگون',meaning:'车厢'}],
+    sentence:{kk:'ۆاگون ۇلكەن.',zh:'车厢很大。'}},
+  {letter:'گ',forms:'گ ,ـگ ,ـگ ,گـ',ipa:'/ɡ/',mnemonic:'哥',
+    examples:[{word:'گۇل',meaning:'花'},{word:'گاز',meaning:'气体'}],
+    sentence:{kk:'گۇل وتە ادەمى.',zh:'花很漂亮。'}},
+  {letter:'ع',forms:'ع ,ـع ,ـع ,عـ',ipa:'/ʁ/',mnemonic:'哈 — 喉咙深处',
+    examples:[{word:'عالىم',meaning:'科学家'},{word:'عالام',meaning:'宇宙'}],
+    sentence:{kk:'عالىم عالامدى زەرتتەيدى.',zh:'科学家研究宇宙。'}},
+  {letter:'د',forms:'د ,ـد ,ـد ,د',ipa:'/d/',mnemonic:'得',
+    examples:[{word:'دوس',meaning:'朋友'},{word:'دالا',meaning:'草原'}],
+    sentence:{kk:'دوسىڭ كىم؟',zh:'你的朋友是谁？'}},
+  {letter:'ە',forms:'ە ,ـە ,ـە ,ە',ipa:'/je/',mnemonic:'耶',
+    examples:[{word:'ەل',meaning:'国家'},{word:'ەت',meaning:'肉'}],
+    sentence:{kk:'ەل تىنىشتىعى زور.',zh:'国家的和平很重要。'}},
+  {letter:'ج',forms:'ج ,ـج ,ـج ,جـ',ipa:'/ʒ/',mnemonic:'日',
+    examples:[{word:'جول',meaning:'路'},{word:'جان',meaning:'灵魂'}],
+    sentence:{kk:'جازدا ىستىق.',zh:'夏天很热。'}},
+  {letter:'ز',forms:'ز ,ـز ,ـز ,ز',ipa:'/z/',mnemonic:'兹',
+    examples:[{word:'زات',meaning:'物品'},{word:'زاڭ',meaning:'法律'}],
+    sentence:{kk:'زاڭ ماڭىزدى.',zh:'法律很重要。'}},
+  {letter:'ي',forms:'ي ,ـي ,ـي ,يـ',ipa:'/j/',mnemonic:'衣',
+    examples:[{word:'قاي',meaning:'哪个'},{word:'اي',meaning:'月亮'}],
+    sentence:{kk:'بۇگىن اي ادەمى.',zh:'今晚的月亮很美。'}},
+  {letter:'ك',forms:'ك ,ـك ,ـك ,كـ',ipa:'/k/',mnemonic:'科',
+    examples:[{word:'كۇن',meaning:'太阳'},{word:'كىتاپ',meaning:'书'}],
+    sentence:{kk:'كىتاپ جاقسى.',zh:'书很好。'}},
+  {letter:'ق',forms:'ق ,ـق ,ـق ,قـ',ipa:'/q/',mnemonic:'克 — 更深',
+    examples:[{word:'قازاق',meaning:'哈萨克'},{word:'قالا',meaning:'城市'}],
+    sentence:{kk:'قازاق تىلى — ۇلت تىلى.',zh:'哈萨克语是民族语言。'}},
+  {letter:'ل',forms:'ل ,ـل ,ـل ,لـ',ipa:'/l/',mnemonic:'了',
+    examples:[{word:'لاق',meaning:'山羊羔'},{word:'لاززات',meaning:'享受'}],
+    sentence:{kk:'لاق سەكىرەدى.',zh:'山羊羔在跳。'}},
+  {letter:'م',forms:'م ,ـم ,ـم ,مـ',ipa:'/m/',mnemonic:'摸',
+    examples:[{word:'مەن',meaning:'我'},{word:'مەكتەپ',meaning:'学校'}],
+    sentence:{kk:'مەن ستۋدەنتپىن.',zh:'我是学生。'}},
+  {letter:'ن',forms:'ن ,ـن ,ـن ,نـ',ipa:'/n/',mnemonic:'讷',
+    examples:[{word:'نە',meaning:'什么'},{word:'نان',meaning:'面包'}],
+    sentence:{kk:'نان دامدى.',zh:'面包好吃。'}},
+  {letter:'ڭ',forms:'ڭ ,ـڭ ,ـڭ ,ڭـ',ipa:'/ŋ/',mnemonic:'嗯 — ng',
+    examples:[{word:'تاڭ',meaning:'早晨'},{word:'قاڭتار',meaning:'一月'}],
+    sentence:{kk:'تاڭ استى.',zh:'天亮了。'}},
+  {letter:'و',forms:'و ,ـو ,ـو ,و',ipa:'/o/',mnemonic:'哦',
+    examples:[{word:'ول',meaning:'他/她'},{word:'ورمان',meaning:'森林'}],
+    sentence:{kk:'ول مەكتەپتە.',zh:'他在学校。'}},
+  {letter:'ءو',forms:'ءو ,ـءو ,ـءو ,ءو',ipa:'/œ/',mnemonic:'厄 — 圆唇',
+    examples:[{word:'ءوزەن',meaning:'河流'},{word:'ونەر',meaning:'艺术'}],
+    sentence:{kk:'ءوزەن تەرەڭ.',zh:'河流很深。'}},
+  {letter:'پ',forms:'پ ,ـپ ,ـپ ,پـ',ipa:'/p/',mnemonic:'泼',
+    examples:[{word:'پىل',meaning:'大象'},{word:'پاتەر',meaning:'公寓'}],
+    sentence:{kk:'پاتەر كەڭ.',zh:'公寓很宽敞。'}},
+  {letter:'ر',forms:'ر ,ـر ,ـر ,ر',ipa:'/r/',mnemonic:'日 — 弹舌',
+    examples:[{word:'راحمەت',meaning:'谢谢'},{word:'رەت',meaning:'次'}],
+    sentence:{kk:'راحمەت، دوستار!',zh:'谢谢，朋友们！'}},
+  {letter:'س',forms:'س ,ـس ,ـس ,سـ',ipa:'/s/',mnemonic:'丝',
+    examples:[{word:'سۋ',meaning:'水'},{word:'سوز',meaning:'话'}],
+    sentence:{kk:'سۋىق سۋ.',zh:'冷水。'}},
+  {letter:'ت',forms:'ت ,ـت ,ـت ,تـ',ipa:'/t/',mnemonic:'特',
+    examples:[{word:'تىل',meaning:'语言'},{word:'تۋ',meaning:'山'}],
+    sentence:{kk:'تۋ بيىك.',zh:'山很高。'}},
+  {letter:'ش',forms:'ش ,ـش ,ـش ,شـ',ipa:'/ʃ/',mnemonic:'是',
+    examples:[{word:'شاي',meaning:'茶'},{word:'شاش',meaning:'头发'}],
+    sentence:{kk:'شاي دامدى.',zh:'茶很好喝。'}},
+  {letter:'ى',forms:'ى ,ـى ,ـى ,ى',ipa:'/ɯ/',mnemonic:'厄',
+    examples:[{word:'ىستىق',meaning:'热'},{word:'ىرىس',meaning:'幸福'}],
+    sentence:{kk:'بۇگىن ىستىق.',zh:'今天很热。'}},
+  {letter:'ۇ',forms:'ۇ ,ـۇ ,ـۇ ,ۇ',ipa:'/u/',mnemonic:'乌',
+    examples:[{word:'ۇل',meaning:'儿子'},{word:'ۇشاق',meaning:'飞机'}],
+    sentence:{kk:'ۇشاق تەز ۇشادى.',zh:'飞机飞得快。'}},
+  {letter:'ءۇ',forms:'ءۇ ,ـءۇ ,ـءۇ ,ءۇ',ipa:'/y/',mnemonic:'于',
+    examples:[{word:'ءۇي',meaning:'家'},{word:'ءۇلكەن',meaning:'大'}],
+    sentence:{kk:'ءۇي ءۇلكەن.',zh:'房子很大。'}},
+  {letter:'ح',forms:'ح ,ـح ,ـح ,حـ',ipa:'/χ/',mnemonic:'喝',
+    examples:[{word:'حالىق',meaning:'人民'},{word:'حات',meaning:'信'}],
+    sentence:{kk:'حالىق بىرلىگى مىقتى.',zh:'人民的团结强大。'}},
+  {letter:'ھ',forms:'ھ ,ـھ ,ـھ ,ھـ',ipa:'/h/',mnemonic:'哈 — 轻呼',
+    examples:[{word:'ھاۋا',meaning:'空气'},{word:'ھيكاي',meaning:'故事'}],
+    sentence:{kk:'ھاۋا تازا.',zh:'空气清新。'}},
+  {letter:'ف',forms:'ف ,ـف ,ـف ,فـ',ipa:'/f/',mnemonic:'佛',
+    examples:[{word:'فۋتبول',meaning:'足球'},{word:'فەرما',meaning:'农场'}],
+    sentence:{kk:'فۋتبول تاماشا سپورت.',zh:'足球是很好的运动。'}}
+];
+
+// ---- Common Kazakh phrases ----
+const PHRASE_CATEGORIES = [
+  {id:'greetings',name:'问候交际',nameKK:'سالمدەسۋ / Сәлемдесу'},
+  {id:'fruits',name:'水果品',nameKK:'جەمىستەر / Жемістер'},
+  {id:'weather',name:'天气',nameKK:'اۋا رايى / Ауа райы'},
+  {id:'weekdays',name:'星期',nameKK:'اپتا كۇندەرى / Апта күндері'},
+  {id:'months',name:'月份',nameKK:'ايلار / Айлар'},
+  {id:'transport',name:'交通工具',nameKK:'كولىك / Көлік'},
+  {id:'subjects',name:'学科课程',nameKK:'پاندەر / Пәндер'},
+  {id:'food',name:'日常饮食',nameKK:'تاعام / Тағам'}
+];
+
+const PHRASES = {
+  greetings:[
+    {kk:'Сәлеметсіз бе',zh:'您好'},
+    {kk:'Сәлем',zh:'你好'},
+    {kk:'Қайырлы таң',zh:'早安'},
+    {kk:'Қайырлы күн',zh:'午安'},
+    {kk:'Қайырлы кеш',zh:'晚安'},
+    {kk:'Сау болыңыз',zh:'再见'},
+    {kk:'Рахмет',zh:'谢谢'},
+    {kk:'Өтінемін',zh:'请/不客气'},
+    {kk:'Кешіріңіз',zh:'对不起/打扰一下'},
+    {kk:'Қалайсыз?',zh:'你好吗？'},
+    {kk:'Жақсымын',zh:'我很好'},
+    {kk:'Сіздің атыңыз кім?',zh:'您叫什么名字？'}
+  ],
+  fruits:[
+    {kk:'Алма',zh:'苹果'},
+    {kk:'Алмұрт',zh:'梨'},
+    {kk:'Банан',zh:'香蕉'},
+    {kk:'Жүзім',zh:'葡萄'},
+    {kk:'Қарбыз',zh:'西瓜'},
+    {kk:'Құлпынай',zh:'草莓'},
+    {kk:'Апельсин',zh:'橙子'},
+    {kk:'Шабдалы',zh:'桃子'},
+    {kk:'Өрік',zh:'杏'},
+    {kk:'Анар',zh:'石榴'},
+    {kk:'Мандарин',zh:'橘子'},
+    {kk:'Лимон',zh:'柠檬'}
+  ],
+  weather:[
+    {kk:'Күн ашық',zh:'晴天'},
+    {kk:'Жаңбыр жауып тұр',zh:'正在下雨'},
+    {kk:'Қар жауып тұр',zh:'正在下雪'},
+    {kk:'Күн бұлтты',zh:'多云'},
+    {kk:'Жел соғып тұр',zh:'正在刮风'},
+    {kk:'Ыстық',zh:'热'},
+    {kk:'Суық',zh:'冷'},
+    {kk:'Жылы',zh:'暖和'},
+    {kk:'Салқын',zh:'凉爽'},
+    {kk:'Боран',zh:'暴风雪'},
+    {kk:'Температура',zh:'温度'},
+    {kk:'Күн күркіреді',zh:'打雷'}
+  ],
+  weekdays:[
+    {kk:'Дүйсенбі',zh:'星期一'},
+    {kk:'Сейсенбі',zh:'星期二'},
+    {kk:'Сәрсенбі',zh:'星期三'},
+    {kk:'Бейсенбі',zh:'星期四'},
+    {kk:'Жұма',zh:'星期五'},
+    {kk:'Сенбі',zh:'星期六'},
+    {kk:'Жексенбі',zh:'星期日'},
+    {kk:'Бүгін',zh:'今天'},
+    {kk:'Ертең',zh:'明天'},
+    {kk:'Кеше',zh:'昨天'},
+    {kk:'Апта',zh:'星期/周'},
+    {kk:'Демалыс',zh:'周末/休息'}
+  ],
+  months:[
+    {kk:'Қаңтар',zh:'一月'},
+    {kk:'Ақпан',zh:'二月'},
+    {kk:'Наурыз',zh:'三月'},
+    {kk:'Сәуір',zh:'四月'},
+    {kk:'Мамыр',zh:'五月'},
+    {kk:'Маусым',zh:'六月'},
+    {kk:'Шілде',zh:'七月'},
+    {kk:'Тамыз',zh:'八月'},
+    {kk:'Қыркүйек',zh:'九月'},
+    {kk:'Қазан',zh:'十月'},
+    {kk:'Қараша',zh:'十一月'},
+    {kk:'Желтоқсан',zh:'十二月'},
+    {kk:'Жыл',zh:'年'},
+    {kk:'Ай',zh:'月'}
+  ],
+  transport:[
+    {kk:'Көлік',zh:'交通工具'},
+    {kk:'Машина/Автомобиль',zh:'汽车'},
+    {kk:'Автобус',zh:'公交车'},
+    {kk:'Пойыз',zh:'火车'},
+    {kk:'Ұшақ',zh:'飞机'},
+    {kk:'Метро',zh:'地铁'},
+    {kk:'Такси',zh:'出租车'},
+    {kk:'Велосипед',zh:'自行车'},
+    {kk:'Мотоцикл',zh:'摩托车'},
+    {kk:'Кеме',zh:'船'},
+    {kk:'Жолаушы',zh:'乘客'},
+    {kk:'Билет',zh:'票'}
+  ],
+  subjects:[
+    {kk:'Химия',zh:'化学'},
+    {kk:'Физика',zh:'物理'},
+    {kk:'Математика',zh:'数学'},
+    {kk:'Биология',zh:'生物'},
+    {kk:'Тарих',zh:'历史'},
+    {kk:'География',zh:'地理'},
+    {kk:'Эдебиет',zh:'文学'},
+    {kk:'Тіл',zh:'语言'},
+    {kk:'Музыка',zh:'音乐'},
+    {kk:'Спорт',zh:'体育'},
+    {kk:'Информатика',zh:'计算机'},
+    {kk:'Университет',zh:'大学'}
+  ],
+  food:[
+    {kk:'Нан',zh:'面包'},
+    {kk:'Сүт',zh:'牛奶'},
+    {kk:'Ет',zh:'肉'},
+    {kk:'Балық',zh:'鱼'},
+    {kk:'Күріш',zh:'米饭'},
+    {kk:'Көкөніс',zh:'蔬菜'},
+    {kk:'Жеміс',zh:'水果'},
+    {kk:'Сорпа',zh:'汤'},
+    {kk:'Бешбармақ',zh:'手抓肉（传统菜）'},
+    {kk:'Қуырдақ',zh:'炒肉'},
+    {kk:'Шай',zh:'茶'},
+    {kk:'Кофе',zh:'咖啡'}
+  ]
+};
+
+// ---- Learning plan (8-day) ----
+const LEARNING_PLAN = [
+  {day:1,title:'元音基础',task:'学А, Ә, Е, О, Ө, Ұ, Ү, Ы, І — 掌握9个元音字母',
+    quote:{text:'Білім — біліктілік.',trans:'知识就是力量。',scene:'第一课鼓励语'},
+    items:['А а','Ә ә','Е е','О о','Ө ө','Ұ ұ','Ү ү','Ы ы','І і']},
+  {day:2,title:'基础辅音 I',task:'学Б, В, Г, Ғ, Д, Ж, З 共7个辅音',
+    quote:{text:'Білекті бірді жығады, білімді мыңды жығады.',trans:'有力气只能打败一人，有学问能打败千人。',scene:'鼓励持续学习'},
+    items:['Б б','В в','Г г','Ғ ғ','Д д','Ж ж','З з']},
+  {day:3,title:'基础辅音 II',task:'学К, Қ, Л, М, Н, Ң, П 共7个辅音',
+    quote:{text:'Оқу — білім бұлағы.',trans:'学习是知识的源泉。',scene:'第3天鼓励'},
+    items:['К к','Қ қ','Л л','М м','Н н','Ң ң','П п']},
+  {day:4,title:'基础辅音 III',task:'学Р, С, Т, У, Ф, Х, Һ 共7个辅音',
+    quote:{text:'Білмесең де білгің келсе — үйрен.',trans:'即使不会，想学就学。',scene:'第4天鼓励'},
+    items:['Р р','С с','Т т','У у','Ф ф','Х х','Һ һ']},
+  {day:5,title:'剩余字母与借词字母',task:'学Ц, Ч, Ш, Щ, Ъ, Ы, Ь, Э, Ю, Я — 为俄语借词做准备',
+    quote:{text:'Тіл тас жарады, тас жармаса бас жарады.',trans:'语言能破石，不破石头也破头（语言的力量）。',scene:'第5天鼓励'},
+    items:['Ц ц','Ч ч','Ш ш','Щ щ','Ъ ъ','Ь ь','Э э','Ю ю','Я я']},
+  {day:6,title:'拼读与词汇 I',task:'掌握CVC结构的简单词，如ана, ата, бала, кітап',
+    quote:{text:'Көз қорқақ, қол батыр.',trans:'眼睛害怕，手勇敢。',scene:'开始阅读'},
+    items:[]},
+  {day:7,title:'拼读与词汇 II',task:'学习更长词汇，练习见面问候完整句',
+    quote:{text:'Еңбек етсең емерсің.',trans:'劳动就会吃饱。',scene:'第7天总结'},
+    items:[]},
+  {day:8,title:'综合复习',task:'完整复习所有字母，模拟对话，学习计划完成！',
+    quote:{text:'Білім — өмір шырағы.',trans:'知识是生活的明灯。',scene:'结业语'},
+    items:[]}
+];
+
+// ---- Practice question bank ----
+const PRACTICE_QUESTIONS = [
+  // Letter matching
+  {type:'match',q:'Қазақ тілі"中第一个字母是什么？',options:['Қ','К','Х','Ғ'],answer:0,
+    page:['zh-cyr','zh-arab']},
+  {type:'match',q:'哪个字母是哈萨克语特有的？',options:['Ң','Н','М','Л'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'Ә 的发音是什么？',options:['/æ/','/ɑ/','/e/','/i/'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'Ғ 的发音部位在哪？',options:['喉咙深处','舌尖','牙齿','嘴唇'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'Р 是什么类型的音？',options:['颤音','塞音','鼻音','边音'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'Ұ 和 Ү 的区别是什么？',options:['圆唇vs展唇','长音vs短音','前舌vs后舌','送气vs不送气'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'І 的发音最像汉语哪个音？',options:['一','以','于','乌'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'Һ 的正确发音是？',options:['轻呼h','喉咙k','舌尖t','唇音p'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  // Dictation-style in matching
+  {type:'match',q:'"Ана"是什么意思？',options:['妈妈','爸爸','姐姐','奶奶'],answer:0,
+    page:['zh-cyr','zh-arab']},
+  {type:'match',q:'"Күн"是什么意思？',options:['太阳/天','月亮','星星','云'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'"Су"的中文是？',options:['水','火','土','风'],answer:0,
+    page:['zh-cyr','zh-arab']},
+  {type:'match',q:'"Рахмет"的中文是？',options:['谢谢','你好','再见','对不起'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  // Fill-in
+  {type:'fill',q:'哈萨克语"苹果"是 ＿',answer:'алма',altAnswers:['алма','alma'],
+    page:['zh-cyr','zh-arab']},
+  {type:'fill',q:'Кітап 的中文是 ＿',answer:'书',altAnswers:['书','书本'],
+    page:['zh-cyr','cyr-lat']},
+  {type:'fill',q:'"我"的哈萨克语是 ＿',answer:'мен',altAnswers:['мен','men'],
+    page:['zh-cyr','cyr-lat']},
+  {type:'fill',q:'"你好"的哈萨克语是 ＿',answer:'сәлем',altAnswers:['сәлем','salem','sälem'],
+    page:['zh-cyr','cyr-lat']},
+  {type:'fill',q:'"家/房子"的哈萨克语是 ＿',answer:'үй',altAnswers:['үй','üy','ui'],
+    page:['zh-cyr','cyr-lat']},
+  // Scene selection
+  {type:'scene',q:'早上见到老师应该说？',options:['Қайырлы таң','Қайырлы кеш','Сау бол','Рахмет'],answer:0,
+    page:['zh-cyr','zh-arab']},
+  {type:'scene',q:'别人帮忙后应该说？',options:['Рахмет','Кешіріңіз','Сәлем','Жақсы'],answer:0,
+    page:['zh-cyr','zh-arab']},
+  {type:'scene',q:'离开时应该说？',options:['Сау болыңыз','Сәлеметсіз бе','Рахмет','Қалайсыз'],answer:0,
+    page:['zh-cyr','zh-arab']},
+  {type:'scene',q:'想吃水果应该说？',options:['Алма жегім келеді','Нан жегім келеді','Су ішкім келеді','Ұйықтағым келеді'],answer:0,
+    page:['zh-cyr','zh-arab']},
+  // More letter matching
+  {type:'match',q:'Ө 的发音像英语哪个音？',options:['ur（burn的元音）','ee（see的元音）','oo（boot的元音）','ah（father的元音）'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'Ң 的发音在汉语中出现在哪里？',options:['ang（昂的尾音）','an（安的尾音）','en（恩的尾音）','in（因的尾音）'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'Ы 的发音特点是什么？',options:['舌后不圆唇','舌前圆唇','双唇颤抖','声带不振动'],answer:0,
+    page:['zh-cyr','cyr-lat']},
+  {type:'match',q:'"Бала"是什么意思？',options:['孩子','男孩','女孩','婴儿'],answer:0,
+    page:['zh-cyr','zh-arab']}
+];
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+const STATE_KEY = 'kazakh_learning';
+let state = loadState();
+let translitMode = 'zh-cyr';
+let studyDay = 1;
+let progress = {};
+let practiceMode = 'zh-cyr';
+let practiceQ = [];
+let practiceIdx = 0;
+let practiceScore = 0;
+let practiceTotal = 0;
+let dictationMode = 'zh-cyr';
+
+function defaultState(){
+  return {
+    theme:'dark', fontSize:0, plan:{}, favorites:{}, errors:{},
+    errorBook:{}, history:[], completedDays:[]
+  };
+}
+function loadState(){
+  try{
+    const s = JSON.parse(localStorage.getItem(STATE_KEY));
+    if(!s) return defaultState();
+    s.plan = s.plan||{}; s.favorites=s.favorites||{}; s.errors=s.errors||{};
+    s.errorBook=s.errorBook||{}; s.history=s.history||[]; s.completedDays=s.completedDays||[];
+    return s;
+  }catch(e){return defaultState()}
+}
+function saveState(){
+  localStorage.setItem(STATE_KEY, JSON.stringify(state));
 }
 
-function getStreak(){
-  var p=getP();
-  var dates=Object.values(p).map(function(v){return v.date}).filter(Boolean);
-  if(!dates.length)return 0;
-  var unique={};
-  dates.forEach(function(d){unique[d]=true});
-  var sorted=Object.keys(unique).sort().reverse();
-  var streak=1;
-  var today=new Date();
-  var todayStr=today.toISOString().split('T')[0];
-  var yesterday=new Date(today);yesterday.setDate(yesterday.getDate()-1);
-  var yesterdayStr=yesterday.toISOString().split('T')[0];
-  // Check if most recent date is today or yesterday
-  if(sorted[0]!==todayStr&&sorted[0]!==yesterdayStr)return 0;
-  for(var i=0;i<sorted.length-1;i++){
-    var cur=new Date(sorted[i]);
-    var prev=new Date(sorted[i+1]);
-    var diff=(cur-prev)/(1000*60*60*24);
-    if(Math.round(diff)===1)streak++;
-    else break;
+/* =====================================================================
+   CORE: Navigation & Tab Switching
+   ===================================================================== */
+function navigate(page){
+  document.querySelectorAll('.section[id^="page-"]').forEach(s=>s.classList.add('hidden'));
+  document.getElementById('page-'+page)?.classList.remove('hidden');
+  document.getElementById('page-home')?.classList.add('hidden');
+  if(page==='home'){
+    document.getElementById('page-home').classList.remove('hidden');
+    return;
   }
-  return streak;
+  const pageId = page;
+  const tabDefault = 'alphabet';
+  switchTab(pageId.replace(/-/g,'-'), tabDefault);
+  // Set dir
+  const el = document.getElementById('page-'+page);
+  if(page==='zh-arabic'||page==='arabic-cyrillic') el.dir='rtl';
+  else el.dir='ltr';
+  updateGreeting(page);
 }
 
-function getLearned(){
-  var p=getP();var c=0;
-  for(var k in p){if(p[k]&&p[k].learned)c++}
-  return c;
+function switchTab(pageId, tab){
+  const prefix = pageId.replace(/-/g,'');
+  const page = document.getElementById('page-'+pageId.replace(/-/g,'-'));
+  if(!page) return;
+  // Hide all sections
+  page.querySelectorAll('.section[id^="'+prefix+'"]').forEach(s=>s.classList.add('hidden'));
+  // Show target
+  const target = document.getElementById(prefix+'-'+tab);
+  if(target) target.classList.remove('hidden');
+  // Update tab bar buttons
+  page.querySelectorAll('.tab-bar button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.tab===tab);
+  });
+  // Render content
+  if(tab==='alphabet') renderAlphabet(prefix);
+  else if(tab==='translit') renderTranslit(prefix);
+  else if(tab==='practice') renderPractice(prefix);
+  else if(tab==='plan') renderPlan(prefix);
+  else if(tab==='phrases') renderPhrases(prefix);
 }
 
-function getQuizScore(){
-  return parseInt(localStorage.getItem('kazakhQuizScore')||'0');
+function updateGreeting(page){
+  const h = document.getElementById('greetingText');
+  const now = new Date();
+  const hour = now.getHours();
+  let timeWord = '🌅 早上好';
+  if(hour>=12&&hour<14) timeWord='☀️ 中午好';
+  else if(hour>=14&&hour<18) timeWord='🌤️ 下午好';
+  else if(hour>=18) timeWord='🌙 晚上好';
+  const names = {
+    'zh-cyrillic':'🇨🇳 汉语→西里尔哈萨克文',
+    'arabic-cyrillic':'🇰🇿 老哈文→西里尔',
+    'zh-arabic':'🇨🇳 汉语→老哈文',
+    'cyrillic-latin':'🇰🇿 西里尔→拉丁'
+  };
+  h.textContent = timeWord+' · '+(names[page]||'哈萨克语学习');
 }
 
-// === Select Type ===
-function selectType(type,href,icon){
-  userType=type;
-  userHref=href;
-  userIcon=icon;
-  userLabel=typeNames[type]||'';
-  localStorage.setItem('kazakhUserType',type);
-  localStorage.setItem('kazakhUserHref',href);
-  localStorage.setItem('kazakhUserIcon',icon);
-  localStorage.setItem('kazakhUserLabel',userLabel);
-  showDashboard();
+/* =====================================================================
+   ALPHABET RENDER
+   ===================================================================== */
+function renderAlphabet(prefix){
+  const container = document.getElementById(prefix+'-alphabet');
+  if(!container) return;
+  const isArabic = prefix==='zharab'||prefix==='arabcyr';
+  const data = isArabic ? ARABIC_ALPHABET : CYRILLIC_ALPHABET;
+  let html='<div class="section-title">🔤 字母表 · '+data.length+' 个字母</div>';
+
+  // Special letters section
+  html+='<div class="section-title" style="margin-top:20px;font-size:1em;color:var(--gold)">⭐ 9个特有字母（汉语没有对应音）</div>';
+  html+='<div class="special-grid">';
+  SPECIAL_LETTERS.forEach(l=>{
+    const ll = l.split(' ')[0];
+    html+=`<div class="special-card">
+      <div class="sc-title">${l}</div>
+      <div class="sc-note">✨ 哈萨克语特有！需要重点练习</div>
+    </div>`;
+  });
+  html+='</div>';
+
+  // Letter grid
+  html+='<div class="section-title" style="margin-top:20px">全部字母</div>';
+  html+='<div class="alphabet-grid">';
+  data.forEach((d,i)=>{
+    const isSpecial = SPECIAL_LETTERS.some(s=>s.split(' ')[0]===d.letter.split(' ')[0]);
+    html+=`<div class="letter-card${isSpecial?' special':''}">
+      <div class="letter-display">
+        <span class="letter-main">${d.letter}</span>
+        <span class="letter-hand">${d.hand||''}</span>
+        <span class="letter-ipa">${d.ipa}</span>
+      </div>
+      <div class="mnemonic">💡 ${d.mnemonic}</div>
+      <div class="examples">${d.examples.map(e=>`<span class="ex">${e.word} <span class="meaning">${e.meaning}</span></span>`).join('')}</div>
+      <div class="sentence">📖 ${d.sentence.kk}<br><span style="font-size:.85em;color:var(--text2)">${d.sentence.zh}</span></div>
+      ${d.tip?`<div class="tip">⚠️ ${d.tip}</div>`:''}
+      ${d.forms?`<div class="source">4种形态：${d.forms}</div>`:''}
+      <div class="source">📚 来源：最新哈萨克文字母标准</div>
+    </div>`;
+  });
+  html+='</div>';
+  container.innerHTML = html;
 }
 
-// === Show Dashboard ===
-function showDashboard(){
-  document.getElementById('welcomeScreen').style.display='none';
-  document.getElementById('dashboardScreen').style.display='block';
-  document.getElementById('bottomNav').style.display='flex';
-  document.getElementById('navLearn').href=userHref?userHref+'?type='+userType:'#';
+/* =====================================================================
+   TRANSLITERATION TOOL
+   ===================================================================== */
+const TRANSLIT_MODES = [
+  {id:'zh-cyr',label:'拼音→西里尔',src:'pinyin',dst:'cyrillic'},
+  {id:'arab-cyr',label:'老哈文→西里尔',src:'arabic',dst:'cyrillic'},
+  {id:'zh-arab',label:'拼音→老哈文',src:'pinyin',dst:'arabic'},
+  {id:'cyr-lat',label:'西里尔→拉丁',src:'cyrillic',dst:'latin'}
+];
 
-  // Update badge
-  document.getElementById('dashBadge').innerHTML=(userLabel||'📖')+' <span class="chg" onclick="goHome()">[更换]</span>';
+// Simple transliteration maps
+const PINYIN_CYR = {
+  'a':'а','ā':'а','á':'а','ǎ':'а','à':'а',
+  'b':'б','c':'ц','ch':'ч','d':'д','e':'е','ē':'е','é':'е','ě':'е','è':'е',
+  'f':'ф','g':'г','h':'х','i':'и','ī':'и','í':'и','ǐ':'и','ì':'и',
+  'j':'ж','k':'к','l':'л','m':'м','n':'н','o':'о','ō':'о','ó':'о','ǒ':'о','ò':'о',
+  'p':'п','q':'к','r':'р','s':'с','sh':'ш','t':'т','u':'у','ū':'у','ú':'у','ǔ':'у','ù':'у',
+  'v':'в','w':'у','x':'с','y':'й','z':'з','zh':'ж',
+  'ai':'ай','ao':'ау','an':'ан','ang':'аң','ei':'ей','en':'ен','eng':'ең',
+  'iu':'иу','ie':'ие','in':'ин','ing':'иң',
+  'ou':'оу','ong':'оң',
+  'ua':'уа','ue':'уе','ui':'уй','un':'ұн','uo':'уо',
+  'ü':'ү','üe':'үе','üan':'үан','ün':'үн'
+};
+function pinyin2Cyr(text){
+  let r='';
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(PINYIN_CYR[c]) r+=PINYIN_CYR[c];
+    else if(/[a-zA-Z]/.test(c)) r+=c;
+    else r+=c;
+  }
+  return r;
+}
 
-  // Ger stats
-  var learned=getLearned();
-  var total=getTotalCount();
-  var pct=total>0?Math.round(learned/total*100):0;
-  var streak=getStreak();
-  var quiz=getQuizScore();
+const ARABIC_CYR_MAP = {};
+// Map from Arabic to Cyrillic (basic)
+function arabic2Cyr(text){
+  const m={'ا':'а','ب':'б','ۆ':'в','گ':'г','ع':'ғ','د':'د','ە':'е','ج':'ж','ز':'ز',
+    'ي':'й','ى':'ы','ك':'ك','ق':'ق','ل':'ل','م':'م','ن':'ن','ڭ':'ң',
+    'و':'о','پ':'پ','ر':'ر','س':'س','ت':'ت','ش':'ش','ۇ':'ұ','ءۇ':'ү',
+    'ح':'х','ھ':'ھ','ف':'ف','ٵ':'а','ٶ':'ә','ءو':'ө','ءى':'і'};
+  let r='';
+  for(let c of text){
+    if(m[c]) r+=m[c];
+    else r+=c;
+  }
+  return r;
+}
 
-  document.getElementById('dashLearned').textContent=learned;
-  document.getElementById('dashTotal').textContent='/ '+total+' 总数';
-  document.getElementById('dashStreak').textContent=streak;
-  document.getElementById('dashQuiz').textContent=quiz;
+function cyr2Latin(text){
+  const m={'а':'a','ә':'ä','б':'b','в':'v','г':'g','ғ':'ğ','д':'d','е':'e',
+    'ё':'ë','ж':'j','з':'z','и':'i','й':'ı','к':'k','қ':'q','л':'l','м':'m',
+    'н':'n','ң':'ñ','о':'o','ө':'ö','п':'p','р':'r','с':'s','т':'t','у':'y',
+    'ұ':'ū','ү':'ü','ф':'f','х':'h','һ':'h','ц':'ts','ч':'ch','ш':'ş','щ':'şş',
+    'ъ':'','ы':'y','і':'i','ь':'','э':'è','ю':'iu','я':'ia',
+    'А':'A','Ә':'Ä','Б':'B','В':'V','Г':'G','Ғ':'Ğ','Д':'D','Е':'E',
+    'Ё':'Ë','Ж':'J','З':'Z','И':'I','Й':'Y','К':'K','Қ':'Q','Л':'L','М':'M',
+    'Н':'N','Ң':'Ñ','О':'O','Ө':'Ö','П':'P','Р':'R','С':'S','Т':'T','У':'Y',
+    'Ұ':'Ū','Ү':'Ü','Ф':'F','Х':'X','Һ':'H','Ц':'Ts','Ч':'Ch','Ш':'Ş','Щ':'Şş',
+    'Ъ':'','Ы':'Y','І':'I','Ь':'','Э':'E','Ю':'Iu','Я':'Ia'};
+  let r='';
+  for(let c of text){
+    if(m[c]) r+=m[c];
+    else r+=c;
+  }
+  return r;
+}
 
-  document.getElementById('progressText').textContent=pct+'%';
-  document.getElementById('progressFill').style.width=pct+'%';
+let currentTranslitPage = 'zh-cyr';
 
-  // Update steps - which ones are "done" based on progress
-  var steps=['step1','step2','step3','step4'];
-  var stepThresholds=[0.2,0.4,0.6,0.8];
-  for(var i=0;i<steps.length;i++){
-    var el=document.getElementById(steps[i]);
-    if(el){
-      if(pct>=stepThresholds[i]*100){
-        var sn=el.querySelector('.step-num');
-        if(sn){sn.textContent='✓';sn.classList.add('done')}
-      }else{
-        var sn=el.querySelector('.step-num');
-        if(sn){sn.textContent=(i+1);sn.classList.remove('done')}
-      }
+function renderTranslit(prefix){
+  const container = document.getElementById(prefix+'-translit');
+  if(!container) return;
+  currentTranslitPage = prefix;
+  const mapping = {'zhcyr':'zh-cyr','arabcyr':'arab-cyr','zharab':'zh-arab','cyrlat':'cyr-lat'};
+  const mode = mapping[prefix]||'zh-cyr';
+
+  let html = `<div class="section-title">🔄 转写工具</div>
+  <div class="translit-tabs">`;
+  TRANSLIT_MODES.forEach(m=>{
+    html+=`<button class="${m.id===mode?'active':''}" onclick="setTranslitMode('${prefix}','${m.id}')">${m.label}</button>`;
+  });
+  html+=`</div>
+  <div class="translit-area">
+    <div class="translit-row">
+      <textarea id="translitInput" placeholder="输入文字..." oninput="doTranslit('${prefix}')"></textarea>
+    </div>
+    <div class="translit-actions">
+      <button class="primary" onclick="doTranslit('${prefix}')">🔄 转写</button>
+      <button onclick="copyTranslit()">📋 复制</button>
+      <button class="danger" onclick="clearTranslit()">🗑️ 清空</button>
+      <button onclick="toggleHistory()">📜 历史</button>
+    </div>
+    <div class="translit-row">
+      <textarea id="translitOutput" placeholder="结果..." readonly style="min-height:80px"></textarea>
+    </div>
+    <div id="translitHighlight" class="highlight-wrap" style="display:none"></div>
+    <div id="translitError" class="error-msg" style="display:none"></div>
+    <div id="translitHistory" class="history-list" style="display:none"></div>
+    <div class="batch-zone" onclick="document.getElementById('batchFile').click()" ondragover="this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="handleBatchDrop(event,'${prefix}')">
+      📁 点击或拖放 TXT 文件批量转写
+      <input type="file" id="batchFile" accept=".txt" onchange="handleBatchFile(event,'${prefix}')" style="display:none">
+    </div>
+  </div>`;
+  container.innerHTML = html;
+}
+
+function setTranslitMode(prefix, mode){
+  currentTranslitPage = prefix;
+  translitMode = mode;
+  const container = document.getElementById(prefix+'-translit');
+  container.querySelectorAll('.translit-tabs button').forEach(b=>{
+    b.classList.toggle('active', b.textContent.includes(TRANSLIT_MODES.find(m=>m.id===mode).label));
+  });
+  doTranslit(prefix);
+}
+
+function doTranslit(prefix){
+  const input = document.getElementById('translitInput');
+  const output = document.getElementById('translitOutput');
+  const highlight = document.getElementById('translitHighlight');
+  const error = document.getElementById('translitError');
+  if(!input||!output) return;
+  const text = input.value;
+  let result='';
+  let errors=[];
+
+  if(text.trim()){
+    const mapping = {'zhcyr':'zh-cyr','arabcyr':'arab-cyr','zharab':'zh-arab','cyrlat':'cyr-lat'};
+    const m = mapping[prefix]||translitMode;
+    if(m==='zh-cyr'||m==='zh-arab'){
+      result = pinyin2Cyr(text);
+    } else if(m==='arab-cyr'){
+      result = arabic2Cyr(text);
+    } else if(m==='cyr-lat'){
+      result = cyr2Latin(text);
+    }
+    // Basic error detection
+    if(/[а-яА-Я]/.test(text) && (m==='zh-cyr'||m==='zh-arab')){
+      errors.push('检测到西里尔字母，确认输入语言正确吗？');
+    }
+    // Save to history
+    if(result.trim()){
+      state.history.unshift({src:text,dst:result,time:new Date().toLocaleString()});
+      if(state.history.length>50) state.history.pop();
+      saveState();
     }
   }
+
+  if(prefix==='zharab'||prefix==='arabcyr'){
+    output.dir='rtl';
+    output.style.textAlign='right';
+  } else {
+    output.dir='ltr';
+    output.style.textAlign='left';
+  }
+
+  output.value = result;
+
+  // Highlight comparison
+  if(text.trim()&&result.trim()){
+    highlight.innerHTML = text.split('').map((c,i)=>{
+      const r = result[i]||'';
+      return `<span class="hl-pair"><span class="hl-src">${c}</span>→<span class="hl-dst">${r}</span></span>`;
+    }).join(' ');
+    highlight.style.display='block';
+  } else {
+    highlight.style.display='none';
+  }
+
+  if(errors.length){
+    error.textContent = errors.join('；');
+    error.style.display='block';
+  } else {
+    error.style.display='none';
+  }
 }
 
-// === Go to step ===
-function goToStep(step){
-  if(!userHref){return}
-  var base=userHref;
-  var anchors={1:'#secHard',2:'#secCons',3:'#secWords',4:''};
-  // For learn-kazakh and latin, use different anchors
-  if(base==='learn-kazakh.html'){anchors={1:'#letterGrid',2:'#specialTable',3:'#wordTable',4:''}}
-  if(base==='latin.html'){anchors={1:'#latGrid',2:'#latGrid',3:'#wordTable',4:''}}
-  if(base==='arabic-to-cyrillic.html'){anchors={1:'#vowelHard',2:'#consonants',3:'#wordTable',4:''}}
-  window.location.href=base+'?type='+userType+(anchors[step]||'');
+function copyTranslit(){
+  const output = document.getElementById('translitOutput');
+  if(output&&output.value){
+    navigator.clipboard.writeText(output.value).then(()=>showToast('已复制！','success'));
+  }
 }
 
-// === Go Home (back to type selection) ===
-function goHome(){
-  document.getElementById('dashboardScreen').style.display='none';
-  document.getElementById('bottomNav').style.display='none';
-  document.getElementById('welcomeScreen').style.display='block';
-  localStorage.removeItem('kazakhUserType');
-  localStorage.removeItem('kazakhUserHref');
-  localStorage.removeItem('kazakhUserIcon');
-  localStorage.removeItem('kazakhUserLabel');
+function clearTranslit(){
+  const input = document.getElementById('translitInput');
+  const output = document.getElementById('translitOutput');
+  if(input) input.value='';
+  if(output) output.value='';
+  document.getElementById('translitHighlight').style.display='none';
+  document.getElementById('translitError').style.display='none';
 }
 
-// === Reset All ===
-function resetAll(){
-  if(!confirm('Барлық деректерді өшіру? · 确认清除所有学习数据？'))return;
-  localStorage.removeItem('kazakhProgress');
-  localStorage.removeItem('kazakhQuizScore');
-  showDashboard();
+function toggleHistory(){
+  const el = document.getElementById('translitHistory');
+  if(!el) return;
+  if(el.style.display==='block'){el.style.display='none';return;}
+  const list = state.history.slice(0,20);
+  el.innerHTML = list.map(h=>`<div class="h-item" onclick="restoreHistory('${h.src.replace(/'/g,"\\'")}')">
+    <span>${h.src} → ${h.dst}</span>
+    <small style="color:var(--text2)">${h.time||''}</small>
+  </div>`).join('');
+  el.style.display='block';
 }
 
-// === Dashboard Quiz ===
-function toggleQuizDash(){
-  if(!userHref)return;
-  window.location.href=userHref+'?type='+userType+'&quiz=1';
+function restoreHistory(src){
+  document.getElementById('translitInput').value=src;
+  doTranslit(currentTranslitPage);
+  document.getElementById('translitHistory').style.display='none';
 }
 
-// === Dashboard Stats Modal ===
-function showStatsDash(){
-  if(!userHref)return;
-  window.location.href=userHref+'?type='+userType;
+function handleBatchFile(event,prefix){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const text = e.target.result;
+    document.getElementById('translitInput').value=text;
+    doTranslit(prefix);
+    const out = document.getElementById('translitOutput');
+    downloadText(out.value, file.name.replace('.txt','_translit.txt'));
+    showToast('批量转写完成并下载！','success');
+  };
+  reader.readAsText(file);
 }
 
-// === Init ===
-initTheme();
-// If user already has a type, show dashboard
-if(userType&&userHref){
-  showDashboard();
+function handleBatchDrop(event,prefix){
+  event.preventDefault();
+  event.target.classList.remove('dragover');
+  const file = event.dataTransfer.files[0];
+  if(!file||!file.name.endsWith('.txt')) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    document.getElementById('translitInput').value=e.target.result;
+    doTranslit(prefix);
+    const out = document.getElementById('translitOutput');
+    downloadText(out.value, file.name.replace('.txt','_translit.txt'));
+    showToast('批量转写完成！','success');
+  };
+  reader.readAsText(file);
+}
+
+function downloadText(text, filename){
+  const blob = new Blob([text],{type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+/* =====================================================================
+   PRACTICE SYSTEM
+   ===================================================================== */
+function renderPractice(prefix){
+  const container = document.getElementById(prefix+'-practice');
+  if(!container) return;
+  practiceMode = prefix;
+  const mapping = {'zhcyr':'zh-cyr','arabcyr':'arab-cyr','zharab':'zh-arab','cyrlat':'cyr-lat'};
+  const modeKey = mapping[prefix]||'zh-cyr';
+
+  let html = `<div class="section-title">📝 练习系统</div>
+  <div class="card practice-card">
+    <div class="progress" id="practiceProgress"></div>
+    <div id="practiceArea">
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px 0">
+        <button onclick="startPractice('${prefix}','match')" class="home-btn" style="background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;height:60px;font-size:.9em">
+          🔤 字母匹配
+        </button>
+        <button onclick="startPractice('${prefix}','dictation')" class="home-btn" style="background:linear-gradient(135deg,var(--green),#3dbdb5);color:#fff;height:60px;font-size:.9em">
+          🎧 听写练习
+        </button>
+        <button onclick="startPractice('${prefix}','fill')" class="home-btn" style="background:linear-gradient(135deg,var(--orange),#e88a30);color:#fff;height:60px;font-size:.9em">
+          ✍️ 拼写填空
+        </button>
+        <button onclick="startPractice('${prefix}','scene')" class="home-btn" style="background:linear-gradient(135deg,var(--pink),#e85a8a);color:#fff;height:60px;font-size:.9em">
+          🎭 场景选择
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="section-title" style="font-size:1em">❌ 错题本</div>
+    <div class="error-book" id="errorBook">${renderErrorBook()}</div>
+  </div>
+  <div class="card">
+    <div class="section-title" style="font-size:1em">🏆 成就</div>
+    <div class="achieve-grid" id="achieveGrid">${renderAchievements()}</div>
+  </div>`;
+  container.innerHTML = html;
+}
+
+function startPractice(prefix, type){
+  const mapping = {'zhcyr':'zh-cyr','arabcyr':'arab-cyr','zharab':'zh-arab','cyrlat':'cyr-lat'};
+  const modeKey = mapping[prefix]||'zh-cyr';
+  practiceMode = prefix;
+
+  // Filter questions
+  let questions = PRACTICE_QUESTIONS.filter(q=>{
+    if(type!=='all'&&q.type!==type) return false;
+    return q.page.some(p=>p===modeKey);
+  });
+  if(questions.length<5) questions = PRACTICE_QUESTIONS.filter(q=>q.page.some(p=>p===modeKey));
+  // Shuffle
+  questions = shuffle(questions).slice(0,10);
+  practiceQ = questions;
+  practiceIdx = 0;
+  practiceScore = 0;
+  practiceTotal = questions.length;
+  showPracticeQ();
+}
+
+function showPracticeQ(){
+  const area = document.getElementById('practiceArea');
+  if(!area) return;
+  if(practiceIdx>=practiceQ.length){
+    renderPracticeResult();
+    return;
+  }
+  const q = practiceQ[practiceIdx];
+  let html = `<div class="progress">`;
+  for(let i=0;i<practiceQ.length;i++){
+    html+=`<span class="dot ${i<practiceIdx?'done':''} ${i===practiceIdx?'current':''}"></span>`;
+  }
+  html+=`</div>
+  <div class="q-text">${q.q}</div>`;
+
+  if(q.type==='match'||q.type==='scene'){
+    html+=`<div class="options">`;
+    q.options.forEach((opt,i)=>{
+      html+=`<button onclick="checkPractice(${i})">${opt}</button>`;
+    });
+    html+=`</div>`;
+  } else if(q.type==='fill'){
+    html+=`<div class="fill-input">
+      <input type="text" id="fillAnswer" placeholder="输入答案..." onkeydown="if(event.key==='Enter')checkFill()" autocomplete="off">
+      <button onclick="checkFill()">✓ 确认</button>
+    </div>`;
+  }
+  html+=`<div id="practiceFeedback" style="margin-top:12px;min-height:30px"></div>`;
+  area.innerHTML = html;
+
+  if(q.type==='match'||q.type==='scene'){
+    area.querySelectorAll('.options button').forEach(b=>{
+      b.addEventListener('click',()=>{
+        area.querySelectorAll('.options button').forEach(bb=>bb.style.pointerEvents='none');
+      },{once:true});
+    });
+  }
+}
+
+function checkPractice(idx){
+  const q = practiceQ[practiceIdx];
+  const feed = document.getElementById('practiceFeedback');
+  const btns = document.querySelectorAll('.options button');
+  const correct = idx===q.answer;
+  if(correct){
+    practiceScore++;
+    btns[idx].classList.add('correct');
+    feed.innerHTML = `<div class="result" style="color:var(--green)">✅ 正确！</div>`;
+    // Remove from error book if correct 3 times
+    if(state.errorBook[q.q]){
+      state.errorBook[q.q] = (state.errorBook[q.q]||0)+1;
+      if(state.errorBook[q.q]>=3) delete state.errorBook[q.q];
+      saveState();
+    }
+  } else {
+    btns[idx].classList.add('wrong');
+    btns[q.answer].classList.add('correct');
+    // Add to error book
+    state.errorBook[q.q] = (state.errorBook[q.q]||0)+1;
+    saveState();
+    feed.innerHTML = `<div class="result" style="color:var(--accent)">❌ 错误! 正确答案是: ${q.options[q.answer]}</div>`;
+  }
+  btns.forEach(b=>b.style.pointerEvents='none');
+  setTimeout(()=>{
+    practiceIdx++;
+    showPracticeQ();
+  },1500);
+}
+
+function checkFill(){
+  const input = document.getElementById('fillAnswer');
+  const q = practiceQ[practiceIdx];
+  if(!input) return;
+  const ans = input.value.trim().toLowerCase();
+  const correct = ans===q.answer.toLowerCase()||(q.altAnswers&&q.altAnswers.some(a=>a.toLowerCase()===ans));
+  const feed = document.getElementById('practiceFeedback');
+  if(correct){
+    practiceScore++;
+    feed.innerHTML = `<div class="result" style="color:var(--green)">✅ 正确！</div>`;
+  } else {
+    state.errorBook[q.q] = (state.errorBook[q.q]||0)+1;
+    saveState();
+    feed.innerHTML = `<div class="result" style="color:var(--accent)">❌ 错误! 正确答案是: ${q.answer}</div>`;
+  }
+  input.disabled=true;
+  setTimeout(()=>{
+    practiceIdx++;
+    showPracticeQ();
+  },1500);
+}
+
+function renderPracticeResult(){
+  const area = document.getElementById('practiceArea');
+  const pct = Math.round((practiceScore/practiceTotal)*100);
+  const passed = pct>=70;
+  area.innerHTML = `<div style="padding:24px;text-align:center">
+    <div style="font-size:3em;margin-bottom:12px">${passed?'🎉':'💪'}</div>
+    <div style="font-size:1.4em;font-weight:700;margin-bottom:8px">${passed?'太棒了！':'继续加油！'}</div>
+    <div style="font-size:1.1em">得分: ${practiceScore}/${practiceTotal} (${pct}%)</div>
+    ${passed?'<div style="margin-top:12px;color:var(--green)">✅ 合格！可以继续下一关</div>'
+      :'<div style="margin-top:12px;color:var(--orange)">⚠ 建议复习后重试</div>'}
+    <button class="home-btn" style="background:var(--primary);color:#fff;height:50px;margin:16px auto" onclick="renderPractice(practiceMode)">🔄 返回练习菜单</button>
+  </div>`;
+  // Check achievement
+  checkAchievements();
+  updateErrorBook();
+}
+
+/* =====================================================================
+   DICTATION
+   ===================================================================== */
+// Simple speech synth for Kazakh approximations
+const DICTATION_WORDS = [
+  {word:'Ана',zh:'妈妈'},{word:'Ата',zh:'爸爸'},{word:'Алма',zh:'苹果'},
+  {word:'Бала',zh:'孩子'},{word:'Кітап',zh:'书'},{word:'Гүл',zh:'花'},
+  {word:'Су',zh:'水'},{word:'Нан',zh:'面包'},{word:'Үй',zh:'家'},
+  {word:'Күн',zh:'太阳'},{word:'Жол',zh:'路'},{word:'Тау',zh:'山'}
+];
+let dictationWords = [];
+let dictIdx = 0;
+
+function startDictation(prefix){
+  dictationMode = prefix;
+  dictationWords = shuffle([...DICTATION_WORDS]).slice(0,6);
+  dictIdx = 0;
+  document.getElementById('practiceArea').innerHTML = renderDictationQ();
+}
+
+function renderDictationQ(){
+  if(dictIdx>=dictationWords.length){
+    return `<div style="text-align:center;padding:20px">
+      <div style="font-size:2em">🎧 听写完成！</div>
+      <button class="home-btn" style="background:var(--primary);color:#fff;height:50px;margin:16px auto" onclick="renderPractice(practiceMode)">返回</button>
+    </div>`;
+  }
+  const w = dictationWords[dictIdx];
+  return `<div class="dictation-area">
+    <div class="dict-play" onclick="playDictation('${w.word}')">🔊</div>
+    <div style="color:var(--text2);font-size:.85em;margin-bottom:8px">点击喇叭听发音，然后输入字母</div>
+    <div class="dict-input">
+      <input type="text" id="dictAnswer" placeholder="输入..." autocomplete="off" onkeydown="if(event.key==='Enter')checkDict('${w.word}')">
+      <button onclick="checkDict('${w.word}')">✓</button>
+    </div>
+    <div id="dictFeedback" style="margin-top:8px;min-height:24px"></div>
+  </div>`;
+}
+
+function playDictation(word){
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'kk-KZ';
+  utterance.rate = 0.8;
+  speechSynthesis.speak(utterance);
+}
+
+function checkDict(correctWord){
+  const input = document.getElementById('dictAnswer');
+  const ans = input.value.trim();
+  const feed = document.getElementById('dictFeedback');
+  if(ans.toLowerCase()===correctWord.toLowerCase()){
+    practiceScore++;
+    feed.innerHTML = `<span style="color:var(--green);font-weight:700">✅ 正确！</span>`;
+  } else {
+    feed.innerHTML = `<span style="color:var(--accent);font-weight:700">❌ 应该是: ${correctWord}</span>`;
+    state.errorBook[correctWord] = (state.errorBook[correctWord]||0)+1;
+    saveState();
+  }
+  input.disabled=true;
+  setTimeout(()=>{
+    dictIdx++;
+    document.getElementById('practiceArea').innerHTML = renderDictationQ();
+  },1500);
+}
+
+/* =====================================================================
+   ERROR BOOK
+   ===================================================================== */
+function updateErrorBook(){
+  const el = document.getElementById('errorBook');
+  if(el) el.innerHTML = renderErrorBook();
+}
+
+function renderErrorBook(){
+  const entries = Object.entries(state.errorBook||{});
+  if(!entries.length) return '<div style="color:var(--text2);padding:12px;text-align:center">✨ 没有错题，继续保持！</div>';
+  return entries.map(([q,count])=>{
+    const remaining = Math.max(0,3-count);
+    return `<div class="e-item">
+      <span>❌ ${q}</span>
+      <span class="e-count">${remaining}</span>
+    </div>`;
+  }).join('');
+}
+
+/* =====================================================================
+   ACHIEVEMENTS
+   ===================================================================== */
+const ACHIEVEMENTS = [
+  {id:'first_letter',name:'初识字母',emoji:'🔤',desc:'完成第一次字母学习',check:()=>Object.keys(state.plan||{}).length>0},
+  {id:'practice_master',name:'练习达人',emoji:'📝',desc:'完成练习得分≥70%',check:()=>practiceScore>0},
+  {id:'day_3',name:'坚持3天',emoji:'🔥',desc:'完成3天学习计划',check:()=>(state.completedDays||[]).length>=3},
+  {id:'day_7',name:'一周打卡',emoji:'📅',desc:'完成7天学习计划',check:()=>(state.completedDays||[]).length>=7},
+  {id:'day_8',name:'毕业了！',emoji:'🎓',desc:'完成全部8天学习',check:()=>(state.completedDays||[]).length>=8},
+  {id:'word_master',name:'词汇大师',emoji:'📚',desc:'收藏5个以上词汇',check:()=>Object.keys(state.favorites||{}).length>=5},
+  {id:'translator',name:'转写达人',emoji:'🔄',desc:'使用转写工具10次以上',check:()=>state.history&&state.history.length>=10},
+  {id:'error_clean',name:'错题清空',emoji:'🧹',desc:'错题本全部清空',check:()=>Object.keys(state.errorBook||{}).length===0&&(state.completedDays||[]).length>0}
+];
+
+function checkAchievements(){
+  const unlocked = new Set(state.completedDays||[]);
+  ACHIEVEMENTS.forEach(a=>{
+    if(!unlocked.has(a.id)&&a.check()){
+      unlocked.add(a.id);
+      state.completedDays = [...unlocked];
+      saveState();
+      showToast(`🏆 解锁成就: ${a.name}!`,'success');
+    }
+  });
+}
+
+function renderAchievements(){
+  const unlocked = new Set(state.completedDays||[]);
+  return ACHIEVEMENTS.map(a=>{
+    const got = unlocked.has(a.id);
+    return `<div class="achieve-item ${got?'unlocked':''}">
+      <span class="ach-emoji">${a.emoji}</span>
+      <span>${a.name}</span>
+    </div>`;
+  }).join('');
+}
+
+/* =====================================================================
+   LEARNING PLAN
+   ===================================================================== */
+function renderPlan(prefix){
+  const container = document.getElementById(prefix+'-plan');
+  if(!container) return;
+
+  // Determine which day user is on
+  const completed = new Set(state.completedDays||[]);
+  let currentDay = 1;
+  for(let i=1;i<=8;i++){
+    if(!completed.has('day_'+i)){currentDay=i;break;}
+  }
+
+  let html = `<div class="section-title">📅 学习计划 (8天掌握)</div>`;
+  // Daily quote
+  const dayData = LEARNING_PLAN[currentDay-1];
+  if(dayData){
+    html+=`<div class="day-quote">
+      <div class="dq-text">💬 ${dayData.quote.text}</div>
+      <div class="dq-trans">${dayData.quote.trans} — ${dayData.quote.scene}</div>
+    </div>`;
+  }
+
+  // Day task card
+  html+=`<div class="card glass" style="text-align:center;margin:16px 0">
+    <div style="font-size:1.8em;font-weight:800;color:var(--primary)">第 ${currentDay} 天</div>
+    <div style="font-weight:600;margin:8px 0">${dayData?.title||''}</div>
+    <div style="font-size:.9em;color:var(--text2);margin-bottom:12px">${dayData?.task||''}</div>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">`;
+  if(dayData?.items){
+    dayData.items.forEach(l=>{
+      html+=`<span class="badge" style="background:var(--glass)">${l}</span>`;
+    });
+  }
+  html+=`</div>
+    <div style="margin-top:16px;display:flex;gap:10px;justify-content:center">
+      <button onclick="completeDay('${prefix}')" style="background:var(--green);color:#fff;padding:12px 24px">✓ 完成今日学习</button>
+    </div>
+  </div>`;
+
+  // Overall progress
+  const pct = Math.round((completed.size/8)*100);
+  html+=`<div style="background:var(--glass);border-radius:var(--radius);padding:16px;margin:12px 0">
+    <div style="display:flex;justify-content:space-between;font-size:.85em;margin-bottom:6px">
+      <span>总进度</span><span>${completed.size}/8 天</span>
+    </div>
+    <div style="height:8px;background:var(--glass-border);border-radius:4px;overflow:hidden">
+      <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:4px;transition:width .5s"></div>
+    </div>
+  </div>`;
+
+  // All days grid
+  html+=`<div class="plan-grid">`;
+  LEARNING_PLAN.forEach((d,i)=>{
+    const dayKey = 'day_'+(i+1);
+    const isComplete = completed.has(dayKey);
+    const isCurrent = (i+1)===currentDay;
+    html+=`<div class="plan-day ${isComplete?'completed':''} ${isCurrent?'current':''}">
+      <div class="day-num">${isComplete?'✅':(i+1)}</div>
+      <div class="day-title">${d.title}</div>
+      <div class="day-task">${d.task}</div>
+    </div>`;
+  });
+  html+=`</div>`;
+
+  container.innerHTML = html;
+}
+
+function completeDay(prefix){
+  const completed = new Set(state.completedDays||[]);
+  let currentDay = 1;
+  for(let i=1;i<=8;i++){
+    if(!completed.has('day_'+i)){currentDay=i;break;}
+  }
+  const dayKey = 'day_'+currentDay;
+  if(!completed.has(dayKey)){
+    completed.add(dayKey);
+    state.completedDays = [...completed];
+    saveState();
+    checkAchievements();
+    showToast(`🎉 第 ${currentDay} 天完成！`,'success');
+    renderPlan(prefix);
+  }
+}
+
+/* =====================================================================
+   PHRASES
+   ===================================================================== */
+let phraseCat = 0;
+
+function renderPhrases(prefix){
+  const container = document.getElementById(prefix+'-phrases');
+  if(!container) return;
+
+  let html = `<div class="section-title">💬 常用语库</div>
+  <div class="phrase-cats">`;
+  PHRASE_CATEGORIES.forEach((cat,i)=>{
+    html+=`<button class="${i===phraseCat?'active':''}" onclick="switchPhraseCat(${i},'${prefix}')">${cat.name}</button>`;
+  });
+  html+=`</div>
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+    <input type="text" id="phraseSearch" placeholder="搜索词汇..." style="flex:1;min-width:100px" oninput="filterPhrases('${prefix}')">
+    <button class="export-btn" onclick="exportPhrases()">📥 导出TXT</button>
+  </div>
+  <div class="phrase-list" id="phraseList">`;
+  html+=renderPhraseList(prefix, phraseCat, '');
+  html+=`</div>`;
+  container.innerHTML = html;
+}
+
+function renderPhraseList(prefix, catIdx, search){
+  const catId = PHRASE_CATEGORIES[catIdx].id;
+  let items = PHRASES[catId]||[];
+  const isRTL = prefix==='zharab'||prefix==='arabcyr';
+  if(search){
+    const s = search.toLowerCase();
+    items = items.filter(i=>i.kk.toLowerCase().includes(s)||i.zh.includes(s));
+  }
+  return items.map(item=>{
+    const favKey = catId+':'+item.kk;
+    const isFav = state.favorites[favKey];
+    return `<div class="phrase-item" ${isRTL?'dir="rtl"':''}>
+      <div>
+        <div class="kk-text">${item.kk}</div>
+        <div class="zh-text">${item.zh}</div>
+      </div>
+      <button class="fav-btn ${isFav?'active':''}" onclick="toggleFav('${catId}','${item.kk}','${item.zh}')">${isFav?'★':'☆'}</button>
+    </div>`;
+  }).join('');
+}
+
+function switchPhraseCat(idx, prefix){
+  phraseCat = idx;
+  renderPhrases(prefix);
+}
+
+function filterPhrases(prefix){
+  const search = document.getElementById('phraseSearch').value;
+  const list = document.getElementById('phraseList');
+  if(list){
+    list.innerHTML = renderPhraseList(prefix, phraseCat, search);
+  }
+}
+
+function toggleFav(catId, kk, zh){
+  const key = catId+':'+kk;
+  if(state.favorites[key]){
+    delete state.favorites[key];
+    showToast('已取消收藏','info');
+  } else {
+    state.favorites[key] = {kk,zh,cat:catId};
+    showToast('⭐ 已收藏','success');
+  }
+  saveState();
+  // Re-render
+  const list = document.getElementById('phraseList');
+  const search = document.getElementById('phraseSearch')?.value||'';
+  const prefix = list?.closest('.section')?.id?.replace(/-.*/,'')||'zhcyr';
+  if(list) list.innerHTML = renderPhraseList(prefix, phraseCat, search);
+  checkAchievements();
+}
+
+function exportPhrases(){
+  let text = '=== 哈萨克语常用语 ===\n\n';
+  PHRASE_CATEGORIES.forEach(cat=>{
+    text+=`\n【${cat.name}】\n${'='.repeat(20)}\n`;
+    (PHRASES[cat.id]||[]).forEach(p=>{
+      text+=`${p.kk} — ${p.zh}\n`;
+    });
+  });
+  // Favorites
+  const favs = Object.values(state.favorites||{});
+  if(favs.length){
+    text+=`\n\n=== ⭐ 收藏词汇 (${favs.length}个) ===\n${'='.repeat(30)}\n`;
+    favs.forEach(f=>text+=`${f.kk} — ${f.zh}\n`);
+  }
+  downloadText(text, 'kazakh_phrases.txt');
+  showToast('📥 导出成功！','success');
+}
+
+/* =====================================================================
+   THEME & FONT
+   ===================================================================== */
+function toggleTheme(){
+  document.body.classList.toggle('light');
+  state.theme = document.body.classList.contains('light')?'light':'dark';
+  document.getElementById('themeBtn').textContent = state.theme==='light'?'☀️':'🌙';
+  saveState();
+}
+
+function cycleFontSize(){
+  const sizes = ['font-sm','','font-lg'];
+  const current = document.body.className.match(/font-(sm|lg)/);
+  let idx = 0;
+  if(current){
+    document.body.classList.remove(current[0]);
+    idx = sizes.indexOf(current[0]);
+  }
+  idx = (idx+1)%sizes.length;
+  if(sizes[idx]) document.body.classList.add(sizes[idx]);
+  state.fontSize = idx;
+  document.getElementById('fontBtn').textContent = idx===0?'A⁻':(idx===1?'A':'A⁺');
+  saveState();
+}
+
+/* =====================================================================
+   GLOBAL SEARCH
+   ===================================================================== */
+function doGlobalSearch(q){
+  if(!q.trim()){
+    document.querySelectorAll('.letter-card').forEach(c=>c.style.display='');
+    return;
+  }
+  const s = q.toLowerCase().trim();
+  // Search through alphabet
+  const allLetters = document.querySelectorAll('.letter-card');
+  allLetters.forEach(c=>{
+    const text = c.textContent.toLowerCase();
+    c.style.display = text.includes(s)?'':'none';
+  });
+}
+
+/* =====================================================================
+   UTILITY
+   ===================================================================== */
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]] = [arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function showToast(msg, type='info'){
+  const container = document.getElementById('toastContainer');
+  const t = document.createElement('div');
+  t.className = 'toast '+type;
+  t.textContent = msg;
+  container.appendChild(t);
+  setTimeout(()=>{t.remove()},3000);
+}
+
+/* =====================================================================
+   INIT
+   ===================================================================== */
+function init(){
+  // Apply saved theme
+  if(state.theme==='light'){
+    document.body.classList.add('light');
+    document.getElementById('themeBtn').textContent = '☀️';
+  }
+  // Apply font size
+  const sizes = ['font-sm','','font-lg'];
+  if(sizes[state.fontSize]) document.body.classList.add(sizes[state.fontSize]);
+  document.getElementById('fontBtn').textContent = state.fontSize===0?'A⁻':(state.fontSize===1?'A':'A⁺');
+  
+  // Show home
+  document.getElementById('page-home').classList.remove('hidden');
+
+  // Update greeting
+  const h = document.getElementById('greetingText');
+  const hour = new Date().getHours();
+  let g = '🌅 早上好！';
+  if(hour>=12&&hour<14) g='☀️ 中午好！';
+  else if(hour>=14&&hour<18) g='🌤️ 下午好！';
+  else if(hour>=18) g='🌙 晚上好！';
+  h.textContent = g+' 今天学哈萨克语吧';
+
+  // PWA service worker registration
+  if('serviceWorker' in navigator){
+    // For GitHub Pages, skip SW registration
+  }
+
+  console.log('🥟 QazaqTanu initialized');
+}
+
+// Start when DOM ready
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
 }
 </script>
+
 </body>
 </html>
