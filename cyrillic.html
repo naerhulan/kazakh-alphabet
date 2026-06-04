@@ -157,7 +157,7 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
 
     <!-- Search -->
     <div class="search-box" id="searchBox">
-      <input class="search-input" id="searchInput" placeholder="🔍 输入字母、拼音搜索..." oninput="filterLetters()">
+      <input class="search-input" id="searchInput" placeholder="🔍 Әріп бойынша іздеу..." oninput="filterLetters()">
     </div>
 
     <!-- Quiz panel -->
@@ -225,25 +225,25 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
     </script>
 
     <!-- Special letters table -->
-    <div class="section-title"><span class="ico">✨</span> Арнайы әріптер · 特殊字母</div>
+    <div class="section-title" id="secSpec"><span class="ico">✨</span> Арнайы әріптер · 特殊字母</div>
     <table class="data-table" id="specialTable">
       <tr><th width="60">Әріп</th><th width="55">IPA</th><th id="specialHead3">像什么</th><th>Мысал</th><th width="50" id="specialHead4">عرب</th></tr>
     </table>
 
     <!-- Vowels hard -->
-    <div class="section-title"><span class="ico">🔴</span> Жуан дауыстылар · 后元音</div>
+    <div class="section-title" id="secHard"><span class="ico">🔴</span> Жуан дауыстылар · 后元音</div>
     <div class="letter-grid" id="vowelHard"></div>
 
     <!-- Vowels soft -->
-    <div class="section-title"><span class="ico">🟣</span> Жіңішке дауыстылар · 前元音</div>
+    <div class="section-title" id="secSoft"><span class="ico">🟣</span> Жіңішке дауыстылар · 前元音</div>
     <div class="letter-grid" id="vowelSoft"></div>
 
     <!-- Consonants -->
-    <div class="section-title"><span class="ico">🌿</span> Дауыссыздар · 辅音</div>
+    <div class="section-title" id="secCons"><span class="ico">🌿</span> Дауыссыздар · 辅音</div>
     <div class="letter-grid" id="consonants"></div>
 
     <!-- Words -->
-    <div class="section-title"><span class="ico">📖</span> Сөздер · 常用单词</div>
+    <div class="section-title" id="secWords"><span class="ico">📖</span> Сөздер · 常用单词</div>
     <table class="data-table" id="wordTable">
       <tr><th>Қазақша</th><th>IPA</th><th id="wordHead3">意思</th></tr>
     </table>
@@ -391,10 +391,29 @@ function handleContext(e,el,letter){
 
 // === Render all ===
 function render(){
-  // Title
-  if(SHOW_ZH){document.getElementById('pageTitle').innerHTML='🌸 Кирил Әліпбиі · 西里尔字母';document.getElementById('pageSubtitle').textContent='点击字母听发音 🔊 | 右键标记已学 ✓'}
-  else{document.getElementById('pageTitle').innerHTML='🌸 قازاق كيريل ٵلىپبئى';document.getElementById('pageSubtitle').textContent='ءارىپ باسىپ تىڭداڭىز 🔊 | ون جاق باسىپ بەلگىلەڭىز ✓'}
-  if(!SHOW_ZH){document.getElementById('specialHint').textContent='وسى 9 ارنايى ءارىپتى جاتتاپ الىڭىز، قازاق ءارىپتەرىنىڭ جارتىسىن تانىسىز!'}
+  // Title & headers
+  if(SHOW_ZH){
+    document.getElementById('pageTitle').innerHTML='🌸 Кирил Әліпбиі · 西里尔字母';
+    document.getElementById('pageSubtitle').textContent='点击字母听发音 🔊 | 右键标记已学 ✓';
+    var h3=document.getElementById('specialHead3');if(h3)h3.textContent='像什么';
+    var hw=document.getElementById('wordHead3');if(hw)hw.textContent='意思';
+    var s1=document.getElementById('secSpec');if(s1)s1.innerHTML='<span class="ico">✨</span> Арнайы әріптер · 特殊字母';
+    var s2=document.getElementById('secHard');if(s2)s2.innerHTML='<span class="ico">🔴</span> Жуан дауыстылар · 后元音';
+    var s3=document.getElementById('secSoft');if(s3)s3.innerHTML='<span class="ico">🟣</span> Жіңішке дауыстылар · 前元音';
+    var s4=document.getElementById('secCons');if(s4)s4.innerHTML='<span class="ico">🌿</span> Дауыссыздар · 辅音';
+    var s5=document.getElementById('secWords');if(s5)s5.innerHTML='<span class="ico">📖</span> Сөздер · 常用单词';
+  }else{
+    document.getElementById('pageTitle').innerHTML='🌸 قازاق كيريل ٵلىپبئى';
+    document.getElementById('pageSubtitle').textContent='ءارىپ باسىپ تىڭداڭىز 🔊 | ون جاق باسىپ بەلگىلەڭىز ✓';
+    document.getElementById('specialHint').textContent='وسى 9 ارنايى ءارىپتى جاتتاپ الىڭىز، قازاق ءارىپتەرىنىڭ جارتىسىن تانىسىز!';
+    var h3=document.getElementById('specialHead3');if(h3)h3.textContent='ءارىپ سيپاتى';
+    var hw=document.getElementById('wordHead3');if(hw)hw.textContent='ماعىناسى';
+    var s1=document.getElementById('secSpec');if(s1)s1.innerHTML='<span class="ico">✨</span> Арнайы әріптер';
+    var s2=document.getElementById('secHard');if(s2)s2.innerHTML='<span class="ico">🔴</span> Жуан дауыстылар';
+    var s3=document.getElementById('secSoft');if(s3)s3.innerHTML='<span class="ico">🟣</span> Жіңішке дауыстылар';
+    var s4=document.getElementById('secCons');if(s4)s4.innerHTML='<span class="ico">🌿</span> Дауыссыздар';
+    var s5=document.getElementById('secWords');if(s5)s5.innerHTML='<span class="ico">📖</span> Сөздер';
+  }
 
   // Special table
   var sp=SHOW_AB?SPEC_AB:SPECIALS;
