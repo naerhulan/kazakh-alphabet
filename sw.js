@@ -1,4 +1,4 @@
-const CACHE = 'kazakh-alphabet-v1';
+const CACHE = 'kazakh-alphabet-v2';
 const ASSETS = [
   './',
   './index.html',

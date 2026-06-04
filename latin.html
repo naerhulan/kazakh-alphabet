@@ -1,98 +1,292 @@
 <!DOCTYPE html>
-<html lang="kk-latn">
+<html lang="kk">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>🌸 Qazaq Latin Álipbii · 拉丁字母</title>
+<meta name="description" content="哈萨克新拉丁字母学习 - Qazaq Latin Áripteri">
 <link rel="manifest" href="manifest.json">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>🌸 Qazaq Latin Álipbii - 2025</title>
 <style>
-:root{--bg-page:linear-gradient(135deg,#e0f7fa 0%,#fce4ec 30%,#f3e5f5 70%,#e8f5e9 100%);--bg-card:rgba(255,255,255,0.92);--bg-glass:rgba(255,255,255,0.6);--text-primary:#2d2d2d;--text-secondary:#666;--text-muted:#999;--border-subtle:rgba(0,0,0,0.08);--shadow-card:0 2px 12px rgba(0,0,0,0.06);--shadow-hover:0 6px 24px rgba(0,0,0,0.10);--accent:#00897b;--accent-light:#80cbc4;--nav-bg:rgba(255,255,255,0.75);--radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:24px;--font-cn:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
-[data-theme="dark"]{--bg-page:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--bg-card:rgba(30,30,50,0.92);--bg-glass:rgba(30,30,50,0.6);--text-primary:#e0e0e0;--text-secondary:#aaa;--text-muted:#777;--border-subtle:rgba(255,255,255,0.08);--shadow-card:0 2px 12px rgba(0,0,0,0.3);--shadow-hover:0 6px 24px rgba(0,0,0,0.5);--nav-bg:rgba(20,20,40,0.85)}
+:root{--bg:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--card:rgba(255,255,255,0.06);--card-hover:rgba(255,255,255,0.1);--card-solid:rgba(30,30,55,0.92);--text:#f0f0f0;--text-sec:rgba(255,255,255,0.55);--text-muted:rgba(255,255,255,0.3);--border:rgba(255,255,255,0.07);--shadow:0 4px 24px rgba(0,0,0,0.4);--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--accent:#00897b;--accent2:#00695c;--accent3:#4db6ac;--accent4:#4caf50;--nav-bg:rgba(20,20,40,0.88);--radius-sm:8px;--radius-md:12px;--radius-lg:18px;--radius-xl:22px;--font:'Noto Sans','Arial',sans-serif;--font-zh:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
+[data-theme="light"]{--bg:linear-gradient(135deg,#e0f7fa 0%,#fce4ec 30%,#f3e5f5 70%,#e8f5e9 100%);--card:rgba(255,255,255,0.6);--card-hover:rgba(255,255,255,0.85);--card-solid:#fff;--text:#2d2d2d;--text-sec:#666;--text-muted:#aaa;--border:rgba(0,0,0,0.06);--shadow:0 4px 20px rgba(0,0,0,0.07);--shadow-sm:0 2px 6px rgba(0,0,0,0.04);--accent:#00897b;--accent2:#00695c;--accent3:#26a69a;--accent4:#2e7d32;--nav-bg:rgba(255,255,255,0.78)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font-cn);background:var(--bg-page);min-height:100vh;color:var(--text-primary);transition:all .3s ease}
-.top-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-subtle);padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
-.nav-left{display:flex;align-items:center;gap:12px}
-.nav-logo{font-size:18px;font-weight:800;color:var(--accent);text-decoration:none}
-.nav-right{display:flex;align-items:center;gap:6px}
-.nav-btn{background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:7px 12px;font-size:12px;font-weight:600;color:var(--text-primary);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-family:var(--font-cn)}
-.nav-btn:hover{background:rgba(0,137,123,.08);border-color:var(--accent);transform:translateY(-1px)}
-.theme-toggle{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-subtle);background:var(--bg-glass);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
-.page-wrap{max-width:860px;margin:0 auto;padding:24px 20px 40px}
-.glass-card{background:var(--bg-card);backdrop-filter:blur(12px);border-radius:var(--radius-xl);padding:36px 30px;box-shadow:var(--shadow-card);border:1px solid var(--border-subtle);margin-bottom:20px}
-.page-title{font-size:26px;font-weight:800;text-align:center;color:var(--accent);margin-bottom:4px}
-.page-subtitle{text-align:center;color:var(--text-secondary);font-size:14px;margin-bottom:20px}
-.letter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-bottom:14px}
-.letter-card{background:var(--bg-card);border-radius:var(--radius-md);padding:14px 8px 10px;text-align:center;box-shadow:var(--shadow-card);border:2px solid transparent;cursor:pointer;transition:all .25s ease;position:relative}
-.letter-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--accent)}
-.letter-card .lt{font-size:26px;font-weight:700;color:var(--accent)}
-.letter-card .ipa{font-size:12px;color:var(--text-muted);margin-top:2px}
-.letter-card .zh{font-size:13px;color:var(--text-secondary);margin-top:1px;font-weight:500}
-.letter-card .sound-icon{position:absolute;top:4px;right:6px;font-size:11px;opacity:.3}
-.letter-card:hover .sound-icon{opacity:.8}
-.section-title{font-size:17px;font-weight:700;color:var(--accent);margin:22px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent-light);display:flex;align-items:center;gap:8px}
-.tip-box{background:linear-gradient(135deg,#e0f2f144,#fff9c444);border-radius:var(--radius-md);padding:16px 18px;margin:16px 0;font-size:13px;line-height:1.7;color:var(--text-secondary);border-left:4px solid var(--accent)}
-.data-table{width:100%;border-collapse:collapse;border-radius:var(--radius-md);overflow:hidden;margin:10px 0}
-.data-table th{background:var(--accent);color:#fff;padding:10px 12px;font-size:14px}
-.data-table td{padding:9px 12px;border-bottom:1px solid var(--border-subtle);font-size:14px;cursor:pointer;transition:background .15s}
+body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(--text);transition:all .25s;overflow-x:hidden}
+.top-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.nav-left{display:flex;align-items:center;gap:10px}
+.nav-back{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 12px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-back:hover{background:var(--card-hover);border-color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-btn{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px 10px;font-size:11px;font-weight:600;color:var(--text);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:4px;font-family:var(--font-zh);white-space:nowrap}
+.nav-btn:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-1px)}
+.nav-btn.quiz-active{background:rgba(0,137,123,.15);border-color:var(--accent);color:var(--accent)}
+.theme-toggle{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-toggle:hover{background:var(--card-hover);border-color:var(--accent);transform:rotate(20deg)}
+.page-wrap{max-width:880px;margin:0 auto;padding:20px 16px 60px}
+.section-card{background:var(--card-solid);border-radius:var(--radius-xl);padding:28px 24px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:16px;transition:all .25s}
+.section-title{font-size:17px;font-weight:800;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px;color:var(--text)}
+.letter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-bottom:8px}
+.letter-card{position:relative;background:var(--card);border-radius:var(--radius-md);padding:12px 6px 8px;text-align:center;border:2px solid transparent;cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);user-select:none}
+.letter-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.2);border-color:var(--accent)}
+.letter-card:active{transform:scale(.94)}
+.letter-card .lt{font-size:24px;font-weight:700;color:var(--accent)}
+.letter-card .ipa{font-size:10px;color:var(--text-muted);margin-top:1px}
+.letter-card .zh{font-size:11px;color:var(--text-sec);margin-top:1px}
+.letter-card .sound-icon{position:absolute;top:3px;right:5px;font-size:10px;opacity:.25;z-index:1}
+.letter-card:hover .sound-icon{opacity:.7}
+.letter-card.playing{border-color:var(--accent);box-shadow:0 0 24px rgba(0,137,123,.25);animation:pulse .4s}
+.letter-card.learned{border-color:var(--accent4);background:rgba(76,175,80,.08)}
+.letter-card.learned::after{content:'✓';position:absolute;top:2px;left:5px;font-size:10px;color:var(--accent4);font-weight:700;z-index:1}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.data-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:var(--radius-md);margin:8px 0;font-size:13px}
+.data-table th{background:var(--accent);color:#fff;padding:8px 10px;font-size:12px;font-weight:700;text-align:left}
+.data-table td{padding:7px 10px;border-bottom:1px solid var(--border);transition:background .12s;cursor:pointer}
 .data-table tr:last-child td{border-bottom:none}
-.data-table tr:hover td{background:rgba(0,137,123,.05)}
-.page-footer{text-align:center;color:var(--text-muted);font-size:12px;margin-top:30px;padding:20px 0;opacity:.6}
-@media(max-width:600px){.page-wrap{padding:16px 12px 30px}.glass-card{padding:24px 16px}.page-title{font-size:22px}.letter-grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}.top-nav{padding:8px 12px}}
+.data-table tr:hover td{background:rgba(0,137,123,.04)}
+.tip-box{background:rgba(0,137,123,.06);border-radius:var(--radius-md);padding:14px 16px;margin:12px 0;font-size:12px;line-height:1.7;color:var(--text-sec);border-left:3px solid var(--accent)}
+.stats-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
+.stats-item{background:var(--card);padding:6px 12px;border-radius:var(--radius-sm);display:flex;align-items:center;gap:5px;color:var(--text-sec)}
+.stats-item strong{color:var(--accent)}
+.search-box{display:none;margin:0 0 12px}
+.search-box.show{display:block}
+.search-input{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:14px;outline:none;background:var(--card);color:var(--text);font-family:var(--font-zh);transition:border .2s}
+.search-input:focus{border-color:var(--accent)}
+
+/* Quiz */
+.quiz-panel{display:none;background:rgba(0,137,123,.05);border-radius:var(--radius-lg);padding:20px 18px;margin-bottom:16px;border:1px solid rgba(0,137,123,.15)}
+.quiz-panel.show{display:block}
+.quiz-q{font-size:34px;font-weight:700;text-align:center;margin:10px 0;color:var(--accent)}
+.quiz-qsound{text-align:center;font-size:12px;color:var(--text-muted);margin-bottom:12px}
+.quiz-qsound .play-hint{display:inline-flex;align-items:center;gap:4px;cursor:pointer;color:var(--accent);font-weight:600}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.quiz-opt{background:var(--card);border:2px solid var(--border);border-radius:var(--radius-md);padding:12px 8px;font-size:20px;font-weight:600;text-align:center;cursor:pointer;transition:all .2s;color:var(--text);font-family:var(--font)}
+.quiz-opt:hover{border-color:var(--accent);transform:translateY(-2px)}
+.quiz-opt.correct{border-color:var(--accent4);background:rgba(76,175,80,.12);color:var(--accent4)}
+.quiz-opt.wrong{border-color:#f44336;background:rgba(244,67,54,.1);color:#f44336}
+.quiz-score{text-align:center;font-size:13px;color:var(--text-sec);margin-top:8px}
+.quiz-score strong{color:var(--accent);font-size:16px}
+.quiz-next-btn{display:block;margin:8px auto 0;padding:8px 24px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:var(--font-zh)}
+.quiz-next-btn:hover{transform:translateY(-2px)}
+.quiz-next-btn:disabled{opacity:.4;cursor:default;transform:none}
+
+/* Stats modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;justify-content:center;align-items:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.show{display:flex}
+.modal-box{background:var(--card-solid);border-radius:var(--radius-xl);padding:28px 24px;max-width:380px;width:100%;box-shadow:var(--shadow);border:1px solid var(--border);max-height:80vh;overflow-y:auto}
+.modal-title{font-size:18px;font-weight:800;margin-bottom:16px;text-align:center;color:var(--text)}
+.modal-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-stat{background:var(--card);border-radius:var(--radius-md);padding:14px;text-align:center}
+.modal-stat .val{font-size:28px;font-weight:900;color:var(--accent)}
+.modal-stat .lbl{font-size:11px;color:var(--text-muted);margin-top:2px}
+.modal-stat .val.green{color:var(--accent4)}
+.modal-stat .val.gold{color:#ff9800}
+.modal-close{display:block;margin:16px auto 0;padding:8px 28px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-zh)}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent2);color:#fff;padding:10px 24px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.3);z-index:300;display:none;animation:toastIn .3s;white-space:nowrap}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.page-footer{text-align:center;color:var(--text-muted);font-size:11px;margin-top:24px;padding:16px 0;opacity:.5}
+
+@media(max-width:600px){
+  .page-wrap{padding:12px 10px 40px}
+  .section-card{padding:20px 14px;border-radius:var(--radius-lg)}
+  .letter-grid{grid-template-columns:repeat(auto-fill,minmax(70px,1fr))}
+  .letter-card .lt{font-size:20px}
+  .top-nav{padding:8px 10px}
+  .nav-btn{padding:5px 8px;font-size:10px}
+  .quiz-options{grid-template-columns:1fr 1fr}
+  .quiz-q{font-size:28px}
+}
 </style>
 </head>
 <body>
 <nav class="top-nav">
-  <div class="nav-left"><a href="./" class="nav-logo">← Qazaqsha</a></div>
-  <div class="nav-right"><button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">🌙</button></div>
+  <div class="nav-left"><a href="./" class="nav-back">← Басты бет</a></div>
+  <div class="nav-right">
+    <button class="nav-btn" onclick="toggleSearch()">🔍 Іздеу</button>
+    <button class="nav-btn" onclick="toggleStats()">📊 Стат</button>
+    <button class="nav-btn quiz-btn" onclick="toggleQuiz()">🎯 Тест</button>
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☀️</button>
+  </div>
 </nav>
 <div class="page-wrap">
-<div class="glass-card">
-<h1 class="page-title">🌸 Qazaq Latin Álipbii - 2025</h1>
-<p class="page-subtitle">Қазақстанның жаңа латын әліпбиі · New Kazakh Latin Alphabet</p>
-<div class="section-title">📝 Latin Áripter (Latin Letters)</div>
-<div class="letter-grid" id="latGrid"></div>
-<div class="section-title">📖 Sózder (Example Words)</div>
-<table class="data-table" id="wordTable"><tr><th>Latin</th><th>Cyrillic</th><th>Meaning</th></tr></table>
-<div class="tip-box">💡 <b>Tip:</b> Kazakhstan's transition to the Latin alphabet is planned for 2025-2031. This is the official version approved by the government.</div>
+  <div class="section-card">
+    <div style="text-align:center;margin-bottom:12px">
+      <h1 style="font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--accent),#004d40);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🌸 Qazaq Latin Álipbii</h1>
+      <p style="font-size:13px;color:var(--text-sec);margin-top:2px">点击字母听发音 🔊 | 右键标记已学 ✓</p>
+    </div>
+
+    <div class="stats-bar" id="statsBar">
+      <span class="stats-item">📚 <strong id="learnedCount">0</strong>/<span id="totalCount">33</span> үйренілген</span>
+      <span class="stats-item">📈 <span id="progressPct">0%</span></span>
+    </div>
+
+    <div class="search-box" id="searchBox">
+      <input class="search-input" id="searchInput" placeholder="🔍 Іздеу..." oninput="filterLetters()">
+    </div>
+
+    <div class="quiz-panel" id="quizPanel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:12px;color:var(--text-sec)">🎯 Тыңдау тесті</span>
+        <button onclick="toggleQuiz()" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px">✕</button>
+      </div>
+      <div class="quiz-qsound"><span class="play-hint" onclick="replayQuizSound()">🔊 Тыңдау</span></div>
+      <div class="quiz-q" id="quizQuestion">🔊</div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-score">Ұпай: <strong id="quizScore">0</strong> / <span id="quizTotal">0</span></div>
+      <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuiz()" disabled>Келесі →</button>
+    </div>
+
+    <div class="section-title">📝 Latin Áripter</div>
+    <div class="letter-grid" id="latGrid"></div>
+
+    <div class="section-title">📖 Sózder (Example Words)</div>
+    <table class="data-table" id="wordTable"><tr><th>Latin</th><th>Cyrillic</th><th>Meaning</th></tr></table>
+
+    <div class="tip-box">💡 <b>Tip:</b> Kazakhstan's transition to the Latin alphabet is planned for 2025-2031. This is the official version approved by the government.</div>
+  </div>
+  <div class="page-footer">🌸 Бауырсақ · 2026</div>
 </div>
-<div class="page-footer">🌸 胡兰的包尔萨克 · 2026</div>
+
+<div id="toast"></div>
+
+<div class="modal-overlay" id="statsModal">
+  <div class="modal-box">
+    <div class="modal-title">📊 Оқу статистикасы</div>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="val" id="mLearned">0</div><div class="lbl">Үйренілген</div></div>
+      <div class="modal-stat"><div class="val" id="mTotal">0</div><div class="lbl">Барлығы</div></div>
+      <div class="modal-stat"><div class="val green" id="mPct">0%</div><div class="lbl">Прогресс</div></div>
+      <div class="modal-stat"><div class="val gold" id="mScore">0</div><div class="lbl">Тест ұпайы</div></div>
+    </div>
+    <button class="modal-close" onclick="toggleStats()">Жабу</button>
+  </div>
 </div>
+
 <script>
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
-function initTheme(){var s=localStorage.getItem('kazakhTheme')||'light';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='dark'?'☀️':'🌙'}
-function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='dark'?'☀️':'🌙'}
+var USER_TYPE=parseInt(new URLSearchParams(window.location.search).get('type'))||parseInt(localStorage.getItem('kazakhUserType'))||4;
+localStorage.setItem('kazakhUserType',USER_TYPE);
+
+function initTheme(){var s=localStorage.getItem('kazakhTheme')||'dark';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='light'?'🌙':'☀️'}
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='light'?'🌙':'☀️'}
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(function(){t.style.display='none'},1800)}
+
+// Audio mapping for Latin letters (using cyrillic sounds)
+var LATIN_TO_CYR={'A':'а','Á':'ә','B':'б','D':'д','E':'е','F':'ф','G':'г','Ǵ':'ғ','H':'һ','I':'і','Ï':'ы','J':'ж','K':'к','L':'л','M':'м','N':'н','Ń':'ң','O':'о','Ó':'ө','P':'п','Q':'қ','R':'р','S':'с','T':'т','U':'у','Ū':'ұ','Ú':'ү','V':'в','Y':'й','Z':'з','C':'ц','Ç':'ч','Ş':'ш'};
+var LS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'sh','ы':'yh','і':'ii_','э':'eh','ю':'yoo','я':'yah'};
+function playFile(f){return new Promise(function(r){var a=new Audio('sounds/'+f+'.mp3');a.onerror=function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)};a.onended=r;a.play().catch(function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)})})}
+function speakLatinLetter(lt){
+  var lower=lt.toLowerCase();
+  var cyr=LATIN_TO_CYR[lt]||'';
+  if(cyr&&LS[cyr.toLowerCase()]){playFile(LS[cyr.toLowerCase()]);return;}
+  // fallback: TTS
+  var u=new SpeechSynthesisUtterance(lt);u.lang='kk-KZ';u.rate=.85;window.speechSynthesis.speak(u);
+}
+function speakText(t){var l=t.toLowerCase();var d=0;for(var i=0;i<l.length;i++){(function(s){if(LS[s]){setTimeout(function(){playFile(LS[s])},d);d+=300}})(l[i])}}
+
+// Progress
+function getP(){try{return JSON.parse(localStorage.getItem('kazakhProgress')||'{}')}catch(e){return{}}}
+function saveP(p){localStorage.setItem('kazakhProgress',JSON.stringify(p))}
+function isL(l){var p=getP();return p[l]&&p[l].learned}
+function markL(l){var p=getP();p[l]={learned:true,date:new Date().toISOString().split('T')[0]};saveP(p);toast('✓ Marked: '+l);updateStats()}
+function unmarkL(l){var p=getP();delete p[l];saveP(p);toast('Unmarked: '+l);updateStats()}
+
 var LATIN=[
-{l:'A a',ipa:'/ɑ/',zh:'А а'},{l:'Á á',ipa:'/æ/',zh:'Ә ә'},{l:'B b',ipa:'/b/',zh:'Б б'},
-{l:'D d',ipa:'/d/',zh:'Д д'},{l:'E e',ipa:'/je/',zh:'Е е'},{l:'F f',ipa:'/f/',zh:'Ф ф'},
-{l:'G g',ipa:'/ɡ/',zh:'Г г'},{l:'Ǵ ǵ',ipa:'/ʁ/',zh:'Ғ ғ'},{l:'H h',ipa:'/h/',zh:'Һ һ'},
-{l:'I i',ipa:'/ɪ/',zh:'І і'},{l:'Ï ï',ipa:'/ɤ/',zh:'Ы ы'},{l:'J j',ipa:'/ʒ/',zh:'Ж ж'},
-{l:'K k',ipa:'/k/',zh:'К к'},{l:'L l',ipa:'/l/',zh:'Л л'},{l:'M m',ipa:'/m/',zh:'М м'},
-{l:'N n',ipa:'/n/',zh:'Н н'},{l:'Ń ń',ipa:'/ŋ/',zh:'Ң ң'},{l:'O o',ipa:'/o/',zh:'О о'},
-{l:'Ó ó',ipa:'/ɵ/',zh:'Ө ө'},{l:'P p',ipa:'/p/',zh:'П п'},{l:'Q q',ipa:'/q/',zh:'Қ қ'},
-{l:'R r',ipa:'/r/',zh:'Р р'},{l:'S s',ipa:'/s/',zh:'С с'},{l:'T t',ipa:'/t/',zh:'Т т'},
-{l:'U u',ipa:'/w/',zh:'У у'},{l:'Ū ū',ipa:'/ʊ/',zh:'Ұ ұ'},{l:'Ú ú',ipa:'/ʉ/',zh:'Ү ү'},
-{l:'V v',ipa:'/v/',zh:'В в'},{l:'Y y',ipa:'/j/',zh:'Й й'},{l:'Z z',ipa:'/z/',zh:'З з'},
-{l:'C c',ipa:'/ts/',zh:'Ц ц'},{l:'Ç ç',ipa:'/tʃ/',zh:'Ч ч'},{l:'Ş ş',ipa:'/ʃ/',zh:'Ш ш'},
+  {l:'A a',ipa:'/ɑ/',zh:'А а'},{l:'Á á',ipa:'/æ/',zh:'Ә ә'},{l:'B b',ipa:'/b/',zh:'Б б'},
+  {l:'D d',ipa:'/d/',zh:'Д д'},{l:'E e',ipa:'/je/',zh:'Е е'},{l:'F f',ipa:'/f/',zh:'Ф ф'},
+  {l:'G g',ipa:'/ɡ/',zh:'Г г'},{l:'Ǵ ǵ',ipa:'/ʁ/',zh:'Ғ ғ'},{l:'H h',ipa:'/h/',zh:'Һ һ'},
+  {l:'I i',ipa:'/ɪ/',zh:'І і'},{l:'Ï ï',ipa:'/ɤ/',zh:'Ы ы'},{l:'J j',ipa:'/ʒ/',zh:'Ж ж'},
+  {l:'K k',ipa:'/k/',zh:'К к'},{l:'L l',ipa:'/l/',zh:'Л л'},{l:'M m',ipa:'/m/',zh:'М м'},
+  {l:'N n',ipa:'/n/',zh:'Н н'},{l:'Ń ń',ipa:'/ŋ/',zh:'Ң ң'},{l:'O o',ipa:'/o/',zh:'О о'},
+  {l:'Ó ó',ipa:'/ɵ/',zh:'Ө ө'},{l:'P p',ipa:'/p/',zh:'П п'},{l:'Q q',ipa:'/q/',zh:'Қ қ'},
+  {l:'R r',ipa:'/r/',zh:'Р р'},{l:'S s',ipa:'/s/',zh:'С с'},{l:'T t',ipa:'/t/',zh:'Т т'},
+  {l:'U u',ipa:'/w/',zh:'У у'},{l:'Ū ū',ipa:'/ʊ/',zh:'Ұ ұ'},{l:'Ú ú',ipa:'/ʉ/',zh:'Ү ү'},
+  {l:'V v',ipa:'/v/',zh:'В в'},{l:'Y y',ipa:'/j/',zh:'Й й'},{l:'Z z',ipa:'/z/',zh:'З з'},
+  {l:'C c',ipa:'/ts/',zh:'Ц ц'},{l:'Ç ç',ipa:'/tʃ/',zh:'Ч ч'},{l:'Ş ş',ipa:'/ʃ/',zh:'Ш ш'},
 ];
 var WORDS=[
-{lt:'Qazaq',cy:'Қазақ',zh:'Kazakh'},{lt:'Salem',cy:'Сәлем',zh:'Hello'},
-{lt:'Raxmet',cy:'Рахмет',zh:'Thank you'},{lt:'Jaqsı',cy:'Жақсы',zh:'Good'},
-{lt:'Alma',cy:'Алма',zh:'Apple'},{lt:'Gúl',cy:'Гүл',zh:'Flower'},
-{lt:'Kún',cy:'Күн',zh:'Sun / Day'},{lt:'Mahabbat',cy:'Махаббат',zh:'Love'},
+  {lt:'Qazaq',cy:'Қазақ',zh:'Kazakh'},{lt:'Salem',cy:'Сәлем',zh:'Hello'},
+  {lt:'Raxmet',cy:'Рахмет',zh:'Thank you'},{lt:'Jaqsı',cy:'Жақсы',zh:'Good'},
+  {lt:'Alma',cy:'Алма',zh:'Apple'},{lt:'Gúl',cy:'Гүл',zh:'Flower'},
+  {lt:'Kún',cy:'Күн',zh:'Sun / Day'},{lt:'Mahabbat',cy:'Махаббат',zh:'Love'},
 ];
+
+function renderCard(d){
+  var key=d.l.split(' ')[0];
+  var cls=isL(key)?' letter-card learned':' letter-card';
+  return '<div class="'+cls+'" data-letter="'+key+'" onclick="speakLatinLetter(\''+key+'\');this.classList.add(\'playing\');setTimeout(function(){this.classList.remove(\'playing\')}.bind(this),600)" oncontextmenu="event.preventDefault();var l=this.getAttribute(\'data-letter\');if(isL(l)){this.classList.remove(\'learned\');unmarkL(l)}else{this.classList.add(\'learned\');markL(l)}"><span class="sound-icon">🔊</span><div class="lt">'+d.l+'</div><div class="ipa">'+d.ipa+'</div><div class="zh">'+d.zh+'</div></div>';
+}
+
 function render(){
-var h='';
-for(var i=0;i<LATIN.length;i++){
-var d=LATIN[i];
-h+='<div class="letter-card" onclick="var u=new SpeechSynthesisUtterance(\''+d.l.split(' ')[0]+'\');u.lang=\'kk-KZ\';u.rate=.85;window.speechSynthesis.speak(u)"><span class="sound-icon">🔊</span><div class="lt">'+d.l+'</div><div class="ipa">'+d.ipa+'</div><div class="zh">'+d.zh+'</div></div>';
+  var h='';for(var i=0;i<LATIN.length;i++)h+=renderCard(LATIN[i]);document.getElementById('latGrid').innerHTML=h;
+  var wt='';for(var i=0;i<WORDS.length;i++){(function(d){wt+='<tr><td style="font-weight:700;color:var(--accent)">'+d.lt+'</td><td>'+d.cy+'</td><td>'+d.zh+'</td></tr>'})(WORDS[i])}
+  document.querySelector('#wordTable').innerHTML+=wt;
+  updateStats();
 }
-document.getElementById('latGrid').innerHTML=h;
-var wt='';
-for(var i=0;i<WORDS.length;i++){
-(function(d){wt+='<tr><td style="font-weight:700;color:var(--accent)">'+d.lt+'</td><td>'+d.cy+'</td><td>'+d.zh+'</td></tr>'})(WORDS[i]);
+
+function updateStats(){
+  var p=getP();var learned=0;
+  for(var i=0;i<LATIN.length;i++){var key=LATIN[i].l.split(' ')[0];if(p[key]&&p[key].learned)learned++;}
+  document.getElementById('learnedCount').textContent=learned;
+  document.getElementById('totalCount').textContent=LATIN.length;
+  var pct=Math.round(learned/LATIN.length*100)||0;
+  document.getElementById('progressPct').textContent=pct+'%';
+  document.getElementById('mLearned').textContent=learned;
+  document.getElementById('mTotal').textContent=LATIN.length;
+  document.getElementById('mPct').textContent=pct+'%';
 }
-document.querySelector('#wordTable').innerHTML+=wt;
+
+function toggleSearch(){
+  var s=document.getElementById('searchBox');s.classList.toggle('show');
+  if(s.classList.contains('show'))document.getElementById('searchInput').focus();
 }
+function filterLetters(){
+  var q=document.getElementById('searchInput').value.trim().toLowerCase();
+  document.querySelectorAll('.letter-card').forEach(function(c){c.style.display=c.textContent.toLowerCase().indexOf(q)>-1?'':'none'});
+}
+function toggleStats(){
+  var m=document.getElementById('statsModal');m.classList.toggle('show');
+  updateStats();document.getElementById('mScore').textContent=parseInt(localStorage.getItem('kazakhQuizScore')||'0');
+}
+
+// Quiz
+var QUIZ_DATA=[],QUIZ_CURRENT=null,QUIZ_INDEX=0,QUIZ_SCORE=0,QUIZ_ANSWERED=false;
+function initQuiz(){
+  QUIZ_DATA=LATIN.map(function(d){
+    var ans=d.l.split(' ')[0];
+    var opts=[ans];var pool=LATIN.filter(function(x){return x.l.split(' ')[0]!==ans});
+    for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=pool[i];pool[i]=pool[j];pool[j]=tmp}
+    for(var k=0;k<3&&k<pool.length;k++)opts.push(pool[k].l.split(' ')[0]);
+    for(var i=opts.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=opts[i];opts[i]=opts[j];opts[j]=tmp}
+    return {letter:ans,cyr:LATIN_TO_CYR[ans]||ans,answer:ans,options:opts};
+  });
+  QUIZ_SCORE=parseInt(localStorage.getItem('kazakhQuizScore')||'0');
+}
+function toggleQuiz(){
+  var p=document.getElementById('quizPanel');p.classList.toggle('show');
+  if(p.classList.contains('show')){document.querySelector('.quiz-btn').classList.add('quiz-active');initQuiz();QUIZ_INDEX=0;QUIZ_ANSWERED=false;showQuiz();}
+  else document.querySelector('.quiz-btn').classList.remove('quiz-active');
+}
+function showQuiz(){
+  if(QUIZ_INDEX>=QUIZ_DATA.length){
+    document.getElementById('quizQuestion').textContent='✅';document.getElementById('quizOptions').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:16px;font-size:14px;color:var(--accent4)">🎉 Барлығы!</div>';
+    document.getElementById('quizNextBtn').disabled=true;document.getElementById('quizScore').textContent=QUIZ_SCORE;document.getElementById('quizTotal').textContent=QUIZ_DATA.length;return;
+  }
+  var q=QUIZ_DATA[QUIZ_INDEX];QUIZ_CURRENT=q;QUIZ_ANSWERED=false;
+  document.getElementById('quizQuestion').textContent='🔊';document.getElementById('quizNextBtn').disabled=true;document.getElementById('quizNextBtn').textContent='Келесі →';
+  var optsHtml='';for(var i=0;i<q.options.length;i++)optsHtml+='<div class="quiz-opt" onclick="quizAnswer(this,\''+q.options[i]+'\',\''+q.answer+'\')">'+q.options[i]+'</div>';
+  document.getElementById('quizOptions').innerHTML=optsHtml;
+  document.getElementById('quizScore').textContent=QUIZ_SCORE;document.getElementById('quizTotal').textContent=QUIZ_DATA.length;
+  setTimeout(function(){speakLatinLetter(q.letter);},200);
+}
+function replayQuizSound(){if(QUIZ_CURRENT)speakLatinLetter(QUIZ_CURRENT.letter);}
+function quizAnswer(el,selected,correct){
+  if(QUIZ_ANSWERED)return;QUIZ_ANSWERED=true;
+  var opts=document.getElementById('quizOptions').querySelectorAll('.quiz-opt');
+  for(var i=0;i<opts.length;i++){opts[i].style.pointerEvents='none';if(opts[i].textContent.trim()===correct)opts[i].classList.add('correct');}
+  if(selected===correct){QUIZ_SCORE++;localStorage.setItem('kazakhQuizScore',QUIZ_SCORE);}else el.classList.add('wrong');
+  document.getElementById('quizScore').textContent=QUIZ_SCORE;document.getElementById('quizNextBtn').disabled=false;
+}
+function nextQuiz(){QUIZ_INDEX++;showQuiz();}
+
 initTheme();render();
 </script>
 </body>

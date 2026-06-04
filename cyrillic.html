@@ -1,241 +1,521 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="kk">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>🌸 Кирил Әліпбиі · 哈萨克西里尔字母</title>
+<meta name="description" content="哈萨克西里尔字母学习 - Сәлем! Қазақ тілін үйрен!">
 <link rel="manifest" href="manifest.json">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>🌸 哈萨克西里尔字母入门 - 点击发音</title>
 <style>
-:root{--bg-page:linear-gradient(135deg,#fce4ec 0%,#f3e5f5 30%,#e8eaf6 70%,#e0f7fa 100%);--bg-card:rgba(255,255,255,0.92);--bg-glass:rgba(255,255,255,0.6);--text-primary:#2d2d2d;--text-secondary:#666;--text-muted:#999;--border-subtle:rgba(0,0,0,0.08);--shadow-card:0 2px 12px rgba(0,0,0,0.06);--shadow-hover:0 6px 24px rgba(0,0,0,0.10);--accent-pink:#e91e63;--accent-purple:#7b1fa2;--accent-blue:#2196f3;--accent-green:#4caf50;--accent-gold:#ffc107;--nav-bg:rgba(255,255,255,0.75);--radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:24px;--font-cn:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif}
-[data-theme="dark"]{--bg-page:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--bg-card:rgba(30,30,50,0.92);--bg-glass:rgba(30,30,50,0.6);--text-primary:#e0e0e0;--text-secondary:#aaa;--text-muted:#777;--border-subtle:rgba(255,255,255,0.08);--shadow-card:0 2px 12px rgba(0,0,0,0.3);--shadow-hover:0 6px 24px rgba(0,0,0,0.5);--nav-bg:rgba(20,20,40,0.85)}
+:root{--bg:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--card:rgba(255,255,255,0.06);--card-hover:rgba(255,255,255,0.1);--card-solid:rgba(30,30,55,0.92);--text:#f0f0f0;--text-sec:rgba(255,255,255,0.55);--text-muted:rgba(255,255,255,0.3);--border:rgba(255,255,255,0.07);--shadow:0 4px 24px rgba(0,0,0,0.4);--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--accent:#e91e63;--accent2:#7b1fa2;--accent3:#2196f3;--accent4:#4caf50;--accent5:#ff9800;--nav-bg:rgba(20,20,40,0.88);--radius-sm:8px;--radius-md:12px;--radius-lg:18px;--radius-xl:22px;--font:'Noto Sans','Arial',sans-serif;--font-zh:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;--font-ab:'Noto Naskh Arabic','Traditional Arabic','Scheherazade',serif}
+[data-theme="light"]{--bg:linear-gradient(135deg,#fce4ec 0%,#f3e5f5 30%,#e8eaf6 70%,#e0f7fa 100%);--card:rgba(255,255,255,0.6);--card-hover:rgba(255,255,255,0.85);--card-solid:#fff;--text:#2d2d2d;--text-sec:#666;--text-muted:#aaa;--border:rgba(0,0,0,0.06);--shadow:0 4px 20px rgba(0,0,0,0.07);--shadow-sm:0 2px 6px rgba(0,0,0,0.04);--accent:#c2185b;--accent2:#5e35b1;--accent3:#1565c0;--accent4:#2e7d32;--accent5:#e65100;--nav-bg:rgba(255,255,255,0.78)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font-cn);background:var(--bg-page);min-height:100vh;color:var(--text-primary);transition:all .3s ease;padding:0}
-.top-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-subtle);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.nav-left{display:flex;align-items:center;gap:12px}
-.nav-logo{font-size:18px;font-weight:800;background:linear-gradient(135deg,var(--accent-pink),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
-.nav-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.nav-btn{background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:7px 12px;font-size:12px;font-weight:600;color:var(--text-primary);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-family:var(--font-cn);white-space:nowrap}
-.nav-btn:hover{background:rgba(233,30,99,.08);border-color:var(--accent-pink);transform:translateY(-1px)}
-.theme-toggle{width:34px;height:34px;border-radius:50%;border:1px solid var(--border-subtle);background:var(--bg-glass);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.theme-toggle:hover{background:rgba(233,30,99,.1);border-color:var(--accent-pink);transform:rotate(20deg)}
-.page-wrap{max-width:860px;margin:0 auto;padding:24px 20px 40px}
-.glass-card{background:var(--bg-card);backdrop-filter:blur(12px);border-radius:var(--radius-xl);padding:36px 30px;box-shadow:var(--shadow-card);border:1px solid var(--border-subtle);margin-bottom:20px}
-.page-title{font-size:28px;font-weight:800;text-align:center;color:var(--accent-purple);margin-bottom:4px}
-.page-subtitle{text-align:center;color:var(--text-secondary);font-size:14px;margin-bottom:20px}
-.letter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:10px;margin-bottom:14px}
-.letter-card{background:var(--bg-card);border-radius:var(--radius-md);padding:14px 8px 10px;text-align:center;box-shadow:var(--shadow-card);border:2px solid transparent;cursor:pointer;transition:all .25s ease;position:relative;user-select:none}
-.letter-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--accent-pink)}
-.letter-card:active{transform:scale(.95)}
-.letter-card .cyr{font-size:28px;font-weight:700;color:var(--accent-purple)}
-.letter-card .ipa{font-size:11px;color:var(--text-muted);margin-top:2px}
-.letter-card .zh{font-size:12px;color:var(--accent-pink);margin-top:1px}
-.letter-card .ab{font-size:20px;color:#1a237e;margin-top:2px;direction:rtl;font-family:'Noto Naskh Arabic','Traditional Arabic','Scheherazade',serif;text-align:center}
-.letter-card .sound-icon{position:absolute;top:4px;right:6px;font-size:11px;opacity:.3;transition:opacity .2s}
-.letter-card:hover .sound-icon{opacity:.8}
-.letter-card.playing{border-color:var(--accent-pink);box-shadow:0 0 20px rgba(233,30,99,.2);animation:pulse .4s ease}
-@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
-.section-title{font-size:17px;font-weight:700;color:var(--accent-purple);margin:22px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent-pink);display:flex;align-items:center;gap:8px}
-.section-sub{font-size:13px;color:var(--text-secondary);margin:8px 0 6px}
-.data-table{width:100%;border-collapse:collapse;border-radius:var(--radius-md);overflow:hidden;margin:10px 0}
-.data-table th{background:var(--accent-pink);color:#fff;padding:10px 12px;font-size:14px;font-weight:600}
-.data-table td{padding:9px 12px;border-bottom:1px solid var(--border-subtle);font-size:14px;cursor:pointer;transition:background .15s}
+body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(--text);transition:all .25s;overflow-x:hidden}
+.top-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.nav-left{display:flex;align-items:center;gap:10px}
+.nav-back{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 12px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.nav-back:hover{background:var(--card-hover);border-color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-btn{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px 10px;font-size:11px;font-weight:600;color:var(--text);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:4px;font-family:var(--font-zh);white-space:nowrap}
+.nav-btn:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-1px)}
+.nav-btn.quiz-active{background:rgba(233,30,99,.15);border-color:var(--accent);color:var(--accent)}
+.theme-toggle{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-toggle:hover{background:var(--card-hover);border-color:var(--accent);transform:rotate(20deg)}
+.page-wrap{max-width:880px;margin:0 auto;padding:20px 16px 60px}
+.section-card{background:var(--card-solid);border-radius:var(--radius-xl);padding:28px 24px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:16px;transition:all .25s}
+.section-title{font-size:17px;font-weight:800;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px;color:var(--text)}
+.section-title .ico{font-size:16px}
+.letter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;margin-bottom:8px}
+.letter-card{position:relative;background:var(--card);border-radius:var(--radius-md);padding:12px 6px 8px;text-align:center;border:2px solid transparent;cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);user-select:none;overflow:hidden}
+.letter-card::before{content:'';position:absolute;inset:0;opacity:0;background:linear-gradient(135deg,var(--accent),transparent);transition:opacity .2s;border-radius:inherit}
+.letter-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.2);border-color:var(--accent)}
+.letter-card:hover::before{opacity:.06}
+.letter-card:active{transform:scale(.94)}
+.letter-card .cyr{font-size:26px;font-weight:700;color:var(--accent);position:relative;z-index:1}
+.letter-card .ipa{font-size:10px;color:var(--text-muted);margin-top:1px;position:relative;z-index:1}
+.letter-card .zh{font-size:11px;color:var(--accent);margin-top:1px;font-weight:500;position:relative;z-index:1}
+.letter-card .ab{font-size:18px;color:var(--accent3);margin-top:2px;direction:rtl;font-family:var(--font-ab);position:relative;z-index:1}
+.letter-card .sound-icon{position:absolute;top:3px;right:5px;font-size:10px;opacity:.25;transition:opacity .2s;z-index:2}
+.letter-card:hover .sound-icon{opacity:.7}
+.letter-card.playing{border-color:var(--accent);box-shadow:0 0 24px rgba(233,30,99,.25);animation:pulse .4s cubic-bezier(.4,0,.2,1)}
+.letter-card.learned{border-color:var(--accent4);background:rgba(76,175,80,.08)}
+.letter-card.learned::after{content:'✓';position:absolute;top:2px;left:5px;font-size:10px;color:var(--accent4);font-weight:700;z-index:2}
+.letter-card.learned .cyr{color:var(--accent4)}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.data-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:var(--radius-md);margin:8px 0;font-size:13px}
+.data-table th{background:var(--accent);color:#fff;padding:8px 10px;font-size:12px;font-weight:700;text-align:left}
+.data-table td{padding:7px 10px;border-bottom:1px solid var(--border);transition:background .12s;cursor:pointer}
 .data-table tr:last-child td{border-bottom:none}
-.data-table tr:hover td{background:rgba(233,30,99,.05)}
-.data-table .cyr-cell{font-weight:700;color:var(--accent-purple);font-size:17px}
-.tip-box{background:linear-gradient(135deg,#fff9c444,#fff3e044);border-radius:var(--radius-md);padding:16px 18px;margin:16px 0;font-size:13px;line-height:1.7;color:var(--text-secondary);border-left:4px solid var(--accent-gold)}
-.highlight-box{background:linear-gradient(135deg,#fce4ec44,#f3e5f544);border-radius:var(--radius-md);padding:18px 20px;margin:16px 0;border-left:4px solid var(--accent-pink)}
-.highlight-box h3{color:var(--accent-pink);font-size:15px;margin-bottom:8px}
-.highlight-box p{font-size:13px;line-height:1.8;color:var(--text-secondary)}
-.page-footer{text-align:center;color:var(--text-muted);font-size:12px;margin-top:30px;padding:20px 0;opacity:.6}
-#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--accent-purple);color:#fff;padding:10px 24px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:300;display:none;animation:toastIn .3s ease}
+.data-table tr:hover td{background:rgba(233,30,99,.04)}
+.data-table .cyr-cell{font-weight:700;font-size:16px;color:var(--accent)}
+.tip-box{background:rgba(255,193,7,.06);border-radius:var(--radius-md);padding:14px 16px;margin:12px 0;font-size:12px;line-height:1.7;color:var(--text-sec);border-left:3px solid var(--accent5)}
+.highlight-box{background:rgba(233,30,99,.04);border-radius:var(--radius-md);padding:16px 18px;margin:12px 0;border-left:3px solid var(--accent)}
+.highlight-box h3{font-size:14px;margin-bottom:6px;color:var(--accent)}
+.highlight-box p{font-size:12px;line-height:1.7;color:var(--text-sec)}
+
+/* Quiz panel */
+.quiz-panel{display:none;background:rgba(233,30,99,.05);border-radius:var(--radius-lg);padding:20px 18px;margin-bottom:16px;border:1px solid rgba(233,30,99,.15)}
+.quiz-panel.show{display:block}
+.quiz-q{font-size:34px;font-weight:700;text-align:center;margin:10px 0;color:var(--accent)}
+.quiz-qsound{text-align:center;font-size:12px;color:var(--text-muted);margin-bottom:12px}
+.quiz-qsound .play-hint{display:inline-flex;align-items:center;gap:4px;cursor:pointer;color:var(--accent);font-weight:600}
+.quiz-qsound .play-hint:hover{text-decoration:underline}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.quiz-opt{background:var(--card);border:2px solid var(--border);border-radius:var(--radius-md);padding:12px 8px;font-size:20px;font-weight:600;text-align:center;cursor:pointer;transition:all .2s;color:var(--text);font-family:var(--font-zh)}
+.quiz-opt:hover{border-color:var(--accent);background:var(--card-hover);transform:translateY(-2px)}
+.quiz-opt:active{transform:scale(.96)}
+.quiz-opt.correct{border-color:var(--accent4);background:rgba(76,175,80,.12);color:var(--accent4)}
+.quiz-opt.wrong{border-color:#f44336;background:rgba(244,67,54,.1);color:#f44336}
+.quiz-score{text-align:center;font-size:13px;color:var(--text-sec);margin-top:8px}
+.quiz-score strong{color:var(--accent);font-size:16px}
+.quiz-next-btn{display:block;margin:8px auto 0;padding:8px 24px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:var(--font-zh)}
+.quiz-next-btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(233,30,99,.3)}
+.quiz-next-btn:disabled{opacity:.4;cursor:default;transform:none}
+
+/* Search */
+.search-box{display:none;margin:0 0 12px}
+.search-box.show{display:block}
+.search-input{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:14px;outline:none;background:var(--card);color:var(--text);font-family:var(--font-zh);transition:border .2s}
+.search-input:focus{border-color:var(--accent)}
+
+/* Stats */
+.stats-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12px}
+.stats-item{background:var(--card);padding:6px 12px;border-radius:var(--radius-sm);display:flex;align-items:center;gap:5px;color:var(--text-sec)}
+.stats-item strong{color:var(--accent)}
+.stats-item .num{font-size:16px;font-weight:800;color:var(--accent)}
+
+/* Footer */
+.page-footer{text-align:center;color:var(--text-muted);font-size:11px;margin-top:24px;padding:16px 0;opacity:.5}
+
+/* Toast */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent2);color:#fff;padding:10px 24px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.3);z-index:300;display:none;animation:toastIn .3s ease;white-space:nowrap}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
+/* Stats modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;justify-content:center;align-items:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.show{display:flex}
+.modal-box{background:var(--card-solid);border-radius:var(--radius-xl);padding:28px 24px;max-width:380px;width:100%;box-shadow:var(--shadow);border:1px solid var(--border);max-height:80vh;overflow-y:auto}
+.modal-title{font-size:18px;font-weight:800;margin-bottom:16px;text-align:center;color:var(--text)}
+.modal-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-stat{background:var(--card);border-radius:var(--radius-md);padding:14px;text-align:center}
+.modal-stat .val{font-size:28px;font-weight:900;color:var(--accent)}
+.modal-stat .lbl{font-size:11px;color:var(--text-muted);margin-top:2px}
+.modal-stat .val.green{color:var(--accent4)}
+.modal-stat .val.gold{color:var(--accent5)}
+.modal-close{display:block;margin:16px auto 0;padding:8px 28px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-zh)}
+.modal-close:hover{opacity:.9}
+
 @media(max-width:600px){
-  .page-wrap{padding:16px 12px 30px}
-  .glass-card{padding:24px 16px;border-radius:var(--radius-lg)}
-  .page-title{font-size:22px}
-  .letter-grid{grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:8px}
-  .letter-card{padding:12px 6px 8px}
+  .page-wrap{padding:12px 10px 40px}
+  .section-card{padding:20px 14px;border-radius:var(--radius-lg)}
+  .letter-grid{grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+  .letter-card{padding:10px 4px 6px}
   .letter-card .cyr{font-size:22px}
-  .top-nav{padding:8px 12px;flex-wrap:wrap}
-  .nav-btn{padding:6px 10px;font-size:11px}
+  .top-nav{padding:8px 10px}
+  .nav-btn{padding:5px 8px;font-size:10px}
+  .quiz-options{grid-template-columns:1fr 1fr}
+  .quiz-q{font-size:28px}
+}
+@media(max-width:400px){
+  .letter-grid{grid-template-columns:repeat(auto-fill,minmax(56px,1fr))}
+  .letter-card .cyr{font-size:18px}
+  .nav-right{gap:2px}
+  .nav-btn{padding:4px 6px;font-size:9px}
 }
 </style>
 </head>
 <body>
 <nav class="top-nav">
-  <div class="nav-left"><a href="./" class="nav-logo">← 返回主页</a></div>
+  <div class="nav-left">
+    <a href="./" class="nav-back">← Басты бет</a>
+  </div>
   <div class="nav-right">
-    <button class="nav-btn" onclick="toggleSearch()">🔍 搜索</button>
-    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">🌙</button>
+    <button class="nav-btn" onclick="toggleSearch()">🔍 Іздеу</button>
+    <button class="nav-btn" onclick="toggleStats()">📊 Стат</button>
+    <button class="nav-btn quiz-btn" onclick="toggleQuiz()">🎯 Тест</button>
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☀️</button>
   </div>
 </nav>
 
 <div class="page-wrap">
-  <div class="glass-card">
-    <h1 class="page-title">🌸 哈萨克西里尔字母 · 入门指南</h1>
-    <p class="page-subtitle">Қазақ Кирил Әліпбиі · 点击字母听发音 🔊 | 右键标记已学 ✓</p>
+  <div class="section-card">
+    <div style="text-align:center;margin-bottom:12px">
+      <h1 style="font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="pageTitle">🌸 Кирил Әліпбиі</h1>
+      <p style="font-size:13px;color:var(--text-sec);margin-top:2px" id="pageSubtitle">点击字母听发音 🔊 | 右键标记已学 ✓</p>
+    </div>
 
     <div class="highlight-box">
-      <h3>💡 先记住这9个特殊字母</h3>
-      <p>这9个是哈萨克语独有的西里尔字母，其他语言（俄语、乌克兰语等）没有。认识了它们，你就认出了一大半！</p>
+      <h3>💡 9个哈萨克独有的西里尔字母</h3>
+      <p id="specialHint">先记住这9个特殊字母，你就认识了哈萨克字母的一半！</p>
     </div>
 
-    <div class="section-title">🌸 特殊字母 · 哈萨克独有的9个</div>
+    <!-- Stats bar -->
+    <div class="stats-bar" id="statsBar">
+      <span class="stats-item">📚 <strong id="learnedCount">0</strong>/<span id="totalCount">42</span> 已学</span>
+      <span class="stats-item">📈 <span id="progressPct">0%</span></span>
+    </div>
+
+    <!-- Search -->
+    <div class="search-box" id="searchBox">
+      <input class="search-input" id="searchInput" placeholder="🔍 输入字母、拼音搜索..." oninput="filterLetters()">
+    </div>
+
+    <!-- Quiz panel -->
+    <div class="quiz-panel" id="quizPanel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:12px;color:var(--text-sec)">🎯 Тыңдау тесті</span>
+        <button onclick="toggleQuiz()" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px">✕</button>
+      </div>
+      <div class="quiz-qsound">
+        <span class="play-hint" onclick="replayQuizSound()">🔊 Тыңдау</span>
+        <span style="margin-left:8px;font-size:11px;color:var(--text-muted)">哪个字母？</span>
+      </div>
+      <div class="quiz-q" id="quizQuestion">🔊</div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-score">Ұпай: <strong id="quizScore">0</strong> / <span id="quizTotal">0</span></div>
+      <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuiz()" disabled>Келесі →</button>
+    </div>
+
+    <!-- Special letters table -->
+    <div class="section-title"><span class="ico">✨</span> Арнайы әріптер · 特殊字母</div>
     <table class="data-table" id="specialTable">
-      <tr><th width="60">字母</th><th width="60">发音</th><th>像什么</th><th>栗子🌰</th><th width="50">عرب</th></tr>
+      <tr><th width="60">Әріп</th><th width="55">IPA</th><th id="specialHead3">像什么</th><th>Мысал</th><th width="50" id="specialHead4">عرب</th></tr>
     </table>
 
-    <div id="searchBox" style="display:none;margin:12px 0">
-      <input id="searchInput" placeholder="输入字母、拼音或中文搜索..." style="width:100%;padding:10px 14px;border:2px solid var(--border-subtle);border-radius:var(--radius-sm);font-size:14px;outline:none;background:var(--bg-card);color:var(--text-primary);font-family:var(--font-cn)" oninput="filterLetters()">
-    </div>
-
-    <div class="section-title">🔴 后元音（硬） Жуан <span style="font-size:12px;color:var(--text-muted);font-weight:400">⚡ 元音和谐规则</span></div>
+    <!-- Vowels hard -->
+    <div class="section-title"><span class="ico">🔴</span> Жуан дауыстылар · 后元音</div>
     <div class="letter-grid" id="vowelHard"></div>
 
-    <div class="section-title">🟣 前元音（软） Жіңішке</div>
+    <!-- Vowels soft -->
+    <div class="section-title"><span class="ico">🟣</span> Жіңішке дауыстылар · 前元音</div>
     <div class="letter-grid" id="vowelSoft"></div>
 
-    <div class="section-title">🌸 辅音 · 25个</div>
+    <!-- Consonants -->
+    <div class="section-title"><span class="ico">🌿</span> Дауыссыздар · 辅音</div>
     <div class="letter-grid" id="consonants"></div>
 
-    <div class="section-title">🌸 常见词 · 点击听发音</div>
+    <!-- Words -->
+    <div class="section-title"><span class="ico">📖</span> Сөздер · 常用单词</div>
     <table class="data-table" id="wordTable">
-      <tr><th>哈萨克语</th><th>读音</th><th>意思</th></tr>
+      <tr><th>Қазақша</th><th>IPA</th><th id="wordHead3">意思</th></tr>
     </table>
 
-    <div class="tip-box">
-      🌟 <b>小技巧：</b>先记住 <b>Сәлем</b>（你好）和 <b>Рахмет</b>（谢谢），见到哈萨克朋友直接说，效果超好！
-    </div>
-    <div class="tip-box">
-      🌸 <b>元音和谐：</b>这是哈萨克语的灵魂规则！<br>
-      🔴 后元音词例：<b>бала</b>（孩子）— 里面全是 а<br>
-      🟣 前元音词例：<b>көше</b>（街道）— 里面全是 ө, е<br>
-      如果一个词混了两种元音，基本就是外来词～
-    </div>
+    <div class="tip-box">🌟 <b>Кеңес:</b> Сәлем（你好）和 Рахмет（谢谢）是最实用的词，见到哈萨克朋友直接用！</div>
+    <div class="tip-box">🌸 <b>Дауыстылар үндестігі（元音和谐）：</b>这是哈萨克语的灵魂！后元音词如 <b>бала</b>，前元音词如 <b>көше</b>。混用元音 → 外来词。</div>
   </div>
 
-  <div class="page-footer">🌸 胡兰的包尔萨克 · 2026</div>
+  <div class="page-footer">🌸 Бауырсақ · 2026</div>
 </div>
 
 <div id="toast"></div>
 
+<!-- Stats modal -->
+<div class="modal-overlay" id="statsModal">
+  <div class="modal-box">
+    <div class="modal-title">📊 Оқу статистикасы</div>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="val" id="mLearned">0</div><div class="lbl">Үйренілген</div></div>
+      <div class="modal-stat"><div class="val" id="mTotal">0</div><div class="lbl">Барлығы</div></div>
+      <div class="modal-stat"><div class="val green" id="mPct">0%</div><div class="lbl">Прогресс</div></div>
+      <div class="modal-stat"><div class="val gold" id="mScore">0</div><div class="lbl">Тест ұпайы</div></div>
+    </div>
+    <button class="modal-close" onclick="toggleStats()">Жабу</button>
+  </div>
+</div>
+
 <script>
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
-// === 设计系统 ===
-function initTheme(){var s=localStorage.getItem('kazakhTheme')||'light';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='dark'?'☀️':'🌙'}
-function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='dark'?'☀️':'🌙'}
-function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(function(){t.style.display='none'},2000)}
 
-// === 音频 ===
-function playSound(f){return new Promise(function(r){var a=new Audio('sounds/'+f+'.mp3');a.onerror=function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)};a.onended=r;a.play().catch(function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)})})}
+// === Type detection ===
+var USER_TYPE = parseInt(new URLSearchParams(window.location.search).get('type')) || parseInt(localStorage.getItem('kazakhUserType')) || 1;
+localStorage.setItem('kazakhUserType', USER_TYPE);
+var SHOW_ZH = USER_TYPE === 1 || USER_TYPE === 3;
+var SHOW_AB = USER_TYPE === 2;
+
+// === Theme ===
+function initTheme(){var s=localStorage.getItem('kazakhTheme')||'dark';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='light'?'🌙':'☀️'}
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='light'?'🌙':'☀️'}
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(function(){t.style.display='none'},1800)}
+
+// === Audio ===
 var LS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'sh','ы':'yh','і':'ii_','э':'eh','ю':'yoo','я':'yah'}
-var WS={'сәлем':'salem','рахмет':'rahmet','қош бол':'kosh_bol','жақсы':'zhaksy','қазақ':'qazaq','махаббат':'mahabbat','алма':'alma','гүл':'gul','күн':'kun','ай':'ay'}
-function speakLetter(t){var l=t.toLowerCase().trim();if(WS[l]){playSound(WS[l]);return}var d=0;for(var i=0;i<l.length;i++){(function(s){setTimeout(function(){playSound(s)},d);d+=350})(LS[l[i]]||'')}}
+var WM={'сәлем':'salem','рахмет':'rahmet','қош бол':'kosh_bol','жақсы':'zhaksy','қазақ':'qazaq','махаббат':'mahabbat','алма':'alma','гүл':'gul','күн':'kun','ай':'ay'}
+function playFile(f){return new Promise(function(r){var a=new Audio('sounds/'+f+'.mp3');a.onerror=function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)};a.onended=r;a.play().catch(function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)})})}
+function speakText(t){var l=t.toLowerCase().trim();if(WM[l]){playFile(WM[l]);return}var d=0;for(var i=0;i<l.length;i++){(function(s){setTimeout(function(){playFile(LS[s]||'')},d);d+=300})(l[i])}}
 
-// === 进度 ===
+// === Progress ===
 function getP(){try{return JSON.parse(localStorage.getItem('kazakhProgress')||'{}')}catch(e){return{}}}
 function saveP(p){localStorage.setItem('kazakhProgress',JSON.stringify(p))}
-function isL(letter){var p=getP();return!!(p[letter]&&p[letter].learned)}
-function markL(letter){var p=getP();p[letter]={learned:true,date:new Date().toISOString().split('T')[0]};saveP(p);toast('✓ 已标记: '+letter)}
-function unmarkL(letter){var p=getP();delete p[letter];saveP(p);toast('已取消标记: '+letter)}
+function isL(l){var p=getP();return p[l]&&p[l].learned}
+function markL(l){var p=getP();p[l]={learned:true,date:new Date().toISOString().split('T')[0]};saveP(p);toast('✓ 已标记: '+l);updateStats()}
+function unmarkL(l){var p=getP();delete p[l];saveP(p);toast('已取消: '+l);updateStats()}
 
-// === 数据 ===
+// === Data ===
 var SPECIALS=[
-  {l:'Ә ә',ipa:'/æ/',zh:'英语 cat 的 a',ex:'Сәлем 你好',ab:'اە'},
+  {l:'Ә ә',ipa:'/æ/',zh:'猫 cat 的 a',ex:'Сәлем 你好',ab:'اە'},
   {l:'Ғ ғ',ipa:'/ʁ/',zh:'小舌音，像漱口',ex:'Аға 哥哥',ab:'ع'},
-  {l:'Қ қ',ipa:'/q/',zh:'喉咙处的 k',ex:'Қазақ 哈萨克',ab:'ق'},
-  {l:'Ң ң',ipa:'/ŋ/',zh:'拼音 eng',ex:'Таң 早晨',ab:'ڭ'},
-  {l:'Ө ө',ipa:'/ɵ/',zh:'英语 bird 的 ir',ex:'Өзен 河流',ab:'و'},
-  {l:'Ұ ұ',ipa:'/ʊ/',zh:'短促的"呜"',ex:'Ұлт 民族',ab:'و'},
-  {l:'Ү ү',ipa:'/ʉ/',zh:'靠前一点的"乌"',ex:'Үй 房子',ab:'ۇ'},
-  {l:'І і',ipa:'/ɪ/',zh:'短促的"衣"',ex:'Іні 弟弟',ab:'ى'},
-  {l:'Һ һ',ipa:'/h/',zh:'哈哈的"哈"',ex:'(借词中用)',ab:'ھ'},
+  {l:'Қ қ',ipa:'/q/',zh:'喉咙深处的 k',ex:'Қазақ 哈萨克',ab:'ق'},
+  {l:'Ң ң',ipa:'/ŋ/',zh:'后鼻音 eng',ex:'Таң 早晨',ab:'ڭ'},
+  {l:'Ө ө',ipa:'/ɵ/',zh:'类似bird的ir',ex:'Өзен 河流',ab:'و'},
+  {l:'Ұ ұ',ipa:'/ʊ/',zh:'短促"呜"',ex:'Ұлт 民族',ab:'و'},
+  {l:'Ү ү',ipa:'/ʉ/',zh:'靠前"乌"',ex:'Үй 房子',ab:'ۇ'},
+  {l:'І і',ipa:'/ɪ/',zh:'短促"衣"',ex:'Іні 弟弟',ab:'ى'},
+  {l:'Һ һ',ipa:'/h/',zh:'轻呼气',ex:'(借词中用)',ab:'ھ'},
+];
+var SPEC_AB=[
+  {l:'Ә ә',ipa:'/æ/',zh:'daۋىس',ex:'سالم (Сәлем)',ab:'اە'},
+  {l:'Ғ ғ',ipa:'/ʁ/',zh:'تاماق شايقاۋ',ex:'اعا (Аға)',ab:'ع'},
+  {l:'Қ қ',ipa:'/q/',zh:'تامەكتىك ك',ex:'قازاق (Қазақ)',ab:'ق'},
+  {l:'Ң ң',ipa:'/ŋ/',zh:'اڭ داعى ڭ',ex:'تاڭ (Таң)',ab:'ڭ'},
+  {l:'Ө ө',ipa:'/ɵ/',zh:'و-دان بەتتى',ex:'وزەن (Өзен)',ab:'و'},
+  {l:'Ұ ұ',ipa:'/ʊ/',zh:'قىسقا ۇ',ex:'ۇلت (Ұлт)',ab:'و'},
+  {l:'Ү ү',ipa:'/ʉ/',zh:'قاتاڭ ۇ',ex:'ۇي (Үй)',ab:'ۇ'},
+  {l:'І і',ipa:'/ɪ/',zh:'قىسقا ى',ex:'ىنى (Іні)',ab:'ى'},
+  {l:'Һ һ',ipa:'/h/',zh:'جەڭىل ھ',ex:'(سوزدەردە)',ab:'ھ'},
 ];
 var VHARD=[
-  {l:'А а',ipa:'/ɑ/ a',zh:'啊',ab:'ا'},
-  {l:'О о',ipa:'/o/ o',zh:'喔',ab:'و'},
-  {l:'Ұ ұ',ipa:'/ʊ/ ű',zh:'乌',ab:'و'},
-  {l:'Ы ы',ipa:'/ɤ/ y',zh:'呃',ab:'ى'},
+  {l:'А а',ipa:'/ɑ/ a',zh:'啊',ab:'ا'},{l:'О о',ipa:'/o/ o',zh:'喔',ab:'و'},
+  {l:'Ұ ұ',ipa:'/ʊ/ ű',zh:'乌',ab:'و'},{l:'Ы ы',ipa:'/ɤ/ y',zh:'呃',ab:'ى'},
 ];
 var VSOFT=[
-  {l:'Ә ә',ipa:'/æ/ ä',zh:'哎',ab:'اە'},
-  {l:'Е е',ipa:'/je/ e',zh:'耶',ab:'ە'},
-  {l:'Ө ө',ipa:'/ɵ/ ö',zh:'鹅',ab:'و'},
-  {l:'Ү ү',ipa:'/ʉ/ ű',zh:'淤',ab:'ۇ'},
+  {l:'Ә ә',ipa:'/æ/ ä',zh:'哎',ab:'اە'},{l:'Е е',ipa:'/je/ e',zh:'耶',ab:'ە'},
+  {l:'Ө ө',ipa:'/ɵ/ ö',zh:'鹅',ab:'و'},{l:'Ү ү',ipa:'/ʉ/ ű',zh:'淤',ab:'ۇ'},
   {l:'І і',ipa:'/ɪ/ i',zh:'伊',ab:'ى'},
 ];
 var CONS=[
-  {l:'Б б',ipa:'b',zh:'波',ab:'ب'},{l:'В в',ipa:'v',zh:'V',ab:'ۋ'},
+  {l:'Б б',ipa:'b',zh:'波',ab:'б'},{l:'В в',ipa:'v',zh:'V',ab:'ۋ'},
   {l:'Г г',ipa:'ɡ',zh:'哥',ab:'گ'},{l:'Ғ ғ',ipa:'ʁ',zh:'哈',ab:'ع'},
   {l:'Д д',ipa:'d',zh:'德',ab:'د'},{l:'Ж ж',ipa:'ʒ',zh:'浊',ab:'ج'},
-  {l:'З з',ipa:'z',zh:'兹',ab:'ز'},{l:'К к',ipa:'k',zh:'科',ab:'ك'},
+  {l:'З з',ipa:'z',zh:'兹',ab:'ز'},{l:'И и',ipa:'i/j',zh:'伊',ab:'ي'},
+  {l:'Й й',ipa:'j',zh:'耶',ab:'ي'},{l:'К к',ipa:'k',zh:'科',ab:'ك'},
   {l:'Қ қ',ipa:'q',zh:'克',ab:'ق'},{l:'Л л',ipa:'l',zh:'勒',ab:'ل'},
   {l:'М м',ipa:'m',zh:'姆',ab:'م'},{l:'Н н',ipa:'n',zh:'讷',ab:'ن'},
   {l:'Ң ң',ipa:'ŋ',zh:'昂',ab:'ڭ'},{l:'П п',ipa:'p',zh:'坡',ab:'پ'},
   {l:'Р р',ipa:'r',zh:'勒',ab:'ر'},{l:'С с',ipa:'s',zh:'斯',ab:'س'},
   {l:'Т т',ipa:'t',zh:'特',ab:'ت'},{l:'У у',ipa:'w',zh:'乌',ab:'ۋ'},
   {l:'Ф ф',ipa:'f',zh:'夫',ab:'ف'},{l:'Х х',ipa:'x',zh:'哈',ab:'ح'},
-  {l:'Ш ш',ipa:'ʃ',zh:'师',ab:'ش'},
+  {l:'Ц ц',ipa:'ts',zh:'次',ab:'تس'},{l:'Ч ч',ipa:'tʃ',zh:'吃',ab:'چ'},
+  {l:'Ш ш',ipa:'ʃ',zh:'师',ab:'ش'},{l:'Щ щ',ipa:'ʃtʃ',zh:'师吃',ab:'شش'},
+  {l:'Ы ы',ipa:'ɤ',zh:'呃',ab:'ى'},{l:'І і',ipa:'ɪ',zh:'伊',ab:'ى'},
+  {l:'Э э',ipa:'e',zh:'诶',ab:'ە'},{l:'Ю ю',ipa:'ju',zh:'优',ab:'يۋ'},
+  {l:'Я я',ipa:'ja',zh:'亚',ab:'يا'},
 ];
 var WORDS=[
-  {kk:'Сәлем',pron:'/sæˈlʲem/',zh:'你好 👋'},
-  {kk:'Рахмет',pron:'/rɑχˈmʲet/',zh:'谢谢 🙏'},
-  {kk:'Жақсы',pron:'/ʒɑqˈsə/',zh:'好 👍'},
-  {kk:'Қазақ',pron:'/qɑˈzɑq/',zh:'哈萨克'},
-  {kk:'Махаббат',pron:'/mɑχɑbˈbɑt/',zh:'爱 ❤️'},
-  {kk:'Алма',pron:'/ɑlˈmɑ/',zh:'苹果 🍎'},
-  {kk:'Гүл',pron:'/ɡʉl/',zh:'花 🌸'},
-  {kk:'Күн',pron:'/kʉn/',zh:'太阳 / 天 ☀️'},
-  {kk:'Ай',pron:'/ɑj/',zh:'月亮 🌙'},
+  {kk:'Сәлем',pron:'/sæˈlʲem/',zh:'你好 👋',ab:'سالەم'},
+  {kk:'Рахмет',pron:'/rɑχˈmʲet/',zh:'谢谢 🙏',ab:'راحمەت'},
+  {kk:'Жақсы',pron:'/ʒɑqˈsə/',zh:'好 👍',ab:'جاقسى'},
+  {kk:'Қазақ',pron:'/qɑˈzɑq/',zh:'哈萨克',ab:'قازاق'},
+  {kk:'Махаббат',pron:'/mɑχɑbˈbɑt/',zh:'爱 ❤️',ab:'ماحاببات'},
+  {kk:'Алма',pron:'/ɑlˈmɑ/',zh:'苹果 🍎',ab:'الما'},
+  {kk:'Гүл',pron:'/ɡʉl/',zh:'花 🌸',ab:'گول'},
+  {kk:'Күн',pron:'/kʉn/',zh:'太阳/天 ☀️',ab:'كۇن'},
+  {kk:'Ай',pron:'/ɑj/',zh:'月亮 🌙',ab:'اي'},
+  {kk:'Қош бол',pron:'/qoʃ bol/',zh:'再见 👋',ab:'قوش بول'},
 ];
 
-// 获取首字母按键
-function keyFrom(l){return l.toLowerCase().replace(/[^а-яәғқңөұүіһ]/g,'')[0]||''}
-
-// 渲染
-function renderCard(data){
-  var key=data.l.split(' ')[0]||data.l;
-  var letter=key;
-  var cls='';
-  if(isL(letter))cls+=' learned';
-  return '<div class="letter-card'+cls+'" data-letter="'+letter+'" onclick="speakLetter(\''+data.l+'\');this.classList.add(\'playing\');setTimeout(function(){this.classList.remove(\'playing\')}.bind(this),600)" oncontextmenu="event.preventDefault();var l=this.getAttribute(\'data-letter\');if(isL(l)){this.classList.remove(\'learned\');unmarkL(l)}else{this.classList.add(\'learned\');markL(l)}"><span class="sound-icon">🔊</span><div class="cyr">'+data.l+'</div><div class="ipa">'+data.ipa+'</div><div class="zh">'+data.zh+'</div><div class="ab">'+(data.ab||'')+'</div></div>';
+// === Get all letters for total count ===
+function getAllLetters(){
+  return VHARD.concat(VSOFT).concat(CONS);
 }
 
-function render(){
-  var ht='';
-  for(var i=0;i<SPECIALS.length;i++){
-    (function(d){
-      ht+='<tr onclick="speakLetter(\''+d.l+'\')"><td class="cyr-cell">'+d.l+'</td><td><span style="background:#e8eaf6;padding:2px 8px;border-radius:6px;font-size:12px;color:#3949ab">'+d.ipa+'</span></td><td>'+d.zh+'</td><td>'+d.ex+'</td><td style="direction:rtl;font-family:\'Noto Naskh Arabic\',\'Traditional Arabic\',serif;font-size:18px;color:#1a237e;text-align:center">'+d.ab+'</td></tr>';
-    })(SPECIALS[i]);
-  }
-  document.querySelector('#specialTable').innerHTML+='<tbody>'+ht+'</tbody>';
+// === Render card ===
+function renderCard(d){
+  var key=d.l.split(' ')[0];
+  var letter=key;
+  var cls=isL(letter)?' letter-card learned':' letter-card';
+  var zhHtml=SHOW_ZH?'<div class="zh">'+d.zh+'</div>':'';
+  var abHtml=SHOW_AB?'<div class="ab">'+(d.ab||'')+'</div>':'';
+  return '<div class="'+cls+'" data-letter="'+letter+'" onclick="handleClick(this,\''+d.l+'\')" oncontextmenu="return handleContext(event,this,\''+letter+'\')"><span class="sound-icon">🔊</span><div class="cyr">'+d.l+'</div><div class="ipa">'+d.ipa+'</div>'+zhHtml+abHtml+'</div>';
+}
 
+function handleClick(el,letter){
+  speakText(letter);
+  el.classList.add('playing');
+  setTimeout(function(){el.classList.remove('playing')},600);
+}
+
+function handleContext(e,el,letter){
+  e.preventDefault();
+  if(isL(letter)){el.classList.remove('learned');unmarkL(letter)}
+  else{el.classList.add('learned');markL(letter)}
+  return false;
+}
+
+// === Render all ===
+function render(){
+  // Title
+  if(SHOW_ZH){document.getElementById('pageTitle').innerHTML='🌸 Кирил Әліпбиі · 西里尔字母';document.getElementById('pageSubtitle').textContent='点击字母听发音 🔊 | 右键标记已学 ✓'}
+  else{document.getElementById('pageTitle').innerHTML='🌸 قازاق كيريل ٵلىپبئى';document.getElementById('pageSubtitle').textContent='ءارىپ باسىپ تىڭداڭىز 🔊 | ون جاق باسىپ بەلگىلەڭىز ✓'}
+  if(!SHOW_ZH){document.getElementById('specialHint').textContent='وسى 9 ارنايى ءارىپتى جاتتاپ الىڭىز، قازاق ءارىپتەرىنىڭ جارتىسىن تانىسىز!'}
+
+  // Special table
+  var sp=SHOW_AB?SPEC_AB:SPECIALS;
+  var ht='';
+  for(var i=0;i<sp.length;i++){
+    (function(d){
+      ht+='<tr onclick="speakText(\''+d.l+'\')"><td class="cyr-cell">'+d.l+'</td><td><span style="background:rgba(33,150,243,.1);padding:2px 8px;border-radius:6px;font-size:11px;color:var(--accent3)">'+d.ipa+'</span></td><td>'+d.zh+'</td><td>'+d.ex+'</td><td style="direction:rtl;font-family:var(--font-ab);font-size:17px;color:var(--accent3);text-align:center">'+d.ab+'</td></tr>';
+    })(sp[i]);
+  }
+  var st=document.querySelector('#specialTable');st.innerHTML+=ht;
+
+  // Grids
   var vh='';for(var i=0;i<VHARD.length;i++)vh+=renderCard(VHARD[i]);document.getElementById('vowelHard').innerHTML=vh;
   var vs='';for(var i=0;i<VSOFT.length;i++)vs+=renderCard(VSOFT[i]);document.getElementById('vowelSoft').innerHTML=vs;
   var co='';for(var i=0;i<CONS.length;i++)co+=renderCard(CONS[i]);document.getElementById('consonants').innerHTML=co;
 
+  // Word table
   var wt='';
   for(var i=0;i<WORDS.length;i++){
-    (function(d){wt+='<tr onclick="speakLetter(\''+d.kk+'\')"><td class="cyr-cell">'+d.kk+'</td><td>'+d.pron+'</td><td>'+d.zh+'</td></tr>'})(WORDS[i]);
+    (function(d){
+      var extra='';
+      if(SHOW_AB)extra='<td style="direction:rtl;font-family:var(--font-ab);font-size:16px;color:var(--accent3)">'+d.ab+'</td>';
+      wt+='<tr onclick="speakText(\''+d.kk+'\')"><td class="cyr-cell">'+d.kk+'</td><td>'+d.pron+'</td><td>'+(SHOW_AB?d.ab:d.zh)+'</td></tr>';
+    })(WORDS[i]);
   }
   document.querySelector('#wordTable').innerHTML+=wt;
+
+  updateStats();
 }
 
-// === 搜索 ===
+// === Stats ===
+function updateStats(){
+  var all=getAllLetters();
+  var p=getP();
+  var learned=0;
+  for(var i=0;i<all.length;i++){
+    var key=all[i].l.split(' ')[0];
+    if(p[key]&&p[key].learned)learned++;
+  }
+  var total=all.length;
+  var pct=total>0?Math.round(learned/total*100):0;
+  document.getElementById('learnedCount').textContent=learned;
+  document.getElementById('totalCount').textContent=total;
+  document.getElementById('progressPct').textContent=pct+'%';
+  document.getElementById('mLearned').textContent=learned;
+  document.getElementById('mTotal').textContent=total;
+  document.getElementById('mPct').textContent=pct+'%';
+}
+
+// === Search ===
 function toggleSearch(){
   var s=document.getElementById('searchBox');
-  s.style.display=s.style.display==='none'?'block':'none';
-  if(s.style.display==='block')document.getElementById('searchInput').focus();
+  s.classList.toggle('show');
+  if(s.classList.contains('show'))document.getElementById('searchInput').focus();
 }
 function filterLetters(){
   var q=document.getElementById('searchInput').value.trim().toLowerCase();
   document.querySelectorAll('.letter-card').forEach(function(c){
-    var text=c.textContent.toLowerCase();
-    c.style.display=text.indexOf(q)>-1?'':'none';
+    var t=c.textContent.toLowerCase();
+    c.style.display=t.indexOf(q)>-1?'':'none';
   });
 }
 
+// === Stats modal ===
+function toggleStats(){
+  var m=document.getElementById('statsModal');
+  m.classList.toggle('show');
+  updateStats();
+  // Update quiz score
+  var sq=parseInt(localStorage.getItem('kazakhQuizScore')||'0');
+  document.getElementById('mScore').textContent=sq;
+}
+
+// === Quiz system ===
+var QUIZ_DATA=[];
+var QUIZ_CURRENT=null;
+var QUIZ_INDEX=0;
+var QUIZ_SCORE=0;
+var QUIZ_ANSWERED=false;
+var QUIZ_LETTERS=[];
+
+function initQuiz(){
+  QUIZ_LETTERS=getAllLetters();
+  // Build quiz data: array of {letter, answer, options[]}
+  QUIZ_DATA=QUIZ_LETTERS.map(function(d){
+    var ans=d.l.split(' ')[0];
+    var opts=[ans];
+    var pool=QUIZ_LETTERS.filter(function(x){return x.l.split(' ')[0]!==ans});
+    // Shuffle and pick 3
+    for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=pool[i];pool[i]=pool[j];pool[j]=tmp}
+    for(var k=0;k<3&&k<pool.length;k++)opts.push(pool[k].l.split(' ')[0]);
+    // Shuffle options
+    for(var i=opts.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=opts[i];opts[i]=opts[j];opts[j]=tmp}
+    return {letter:ans, answer:ans, options:opts};
+  });
+  QUIZ_SCORE=parseInt(localStorage.getItem('kazakhQuizScore')||'0');
+}
+
+function toggleQuiz(){
+  var p=document.getElementById('quizPanel');
+  p.classList.toggle('show');
+  if(p.classList.contains('show')){
+    document.querySelector('.quiz-btn').classList.add('quiz-active');
+    initQuiz();
+    QUIZ_INDEX=0;
+    QUIZ_ANSWERED=false;
+    showQuiz();
+  } else {
+    document.querySelector('.quiz-btn').classList.remove('quiz-active');
+  }
+}
+
+function showQuiz(){
+  if(QUIZ_INDEX>=QUIZ_DATA.length){
+    document.getElementById('quizQuestion').textContent='✅';
+    document.getElementById('quizOptions').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:16px;font-size:14px;color:var(--accent4)">🎉 Барлық әріптерді өттіңіз! Молодец!</div>';
+    document.getElementById('quizNextBtn').disabled=true;
+    document.getElementById('quizScore').textContent=QUIZ_SCORE;
+    document.getElementById('quizTotal').textContent=QUIZ_DATA.length;
+    return;
+  }
+  var q=QUIZ_DATA[QUIZ_INDEX];
+  QUIZ_CURRENT=q;
+  QUIZ_ANSWERED=false;
+  document.getElementById('quizQuestion').textContent='🔊';
+  document.getElementById('quizNextBtn').disabled=true;
+  document.getElementById('quizNextBtn').textContent='Келесі →';
+
+  var optsHtml='';
+  for(var i=0;i<q.options.length;i++){
+    optsHtml+='<div class="quiz-opt" onclick="quizAnswer(this,\''+q.options[i]+'\',\''+q.answer+'\')">'+q.options[i]+'</div>';
+  }
+  document.getElementById('quizOptions').innerHTML=optsHtml;
+  document.getElementById('quizScore').textContent=QUIZ_SCORE;
+  document.getElementById('quizTotal').textContent=QUIZ_DATA.length;
+
+  // Play the sound
+  setTimeout(function(){speakText(q.letter);},200);
+}
+
+function replayQuizSound(){
+  if(QUIZ_CURRENT)speakText(QUIZ_CURRENT.letter);
+}
+
+function quizAnswer(el,selected,correct){
+  if(QUIZ_ANSWERED)return;
+  QUIZ_ANSWERED=true;
+  var opts=document.getElementById('quizOptions').querySelectorAll('.quiz-opt');
+  for(var i=0;i<opts.length;i++){
+    opts[i].style.pointerEvents='none';
+    if(opts[i].textContent.trim()===correct)opts[i].classList.add('correct');
+  }
+  if(selected===correct){
+    QUIZ_SCORE++;
+    localStorage.setItem('kazakhQuizScore',QUIZ_SCORE);
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+  }
+  document.getElementById('quizScore').textContent=QUIZ_SCORE;
+  document.getElementById('quizNextBtn').disabled=false;
+}
+
+function nextQuiz(){
+  QUIZ_INDEX++;
+  showQuiz();
+}
+
+// === Init ===
 initTheme();
 render();
 </script>
