@@ -176,6 +176,54 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
       <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuiz()" disabled>Келесі →</button>
     </div>
 
+    <!-- Translation widget -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;margin:12px 0">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+        <span style="font-size:16px">🌍</span>
+        <span style="font-size:13px;font-weight:700;color:var(--text)">Аудару · 翻译</span>
+        <span style="font-size:11px;color:var(--text-muted)">Қытайша ↔ Қазақша</span>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <input id="srcText" placeholder="输入中文或哈萨克语..." style="flex:1;min-width:160px;padding:9px 12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:13px;outline:none;background:var(--card-solid);color:var(--text);font-family:var(--font-zh);transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+        <div style="display:flex;gap:4px">
+          <button onclick="speakInput()" style="padding:9px 10px;background:var(--card);color:var(--accent);border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;cursor:pointer;transition:all .2s" title="朗读输入">🔊</button>
+          <button onclick="translateText()" style="padding:9px 18px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(92,107,192,.3);font-family:var(--font-zh)">翻译</button>
+          <button onclick="clearTrans()" style="padding:9px 10px;background:var(--card);color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;cursor:pointer" title="清空">✕</button>
+        </div>
+      </div>
+      <div id="dstBox" style="display:none;margin-top:8px;padding:10px 12px;background:var(--card-solid);border-radius:var(--radius-sm);border:1px solid var(--border);font-size:13px;color:var(--text);line-height:1.6;word-break:break-word">
+        <span id="dstText" style="display:block;margin-bottom:6px"></span>
+        <button onclick="speakOutput()" style="padding:5px 12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer" title="朗读结果">🔊 朗读</button>
+      </div>
+    </div>
+    <script>
+    function translateText(){
+      var s=document.getElementById('srcText').value.trim();if(!s)return;
+      var d=document.getElementById('dstBox');d.style.display='block';
+      document.getElementById('dstText').textContent='⏳ Аударылуда...';
+      var x=new XMLHttpRequest();
+      x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
+      x.onload=function(){
+        try{
+          var r=JSON.parse(x.responseText);var t='';
+          if(r&&r[0])for(var i=0;i<r[0].length;i++)if(r[0][i]&&r[0][i][0])t+=r[0][i][0];
+          if(!t||t===s){
+            var x2=new XMLHttpRequest();
+            x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
+            x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];document.getElementById('dstText').textContent=t2||'Аудару мүмкін емес'}catch(e){document.getElementById('dstText').textContent='Қате'}};
+            x2.send();
+          }else{document.getElementById('dstText').textContent=t;}
+        }catch(e){document.getElementById('dstText').textContent='Қате'}
+      };
+      x.onerror=function(){document.getElementById('dstText').textContent='⚠ Желі қатесі'};
+      x.send();
+    }
+    function speakInput(){var t=document.getElementById('srcText').value.trim();if(!t)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';u.rate=.85;speechSynthesis.speak(u)}
+    function speakOutput(){var t=document.getElementById('dstText').textContent;if(!t||t.startsWith('⏳')||t.startsWith('⚠'))return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';u.rate=.85;speechSynthesis.speak(u)}
+    function clearTrans(){document.getElementById('srcText').value='';document.getElementById('dstBox').style.display='none'}
+    document.addEventListener('DOMContentLoaded',function(){var e=document.getElementById('srcText');if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();translateText()}})});
+    </script>
+
     <!-- Special letters table -->
     <div class="section-title"><span class="ico">✨</span> Арнайы әріптер · 特殊字母</div>
     <table class="data-table" id="specialTable">
