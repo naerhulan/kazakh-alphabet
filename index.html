@@ -156,9 +156,7 @@ body{font-family:var(--font-cn);background:var(--bg-page);min-height:100vh;color
     <a href="./" class="nav-logo">🇰🇿 字母学习 <small>v2.0</small></a>
   </div>
   <div class="nav-right">
-    <button class="nav-btn" onclick="startQuiz('zh')">📝 看中文选字</button>
-    <button class="nav-btn" onclick="startQuiz('sound')">🔊 听音选字</button>
-    <button class="nav-btn" onclick="startFlashcards()">🃏 闪卡</button>
+    <button class="nav-btn" onclick="startQuiz('sound')">🔊 测验</button>
     <button class="nav-btn" onclick="toggleStats()">📊 统计</button>
     <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">🌙</button>
   </div>
@@ -234,27 +232,11 @@ body{font-family:var(--font-cn);background:var(--bg-page);min-height:100vh;color
 
   <div class="section-label">🎮 互动学习</div>
   <div class="card-list">
-    <div class="menu-card mc-quiz" onclick="startQuiz('zh')" style="cursor:pointer">
-      <div class="mc-icon">📝</div>
-      <div class="mc-body">
-        <h3>看中文选字母</h3>
-        <p>看中文标注 · 选出对应字母</p>
-      </div>
-      <span class="mc-arrow">→</span>
-    </div>
-    <div class="menu-card mc-flash" onclick="startQuiz('sound')" style="cursor:pointer">
+    <div class="menu-card mc-quiz" onclick="startQuiz('sound')" style="cursor:pointer">
       <div class="mc-icon">🔊</div>
       <div class="mc-body">
-        <h3>听发音选字母</h3>
-        <p>听发音 · 猜是哪个字母</p>
-      </div>
-      <span class="mc-arrow">→</span>
-    </div>
-    <div class="menu-card mc-flash" onclick="startFlashcards()" style="cursor:pointer">
-      <div class="mc-icon">🃏</div>
-      <div class="mc-body">
-        <h3>闪卡记忆</h3>
-        <p>翻转卡片 · 强化记忆</p>
+        <h3>听力测验</h3>
+        <p>听字母发音 · 选出对应字母</p>
       </div>
       <span class="mc-arrow">→</span>
     </div>
@@ -276,7 +258,7 @@ body{font-family:var(--font-cn);background:var(--bg-page);min-height:100vh;color
 <!-- 测验弹窗 -->
 <div class="modal-overlay" id="quizOverlay">
   <div class="modal-box">
-    <h2>📝 字母测验</h2>
+    <h2>🔊 听力测验</h2>
     <div class="quiz-q" id="quizQuestion">А</div>
     <div class="quiz-hint" id="quizHint">点击选择正确答案</div>
     <div class="quiz-opts" id="quizOptions"></div>
@@ -284,34 +266,6 @@ body{font-family:var(--font-cn);background:var(--bg-page);min-height:100vh;color
     <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center">
       <button class="nav-btn" id="quizReplay" style="display:none" onclick="replaySound()">🔊 再听一次</button>
       <button class="nav-btn" onclick="closeQuiz()">✕ 关闭</button>
-    </div>
-  </div>
-</div>
-
-<!-- 闪卡弹窗 -->
-<div class="modal-overlay" id="flashcardModal">
-  <div class="modal-box">
-    <h2>🃏 闪卡记忆</h2>
-    <div class="fc-area">
-      <div class="fc-status" id="fcStatus">0/15</div>
-      <div class="fc-card" id="fcCard" onclick="flipCard()">
-        <div class="fc-card-inner">
-          <div class="fc-front">
-            <div class="fc-letter" id="fcLetter">А</div>
-          </div>
-          <div class="fc-back">
-            <div class="fc-detail" id="fcZh" style="font-size:18px;font-weight:700;color:var(--accent-pink)"></div>
-            <div class="fc-detail" id="fcIpa"></div>
-          </div>
-        </div>
-      </div>
-      <div class="fc-nav" id="fcNav">
-        <button class="nav-btn" onclick="prevCard()">← 上一个</button>
-        <button class="nav-btn" onclick="nextCard()">下一个 →</button>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:10px">
-      <button class="nav-btn" onclick="closeFlashcards()">✕ 关闭</button>
     </div>
   </div>
 </div>
@@ -439,21 +393,13 @@ function showQ(){
     return;
   }
   var q=QS.qs[QS.idx];
-  ov.querySelector('h2').textContent=(QS.type==='sound'?'🔊 听音选字':'📝 看中文选字')+' · 第 '+(QS.idx+1)+'/'+QS.tot+' 题';
-  if(QS.type==='sound'){
-    qq.style.fontSize='42px';
-    qq.textContent='🔊';
-    qh.textContent='听发音，选对应的字母';
-    setTimeout(function(){playSound(LS[q.l.toLowerCase()]||'')},400);
-  }else{
-    qq.style.fontSize='24px';
-    qq.textContent=q.zh+' 是哪一个字母？';
-    qh.textContent='看中文标注，选对应的西里尔字母';
-    setTimeout(function(){playSound(LS[q.l.toLowerCase()]||'')},300);
-  }
-  // 添加"再听一次"按钮
+  ov.querySelector('h2').textContent='🔊 听力测验 · 第 '+(QS.idx+1)+'/'+QS.tot+' 题';
+  qq.style.fontSize='42px';
+  qq.textContent='🔊';
+  qh.textContent='听发音，选对应的字母';
+  setTimeout(function(){playSound(LS[q.l.toLowerCase()]||'')},400);
   var rp=document.getElementById('quizReplay');
-  if(rp)rp.style.display=QS.type==='sound'?'inline-block':'none';
+  if(rp)rp.style.display='inline-block';
   var html='';
   for(var i=0;i<q.o.length;i++){
     (function(c){html+='<div class="quiz-opt" onclick="checkA(this,\''+c+'\')">'+c+'</div>'})(q.o[i]);
@@ -480,37 +426,6 @@ function replaySound(){
   }
 }
 function closeQuiz(){document.getElementById('quizOverlay').classList.remove('show')}
-
-// 闪卡
-var FC={ll:[],idx:0};
-function startFlashcards(){
-  FC.ll=[...QL].sort(function(){return Math.random()-.5});
-  FC.idx=0;
-  updateFC();
-  document.getElementById('flashcardModal').classList.add('show');
-}
-function updateFC(){
-  var ov=document.getElementById('flashcardModal');
-  if(!ov)return;
-  if(FC.idx>=FC.ll.length){
-    ov.querySelector('.fc-status').textContent='🎉 全部学完！';
-    document.getElementById('fcCard').style.display='none';
-    document.getElementById('fcNav').innerHTML='<button class="nav-btn" onclick="startFlashcards()">再学一轮</button>';
-    return;
-  }
-  var l=FC.ll[FC.idx];
-  document.getElementById('fcStatus').textContent=(FC.idx+1)+'/'+FC.ll.length;
-  document.getElementById('fcCard').classList.remove('flipped');
-  document.getElementById('fcCard').style.display='';
-  document.getElementById('fcLetter').textContent=l.l;
-  document.getElementById('fcZh').textContent='中文: '+l.zh;
-  document.getElementById('fcIpa').textContent='点击翻转看答案';
-  document.getElementById('fcNav').innerHTML='<button class="nav-btn" onclick="prevCard()">← 上一个</button><button class="nav-btn" onclick="nextCard()">下一个 →</button>';
-}
-function flipCard(){var c=document.getElementById('fcCard');if(c)c.classList.toggle('flipped')}
-function nextCard(){FC.idx++;updateFC()}
-function prevCard(){if(FC.idx>0)FC.idx--;updateFC()}
-function closeFlashcards(){document.getElementById('flashcardModal').classList.remove('show')}
 
 // 统计
 function toggleStats(){
