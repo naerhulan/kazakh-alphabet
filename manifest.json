@@ -1,0 +1,14 @@
+{
+  "name": "哈萨克字母学习",
+  "short_name": "字母学习",
+  "description": "哈萨克语字母学习工具 - 西里尔字母、拉丁字母、阿拉伯字母，点击发音",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fce4ec",
+  "theme_color": "#e91e63",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
