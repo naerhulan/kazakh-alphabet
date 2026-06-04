@@ -430,8 +430,10 @@ function showQ(){
   }
   var q=QS.qs[QS.idx];
   ov.querySelector('h2').textContent='第 '+(QS.idx+1)+'/'+QS.tot+' 题';
-  qq.textContent=q.l;
-  qh.textContent='这个字母读什么？';
+  qq.style.fontSize='24px';
+  qq.textContent=q.zh+' 是哪一个字母？';
+  qh.textContent='看中文标注，选对应的西里尔字母 🔊';
+  setTimeout(function(){playSound(LS[q.l.toLowerCase()]||'')},300);
   var html='';
   for(var i=0;i<q.o.length;i++){
     (function(c){html+='<div class="quiz-opt" onclick="checkA(this,\''+c+'\')">'+c+'</div>'})(q.o[i]);
@@ -447,7 +449,7 @@ function checkA(el,c){
   for(var i=0;i<btns.length;i++)btns[i].onclick=null;
   el.classList.add(cor?'correct':'wrong');
   if(!cor){for(var i=0;i<btns.length;i++){if(btns[i].textContent===q.l)btns[i].classList.add('correct')}}
-  document.getElementById('quizHint').textContent=cor?'✅ 正确！':'❌ 正确答案: '+q.l;
+  document.getElementById('quizHint').textContent=cor?'✅ 正确！'+q.l+' 读「'+q.zh+'」':'❌ 正确答案: '+q.l+'（'+q.zh+'）';
   if(cor){recordDay();updateAll()}
   setTimeout(function(){QS.idx++;showQ()},cor?800:1500);
 }
@@ -475,8 +477,8 @@ function updateFC(){
   document.getElementById('fcCard').classList.remove('flipped');
   document.getElementById('fcCard').style.display='';
   document.getElementById('fcLetter').textContent=l.l;
-  document.getElementById('fcZh').textContent='读音对照';
-  document.getElementById('fcIpa').textContent=l.l+' → '+l.o[0];
+  document.getElementById('fcZh').textContent='中文: '+l.zh;
+  document.getElementById('fcIpa').textContent='点击翻转看答案';
   document.getElementById('fcNav').innerHTML='<button class="nav-btn" onclick="prevCard()">← 上一个</button><button class="nav-btn" onclick="nextCard()">下一个 →</button>';
 }
 function flipCard(){var c=document.getElementById('fcCard');if(c)c.classList.toggle('flipped')}
