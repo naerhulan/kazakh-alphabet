@@ -1939,13 +1939,23 @@ function md5(str){
 async function baiduTranslate(text, from='auto', to='zh'){
   const salt = Date.now();
   const sign = md5(BD_APPID + text + salt + BD_SECRET);
-  const url = `https://api.fanyi.baidu.com/api/trans/vip/translate?q=${encodeURIComponent(text)}&from=${from}&to=${to}&appid=${BD_APPID}&salt=${salt}&sign=${sign}`;
+  const apiUrl = `https://api.fanyi.baidu.com/api/trans/vip/translate?q=${encodeURIComponent(text)}&from=${from}&to=${to}&appid=${BD_APPID}&salt=${salt}&sign=${sign}`;
+  // Use CORS proxy to bypass browser restrictions
+  const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(apiUrl)}`;
   try{
-    const res = await fetch(url);
+    const res = await fetch(proxyUrl);
     const data = await res.json();
     if(data.trans_result) return data.trans_result.map(r=>r.dst).join('; ');
     return null;
-  }catch(e){return null}
+  }catch(e){
+    console.log('Translate failed, trying direct...');
+    try{
+      const res2 = await fetch(apiUrl, {mode:'cors'});
+      const data2 = await res2.json();
+      if(data2.trans_result) return data2.trans_result.map(r=>r.dst).join('; ');
+    }catch(e2){}
+    return null;
+  }
 }
 
 /* =====================================================================
