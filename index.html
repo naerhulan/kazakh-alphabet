@@ -125,22 +125,23 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 .search-box input::placeholder{color:var(--text3)}
 .search-box .icon{color:var(--text3);font-size:.78em;flex-shrink:0}
 
-/* ===== HOME PAGE — 不背单词全屏背景 ===== */
+/* ===== HOME PAGE — 不背单词全屏铺满 ===== */
 #page-home{
-  position:relative;min-height:calc(100vh - 140px);
+  position:fixed;top:0;left:0;right:0;bottom:0;
   background-size:cover;background-position:center;background-repeat:no-repeat;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  border-radius:var(--radius);overflow:hidden;margin-top:8px;
-  transition:background-image .8s ease;
+  overflow:hidden;transition:background-image .8s ease;z-index:1;
 }
 #page-home::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+  background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
   z-index:1;
 }
+body.has-home #page-home{display:flex}
+body:not(.has-home) #page-home{display:none}
 #page-home .home-content{
-  position:relative;z-index:2;width:100%;max-width:600px;
-  padding:48px 20px 40px;
+  position:relative;z-index:2;width:100%;max-width:560px;
+  padding:80px 20px 40px;margin-top:40px;
 }
 .home-greeting{
   text-align:center;margin-bottom:20px;
@@ -423,9 +424,9 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
   .container{padding:10px}
   .home-btn{min-height:54px;font-size:.85em;padding:10px 14px}
   .home-btn .sub{font-size:.5em}
-  #page-home{min-height:calc(100vh - 120px)}
+  #page-home{min-height:100vh}
   .home-greeting h2{font-size:1.3em}
-  .home-content{padding:32px 16px 24px}
+  .home-content{padding:60px 16px 24px;margin-top:20px}
   .alphabet-grid{grid-template-columns:1fr}
   .practice-card .options{grid-template-columns:1fr}
   .header-inner{flex-direction:column;gap:5px}
@@ -1086,12 +1087,13 @@ function saveState(){
 function navigate(page){
   document.querySelectorAll('.section[id^="page-"]').forEach(s=>s.classList.add('hidden'));
   document.getElementById('page-'+page)?.classList.remove('hidden');
-  document.getElementById('page-home')?.classList.add('hidden');
   if(page==='home'){
+    document.body.classList.add('has-home');
     document.getElementById('page-home').classList.remove('hidden');
     updateGreeting('home');
     return;
   }
+  document.body.classList.remove('has-home');
   const pageId = page;
   const tabDefault = 'alphabet';
   switchTab(pageId.replace(/-/g,'-'), tabDefault);
@@ -2208,6 +2210,7 @@ function init(){
       document.getElementById('searchPanel')?.classList.remove('show');
     }
   });
+  document.body.classList.add('has-home');
   // Home page background (不背单词 style — random beautiful photo)
   const homePage = document.getElementById('page-home');
   if(homePage){
