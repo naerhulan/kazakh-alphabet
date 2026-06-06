@@ -1252,53 +1252,10 @@ function renderAlphabet(prefix){
 /* =====================================================================
    TRANSLITERATION TOOL
    ===================================================================== */
-const TRANSLIT_MODES = [
-  {id:'zh-cyr',label:'拼音→西里尔',src:'pinyin',dst:'cyrillic'},
-  {id:'arab-cyr',label:'老哈文→西里尔',src:'arabic',dst:'cyrillic'},
-  {id:'zh-arab',label:'拼音→老哈文',src:'pinyin',dst:'arabic'},
-  {id:'cyr-lat',label:'西里尔→拉丁',src:'cyrillic',dst:'latin'}
-];
+let currentTranslitPage = 'zh-cyr';
+let translitDir = 'zh2kk';
 
-// Simple transliteration maps
-const PINYIN_CYR = {
-  'a':'а','ā':'а','á':'а','ǎ':'а','à':'а',
-  'b':'б','c':'ц','ch':'ч','d':'д','e':'е','ē':'е','é':'е','ě':'е','è':'е',
-  'f':'ф','g':'г','h':'х','i':'и','ī':'и','í':'и','ǐ':'и','ì':'и',
-  'j':'ж','k':'к','l':'л','m':'м','n':'н','o':'о','ō':'о','ó':'о','ǒ':'о','ò':'о',
-  'p':'п','q':'к','r':'р','s':'с','sh':'ш','t':'т','u':'у','ū':'у','ú':'у','ǔ':'у','ù':'у',
-  'v':'в','w':'у','x':'с','y':'й','z':'з','zh':'ж',
-  'ai':'ай','ao':'ау','an':'ан','ang':'аң','ei':'ей','en':'ен','eng':'ең',
-  'iu':'иу','ie':'ие','in':'ин','ing':'иң',
-  'ou':'оу','ong':'оң',
-  'ua':'уа','ue':'уе','ui':'уй','un':'ұн','uo':'уо',
-  'ü':'ү','üe':'үе','üan':'үан','ün':'үн'
-};
-function pinyin2Cyr(text){
-  let r='';
-  for(let i=0;i<text.length;i++){
-    const c=text[i];
-    if(PINYIN_CYR[c]) r+=PINYIN_CYR[c];
-    else if(/[a-zA-Z]/.test(c)) r+=c;
-    else r+=c;
-  }
-  return r;
-}
-
-const ARABIC_CYR_MAP = {};
-// Map from Arabic to Cyrillic (basic)
-function arabic2Cyr(text){
-  const m={'ا':'а','ب':'б','ۆ':'в','گ':'г','ع':'ғ','د':'د','ە':'е','ج':'ж','ز':'ز',
-    'ي':'й','ى':'ы','ك':'ك','ق':'ق','ل':'ل','م':'م','ن':'ن','ڭ':'ң',
-    'و':'о','پ':'پ','ر':'ر','س':'س','ت':'ت','ش':'ش','ۇ':'ұ','ءۇ':'ү',
-    'ح':'х','ھ':'ھ','ف':'ف','ٵ':'а','ٶ':'ә','ءو':'ө','ءى':'і'};
-  let r='';
-  for(let c of text){
-    if(m[c]) r+=m[c];
-    else r+=c;
-  }
-  return r;
-}
-
+// Keep cyr2Latin for internal use (Latin alphabet display)
 function cyr2Latin(text){
   const m={'а':'a','ә':'ä','б':'b','в':'v','г':'g','ғ':'ğ','д':'d','е':'e',
     'ё':'ë','ж':'j','з':'z','и':'i','й':'ı','к':'k','қ':'q','л':'l','м':'m',
@@ -1318,116 +1275,68 @@ function cyr2Latin(text){
   return r;
 }
 
-let currentTranslitPage = 'zh-cyr';
-
 function renderTranslit(prefix){
   const container = document.getElementById(prefix+'-translit');
   if(!container) return;
   currentTranslitPage = prefix;
-  const mapping = {'zhcyr':'zh-cyr','arabcyr':'arab-cyr','zharab':'zh-arab','cyrlat':'cyr-lat'};
-  const mode = mapping[prefix]||'zh-cyr';
+  translitDir = 'zh2kk';
 
-  let html = `<div class="section-title">🔄 转写工具</div>
-  <div style="font-size:.82em;color:var(--text2);margin-bottom:10px">输入文字，自动转换成另一种文字</div>
-  <div class="translit-tabs">`;
-  TRANSLIT_MODES.forEach(m=>{
-    html+=`<button class="${m.id===mode?'active':''}" onclick="setTranslitMode('${prefix}','${m.id}')">${m.label}</button>`;
-  });
-  html+=`</div>
-  <div class="translit-area">
-    <div class="translit-row">
-      <textarea id="translitInput" placeholder="在此输入要转写的文字..." oninput="doTranslit('${prefix}')"></textarea>
-    </div>
-    <div class="translit-actions">
-      <button class="primary" onclick="doTranslit('${prefix}')">🔄 转写</button>
-      <button onclick="copyTranslit()">📋 复制</button>
-      <button class="danger" onclick="clearTranslit()">🗑️ 清空</button>
-      <button onclick="toggleHistory()">📜 历史</button>
-    </div>
-    <div class="translit-row">
-      <textarea id="translitOutput" placeholder="结果..." readonly style="min-height:80px"></textarea>
-    </div>
-    <div id="translitHighlight" class="highlight-wrap" style="display:none"></div>
-    <div id="translitError" class="error-msg" style="display:none"></div>
-    <div id="translitHistory" class="history-list" style="display:none"></div>
-    <div class="batch-zone" onclick="document.getElementById('batchFile').click()" ondragover="this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="handleBatchDrop(event,'${prefix}')">
-      📄 上传 TXT 文件 → 自动转写并下载
-      <span style="display:block;font-size:.78em;color:var(--text3);margin-top:4px">支持任何哈中文字，一行一句自动逐行转写</span>
-      <input type="file" id="batchFile" accept=".txt" onchange="handleBatchFile(event,'${prefix}')" style="display:none">
-    </div>
-  </div>`;
+  let html = '<div class="section-title">🔄 翻译工具（百度翻译）</div>'
+    + '<div style="font-size:.82em;color:var(--text2);margin-bottom:10px">输入中文或哈萨克文，自动翻译</div>'
+    + '<div class="translit-area">'
+    + '<div class="translit-tabs" style="margin-bottom:8px">'
+    + '<button class="active" id="translitDirBtn" onclick="swapTranslitDir()">中文 → Қазақша</button>'
+    + '</div>'
+    + '<div class="translit-row"><textarea id="translitInput" placeholder="输入中文或哈萨克文..."></textarea></div>'
+    + '<div class="translit-actions">'
+    + '<button class="primary" onclick="doTranslit()">🌐 翻译</button>'
+    + '<button onclick="swapTranslitDir()">🔄 互换语言</button>'
+    + '<button onclick="copyTranslit()">📋 复制结果</button>'
+    + '<button class="danger" onclick="clearTranslit()">🗑️ 清空</button>'
+    + '<button onclick="toggleHistory()">📜 历史</button>'
+    + '</div>'
+    + '<div class="translit-row"><textarea id="translitOutput" placeholder="翻译结果..." readonly style="min-height:80px"></textarea></div>'
+    + '<div id="translitError" class="error-msg" style="display:none"></div>'
+    + '<div id="translitHistory" class="history-list" style="display:none"></div>'
+    + '<div class="batch-zone" onclick="document.getElementById(\'batchFile\').click()" ondragover="this.classList.add(\'dragover\')" ondragleave="this.classList.remove(\'dragover\')" ondrop="handleBatchDrop(event,\'' + prefix + '\')">'
+    + '📄 上传 TXT 文件 → 自动翻译并下载'
+    + '<span style="display:block;font-size:.78em;color:var(--text3);margin-top:4px">一行一句自动翻译，完成后自动下载</span>'
+    + '<input type="file" id="batchFile" accept=".txt" onchange="handleBatchFile(event,\'' + prefix + '\')" style="display:none">'
+    + '</div></div>';
   container.innerHTML = html;
 }
 
-function setTranslitMode(prefix, mode){
-  currentTranslitPage = prefix;
-  translitMode = mode;
-  const container = document.getElementById(prefix+'-translit');
-  container.querySelectorAll('.translit-tabs button').forEach(b=>{
-    b.classList.toggle('active', b.textContent.includes(TRANSLIT_MODES.find(m=>m.id===mode).label));
-  });
-  doTranslit(prefix);
+function swapTranslitDir(){
+  translitDir = translitDir==='zh2kk' ? 'kk2zh' : 'zh2kk';
+  const btn = document.getElementById('translitDirBtn');
+  btn.textContent = translitDir==='zh2kk' ? '中文 → Қазақша' : 'Қазақша → 中文';
 }
 
-function doTranslit(prefix){
+function doTranslit(){
   const input = document.getElementById('translitInput');
   const output = document.getElementById('translitOutput');
-  const highlight = document.getElementById('translitHighlight');
   const error = document.getElementById('translitError');
   if(!input||!output) return;
-  const text = input.value;
-  let result='';
-  let errors=[];
+  const text = input.value.trim();
+  if(!text){ output.value=''; return; }
 
-  if(text.trim()){
-    const mapping = {'zhcyr':'zh-cyr','arabcyr':'arab-cyr','zharab':'zh-arab','cyrlat':'cyr-lat'};
-    const m = mapping[prefix]||translitMode;
-    if(m==='zh-cyr'||m==='zh-arab'){
-      result = pinyin2Cyr(text);
-    } else if(m==='arab-cyr'){
-      result = arabic2Cyr(text);
-    } else if(m==='cyr-lat'){
-      result = cyr2Latin(text);
-    }
-    // Basic error detection
-    if(/[а-яА-Я]/.test(text) && (m==='zh-cyr'||m==='zh-arab')){
-      errors.push('检测到西里尔字母，确认输入语言正确吗？');
-    }
-    // Save to history
-    if(result.trim()){
+  output.value = '翻译中...';
+  const to = translitDir==='zh2kk' ? 'kaz' : 'zh';
+  const from = translitDir==='zh2kk' ? 'zh' : 'kaz';
+
+  baiduTranslate(text, from, to).then(result=>{
+    if(result){
+      output.value = result;
       state.history.unshift({src:text,dst:result,time:new Date().toLocaleString()});
       if(state.history.length>50) state.history.pop();
       saveState();
+      error.style.display='none';
+    } else {
+      output.value = '';
+      error.textContent = '翻译失败，请检查网络或稍后再试';
+      error.style.display='block';
     }
-  }
-
-  if(prefix==='zharab'||prefix==='arabcyr'){
-    output.dir='rtl';
-    output.style.textAlign='right';
-  } else {
-    output.dir='ltr';
-    output.style.textAlign='left';
-  }
-
-  output.value = result;
-
-  // Highlight comparison
-  if(text.trim()&&result.trim()){
-    highlight.innerHTML = text.split('').map((c,i)=>{
-      const r = result[i]||'';
-      return `<span class="hl-pair"><span class="hl-src">${c}</span>→<span class="hl-dst">${r}</span></span>`;
-    }).join(' ');
-    highlight.style.display='block';
-  } else {
-    highlight.style.display='none';
-  }
-
-  if(errors.length){
-    error.textContent = errors.join('；');
-    error.style.display='block';
-  } else {
-    error.style.display='none';
-  }
+  });
 }
 
 function copyTranslit(){
@@ -1442,7 +1351,8 @@ function clearTranslit(){
   const output = document.getElementById('translitOutput');
   if(input) input.value='';
   if(output) output.value='';
-  document.getElementById('translitHighlight').style.display='none';
+  const hl = document.getElementById('translitHighlight');
+  if(hl) hl.style.display='none';
   document.getElementById('translitError').style.display='none';
 }
 
