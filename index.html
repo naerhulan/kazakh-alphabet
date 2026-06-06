@@ -125,24 +125,46 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 .search-box input::placeholder{color:var(--text3)}
 .search-box .icon{color:var(--text3);font-size:.78em;flex-shrink:0}
 
-/* ===== HERO SECTION (不背单词 style) ===== */
-.hero{
-  position:relative;min-height:360px;border-radius:var(--radius);overflow:hidden;
-  margin:0 auto 8px;max-width:660px;
+/* ===== HOME PAGE — 不背单词全屏背景 ===== */
+#page-home{
+  position:relative;min-height:calc(100vh - 140px);
   background-size:cover;background-position:center;background-repeat:no-repeat;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:var(--radius);overflow:hidden;margin-top:8px;
   transition:background-image .8s ease;
 }
-.hero::before{
+#page-home::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%);
+  background:linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
   z-index:1;
 }
-.hero .hero-content{position:relative;z-index:2;text-align:center;padding:60px 24px 40px;width:100%}
-.hero .hero-greeting{font-family:'Noto Serif Display','Noto Sans SC',Georgia,serif;font-size:1.8em;font-weight:800;color:#fff;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,0.3)}
-.hero .hero-sub{color:rgba(255,255,255,0.8);font-size:.9em;font-weight:400;margin-bottom:24px}
-.hero .hero-credit{position:absolute;bottom:8px;right:12px;z-index:2;font-size:.65em;color:rgba(255,255,255,0.4)}
-.hero .hero-credit a{color:rgba(255,255,255,0.4)}
+#page-home .home-content{
+  position:relative;z-index:2;width:100%;max-width:600px;
+  padding:48px 20px 40px;
+}
+.home-greeting{
+  text-align:center;margin-bottom:20px;
+}
+.home-greeting h2{
+  font-family:'Noto Serif Display','Noto Sans SC',Georgia,serif;font-size:1.7em;font-weight:800;
+  color:#fff;margin-bottom:4px;text-shadow:0 2px 8px rgba(0,0,0,0.3);
+}
+.home-greeting p{
+  color:rgba(255,255,255,0.8);font-size:.85em;
+}
+.home-btns{padding:0}
+.home-btn{
+  width:100%;min-height:60px;border-radius:12px;font-size:.92em;font-weight:600;
+  padding:12px 20px;color:#fff;border:none;transition:all .2s cubic-bezier(.4,0,.2,1);
+  justify-content:center;text-align:center;position:relative;overflow:hidden;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
+}
+.home-btn::after{content:'';position:absolute;top:0;left:0;right:0;height:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,0.15),transparent);pointer-events:none}
+.home-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.35)}
+.home-btn:active{transform:translateY(0)}
+.home-btn .sub{display:block;font-size:.58em;font-weight:400;opacity:.8;margin-top:2px}
 
 /* ===== HOME BUTTONS ===== */
 .home-btns{display:flex;flex-direction:column;gap:12px;padding:16px 0;max-width:560px;margin:0 auto}
@@ -399,11 +421,11 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 /* ===== RESPONSIVE ===== */
 @media(max-width:600px){
   .container{padding:10px}
-  .home-btn{min-height:60px;font-size:.9em;padding:10px 14px}
-  .home-btn .sub{font-size:.52em}
-  .hero{min-height:260px}
-  .hero .hero-greeting{font-size:1.4em}
-  .hero .hero-content{padding:40px 20px 30px}
+  .home-btn{min-height:54px;font-size:.85em;padding:10px 14px}
+  .home-btn .sub{font-size:.5em}
+  #page-home{min-height:calc(100vh - 120px)}
+  .home-greeting h2{font-size:1.3em}
+  .home-content{padding:32px 16px 24px}
   .alphabet-grid{grid-template-columns:1fr}
   .practice-card .options{grid-template-columns:1fr}
   .header-inner{flex-direction:column;gap:5px}
@@ -453,16 +475,13 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 <!-- ===== MAIN CONTENT ===== -->
 <main class="container" id="app">
 
-<!-- ===== HERO SECTION (不背单词 style) ===== -->
-<div class="hero" id="heroSection">
-<div class="hero-content">
-<div class="hero-greeting" id="greetingText">你好！今天学哈萨克语吧</div>
-<div class="hero-sub">Қазақ тілін үйренуге қош келдіңіз!</div>
-</div>
-</div>
-
-<!-- ===== HOME PAGE ===== -->
+<!-- ===== HOME PAGE (不背单词全屏背景) ===== -->
 <section id="page-home" class="section">
+<div class="home-content">
+<div class="home-greeting">
+<h2 id="greetingText">你好！今天学哈萨克语吧</h2>
+<p>Қазақ тілін үйренуге қош келдіңіз! — 欢迎学习哈萨克语</p>
+</div>
 <div class="home-btns">
 <button class="home-btn zh-cyr" onclick="navigate('zh-cyr')">
 🇨🇳 我会普通话，想学西里尔哈萨克文
@@ -480,6 +499,7 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 🇰🇿 Кириллица жазамын، لاتىن ءارىپتەرىن ۇيرەنەم
 <span class="sub">Кириллица жазамын, латын әріптерін үйренем</span>
 </button>
+</div>
 </div>
 </section>
 
@@ -1067,14 +1087,11 @@ function navigate(page){
   document.querySelectorAll('.section[id^="page-"]').forEach(s=>s.classList.add('hidden'));
   document.getElementById('page-'+page)?.classList.remove('hidden');
   document.getElementById('page-home')?.classList.add('hidden');
-  const hero = document.getElementById('heroSection');
   if(page==='home'){
     document.getElementById('page-home').classList.remove('hidden');
-    hero.style.display='flex';
     updateGreeting('home');
     return;
   }
-  hero.style.display='none';
   const pageId = page;
   const tabDefault = 'alphabet';
   switchTab(pageId.replace(/-/g,'-'), tabDefault);
@@ -2191,19 +2208,21 @@ function init(){
       document.getElementById('searchPanel')?.classList.remove('show');
     }
   });
-  // Hero background (不背单词 style — random beautiful photo)
-  const heroBg = document.getElementById('heroSection');
-  if(heroBg){
+  // Home page background (不背单词 style — random beautiful photo)
+  const homePage = document.getElementById('page-home');
+  if(homePage){
     const images = [
       'bg.jpg',
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=80',
       'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&q=80',
       'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1200&q=80',
-      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80'
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80',
+      'https://images.unsplash.com/photo-1518173946687-a36f968f7e1f?w=1200&q=80',
+      'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&q=80'
     ];
     const idx = Math.floor(Math.random() * images.length);
-    heroBg.style.backgroundImage = 'url(' + images[idx] + ')';
+    homePage.style.backgroundImage = 'url(' + images[idx] + ')';
   }
   // Apply saved theme
   if(state.theme==='dark'){
