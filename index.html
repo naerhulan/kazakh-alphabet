@@ -125,10 +125,24 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 .search-box input::placeholder{color:var(--text3)}
 .search-box .icon{color:var(--text3);font-size:.78em;flex-shrink:0}
 
-/* ===== GREETING ===== */
-.greeting{text-align:center;padding:28px 0 12px;animation:fadeIn .6s ease}
-.greeting h2{font-family:'Noto Serif Display',Georgia,serif;font-size:1.55em;font-weight:800;color:var(--text);margin-bottom:2px}
-.greeting p{color:var(--text2);font-size:.88em}
+/* ===== HERO SECTION (不背单词 style) ===== */
+.hero{
+  position:relative;min-height:360px;border-radius:var(--radius);overflow:hidden;
+  margin:0 auto 8px;max-width:660px;
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:background-image .8s ease;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%);
+  z-index:1;
+}
+.hero .hero-content{position:relative;z-index:2;text-align:center;padding:60px 24px 40px;width:100%}
+.hero .hero-greeting{font-family:'Noto Serif Display','Noto Sans SC',Georgia,serif;font-size:1.8em;font-weight:800;color:#fff;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.hero .hero-sub{color:rgba(255,255,255,0.8);font-size:.9em;font-weight:400;margin-bottom:24px}
+.hero .hero-credit{position:absolute;bottom:8px;right:12px;z-index:2;font-size:.65em;color:rgba(255,255,255,0.4)}
+.hero .hero-credit a{color:rgba(255,255,255,0.4)}
 
 /* ===== HOME BUTTONS ===== */
 .home-btns{display:flex;flex-direction:column;gap:12px;padding:16px 0;max-width:560px;margin:0 auto}
@@ -387,6 +401,9 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
   .container{padding:10px}
   .home-btn{min-height:60px;font-size:.9em;padding:10px 14px}
   .home-btn .sub{font-size:.52em}
+  .hero{min-height:260px}
+  .hero .hero-greeting{font-size:1.4em}
+  .hero .hero-content{padding:40px 20px 30px}
   .alphabet-grid{grid-template-columns:1fr}
   .practice-card .options{grid-template-columns:1fr}
   .header-inner{flex-direction:column;gap:5px}
@@ -436,10 +453,12 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 <!-- ===== MAIN CONTENT ===== -->
 <main class="container" id="app">
 
-<!-- Greeting -->
-<div class="greeting" id="greeting">
-<h2 id="greetingText">你好！今天学哈萨克语吧</h2>
-<p>Қазақ тілін үйренуге қош келдіңіз! — 欢迎学习哈萨克语</p>
+<!-- ===== HERO SECTION (不背单词 style) ===== -->
+<div class="hero" id="heroSection">
+<div class="hero-content">
+<div class="hero-greeting" id="greetingText">你好！今天学哈萨克语吧</div>
+<div class="hero-sub">Қазақ тілін үйренуге қош келдіңіз!</div>
+</div>
 </div>
 
 <!-- ===== HOME PAGE ===== -->
@@ -1048,10 +1067,14 @@ function navigate(page){
   document.querySelectorAll('.section[id^="page-"]').forEach(s=>s.classList.add('hidden'));
   document.getElementById('page-'+page)?.classList.remove('hidden');
   document.getElementById('page-home')?.classList.add('hidden');
+  const hero = document.getElementById('heroSection');
   if(page==='home'){
     document.getElementById('page-home').classList.remove('hidden');
+    hero.style.display='flex';
+    updateGreeting('home');
     return;
   }
+  hero.style.display='none';
   const pageId = page;
   const tabDefault = 'alphabet';
   switchTab(pageId.replace(/-/g,'-'), tabDefault);
@@ -1085,19 +1108,24 @@ function switchTab(pageId, tab){
 
 function updateGreeting(page){
   const h = document.getElementById('greetingText');
-  const now = new Date();
-  const hour = now.getHours();
-  let timeWord = '🌅 早上好';
-  if(hour>=12&&hour<14) timeWord='☀️ 中午好';
-  else if(hour>=14&&hour<18) timeWord='🌤️ 下午好';
-  else if(hour>=18) timeWord='🌙 晚上好';
-  const names = {
-    'zh-cyrillic':'🇨🇳 汉语→西里尔哈萨克文',
-    'arabic-cyrillic':'🇰🇿 老哈文→西里尔',
-    'zh-arabic':'🇨🇳 汉语→老哈文',
-    'cyrillic-latin':'🇰🇿 西里尔→拉丁'
-  };
-  h.textContent = timeWord+' · '+(names[page]||'哈萨克语学习');
+  if(!h) return;
+  if(page==='home'){
+    const now = new Date();
+    const hour = now.getHours();
+    let timeWord = '早上好';
+    if(hour>=12&&hour<14) timeWord='中午好';
+    else if(hour>=14&&hour<18) timeWord='下午好';
+    else if(hour>=18) timeWord='晚上好';
+    h.textContent = timeWord+'！今天学哈萨克语吧';
+  } else {
+    const names = {
+      'zh-cyr':'汉语→西里尔文',
+      'arab-cyr':'老哈文→西里尔',
+      'zh-arab':'汉语→老哈文',
+      'cyr-lat':'西里尔→拉丁'
+    };
+    h.textContent = names[page]||'学习';
+  }
 }
 
 /* =====================================================================
@@ -2163,6 +2191,20 @@ function init(){
       document.getElementById('searchPanel')?.classList.remove('show');
     }
   });
+  // Hero background (不背单词 style — random beautiful photo)
+  const heroBg = document.getElementById('heroSection');
+  if(heroBg){
+    const images = [
+      'bg.jpg',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&q=80',
+      'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1200&q=80',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80'
+    ];
+    const idx = Math.floor(Math.random() * images.length);
+    heroBg.style.backgroundImage = 'url(' + images[idx] + ')';
+  }
   // Apply saved theme
   if(state.theme==='dark'){
     document.body.classList.add('dark');
