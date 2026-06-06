@@ -24,7 +24,7 @@
   --shadow-sm:0 1px 3px rgba(26,26,26,0.04);
   --shadow:0 2px 8px rgba(26,26,26,0.05);
   --shadow-lg:0 4px 16px rgba(26,26,26,0.07);
-  --font-sm:14px;--font-md:15px;--font-lg:17px;
+  --font-sm:13px;--font-md:15px;--font-lg:18px;
   --zh-accent:var(--kz-rose);--cyr-accent:var(--kz-teal);--arab-accent:var(--kz-pine);--lat-accent:var(--kz-gold);
   /* backward compat for JS inline styles */
   --primary:var(--kz-teal);--primary2:#00707a;--accent:var(--kz-rose);--gold:var(--kz-gold);
@@ -1857,7 +1857,8 @@ function cycleFontSize(){
   idx = (idx+1)%sizes.length;
   if(sizes[idx]) document.body.classList.add(sizes[idx]);
   state.fontSize = idx;
-  document.getElementById('fontBtn').textContent = idx===0?'A⁻':(idx===1?'A':'A⁺');
+  const labels = ['小','中','大'];
+  document.getElementById('fontBtn').innerHTML = 'Aa<span style="font-size:.6em;opacity:.6;margin-left:1px">'+labels[idx]+'</span>';
   saveState();
 }
 
@@ -1910,7 +1911,8 @@ function init(){
   // Apply font size
   const sizes = ['font-sm','','font-lg'];
   if(sizes[state.fontSize]) document.body.classList.add(sizes[state.fontSize]);
-  document.getElementById('fontBtn').textContent = state.fontSize===0?'A⁻':(state.fontSize===1?'A':'A⁺');
+  const fontLabels = ['小','中','大'];
+  document.getElementById('fontBtn').innerHTML = 'Aa<span style="font-size:.6em;opacity:.6;margin-left:1px">'+fontLabels[state.fontSize]+'</span>';
   
   // Show home
   document.getElementById('page-home').classList.remove('hidden');
