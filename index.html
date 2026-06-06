@@ -120,10 +120,10 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
   font-weight:500}
 .header-actions button:hover{background:var(--surface-hover);border-color:var(--border);color:var(--text)}
 .search-box{display:flex;align-items:center;background:var(--bg);border:1px solid var(--border);
-  border-radius:var(--radius-sm);padding:0 8px;flex:1;min-width:100px;max-width:200px}
-.search-box input{border:none;background:transparent;padding:5px 4px;font-size:.8em}
+  border-radius:var(--radius-sm);padding:0 8px;width:100%}
+.search-box input{border:none;background:transparent;padding:5px 4px;font-size:.8em;width:100%}
 .search-box input::placeholder{color:var(--text3)}
-.search-box .icon{color:var(--text3);font-size:.78em}
+.search-box .icon{color:var(--text3);font-size:.78em;flex-shrink:0}
 
 /* ===== GREETING ===== */
 .greeting{text-align:center;padding:28px 0 12px;animation:fadeIn .6s ease}
@@ -308,6 +308,36 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 .dict-input{display:flex;gap:6px;justify-content:center;margin:10px 0}
 .dict-input input{max-width:180px;text-align:center;font-size:1.1em}
 
+/* ===== SEARCH PANEL (BuBei-style) ===== */
+.search-panel{
+  position:absolute;top:100%;left:0;right:0;z-index:999;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);
+  max-height:420px;overflow-y:auto;display:none;margin-top:3px;
+}
+.search-panel.show{display:block}
+.search-panel .sp-empty{padding:20px;text-align:center;color:var(--text3);font-size:.85em}
+.search-panel .sp-item{
+  padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background .12s;
+}
+.search-panel .sp-item:last-child{border-bottom:none}
+.search-panel .sp-item:hover{background:var(--surface-hover)}
+.search-panel .sp-item .sp-word{font-size:1.3em;font-weight:700;color:var(--kz-teal);margin-bottom:2px}
+.search-panel .sp-item .sp-meaning{font-size:.85em;color:var(--text2);margin-bottom:8px}
+.search-panel .sp-item .sp-ipa{font-size:.75em;color:var(--text3);font-family:monospace;margin-left:6px}
+.search-panel .sp-contexts{display:flex;flex-direction:column;gap:4px}
+.search-panel .sp-context{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:6px 10px;background:var(--bg);border-radius:4px;font-size:.82em;gap:8px;
+}
+.search-panel .sp-context .ctx-kk{font-weight:500;color:var(--text)}
+.search-panel .sp-context .ctx-zh{color:var(--text2);font-size:.9em;white-space:nowrap}
+.search-panel .sp-source{font-size:.72em;color:var(--text3);margin-top:5px;padding-top:4px;border-top:1px dashed var(--border)}
+
+/* search wrapper for positioning */
+.search-wrap{position:relative;flex:1;min-width:100px;max-width:200px}
+
 /* ===== TOAST ===== */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;
   padding:10px 20px;border-radius:var(--radius-sm);background:var(--surface);color:var(--text);
@@ -387,9 +417,12 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 <header class="header" id="header">
 <div class="header-inner">
 <div class="header-title">QazaqTanu<span class="title-sub">— Қазақ тілі үйрену</span></div>
+<div class="search-wrap">
 <div class="search-box">
 <span class="icon">🔍</span>
-<input type="text" id="globalSearch" placeholder="搜索字母、词汇..." oninput="doGlobalSearch(this.value)">
+<input type="text" id="globalSearch" placeholder="搜单词、字母..." oninput="doGlobalSearch(this.value)" autocomplete="off">
+</div>
+<div class="search-panel" id="searchPanel"></div>
 </div>
 <div class="header-actions">
 <button onclick="toggleTheme()" id="themeBtn" title="切换日夜模式">🌙</button>
@@ -1862,20 +1895,149 @@ function cycleFontSize(){
 }
 
 /* =====================================================================
-   GLOBAL SEARCH
+   GLOBAL SEARCH (不背单词 style)
    ===================================================================== */
+
+// Build search index from all data
+let searchIndex = [];
+function buildSearchIndex(){
+  const index = [];
+  // 1. From CYRILLIC_ALPHABET: vocabulary words + sentences
+  CYRILLIC_ALPHABET.forEach(ca=>{
+    const letterClean = ca.letter.split(' ')[0];
+    ca.examples.forEach(ex=>{
+      index.push({
+        word: ex.word,
+        zh: ex.meaning,
+        ipa: ca.ipa,
+        letter: letterClean,
+        contexts: [{kk: ca.sentence.kk, zh: ca.sentence.zh, type:'例句'}]
+      });
+    });
+    // Also index the letter itself
+    index.push({
+      word: letterClean,
+      zh: '字母 ' + letterClean,
+      ipa: ca.ipa,
+      letter: letterClean,
+      contexts: ca.examples.map(ex=>({kk: ex.word, zh: ex.meaning, type:'例词'})),
+      isLetter: true
+    });
+  });
+  // 2. From PHRASES
+  Object.values(PHRASES).forEach(cat=>{
+    cat.forEach(p=>{
+      index.push({
+        word: p.kk,
+        zh: p.zh,
+        contexts: [{kk: p.kk, zh: p.zh, type:'常用语'}]
+      });
+    });
+  });
+  // 3. From ARABIC_ALPHABET
+  ARABIC_ALPHABET.forEach(aa=>{
+    const letterClean = aa.letter;
+    aa.examples.forEach(ex=>{
+      index.push({
+        word: ex.word,
+        zh: ex.meaning,
+        ipa: aa.ipa,
+        letter: letterClean,
+        contexts: [{kk: aa.sentence.kk, zh: aa.sentence.zh, type:'例句'}]
+      });
+    });
+  });
+  return index;
+}
+
 function doGlobalSearch(q){
-  if(!q.trim()){
-    document.querySelectorAll('.letter-card').forEach(c=>c.style.display='');
+  const panel = document.getElementById('searchPanel');
+  if(!panel) return;
+  const s = q.trim();
+  if(!s){
+    panel.classList.remove('show');
+    panel.innerHTML = '';
     return;
   }
-  const s = q.toLowerCase().trim();
-  // Search through alphabet
-  const allLetters = document.querySelectorAll('.letter-card');
-  allLetters.forEach(c=>{
-    const text = c.textContent.toLowerCase();
-    c.style.display = text.includes(s)?'':'none';
+  const sl = s.toLowerCase();
+  // Build index once
+  if(!searchIndex.length) searchIndex = buildSearchIndex();
+  // Search in Kazakh and Chinese
+  const results = [];
+  const seen = new Set();
+  searchIndex.forEach(item=>{
+    const matchKk = item.word.toLowerCase().includes(sl);
+    const matchZh = item.zh.toLowerCase().includes(sl);
+    if(matchKk || matchZh){
+      const key = item.word + '|' + item.zh;
+      if(!seen.has(key)){
+        seen.add(key);
+        // Merge contexts for same word
+        const existing = results.find(r=>r.word===item.word&&r.zh===item.zh);
+        if(existing){
+          item.contexts.forEach(ctx=>{
+            if(!existing.contexts.some(c=>c.kk===ctx.kk)) existing.contexts.push(ctx);
+          });
+        } else {
+          results.push({...item, contexts:[...item.contexts]});
+        }
+      }
+    }
   });
+  // Sort: exact match first, then letter match, then rest
+  results.sort((a,b)=>{
+    const aExact = a.word.toLowerCase()===sl || a.zh.toLowerCase()===sl ? 0 : 1;
+    const bExact = b.word.toLowerCase()===sl || b.zh.toLowerCase()===sl ? 0 : 1;
+    if(aExact!==bExact) return aExact-bExact;
+    return a.word.length - b.word.length;
+  });
+  renderSearchResults(results.slice(0,8), s, panel);
+}
+
+function renderSearchResults(results, query, panel){
+  if(!results.length){
+    panel.innerHTML = '<div class="sp-empty">未找到相关结果</div>';
+    panel.classList.add('show');
+    return;
+  }
+  let html = '';
+  results.forEach(r=>{
+    const link = r.letter ? `<span style="font-size:.72em;color:var(--text3)">🔤 字母 ${r.letter}</span>` : '';
+    html += `<div class="sp-item" onclick="doSearchSelect('${r.word.replace(/'/g,"\\'")}')">
+      <div class="sp-word">${r.word}${r.ipa?' <span class="sp-ipa">'+r.ipa+'</span>':''}</div>
+      <div class="sp-meaning">${r.zh}</div>
+      <div class="sp-contexts">`;
+    r.contexts.slice(0,4).forEach(ctx=>{
+      html += `<div class="sp-context">
+        <span class="ctx-kk">${ctx.kk}</span>
+        <span class="ctx-zh">${ctx.zh}</span>
+      </div>`;
+    });
+    if(r.contexts.length>4) html += `<div style="font-size:.72em;color:var(--text3);text-align:right;padding:2px 4px 0">+${r.contexts.length-4} 更多</div>`;
+    html += `</div></div>`;
+  });
+  panel.innerHTML = html;
+  panel.classList.add('show');
+}
+
+function doSearchSelect(word){
+  // Navigate to zh-cyr alphabet section and highlight
+  navigate('zh-cyr');
+  switchTab('zh-cyr','alphabet');
+  // Try to find letter card and scroll to it
+  const cards = document.querySelectorAll('.letter-card');
+  let found = false;
+  cards.forEach(c=>{
+    if(c.textContent.includes(word)){
+      c.scrollIntoView({behavior:'smooth',block:'center'});
+      c.style.boxShadow='0 0 0 3px var(--kz-gold)';
+      setTimeout(()=>{c.style.boxShadow=''},2000);
+      found = true;
+    }
+  });
+  if(!found) navigate('home');
+  document.getElementById('searchPanel').classList.remove('show');
+  document.getElementById('globalSearch').value = '';
 }
 
 /* =====================================================================
@@ -1902,6 +2064,13 @@ function showToast(msg, type='info'){
    INIT
    ===================================================================== */
 function init(){
+  // Click outside search to close panel
+  document.addEventListener('click', function(e){
+    const wrap = document.querySelector('.search-wrap');
+    if(wrap && !wrap.contains(e.target)){
+      document.getElementById('searchPanel')?.classList.remove('show');
+    }
+  });
   // Apply saved theme
   if(state.theme==='dark'){
     document.body.classList.add('dark');
