@@ -1846,20 +1846,20 @@ function toggleTheme(){
   saveState();
 }
 
-function cycleFontSize(){
-  const sizes = ['font-sm','','font-lg'];
-  const current = document.body.className.match(/font-(sm|lg)/);
-  let idx = 0;
-  if(current){
-    document.body.classList.remove(current[0]);
-    idx = sizes.indexOf(current[0]);
-  }
-  idx = (idx+1)%sizes.length;
-  if(sizes[idx]) document.body.classList.add(sizes[idx]);
+function setFontSize(idx){
+  const px = [13, 15, 18];
+  document.documentElement.style.fontSize = px[idx] + 'px';
+  // remove old class, add new
+  document.body.classList.remove('font-sm','font-lg');
+  if(idx===0) document.body.classList.add('font-sm');
+  if(idx===2) document.body.classList.add('font-lg');
   state.fontSize = idx;
   const labels = ['小','中','大'];
   document.getElementById('fontBtn').innerHTML = 'Aa<span style="font-size:.6em;opacity:.6;margin-left:1px">'+labels[idx]+'</span>';
   saveState();
+}
+function cycleFontSize(){
+  setFontSize((state.fontSize+1)%3);
 }
 
 /* =====================================================================
@@ -1909,10 +1909,7 @@ function init(){
     document.getElementById('themeBtn').textContent = '☀️';
   }
   // Apply font size
-  const sizes = ['font-sm','','font-lg'];
-  if(sizes[state.fontSize]) document.body.classList.add(sizes[state.fontSize]);
-  const fontLabels = ['小','中','大'];
-  document.getElementById('fontBtn').innerHTML = 'Aa<span style="font-size:.6em;opacity:.6;margin-left:1px">'+fontLabels[state.fontSize]+'</span>';
+  setFontSize(state.fontSize);
   
   // Show home
   document.getElementById('page-home').classList.remove('hidden');
