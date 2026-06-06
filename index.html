@@ -1322,20 +1322,32 @@ function doTranslit(){
 
   output.value = '翻译中...';
   const to = translitDir==='zh2kk' ? 'kaz' : 'zh';
-  const from = translitDir==='zh2kk' ? 'zh' : 'kaz';
+  const from = 'auto';
 
   baiduTranslate(text, from, to).then(result=>{
-    if(result){
+    if(result && result !== text){
       output.value = result;
       state.history.unshift({src:text,dst:result,time:new Date().toLocaleString()});
       if(state.history.length>50) state.history.pop();
       saveState();
       error.style.display='none';
     } else {
-      output.value = '';
-      error.textContent = '翻译失败，请检查网络或稍后再试';
-      error.style.display='block';
+      // Try reverse direction as fallback
+      const fallbackTo = to==='zh' ? 'kaz' : 'zh';
+      return baiduTranslate(text, 'auto', fallbackTo).then(result2=>{
+        if(result2 && result2 !== text){
+          output.value = result2;
+        } else {
+          output.value = '';
+          error.textContent = '翻译失败，请检查网络或稍后再试';
+          error.style.display='block';
+        }
+      });
     }
+  }).catch(e=>{
+    output.value = '';
+    error.textContent = '翻译失败：' + e.message;
+    error.style.display='block';
   });
 }
 
@@ -1954,17 +1966,19 @@ async function baiduTranslate(text, from='auto', to='zh'){
   const salt = Date.now();
   const sign = md5(BD_APPID + text + salt + BD_SECRET);
   const apiUrl = `https://api.fanyi.baidu.com/api/trans/vip/translate?q=${encodeURIComponent(text)}&from=${from}&to=${to}&appid=${BD_APPID}&salt=${salt}&sign=${sign}`;
-  // Use CORS proxy to bypass browser restrictions
-  const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(apiUrl)}`;
+  // Try proxy first
+  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
   try{
-    const res = await fetch(proxyUrl);
+    const res = await fetch(proxyUrl, {signal: AbortSignal.timeout(8000)});
     const data = await res.json();
     if(data.trans_result) return data.trans_result.map(r=>r.dst).join('; ');
+    if(data.error_code) return null;
     return null;
   }catch(e){
-    console.log('Translate failed, trying direct...');
+    // Try alternative proxy
     try{
-      const res2 = await fetch(apiUrl, {mode:'cors'});
+      const proxy2 = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
+      const res2 = await fetch(proxy2, {signal: AbortSignal.timeout(8000)});
       const data2 = await res2.json();
       if(data2.trans_result) return data2.trans_result.map(r=>r.dst).join('; ');
     }catch(e2){}
