@@ -1949,15 +1949,16 @@ function md5(str){
   const n=b.length;b.push(0x80);while(b.length%64!==56)b.push(0);
   b.push((n*8)&255,((n*8)>>8)&255,((n*8)>>16)&255,((n*8)>>24)&255,0,0,0,0);
   let h0=0x67452301,h1=0xefcdab89,h2=0x98badcfe,h3=0x10325476;
-  for(let i=0;i<b.length;i+=64){
-    const w=[];for(let j=0;j<16;j++)w[j]=b[i+j*4]|(b[i+j*4+1]<<8)|(b[i+j*4+2]<<16)|(b[i+j*4+3]<<24);
-    let a=h0,b=h1,c=h2,d=h3;
+  const bytes=b; // save to avoid TDZ conflict
+  for(let i=0;i<bytes.length;i+=64){
+    const w=[];for(let j=0;j<16;j++)w[j]=bytes[i+j*4]|(bytes[i+j*4+1]<<8)|(bytes[i+j*4+2]<<16)|(bytes[i+j*4+3]<<24);
+    let A=h0,B=h1,C=h2,D=h3;
     for(let j=0;j<64;j++){
-      let f,g;if(j<16){f=(b&c)|((~b)&d);g=j}else if(j<32){f=(d&b)|((~d)&c);g=(5*j+1)%16}
-      else if(j<48){f=b^c^d;g=(3*j+5)%16}else{f=c^(b|(~d));g=(7*j)%16}
-      const temp=d;d=c;c=b;b=b+rotLeft((a+f+K[j]+w[g]),S[j]);a=temp;
+      let f,g;if(j<16){f=(B&C)|((~B)&D);g=j}else if(j<32){f=(D&B)|((~D)&C);g=(5*j+1)%16}
+      else if(j<48){f=B^C^D;g=(3*j+5)%16}else{f=C^(B|(~D));g=(7*j)%16}
+      const temp=D;D=C;C=B;B=B+rotLeft((A+f+K[j]+w[g]),S[j]);A=temp;
     }
-    h0=(h0+a)&0xFFFFFFFF;h1=(h1+b)&0xFFFFFFFF;h2=(h2+c)&0xFFFFFFFF;h3=(h3+d)&0xFFFFFFFF;
+    h0=(h0+A)&0xFFFFFFFF;h1=(h1+B)&0xFFFFFFFF;h2=(h2+C)&0xFFFFFFFF;h3=(h3+D)&0xFFFFFFFF;
   }
   return toHex(h0)+toHex(h1)+toHex(h2)+toHex(h3);
 }
