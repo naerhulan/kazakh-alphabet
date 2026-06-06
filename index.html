@@ -497,8 +497,8 @@ body:not(.has-home) #page-home{display:none}
 <span class="sub">Мен қытайша сөйлеймін, қазақ араб жазбасын үйренгім келеді</span>
 </button>
 <button class="home-btn cyr-lat" onclick="navigate('cyr-lat')">
-🇰🇿 Кириллица жазамын، لاتىن ءارىپتەرىن ۇيرەنەم
-<span class="sub">Кириллица жазамын, латын әріптерін үйренем</span>
+🇰🇿 Кириллица жазамын, латын әріптерін үйренемін
+<span class="sub">Мен кириллицаны білемін, жаңа латын әліпбиін үйренгім келеді</span>
 </button>
 </div>
 </div>
@@ -736,6 +736,41 @@ const CYRILLIC_ALPHABET = [
 
 // ---- 9 special letters ----
 const SPECIAL_LETTERS = ['Ә ә','Ғ ғ','Қ қ','Ң ң','Ө ө','Ұ ұ','Ү ү','Һ һ','І і'];
+
+// ---- Kazakh Latin Alphabet (2025 standard) ----
+const LATIN_ALPHABET = [
+  {letter:'A a',ipa:'/ɑ/',cyr:'А а',mnemonic:'A — ашық дауысты',examples:[{word:'Ana',meaning:'ана / мама'},{word:'Ata',meaning:'ата / папа'},{word:'Alma',meaning:'алма / яблоко'}],sentence:{kk:'Ana alma jedi.',zh:'Ана алма жеді. / Мама съела яблоко.'}},
+  {letter:'Ä ä',ipa:'/æ/',cyr:'Ә ә',mnemonic:'Ä — ädebï',examples:[{word:'Äke',meaning:'әке / отец'},{word:'Ärip',meaning:'әріп / буква'},{word:'Ädemi',meaning:'әдемі / красивый'}],sentence:{kk:'Äke men ana üide.',zh:'Әке мен ана үйде. / Папа и мама дома.'}},
+  {letter:'B b',ipa:'/b/',cyr:'Б б',mnemonic:'B — bala',examples:[{word:'Bala',meaning:'бала / ребенок'},{word:'Balıq',meaning:'балық / рыба'},{word:'Batpa',meaning:'батпа / шаг'}],sentence:{kk:'Bala mektepke baradı.',zh:'Бала мектепке барады. / Ребенок идет в школу.'}},
+  {letter:'D d',ipa:'/d/',cyr:'Д д',mnemonic:'D — dos',examples:[{word:'Dos',meaning:'дос / друг'},{word:'Dala',meaning:'дала / степь'},{word:'Däri',meaning:'дәрі / лекарство'}],sentence:{kk:'Dosıñ kim?',zh:'Досың кім? / Кто твой друг?'}},
+  {letter:'E e',ipa:'/je/',cyr:'Е е',mnemonic:'E — el',examples:[{word:'El',meaning:'ел / страна'},{word:'Et',meaning:'ет / мясо'},{word:'Esik',meaning:'есік / дверь'}],sentence:{kk:'El tınıştığı zor.',zh:'Ел тыныштығы зор. / Спокойствие страны важно.'}},
+  {letter:'F f',ipa:'/f/',cyr:'Ф ф',mnemonic:'F — fakıltet',examples:[{word:'Fýtbol',meaning:'футбол'},{word:'Fakt',meaning:'факт'},{word:'Ferma',meaning:'ферма'}],sentence:{kk:'Fýtbol tamaşa sport.',zh:'Футбол тамаша спорт. / Футбол — отличный спорт.'}},
+  {letter:'G g',ipa:'/ɡ/',cyr:'Г г',mnemonic:'G — gül',examples:[{word:'Gül',meaning:'гүл / цветок'},{word:'Gaz',meaning:'газ'},{word:'Garıs',meaning:'гарыш / космос'}],sentence:{kk:'Gül öte ädemi.',zh:'Гүл өте әдемі. / Цветок очень красивый.'}},
+  {letter:'Ğ ğ',ipa:'/ʁ/',cyr:'Ғ ғ',mnemonic:'Ğ — ğalım',examples:[{word:'Ğalım',meaning:'ғалым / ученый'},{word:'Ğalam',meaning:'ғалам / вселенная'},{word:'Ğasır',meaning:'ғасыр / век'}],sentence:{kk:'Ğalım ğalamdı zertteidi.',zh:'Ғалым ғаламды зерттейді. / Ученый изучает вселенную.'}},
+  {letter:'H h',ipa:'/h/',cyr:'Х х, Һ һ',mnemonic:'H — halıq',examples:[{word:'Halıq',meaning:'халық / народ'},{word:'Habar',meaning:'хабар / новость'},{word:'Haua',meaning:'һауа / воздух'}],sentence:{kk:'Halıq birligi mıqtı.',zh:'Халық бірлігі мықты. / Единство народа сильно.'}},
+  {letter:'I ı',ipa:'/ɯ/',cyr:'Ы ы',mnemonic:'I — ıstıq',examples:[{word:'Istıq',meaning:'ыстық / жарко'},{word:'Irıs',meaning:'ырыс / счастье'},{word:'Iñğaı',meaning:'ыңғай / направление'}],sentence:{kk:'Bügın ıstıq.',zh:'Бүгін ыстық. / Сегодня жарко.'}},
+  {letter:'İ i',ipa:'/i/',cyr:'І і',mnemonic:'İ — ini',examples:[{word:'İni',meaning:'іні / младший брат'},{word:'İz',meaning:'із / след'},{word:'İri',meaning:'ірі / крупный'}],sentence:{kk:'İni mektepke ketti.',zh:'Іні мектепке кетті. / Младший брат пошел в школу.'}},
+  {letter:'J j',ipa:'/ʒ/',cyr:'Ж ж',mnemonic:'J — jol',examples:[{word:'Jol',meaning:'жол / дорога'},{word:'Jan',meaning:'жан / душа'},{word:'Jaz',meaning:'жаз / лето'}],sentence:{kk:'Jazda ıstıq.',zh:'Жазда ыстық. / Летом жарко.'}},
+  {letter:'K k',ipa:'/k/',cyr:'К к',mnemonic:'K — kün',examples:[{word:'Kün',meaning:'күн / солнце'},{word:'Kitap',meaning:'кітап / книга'},{word:'Köl',meaning:'көл / озеро'}],sentence:{kk:'Kitap jaqsı.',zh:'Кітап жақсы. / Книга хорошая.'}},
+  {letter:'Q q',ipa:'/q/',cyr:'Қ қ',mnemonic:'Q — qazaq',examples:[{word:'Qazaq',meaning:'қазақ / казах'},{word:'Qala',meaning:'қала / город'},{word:'Qız',meaning:'қыз / девушка'}],sentence:{kk:'Qazaq tili — ult tili.',zh:'Қазақ тілі — ұлт тілі. / Казахский — национальный язык.'}},
+  {letter:'L l',ipa:'/l/',cyr:'Л л',mnemonic:'L — laq',examples:[{word:'Laq',meaning:'лақ / козленок'},{word:'Lauazım',meaning:'лауазым / должность'},{word:'Läzzat',meaning:'ләззат / удовольствие'}],sentence:{kk:'Laq sekiredi.',zh:'Лақ секіреді. / Козленок прыгает.'}},
+  {letter:'M m',ipa:'/m/',cyr:'М м',mnemonic:'M — men',examples:[{word:'Men',meaning:'мен / я'},{word:'Mektep',meaning:'мектеп / школа'},{word:'Mal',meaning:'мал / скот'}],sentence:{kk:'Men studentpin.',zh:'Мен студентпін. / Я студент.'}},
+  {letter:'N n',ipa:'/n/',cyr:'Н н',mnemonic:'N — nan',examples:[{word:'Ne',meaning:'не / что'},{word:'Nan',meaning:'нан / хлеб'},{word:'Nömir',meaning:'нөмір / номер'}],sentence:{kk:'Nan dämdi.',zh:'Нан дәмді. / Хлеб вкусный.'}},
+  {letter:'Ñ ñ',ipa:'/ŋ/',cyr:'Ң ң',mnemonic:'Ñ — tañ',examples:[{word:'Tañ',meaning:'таң / утро'},{word:'Qañtar',meaning:'қаңтар / январь'},{word:'Oñ',meaning:'оң / правый'}],sentence:{kk:'Tañ astı.',zh:'Таң асты. / Рассвело.'}},
+  {letter:'O o',ipa:'/o/',cyr:'О о',mnemonic:'O — orman',examples:[{word:'Ol',meaning:'ол / он/она'},{word:'Orman',meaning:'орман / лес'},{word:'Ot',meaning:'от / огонь'}],sentence:{kk:'Ol mektepte.',zh:'Ол мектепте. / Он в школе.'}},
+  {letter:'Ö ö',ipa:'/œ/',cyr:'Ө ө',mnemonic:'Ö — özen',examples:[{word:'Özen',meaning:'өзен / река'},{word:'Öner',meaning:'өнер / искусство'},{word:'Ötirik',meaning:'өтірік / ложь'}],sentence:{kk:'Özen tereñ.',zh:'Өзен терең. / Река глубокая.'}},
+  {letter:'P p',ipa:'/p/',cyr:'П п',mnemonic:'P — pıl',examples:[{word:'Pıl',meaning:'піл / слон'},{word:'Päter',meaning:'пәтер / квартира'},{word:'Paıda',meaning:'пайда / польза'}],sentence:{kk:'Päter keñ.',zh:'Пәтер кең. / Квартира просторная.'}},
+  {letter:'R r',ipa:'/r/',cyr:'Р р',mnemonic:'R — rahmet',examples:[{word:'Rahmet',meaning:'рахмет / спасибо'},{word:'Ret',meaning:'рет / раз'},{word:'Ren',meaning:'рең / цвет лица'}],sentence:{kk:'Rahmet, dostar!',zh:'Рахмет, достар! / Спасибо, друзья!'}},
+  {letter:'S s',ipa:'/s/',cyr:'С с',mnemonic:'S — söz',examples:[{word:'Söz',meaning:'сөз / слово'},{word:'Su',meaning:'су / вода'},{word:'Sağat',meaning:'сағат / час'}],sentence:{kk:'Suyıq su.',zh:'Суық су. / Холодная вода.'}},
+  {letter:'Ş ş',ipa:'/ʃ/',cyr:'Ш ш',mnemonic:'Ş — şaş',examples:[{word:'Şaş',meaning:'шаш / волосы'},{word:'Şaı',meaning:'шай / чай'},{word:'Şeber',meaning:'шебер / мастер'}],sentence:{kk:'Şaı dämdi.',zh:'Шай дәмді. / Чай вкусный.'}},
+  {letter:'T t',ipa:'/t/',cyr:'Т т',mnemonic:'T — tıl',examples:[{word:'Tıl',meaning:'тіл / язык'},{word:'Taw',meaning:'тау / гора'},{word:'Tüıe',meaning:'түйе / верблюд'}],sentence:{kk:'Taw bïik.',zh:'Тау биік. / Гора высокая.'}},
+  {letter:'U u',ipa:'/w/',cyr:'У у',mnemonic:'U — uaqıt',examples:[{word:'Uaqıt',meaning:'уақыт / время'},{word:'Ult',meaning:'ұлт / нация'},{word:'Unïversitet',meaning:'университет'}],sentence:{kk:'Uaqıt altınnan qımbat.',zh:'Уақыт алтыннан қымбат. / Время дороже золота.'}},
+  {letter:'Ū ū',ipa:'/u/',cyr:'Ұ ұ',mnemonic:'Ū — ūl',examples:[{word:'Ūl',meaning:'ұл / сын'},{word:'Ūşaq',meaning:'ұшақ / самолет'},{word:'Ūstaz',meaning:'ұстаз / учитель'}],sentence:{kk:'Ūşaq tez ūşadı.',zh:'Ұшақ тез ұшады. / Самолет летит быстро.'}},
+  {letter:'Ü ü',ipa:'/y/',cyr:'Ү ү',mnemonic:'Ü — üı',examples:[{word:'Üı',meaning:'үй / дом'},{word:'Ülken',meaning:'үлкен / большой'},{word:'Üstel',meaning:'үстел / стол'}],sentence:{kk:'Üı ülken.',zh:'Үй үлкен. / Дом большой.'}},
+  {letter:'V v',ipa:'/v/',cyr:'В в',mnemonic:'V — vagon',examples:[{word:'Vagon',meaning:'вагон'},{word:'Velosïped',meaning:'велосипед'},{word:'Vaza',meaning:'ваза'}],sentence:{kk:'Velosïped jaña.',zh:'Велосипед жаңа. / Велосипед новый.'}},
+  {letter:'Y y',ipa:'/j/',cyr:'Й й, Ы ы',mnemonic:'Y — aı',examples:[{word:'Aı',meaning:'ай / луна'},{word:'Qaı',meaning:'қай / какой'},{word:'Boı',meaning:'бой / рост'}],sentence:{kk:'Bügın aı ädemi.',zh:'Бүгін ай әдемі. / Сегодня луна красивая.'}},
+  {letter:'Z z',ipa:'/z/',cyr:'З з',mnemonic:'Z — zañ',examples:[{word:'Zañ',meaning:'заң / закон'},{word:'Zat',meaning:'зат / предмет'},{word:'Zawıt',meaning:'зауыт / завод'}],sentence:{kk:'Zañ mañızdı.',zh:'Заң маңызды. / Закон важен.'}}
+];
 
 // ---- Arabic alphabet (Kazakh Arabic script) ----
 const ARABIC_ALPHABET = [
@@ -1155,16 +1190,20 @@ function renderAlphabet(prefix){
   if(!container) return;
   const isArabicOnly = prefix==='zh-arab'||prefix==='zharab';
   const isArabToCyr = prefix==='arab-cyr'||prefix==='arabcyr';
+  const isCyrToLat = prefix==='cyr-lat'||prefix==='cyrlat';
   const isArabic = isArabicOnly || isArabToCyr;
   // For arab→cyr: show Cyrillic letters with Arabic reference
+  // For cyr→lat: show Latin letters with Cyrillic reference
   // For zh→arab: show Arabic letters
   // For other: show Cyrillic letters
-  const data = isArabicOnly ? ARABIC_ALPHABET : CYRILLIC_ALPHABET;
-  let label = isArabicOnly ? '阿拉伯字母' : '西里尔字母';
+  let data, label;
+  if(isArabicOnly){ data = ARABIC_ALPHABET; label = '阿拉伯字母'; }
+  else if(isCyrToLat){ data = LATIN_ALPHABET; label = '拉丁字母'; }
+  else { data = CYRILLIC_ALPHABET; label = '西里尔字母'; }
   let html='<div class="section-title">🔤 '+label+' · '+data.length+' 个字母</div>';
 
-  // Special letters section (Cyrillic only, not for arab-cyr conversion view)
-  if(!isArabic){
+  // Special letters section (Cyrillic only, not for arab-cyr or cyr-lat)
+  if(!isArabic && !isCyrToLat){
     html+='<div class="section-title" style="margin-top:20px;font-size:1em;color:var(--gold)">⭐ 9个特有字母（汉语没有对应音）</div>';
     html+='<div class="special-grid">';
     SPECIAL_LETTERS.forEach(l=>{
@@ -1181,11 +1220,15 @@ function renderAlphabet(prefix){
   html+='<div class="section-title" style="margin-top:20px">全部字母</div>';
   html+='<div class="alphabet-grid">';
   data.forEach((d,i)=>{
-    const isSpecial = !isArabic && SPECIAL_LETTERS.some(s=>s.split(' ')[0]===d.letter.split(' ')[0]);
+    const isSpecial = !isArabic && !isCyrToLat && SPECIAL_LETTERS.some(s=>s.split(' ')[0]===d.letter.split(' ')[0]);
     // For arab→cyr: add Arabic script reference
-    let arabRef = '';
+    let refLine = '';
     if(isArabToCyr && ARABIC_ALPHABET[i]){
-      arabRef = `<div class="source" style="margin-top:4px;font-size:.85em">阿拉伯文: <b style="font-size:1.2em;color:var(--kz-pine)">${ARABIC_ALPHABET[i].letter}</b></div>`;
+      refLine = `<div class="source" style="margin-top:4px;font-size:.85em">Араб жазуы: <b style="font-size:1.2em;color:var(--kz-pine)">${ARABIC_ALPHABET[i].letter}</b></div>`;
+    }
+    // For cyr→lat: add Cyrillic reference
+    if(isCyrToLat && d.cyr){
+      refLine = `<div class="source" style="margin-top:4px;font-size:.85em">Кириллица: <b style="font-size:1.2em;color:var(--kz-teal)">${d.cyr}</b></div>`;
     }
     html+=`<div class="letter-card${isSpecial?' special':''}">
       <div class="letter-display">
@@ -1193,7 +1236,7 @@ function renderAlphabet(prefix){
         <span class="letter-hand">${d.hand||''}</span>
         <span class="letter-ipa">${d.ipa}</span>
       </div>
-      ${arabRef}
+      ${refLine}
       <div class="mnemonic">💡 ${d.mnemonic}</div>
       <div class="examples">${d.examples.map(e=>`<span class="ex">${e.word} <span class="meaning">${e.meaning}</span></span>`).join('')}</div>
       <div class="sentence">📖 ${d.sentence.kk}<br><span style="font-size:.85em;color:var(--text2)">${d.sentence.zh}</span></div>
