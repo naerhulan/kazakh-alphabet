@@ -1153,11 +1153,17 @@ function updateGreeting(page){
 function renderAlphabet(prefix){
   const container = document.getElementById(prefix+'-alphabet');
   if(!container) return;
-  const isArabic = prefix==='zh-arab'||prefix==='arab-cyr'||prefix==='zharab'||prefix==='arabcyr';
-  const data = isArabic ? ARABIC_ALPHABET : CYRILLIC_ALPHABET;
-  let html='<div class="section-title">🔤 字母表 · '+data.length+' 个字母</div>';
+  const isArabicOnly = prefix==='zh-arab'||prefix==='zharab';
+  const isArabToCyr = prefix==='arab-cyr'||prefix==='arabcyr';
+  const isArabic = isArabicOnly || isArabToCyr;
+  // For arab→cyr: show Cyrillic letters with Arabic reference
+  // For zh→arab: show Arabic letters
+  // For other: show Cyrillic letters
+  const data = isArabicOnly ? ARABIC_ALPHABET : CYRILLIC_ALPHABET;
+  let label = isArabicOnly ? '阿拉伯字母' : '西里尔字母';
+  let html='<div class="section-title">🔤 '+label+' · '+data.length+' 个字母</div>';
 
-  // Special letters section (Cyrillic only)
+  // Special letters section (Cyrillic only, not for arab-cyr conversion view)
   if(!isArabic){
     html+='<div class="section-title" style="margin-top:20px;font-size:1em;color:var(--gold)">⭐ 9个特有字母（汉语没有对应音）</div>';
     html+='<div class="special-grid">';
@@ -1176,12 +1182,18 @@ function renderAlphabet(prefix){
   html+='<div class="alphabet-grid">';
   data.forEach((d,i)=>{
     const isSpecial = !isArabic && SPECIAL_LETTERS.some(s=>s.split(' ')[0]===d.letter.split(' ')[0]);
+    // For arab→cyr: add Arabic script reference
+    let arabRef = '';
+    if(isArabToCyr && ARABIC_ALPHABET[i]){
+      arabRef = `<div class="source" style="margin-top:4px;font-size:.85em">阿拉伯文: <b style="font-size:1.2em;color:var(--kz-pine)">${ARABIC_ALPHABET[i].letter}</b></div>`;
+    }
     html+=`<div class="letter-card${isSpecial?' special':''}">
       <div class="letter-display">
         <span class="letter-main">${d.letter}</span>
         <span class="letter-hand">${d.hand||''}</span>
         <span class="letter-ipa">${d.ipa}</span>
       </div>
+      ${arabRef}
       <div class="mnemonic">💡 ${d.mnemonic}</div>
       <div class="examples">${d.examples.map(e=>`<span class="ex">${e.word} <span class="meaning">${e.meaning}</span></span>`).join('')}</div>
       <div class="sentence">📖 ${d.sentence.kk}<br><span style="font-size:.85em;color:var(--text2)">${d.sentence.zh}</span></div>
