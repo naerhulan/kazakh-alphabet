@@ -31,6 +31,22 @@
   --green:var(--kz-pine);--orange:var(--kz-gold);--glass:var(--bg);--card-hover:var(--surface-hover);
   --glass-border:var(--border);
 }
+
+/* ===== DARK MODE ===== */
+/* Warm refined dark — like a steppe night */
+.dark{
+  --bg:#1c1815;--surface:#262220;--surface-hover:#2f2a26;
+  --text:#e3ddd7;--text2:#a69586;--text3:#7a6b5e;
+  --kz-teal:#40c4d0;--kz-gold:#d4a847;--kz-rose:#e07060;--kz-pine:#5cbf90;
+  --kz-teal-bg:rgba(64,196,208,0.08);--kz-gold-bg:rgba(212,168,71,0.1);
+  --kz-rose-bg:rgba(224,112,96,0.08);--kz-pine-bg:rgba(92,191,144,0.07);
+  --border:rgba(166,149,134,0.12);--border-focus:rgba(64,196,208,0.3);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.15);
+  --shadow:0 2px 8px rgba(0,0,0,0.2);
+  --shadow-lg:0 4px 16px rgba(0,0,0,0.25);
+  --primary:var(--kz-teal);--primary2:#33a8b3;--accent:var(--kz-rose);--gold:var(--kz-gold);
+  --glass:var(--bg);--card-hover:var(--surface-hover);--glass-border:var(--border);
+}
 html{font-size:var(--font-md);scroll-behavior:smooth}
 body{
   font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans SC','Noto Sans Arabic',sans-serif;
@@ -85,6 +101,7 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
   opacity:0.5;
 }
 .kz-border--bottom{transform:scaleY(-1)}
+.dark .kz-border{opacity:0.35}
 
 /* ===== HEADER ===== */
 .header{
@@ -375,6 +392,7 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 <input type="text" id="globalSearch" placeholder="搜索字母、词汇..." oninput="doGlobalSearch(this.value)">
 </div>
 <div class="header-actions">
+<button onclick="toggleTheme()" id="themeBtn" title="切换日夜模式">🌙</button>
 <button onclick="cycleFontSize()" id="fontBtn" title="字体大小">Aa</button>
 </div>
 </div>
@@ -972,7 +990,7 @@ let dictationMode = 'zh-cyr';
 
 function defaultState(){
   return {
-    theme:'dark', fontSize:0, plan:{}, favorites:{}, errors:{},
+    theme:'light', fontSize:0, plan:{}, favorites:{}, errors:{},
     errorBook:{}, history:[], completedDays:[]
   };
 }
@@ -1822,8 +1840,10 @@ function exportPhrases(){
    THEME & FONT
    ===================================================================== */
 function toggleTheme(){
-  // theme switching removed — design is now a warm Kazakh palette
-  return;
+  document.body.classList.toggle('dark');
+  state.theme = document.body.classList.contains('dark')?'dark':'light';
+  document.getElementById('themeBtn').textContent = state.theme==='dark'?'☀️':'🌙';
+  saveState();
 }
 
 function cycleFontSize(){
@@ -1882,7 +1902,11 @@ function showToast(msg, type='info'){
    INIT
    ===================================================================== */
 function init(){
-  // Theme is now fixed warm palette — no toggle needed
+  // Apply saved theme
+  if(state.theme==='dark'){
+    document.body.classList.add('dark');
+    document.getElementById('themeBtn').textContent = '☀️';
+  }
   // Apply font size
   const sizes = ['font-sm','','font-lg'];
   if(sizes[state.fontSize]) document.body.classList.add(sizes[state.fontSize]);
