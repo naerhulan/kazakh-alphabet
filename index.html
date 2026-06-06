@@ -393,7 +393,7 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 </div>
 <div class="header-actions">
 <button onclick="toggleTheme()" id="themeBtn" title="切换日夜模式">🌙</button>
-<button onclick="cycleFontSize()" id="fontBtn" title="字体大小">Aa</button>
+<button onclick="cycleFontSize()" id="fontBtn" title="点击切换字体大小" style="font-size:1.1em;letter-spacing:-1px">Aa</button>
 </div>
 </div>
 </header>
@@ -1849,13 +1849,10 @@ function toggleTheme(){
 function setFontSize(idx){
   const px = [13, 15, 18];
   document.documentElement.style.fontSize = px[idx] + 'px';
-  // remove old class, add new
   document.body.classList.remove('font-sm','font-lg');
   if(idx===0) document.body.classList.add('font-sm');
   if(idx===2) document.body.classList.add('font-lg');
   state.fontSize = idx;
-  const labels = ['小','中','大'];
-  document.getElementById('fontBtn').innerHTML = 'Aa<span style="font-size:.6em;opacity:.6;margin-left:1px">'+labels[idx]+'</span>';
   saveState();
 }
 function cycleFontSize(){
