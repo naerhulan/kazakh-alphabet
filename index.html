@@ -1072,27 +1072,29 @@ function updateGreeting(page){
 function renderAlphabet(prefix){
   const container = document.getElementById(prefix+'-alphabet');
   if(!container) return;
-  const isArabic = prefix==='zharab'||prefix==='arabcyr';
+  const isArabic = prefix==='zh-arab'||prefix==='arab-cyr'||prefix==='zharab'||prefix==='arabcyr';
   const data = isArabic ? ARABIC_ALPHABET : CYRILLIC_ALPHABET;
   let html='<div class="section-title">🔤 字母表 · '+data.length+' 个字母</div>';
 
-  // Special letters section
-  html+='<div class="section-title" style="margin-top:20px;font-size:1em;color:var(--gold)">⭐ 9个特有字母（汉语没有对应音）</div>';
-  html+='<div class="special-grid">';
-  SPECIAL_LETTERS.forEach(l=>{
-    const ll = l.split(' ')[0];
-    html+=`<div class="special-card">
-      <div class="sc-title">${l}</div>
-      <div class="sc-note">✨ 哈萨克语特有！需要重点练习</div>
-    </div>`;
-  });
-  html+='</div>';
+  // Special letters section (Cyrillic only)
+  if(!isArabic){
+    html+='<div class="section-title" style="margin-top:20px;font-size:1em;color:var(--gold)">⭐ 9个特有字母（汉语没有对应音）</div>';
+    html+='<div class="special-grid">';
+    SPECIAL_LETTERS.forEach(l=>{
+      const ll = l.split(' ')[0];
+      html+=`<div class="special-card">
+        <div class="sc-title">${l}</div>
+        <div class="sc-note">✨ 哈萨克语特有！需要重点练习</div>
+      </div>`;
+    });
+    html+='</div>';
+  }
 
   // Letter grid
   html+='<div class="section-title" style="margin-top:20px">全部字母</div>';
   html+='<div class="alphabet-grid">';
   data.forEach((d,i)=>{
-    const isSpecial = SPECIAL_LETTERS.some(s=>s.split(' ')[0]===d.letter.split(' ')[0]);
+    const isSpecial = !isArabic && SPECIAL_LETTERS.some(s=>s.split(' ')[0]===d.letter.split(' ')[0]);
     html+=`<div class="letter-card${isSpecial?' special':''}">
       <div class="letter-display">
         <span class="letter-main">${d.letter}</span>
