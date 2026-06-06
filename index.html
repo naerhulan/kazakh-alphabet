@@ -1328,6 +1328,7 @@ function renderTranslit(prefix){
   const mode = mapping[prefix]||'zh-cyr';
 
   let html = `<div class="section-title">🔄 转写工具</div>
+  <div style="font-size:.82em;color:var(--text2);margin-bottom:10px">输入文字，自动转换成另一种文字</div>
   <div class="translit-tabs">`;
   TRANSLIT_MODES.forEach(m=>{
     html+=`<button class="${m.id===mode?'active':''}" onclick="setTranslitMode('${prefix}','${m.id}')">${m.label}</button>`;
@@ -1335,7 +1336,7 @@ function renderTranslit(prefix){
   html+=`</div>
   <div class="translit-area">
     <div class="translit-row">
-      <textarea id="translitInput" placeholder="输入文字..." oninput="doTranslit('${prefix}')"></textarea>
+      <textarea id="translitInput" placeholder="在此输入要转写的文字..." oninput="doTranslit('${prefix}')"></textarea>
     </div>
     <div class="translit-actions">
       <button class="primary" onclick="doTranslit('${prefix}')">🔄 转写</button>
@@ -1350,7 +1351,8 @@ function renderTranslit(prefix){
     <div id="translitError" class="error-msg" style="display:none"></div>
     <div id="translitHistory" class="history-list" style="display:none"></div>
     <div class="batch-zone" onclick="document.getElementById('batchFile').click()" ondragover="this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="handleBatchDrop(event,'${prefix}')">
-      📁 点击或拖放 TXT 文件批量转写
+      📄 上传 TXT 文件 → 自动转写并下载
+      <span style="display:block;font-size:.78em;color:var(--text3);margin-top:4px">支持任何哈中文字，一行一句自动逐行转写</span>
       <input type="file" id="batchFile" accept=".txt" onchange="handleBatchFile(event,'${prefix}')" style="display:none">
     </div>
   </div>`;
