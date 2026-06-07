@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>音频测试</title>
+<style>
+body{font-family:sans-serif;background:#1a1a2e;color:#fff;padding:20px;text-align:center}
+button{background:#e91e63;color:#fff;border:none;padding:12px 20px;margin:6px;border-radius:8px;font-size:18px;cursor:pointer;min-width:55px}
+button:active{transform:scale(0.95)}
+.card{background:rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin:12px 0}
+.letter{font-size:28px;font-weight:700;color:#e91e63;margin-bottom:6px}
+</style>
+</head>
+<body>
+<h2>🔊 字母音频测试</h2>
+<p id="status">点击字母听发音</p>
+
+<div class="card">
+  <div class="letter">А а</div>
+  <div><button onclick="play('a')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Ә ә</div>
+  <div><button onclick="play('ae')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Қ қ</div>
+  <div><button onclick="play('q_')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Ң ң</div>
+  <div><button onclick="play('ng_')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Ө ө</div>
+  <div><button onclick="play('oe_')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Ұ ұ</div>
+  <div><button onclick="play('uu_')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Ү ү</div>
+  <div><button onclick="play('ue_')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">І і</div>
+  <div><button onclick="play('ii_')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Ғ ғ</div>
+  <div><button onclick="play('gh_')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Һ һ</div>
+  <div><button onclick="play('h_')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Щ щ</div>
+  <div><button onclick="play('shch')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Ъ ъ</div>
+  <div><button onclick="play('hard')">▶ 听</button></div>
+</div>
+<div class="card">
+  <div class="letter">Ь ь</div>
+  <div><button onclick="play('soft')">▶ 听</button></div>
+</div>
+
+<p id="log" style="margin-top:20px;font-size:13px;color:#aaa"></p>
+
+<script>
+function play(name) {
+  var log = document.getElementById('log');
+  var status = document.getElementById('status');
+  log.textContent = 'Playing: sounds/' + name + '.mp3';
+  status.textContent = '🔊 正在播放...';
+  
+  var audio = new Audio('sounds/' + name + '.mp3');
+  audio.onended = function() {
+    status.textContent = '✅ 播放完成';
+    log.textContent = 'OK: ' + name;
+  };
+  audio.onerror = function() {
+    // Try WAV fallback
+    var audio2 = new Audio('sounds/' + name + '.wav');
+    audio2.onended = function() {
+      status.textContent = '✅ WAV播放完成';
+      log.textContent = 'OK (WAV fallback): ' + name;
+    };
+    audio2.onerror = function(e) {
+      status.textContent = '❌ 播放失败';
+      log.textContent = 'ERROR: ' + name + ' - ' + e.message;
+    };
+    audio2.play().catch(function(e) {
+      status.textContent = '❌ 播放失败';
+      log.textContent = 'ERROR: ' + name + ' - ' + e;
+    });
+  };
+  audio.play().catch(function(e) {
+    // Try WAV immediately
+    var audio2 = new Audio('sounds/' + name + '.wav');
+    audio2.onended = function() {
+      status.textContent = '✅ WAV播放完成';
+      log.textContent = 'OK (WAV fallback): ' + name;
+    };
+    audio2.onerror = function() {
+      status.textContent = '❌ 全部失败';
+      log.textContent = 'BOTH FAILED: ' + name;
+    };
+    audio2.play().catch(function(e2) {
+      status.textContent = '❌ 全部失败';
+      log.textContent = 'ERROR: ' + name + ' - MP3: ' + e + ' WAV: ' + e2;
+    });
+  });
+}
+</script>
+</body>
+</html>
