@@ -303,7 +303,7 @@ function toggleTheme(){var c=document.documentElement.getAttribute('data-theme')
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(function(){t.style.display='none'},1800)}
 
 // === Audio ===
-var LS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'sh','ы':'yh','і':'ii_','э':'eh','ю':'yoo','я':'yah'}
+var LS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ъ':'hard','ы':'yh','і':'ii_','ь':'soft','э':'eh','ю':'yoo','я':'yah'}
 var WM={'сәлем':'salem','рахмет':'rahmet','қош бол':'kosh_bol','жақсы':'zhaksy','қазақ':'qazaq','махаббат':'mahabbat','алма':'alma','гүл':'gul','күн':'kun','ай':'ay'}
 function playFile(f){return new Promise(function(r){var a=new Audio('sounds/'+f+'.mp3');a.onerror=function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)};a.onended=r;a.play().catch(function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)})})}
 function speakText(t){var l=t.toLowerCase().trim();if(WM[l]){playFile(WM[l]);return}var d=0;for(var i=0;i<l.length;i++){(function(s){setTimeout(function(){playFile(LS[s]||'')},d);d+=300})(l[i])}}
