@@ -606,5 +606,34 @@ render();
 var quizParam=new URLSearchParams(window.location.search).get('quiz');
 if(quizParam==='1'){setTimeout(function(){toggleQuiz()},500)}
 </script>
+
+<!-- 🔧 直接点击播放修正 - 无setTimeout，兼容移动端 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Direct play on letter card click (no setTimeout, works on mobile)
+  document.querySelectorAll('.letter-card').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      var text = this.querySelector('.cyr')?.textContent || '';
+      var firstLetter = text.trim().charAt(0).toLowerCase();
+      var soundFile = LS[firstLetter];
+      if (soundFile) {
+        var audio = new Audio('sounds/' + soundFile + '.mp3');
+        audio.play().catch(function() {
+          // Fallback to WAV
+          var audio2 = new Audio('sounds/' + soundFile + '.wav');
+          audio2.play().catch(function(err) {
+            console.log('Audio play failed:', err);
+          });
+        });
+        // Add playing animation
+        this.classList.add('playing');
+        var self = this;
+        setTimeout(function() { self.classList.remove('playing'); }, 600);
+      }
+    });
+  });
+});
+</script>
+
 </body>
 </html>
