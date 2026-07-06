@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="kk" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#f5ebe0">
-<title>QazaqTanu - Қазақ Тілі Үйрену / 哈萨克语学习</title>
+<title>QazaqTanu - 覛邪蟹邪覜 孝褨谢褨 耶泄褉械薪褍 / 鍝堣惃鍏嬭瀛︿範</title>
 <link rel="manifest" href="data:application/json,{}">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥟</text></svg>">
-<style>
-/* ===== QAZAQTANU — PREMIUM DESIGN ===== */
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>馃</text></svg>">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><style>
+/* ===== QAZAQTANU 鈥?PREMIUM DESIGN ===== */
 /* Clean, refined, with Kazakh character */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+Display:wght@600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap');
 
@@ -33,7 +33,7 @@
 }
 
 /* ===== DARK MODE ===== */
-/* Warm refined dark — like a steppe night */
+/* Warm refined dark 鈥?like a steppe night */
 .dark{
   --bg:#1c1815;--surface:#262220;--surface-hover:#2f2a26;
   --text:#e3ddd7;--text2:#a69586;--text3:#7a6b5e;
@@ -125,7 +125,7 @@ input:focus,textarea:focus{border-color:var(--kz-teal);box-shadow:0 0 0 3px var(
 .search-box input::placeholder{color:var(--text3)}
 .search-box .icon{color:var(--text3);font-size:.78em;flex-shrink:0}
 
-/* ===== HOME PAGE — 不背单词全屏铺满 ===== */
+/* ===== HOME PAGE 鈥?涓嶈儗鍗曡瘝鍏ㄥ睆閾烘弧 ===== */
 #page-home{
   position:fixed;top:0;left:0;right:0;bottom:0;
   background-size:cover;background-position:center;background-repeat:no-repeat;
@@ -260,7 +260,7 @@ body:not(.has-home) #page-home{display:none}
   background:var(--kz-teal-bg);border-radius:3px;border-bottom:2px solid var(--kz-teal)}
 .error-msg{background:var(--kz-gold-bg);color:#8b6914;padding:8px;border-radius:6px;
   font-size:.8em;margin-top:6px;border:1px solid rgba(201,151,59,0.2)}
-.error-msg::before{content:'⚠️ '}
+.error-msg::before{content:'鈿狅笍 '}
 .history-list{max-height:180px;overflow-y:auto;margin-top:6px}
 .history-list .h-item{padding:6px;border-bottom:1px solid var(--border);font-size:.8em;
   cursor:pointer;display:flex;justify-content:space-between;align-items:center}
@@ -457,17 +457,17 @@ body:not(.has-home) #page-home{display:none}
 <!-- ===== HEADER ===== -->
 <header class="header" id="header">
 <div class="header-inner">
-<div class="header-title">QazaqTanu<span class="title-sub">— Қазақ тілі үйрену</span></div>
+<div class="header-title">QazaqTanu<span class="title-sub">鈥?覛邪蟹邪覜 褌褨谢褨 爷泄褉械薪褍</span></div>
 <div class="search-wrap">
 <div class="search-box">
-<span class="icon">🔍</span>
-<input type="text" id="globalSearch" placeholder="搜单词、字母..." oninput="doGlobalSearch(this.value)" autocomplete="off">
+<span class="icon">馃攳</span>
+<input type="text" id="globalSearch" placeholder="鎼滃崟璇嶃€佸瓧姣?.." oninput="doGlobalSearch(this.value)" autocomplete="off">
 </div>
 <div class="search-panel" id="searchPanel"></div>
 </div>
 <div class="header-actions">
-<button onclick="toggleTheme()" id="themeBtn" title="切换日夜模式">🌙</button>
-<button onclick="cycleFontSize()" id="fontBtn" title="点击切换字体大小" style="font-size:1.1em;letter-spacing:-1px">Aa</button>
+<button onclick="toggleTheme()" id="themeBtn" title="鍒囨崲鏃ュ妯″紡">馃寵</button>
+<button onclick="cycleFontSize()" id="fontBtn" title="鐐瑰嚮鍒囨崲瀛椾綋澶у皬" style="font-size:1.1em;letter-spacing:-1px">Aa</button>
 </div>
 </div>
 </header>
@@ -476,29 +476,29 @@ body:not(.has-home) #page-home{display:none}
 <!-- ===== MAIN CONTENT ===== -->
 <main class="container" id="app">
 
-<!-- ===== HOME PAGE (不背单词全屏背景) ===== -->
+<!-- ===== HOME PAGE (涓嶈儗鍗曡瘝鍏ㄥ睆鑳屾櫙) ===== -->
 <section id="page-home" class="section">
 <div class="home-content">
 <div class="home-greeting">
-<h2 id="greetingText">你好！今天学哈萨克语吧</h2>
-<p>Қазақ тілін үйренуге қош келдіңіз! — 欢迎学习哈萨克语</p>
+<h2 id="greetingText">浣犲ソ锛佷粖澶╁鍝堣惃鍏嬭鍚?/h2>
+<p>覛邪蟹邪覜 褌褨谢褨薪 爷泄褉械薪褍谐械 覜芯褕 泻械谢写褨遥褨蟹! 鈥?娆㈣繋瀛︿範鍝堣惃鍏嬭</p>
 </div>
 <div class="home-btns">
 <button class="home-btn zh-cyr" onclick="navigate('zh-cyr')">
-🇨🇳 我会普通话，想学西里尔哈萨克文
-<span class="sub">Мен қытайша сөйлеймін, кириллица үйренгім келеді</span>
+馃嚚馃嚦 鎴戜細鏅€氳瘽锛屾兂瀛﹁タ閲屽皵鍝堣惃鍏嬫枃
+<span class="sub">袦械薪 覜褘褌邪泄褕邪 褋萤泄谢械泄屑褨薪, 泻懈褉懈谢谢懈褑邪 爷泄褉械薪谐褨屑 泻械谢械写褨</span>
 </button>
 <button class="home-btn arab-cyr" onclick="navigate('arab-cyr')">
-🇰🇿 ەرەكشە ەرىپتىمەن جازا الامىن، كيريليتسا ۇيرەنەم
-<span class="sub">Мен араб жазуымен жаза аламын, кириллица үйренем</span>
+馃嚢馃嚳 蹠乇蹠賰卮蹠 蹠乇賶倬鬲賶賲蹠賳 噩丕夭丕 丕賱丕賲賶賳貙 賰賷乇賷賱賷鬲爻丕 蹏賷乇蹠賳蹠賲
+<span class="sub">袦械薪 邪褉邪斜 卸邪蟹褍褘屑械薪 卸邪蟹邪 邪谢邪屑褘薪, 泻懈褉懈谢谢懈褑邪 爷泄褉械薪械屑</span>
 </button>
 <button class="home-btn zh-arab" onclick="navigate('zh-arab')">
-🇨🇳 我会普通话，想学老哈文（阿拉伯字母）
-<span class="sub">Мен қытайша сөйлеймін, қазақ араб жазбасын үйренгім келеді</span>
+馃嚚馃嚦 鎴戜細鏅€氳瘽锛屾兂瀛﹁€佸搱鏂囷紙闃挎媺浼瓧姣嶏級
+<span class="sub">袦械薪 覜褘褌邪泄褕邪 褋萤泄谢械泄屑褨薪, 覜邪蟹邪覜 邪褉邪斜 卸邪蟹斜邪褋褘薪 爷泄褉械薪谐褨屑 泻械谢械写褨</span>
 </button>
 <button class="home-btn cyr-lat" onclick="navigate('cyr-lat')">
-🇰🇿 Кириллица жазамын, латын әріптерін үйренемін
-<span class="sub">Мен кириллицаны білемін, жаңа латын әліпбиін үйренгім келеді</span>
+馃嚢馃嚳 袣懈褉懈谢谢懈褑邪 卸邪蟹邪屑褘薪, 谢邪褌褘薪 訖褉褨锌褌械褉褨薪 爷泄褉械薪械屑褨薪
+<span class="sub">袦械薪 泻懈褉懈谢谢懈褑邪薪褘 斜褨谢械屑褨薪, 卸邪遥邪 谢邪褌褘薪 訖谢褨锌斜懈褨薪 爷泄褉械薪谐褨屑 泻械谢械写褨</span>
 </button>
 </div>
 </div>
@@ -506,13 +506,13 @@ body:not(.has-home) #page-home{display:none}
 
 <!-- ===== PAGE: ZH-CYRILLIC ===== -->
 <section id="page-zh-cyr" class="section hidden">
-<button class="back-btn" onclick="navigate('home')">← 返回首页</button>
+<button class="back-btn" onclick="navigate('home')">鈫?杩斿洖棣栭〉</button>
 <div class="tab-bar">
-<button class="active" data-page="zh-cyr" data-tab="alphabet" onclick="switchTab('zh-cyr','alphabet')">🔤 字母表</button>
-<button data-page="zh-cyr" data-tab="translit" onclick="switchTab('zh-cyr','translit')">🔄 转写工具</button>
-<button data-page="zh-cyr" data-tab="practice" onclick="switchTab('zh-cyr','practice')">📝 练习</button>
-<button data-page="zh-cyr" data-tab="plan" onclick="switchTab('zh-cyr','plan')">📅 学习计划</button>
-<button data-page="zh-cyr" data-tab="phrases" onclick="switchTab('zh-cyr','phrases')">💬 常用语</button>
+<button class="active" data-page="zh-cyr" data-tab="alphabet" onclick="switchTab('zh-cyr','alphabet')">馃敜 瀛楁瘝琛?/button>
+<button data-page="zh-cyr" data-tab="translit" onclick="switchTab('zh-cyr','translit')">馃攧 杞啓宸ュ叿</button>
+<button data-page="zh-cyr" data-tab="practice" onclick="switchTab('zh-cyr','practice')">馃摑 缁冧範</button>
+<button data-page="zh-cyr" data-tab="plan" onclick="switchTab('zh-cyr','plan')">馃搮 瀛︿範璁″垝</button>
+<button data-page="zh-cyr" data-tab="phrases" onclick="switchTab('zh-cyr','phrases')">馃挰 甯哥敤璇?/button>
 </div>
 <div id="zh-cyr-alphabet" class="section"></div>
 <div id="zh-cyr-translit" class="section hidden"></div>
@@ -523,13 +523,13 @@ body:not(.has-home) #page-home{display:none}
 
 <!-- ===== PAGE: ARABIC-CYRILLIC ===== -->
 <section id="page-arab-cyr" class="section hidden" dir="rtl">
-<button class="back-btn" onclick="navigate('home')">← басты бетке қайту</button>
+<button class="back-btn" onclick="navigate('home')">鈫?斜邪褋褌褘 斜械褌泻械 覜邪泄褌褍</button>
 <div class="tab-bar">
-<button class="active" data-page="arab-cyr" data-tab="alphabet" onclick="switchTab('arab-cyr','alphabet')">🔤 ءالىپبي</button>
-<button data-page="arab-cyr" data-tab="translit" onclick="switchTab('arab-cyr','translit')">🔄 اۋدارۋ قۇرالى</button>
-<button data-page="arab-cyr" data-tab="practice" onclick="switchTab('arab-cyr','practice')">📝 جاتتىعۋ</button>
-<button data-page="arab-cyr" data-tab="plan" onclick="switchTab('arab-cyr','plan')">📅 وقۋ جوسپارى</button>
-<button data-page="arab-cyr" data-tab="phrases" onclick="switchTab('arab-cyr','phrases')">💬 سويلەم</button>
+<button class="active" data-page="arab-cyr" data-tab="alphabet" onclick="switchTab('arab-cyr','alphabet')">馃敜 亍丕賱賶倬亘賷</button>
+<button data-page="arab-cyr" data-tab="translit" onclick="switchTab('arab-cyr','translit')">馃攧 丕蹕丿丕乇蹕 賯蹏乇丕賱賶</button>
+<button data-page="arab-cyr" data-tab="practice" onclick="switchTab('arab-cyr','practice')">馃摑 噩丕鬲鬲賶毓蹕</button>
+<button data-page="arab-cyr" data-tab="plan" onclick="switchTab('arab-cyr','plan')">馃搮 賵賯蹕 噩賵爻倬丕乇賶</button>
+<button data-page="arab-cyr" data-tab="phrases" onclick="switchTab('arab-cyr','phrases')">馃挰 爻賵賷賱蹠賲</button>
 </div>
 <div id="arab-cyr-alphabet" class="section"></div>
 <div id="arab-cyr-translit" class="section hidden"></div>
@@ -540,13 +540,13 @@ body:not(.has-home) #page-home{display:none}
 
 <!-- ===== PAGE: ZH-ARABIC ===== -->
 <section id="page-zh-arab" class="section hidden" dir="rtl">
-<button class="back-btn" onclick="navigate('home')">← 返回首页</button>
+<button class="back-btn" onclick="navigate('home')">鈫?杩斿洖棣栭〉</button>
 <div class="tab-bar">
-<button class="active" data-page="zh-arab" data-tab="alphabet" onclick="switchTab('zh-arab','alphabet')">🔤 حارىپتەر كەستەسى</button>
-<button data-page="zh-arab" data-tab="translit" onclick="switchTab('zh-arab','translit')">🔄 اۋدارۋ قۇرالى</button>
-<button data-page="zh-arab" data-tab="practice" onclick="switchTab('zh-arab','practice')">📝 جاتتىعۋ</button>
-<button data-page="zh-arab" data-tab="plan" onclick="switchTab('zh-arab','plan')">📅 وقۋ جوسپارى</button>
-<button data-page="zh-arab" data-tab="phrases" onclick="switchTab('zh-arab','phrases')">💬 سويلەم</button>
+<button class="active" data-page="zh-arab" data-tab="alphabet" onclick="switchTab('zh-arab','alphabet')">馃敜 丨丕乇賶倬鬲蹠乇 賰蹠爻鬲蹠爻賶</button>
+<button data-page="zh-arab" data-tab="translit" onclick="switchTab('zh-arab','translit')">馃攧 丕蹕丿丕乇蹕 賯蹏乇丕賱賶</button>
+<button data-page="zh-arab" data-tab="practice" onclick="switchTab('zh-arab','practice')">馃摑 噩丕鬲鬲賶毓蹕</button>
+<button data-page="zh-arab" data-tab="plan" onclick="switchTab('zh-arab','plan')">馃搮 賵賯蹕 噩賵爻倬丕乇賶</button>
+<button data-page="zh-arab" data-tab="phrases" onclick="switchTab('zh-arab','phrases')">馃挰 爻賵賷賱蹠賲</button>
 </div>
 <div id="zh-arab-alphabet" class="section"></div>
 <div id="zh-arab-translit" class="section hidden"></div>
@@ -557,13 +557,13 @@ body:not(.has-home) #page-home{display:none}
 
 <!-- ===== PAGE: CYRILLIC-LATIN ===== -->
 <section id="page-cyr-lat" class="section hidden">
-<button class="back-btn" onclick="navigate('home')">← басты бетке қайту</button>
+<button class="back-btn" onclick="navigate('home')">鈫?斜邪褋褌褘 斜械褌泻械 覜邪泄褌褍</button>
 <div class="tab-bar">
-<button class="active" data-page="cyr-lat" data-tab="alphabet" onclick="switchTab('cyr-lat','alphabet')">🔤 Әліпби</button>
-<button data-page="cyr-lat" data-tab="translit" onclick="switchTab('cyr-lat','translit')">🔄 Аудару құралы</button>
-<button data-page="cyr-lat" data-tab="practice" onclick="switchTab('cyr-lat','practice')">📝 Жаттығу</button>
-<button data-page="cyr-lat" data-tab="plan" onclick="switchTab('cyr-lat','plan')">📅 Оқу жоспары</button>
-<button data-page="cyr-lat" data-tab="phrases" onclick="switchTab('cyr-lat','phrases')">💬 Сөйлем</button>
+<button class="active" data-page="cyr-lat" data-tab="alphabet" onclick="switchTab('cyr-lat','alphabet')">馃敜 訕谢褨锌斜懈</button>
+<button data-page="cyr-lat" data-tab="translit" onclick="switchTab('cyr-lat','translit')">馃攧 袗褍写邪褉褍 覜冶褉邪谢褘</button>
+<button data-page="cyr-lat" data-tab="practice" onclick="switchTab('cyr-lat','practice')">馃摑 袞邪褌褌褘覔褍</button>
+<button data-page="cyr-lat" data-tab="plan" onclick="switchTab('cyr-lat','plan')">馃搮 袨覜褍 卸芯褋锌邪褉褘</button>
+<button data-page="cyr-lat" data-tab="phrases" onclick="switchTab('cyr-lat','phrases')">馃挰 小萤泄谢械屑</button>
 </div>
 <div id="cyr-lat-alphabet" class="section"></div>
 <div id="cyr-lat-translit" class="section hidden"></div>
@@ -586,499 +586,499 @@ body:not(.has-home) #page-home{display:none}
 
 // ---- Cyrillic alphabet data ----
 const CYRILLIC_ALPHABET = [
-  {letter:'А а',hand:'А а',ipa:'/ɑ/',mnemonic:'啊 — 嘴巴张大像"啊"',tip:'不要读成英语"a"的短音',
-    examples:[{word:'Ана',meaning:'妈妈'},{word:'Ата',meaning:'爸爸'},{word:'Алма',meaning:'苹果'}],
-    sentence:{kk:'Ана алма жеді.',zh:'妈妈吃了苹果。'}},
-  {letter:'Ә ә',hand:'Ә ә',ipa:'/æ/',mnemonic:'爱 — 像"爱"的开口音，更短促',
-    tip:'这个字母是哈萨克语特有！中文普通话没有这个音',specialSeries:true,
-    examples:[{word:'Әке',meaning:'父亲'},{word:'Әріп',meaning:'字母'},{word:'Әдемі',meaning:'漂亮'}],
-    sentence:{kk:'Әке мен ана үйде.',zh:'爸爸和妈妈在家里。'}},
-  {letter:'Б б',hand:'Б б',ipa:'/b/',mnemonic:'波 — 同汉语拼音b',
-    examples:[{word:'Бала',meaning:'孩子'},{word:'Балық',meaning:'鱼'},{word:'Батпа',meaning:'步骤'}],
-    sentence:{kk:'Бала мектепке барады.',zh:'孩子去学校。'}},
-  {letter:'В в',hand:'В в',ipa:'/v/',mnemonic:'弗 — 上齿咬下唇',
-    tip:'只在俄语借词中出现，哈萨克本族词很少用',
-    examples:[{word:'Вагон',meaning:'车厢'},{word:'Велосипед',meaning:'自行车'},{word:'Ваза',meaning:'花瓶'}],
-    sentence:{kk:'Велосипед жаңа.',zh:'自行车是新的。'}},
-  {letter:'Г г',hand:'Г г',ipa:'/ɡ/',mnemonic:'哥 — 同汉语拼音g',
-    examples:[{word:'Гүл',meaning:'花'},{word:'Газ',meaning:'气体'},{word:'Гарыш',meaning:'宇宙'}],
-    sentence:{kk:'Гүл өте әдемі.',zh:'花很漂亮。'}},
-  {letter:'Ғ ғ',hand:'Ғ ғ',ipa:'/ʁ/',mnemonic:'哈 — 像法语小舌音，喉咙深处发音',
-    tip:'不要读成g！发音位置在喉咙后部',specialSeries:true,
-    examples:[{word:'Ғалым',meaning:'科学家'},{word:'Ғалам',meaning:'宇宙'},{word:'Ғасыр',meaning:'世纪'}],
-    sentence:{kk:'Ғалым ғаламды зерттейді.',zh:'科学家研究宇宙。'}},
-  {letter:'Д д',hand:'Д д',ipa:'/d/',mnemonic:'得 — 同汉语拼音d',
-    examples:[{word:'Дос',meaning:'朋友'},{word:'Дала',meaning:'草原'},{word:'Дәрі',meaning:'药'}],
-    sentence:{kk:'Досың кім?',zh:'你的朋友是谁？'}},
-  {letter:'Е е',hand:'Е е',ipa:'/je/',mnemonic:'耶 — 发音像"耶"，开头带y音',
-    examples:[{word:'Ел',meaning:'国家'},{word:'Ет',meaning:'肉'},{word:'Есік',meaning:'门'}],
-    sentence:{kk:'Ел тыныштығы зор.',zh:'国家的和平很重要。'}},
-  {letter:'Ё ё',hand:'Ё ё',ipa:'/jo/',mnemonic:'哟 — 同俄语ë，带y音',
-    tip:'主要用于俄语借词',
-    examples:[{word:'Ёлка',meaning:'圣诞树'},{word:'Ёж',meaning:'刺猬'}],
-    sentence:{kk:'Ёлка жасыл.',zh:'圣诞树是绿色的。'}},
-  {letter:'Ж ж',hand:'Ж ж',ipa:'/ʒ/',mnemonic:'日 — 同汉语拼音r但浊化',
-    examples:[{word:'Жол',meaning:'路'},{word:'Жан',meaning:'灵魂'},{word:'Жаз',meaning:'夏天'}],
-    sentence:{kk:'Жазда ыстық.',zh:'夏天很热。'}},
-  {letter:'З з',hand:'З з',ipa:'/z/',mnemonic:'兹 — 同英语z，声带振动',
-    examples:[{word:'Зат',meaning:'物品'},{word:'Заң',meaning:'法律'},{word:'Зауыт',meaning:'工厂'}],
-    sentence:{kk:'Заң маңызды.',zh:'法律很重要。'}},
-  {letter:'И и',hand:'И и',ipa:'/ɪ/',mnemonic:'以 — 比汉语"以"更短更紧',
-    examples:[{word:'Ит',meaning:'狗'},{word:'Ине',meaning:'针'},{word:'Иіс',meaning:'气味'}],
-    sentence:{kk:'Ит үреді.',zh:'狗在叫。'}},
-  {letter:'Й й',hand:'Й й',ipa:'/j/',mnemonic:'衣 — 很短，像英语y',
-    examples:[{word:'Қай',meaning:'哪个'},{word:'Ай',meaning:'月亮'},{word:'Бой',meaning:'身高'}],
-    sentence:{kk:'Бүгін ай әдемі.',zh:'今晚的月亮很美。'}},
-  {letter:'К к',hand:'К к',ipa:'/k/',mnemonic:'科 — 同汉语拼音k',
-    examples:[{word:'Күн',meaning:'太阳/日子'},{word:'Кітап',meaning:'书'},{word:'Көл',meaning:'湖'}],
-    sentence:{kk:'Кітап жақсы.',zh:'书很好。'}},
-  {letter:'Қ қ',hand:'Қ қ',ipa:'/q/',mnemonic:'克 — 韩语ㄱ更靠后的发音',
-    tip:'舌头靠后，比k更深',specialSeries:true,
-    examples:[{word:'Қазақ',meaning:'哈萨克'},{word:'Қала',meaning:'城市'},{word:'Қыз',meaning:'女孩'}],
-    sentence:{kk:'Қазақ тілі — ұлт тілі.',zh:'哈萨克语是民族语言。'}},
-  {letter:'Л л',hand:'Л л',ipa:'/l/',mnemonic:'了 — 同汉语拼音l',
-    examples:[{word:'Лақ',meaning:'山羊羔'},{word:'Лауазым',meaning:'职务'},{word:'Ләззат',meaning:'享受'}],
-    sentence:{kk:'Лақ секіреді.',zh:'山羊羔在跳。'}},
-  {letter:'М м',hand:'М м',ipa:'/m/',mnemonic:'摸 — 同汉语拼音m',
-    examples:[{word:'Мен',meaning:'我'},{word:'Мектеп',meaning:'学校'},{word:'Мал',meaning:'牲畜'}],
-    sentence:{kk:'Мен студентпін.',zh:'我是学生。'}},
-  {letter:'Н н',hand:'Н н',ipa:'/n/',mnemonic:'讷 — 同汉语拼音n',
-    examples:[{word:'Не',meaning:'什么'},{word:'Нан',meaning:'面包'},{word:'Нөмір',meaning:'号码'}],
-    sentence:{kk:'Нан дәмді.',zh:'面包好吃。'}},
-  {letter:'Ң ң',hand:'Ң ң',ipa:'/ŋ/',mnemonic:'嗯 — 同汉语"昂"的尾音ng',
-    tip:'中文有这个音但不在开头！英语sing的ng',specialSeries:true,
-    examples:[{word:'Таң',meaning:'早晨'},{word:'Қаңтар',meaning:'一月'},{word:'Оң',meaning:'右'}],
-    sentence:{kk:'Таң асты.',zh:'天亮了。'}},
-  {letter:'О о',hand:'О о',ipa:'/o/',mnemonic:'哦 — 嘴唇圆拢，像公鸡打鸣',
-    examples:[{word:'Ол',meaning:'他/她/它'},{word:'Орман',meaning:'森林'},{word:'От',meaning:'火'}],
-    sentence:{kk:'Ол мектепте.',zh:'他在学校。'}},
-  {letter:'Ө ө',hand:'Ө ө',ipa:'/œ/',mnemonic:'厄 — 嘴唇收圆发"厄"，像德语ö',
-    tip:'汉语没有这个音，需要练习！',specialSeries:true,
-    examples:[{word:'Өзен',meaning:'河流'},{word:'Өнер',meaning:'艺术'},{word:'Өтірік',meaning:'谎言'}],
-    sentence:{kk:'Өзен терең.',zh:'河流很深。'}},
-  {letter:'П п',hand:'П п',ipa:'/p/',mnemonic:'泼 — 同汉语拼音p',
-    examples:[{word:'Піл',meaning:'大象'},{word:'Пәтер',meaning:'公寓'},{word:'Пайда',meaning:'利益'}],
-    sentence:{kk:'Пәтер кең.',zh:'公寓很宽敞。'}},
-  {letter:'Р р',hand:'Р р',ipa:'/r/',mnemonic:'日 — 舌尖颤音，像意大利语r',
-    tip:'需要练习弹舌！',specialSeries:true,
-    examples:[{word:'Рең',meaning:'脸色'},{word:'Рахмет',meaning:'谢谢'},{word:'Рет',meaning:'次'}],
-    sentence:{kk:'Рахмет, достар!',zh:'谢谢，朋友们！'}},
-  {letter:'С с',hand:'С с',ipa:'/s/',mnemonic:'丝 — 同汉语拼音s',
-    examples:[{word:'Су',meaning:'水'},{word:'Сөз',meaning:'话'},{word:'Сағат',meaning:'小时/钟'}],
-    sentence:{kk:'Суық су.',zh:'冷水。'}},
-  {letter:'Т т',hand:'Т т',ipa:'/t/',mnemonic:'特 — 同汉语拼音t',
-    examples:[{word:'Тіл',meaning:'语言/舌头'},{word:'Тау',meaning:'山'},{word:'Түйе',meaning:'骆驼'}],
-    sentence:{kk:'Тау биік.',zh:'山很高。'}},
-  {letter:'У у',hand:'У у',ipa:'/w/',mnemonic:'乌 — 同汉语"乌"',
-    examples:[{word:'Уақыт',meaning:'时间'},{word:'Ұлт',meaning:'民族'},{word:'Университет',meaning:'大学'}],
-    sentence:{kk:'Уақыт алтыннан қымбат.',zh:'时间比黄金珍贵。'}},
-  {letter:'Ұ ұ',hand:'Ұ ұ',ipa:'/u/',mnemonic:'乌 — 嘴唇收圆，同英语boot的oo',
-    tip:'区别于У，Ұ是真正的u音',specialSeries:true,
-    examples:[{word:'Ұл',meaning:'儿子'},{word:'Ұшақ',meaning:'飞机'},{word:'Ұстаз',meaning:'老师'}],
-    sentence:{kk:'Ұшақ тез ұшады.',zh:'飞机飞得快。'}},
-  {letter:'Ү ү',hand:'Ү ү',ipa:'/y/',mnemonic:'于 — 同汉语ü（淤）',
-    tip:'嘴唇收圆，像吹口哨的嘴型',specialSeries:true,
-    examples:[{word:'Үй',meaning:'房子/家'},{word:'Үлкен',meaning:'大'},{word:'Үстел',meaning:'桌子'}],
-    sentence:{kk:'Үй үлкен.',zh:'房子很大。'}},
-  {letter:'Ф ф',hand:'Ф ф',ipa:'/f/',mnemonic:'佛 — 上齿咬下唇，同英语f',
-    tip:'主要在俄语借词中出现',
-    examples:[{word:'Футбол',meaning:'足球'},{word:'Факт',meaning:'事实'},{word:'Ферма',meaning:'农场'}],
-    sentence:{kk:'Футбол тамаша спорт.',zh:'足球是很好的运动。'}},
-  {letter:'Х х',hand:'Х х',ipa:'/χ/',mnemonic:'喝 — 像汉语"喝"但喉咙更用力',
-    examples:[{word:'Халық',meaning:'人民'},{word:'Хат',meaning:'信'},{word:'Хабар',meaning:'消息'}],
-    sentence:{kk:'Халық бірлігі мықты.',zh:'人民的团结是强大的。'}},
-  {letter:'Һ һ',hand:'Һ һ',ipa:'/h/',mnemonic:'哈 — 像英语的h，轻声呼气',
-    tip:'哈萨克语特有，轻呼一下就好',specialSeries:true,
-    examples:[{word:'Һауа',meaning:'空气'},{word:'Һатта',meaning:'立刻'},{word:'Һикая',meaning:'故事'}],
-    sentence:{kk:'Һауа таза.',zh:'空气很清新。'}},
-  {letter:'Ц ц',hand:'Ц ц',ipa:'/ts/',mnemonic:'次 — 同汉语拼音c',
-    tip:'主要在俄语借词',
-    examples:[{word:'Цирк',meaning:'马戏团'},{word:'Цемент',meaning:'水泥'},{word:'Цифр',meaning:'数字'}],
-    sentence:{kk:'Цирк қызық.',zh:'马戏团很有趣。'}},
-  {letter:'Ч ч',hand:'Ч ч',ipa:'/tʃ/',mnemonic:'吃 — 同汉语拼音ch',
-    tip:'俄语借词中常见',
-    examples:[{word:'Чай',meaning:'茶'},{word:'Чемодан',meaning:'行李箱'},{word:'Чек',meaning:'收据'}],
-    sentence:{kk:'Чай ыстық.',zh:'茶是热的。'}},
-  {letter:'Ш ш',hand:'Ш ш',ipa:'/ʃ/',mnemonic:'是 — 同汉语拼音sh',
-    examples:[{word:'Шай',meaning:'茶'},{word:'Шаш',meaning:'头发'},{word:'Шебер',meaning:'师傅'}],
-    sentence:{kk:'Шай дәмді.',zh:'茶很好喝。'}},
-  {letter:'Щ щ',hand:'Щ щ',ipa:'/ɕ/',mnemonic:'细 — 像汉语"西"但更长',
-    tip:'俄语借词，别和Ш混淆',
-    examples:[{word:'Щетка',meaning:'刷子'},{word:'Щи',meaning:'菜汤'},{word:'Щука',meaning:'梭鱼'}],
-    sentence:{kk:'Щетка тіс тазалайды.',zh:'牙刷用来刷牙。'}},
-  {letter:'Ъ ъ',hand:'Ъ ъ',ipa:'-',mnemonic:'硬音符号 — 不发音，分隔音节',
-    tip:'只在俄语借词中出现',
-    examples:[{word:'Объект',meaning:'物体'},{word:'Субъект',meaning:'主体'}],
-    sentence:{kk:'Объект үлкен.',zh:'物体很大。'}},
-  {letter:'Ы ы',hand:'Ы ы',ipa:'/ɯ/',mnemonic:'厄 — 像汉语"饿"但嘴张开',
-    tip:'舌头后缩，喉咙不圆唇，汉语没有这个音',specialSeries:true,
-    examples:[{word:'Ыстық',meaning:'热'},{word:'Ырыс',meaning:'幸福'},{word:'Ыңғай',meaning:'方向'}],
-    sentence:{kk:'Бүгін ыстық.',zh:'今天很热。'}},
-  {letter:'І і',hand:'І і',ipa:'/i/',mnemonic:'一 — 像汉语"一"但更紧',
-    tip:'和汉语"一"很像，区别是嘴更紧张',specialSeries:true,
-    examples:[{word:'Іні',meaning:'弟弟'},{word:'Із',meaning:'足迹'},{word:'Ірі',meaning:'大的'}],
-    sentence:{kk:'Іні мектепке кетті.',zh:'弟弟去学校了。'}},
-  {letter:'Ь ь',hand:'Ь ь',ipa:'-',mnemonic:'软音符号 — 不发音，软化前面辅音',
-    tip:'只在俄语借词中出现',
-    examples:[{word:'Альбом',meaning:'相册'},{word:'Рельс',meaning:'铁轨'}],
-    sentence:{kk:'Альбом әдемі.',zh:'相册很漂亮。'}},
-  {letter:'Э э',hand:'Э э',ipa:'/e/',mnemonic:'诶 — 同汉语"诶"',
-    tip:'主要在感叹词和借词',
-    examples:[{word:'Эхо',meaning:'回声'},{word:'Энергия',meaning:'能量'},{word:'Экран',meaning:'屏幕'}],
-    sentence:{kk:'Экран үлкен.',zh:'屏幕很大。'}},
-  {letter:'Ю ю',hand:'Ю ю',ipa:'/ju/',mnemonic:'由 — 像汉语"由"',
-    examples:[{word:'Юрист',meaning:'律师'},{word:'Юбилей',meaning:'纪念日'},{word:'Юрта',meaning:'毡房'}],
-    sentence:{kk:'Юрта көшпелі үй.',zh:'毡房是游牧房屋。'}},
-  {letter:'Я я',hand:'Я я',ipa:'/ja/',mnemonic:'呀 — 同汉语"呀"',
-    examples:[{word:'Яблоко',meaning:'苹果'},{word:'Язык',meaning:'语言'},{word:'Ярмарка',meaning:'集市'}],
-    sentence:{kk:'Язык — тіл деген мағына.',zh:'Язык意思是"语言"。'}}
+  {letter:'袗 邪',hand:'袗 邪',ipa:'/蓱/',mnemonic:'鍟?鈥?鍢村反寮犲ぇ鍍?鍟?',tip:'涓嶈璇绘垚鑻辫"a"鐨勭煭闊?,
+    examples:[{word:'袗薪邪',meaning:'濡堝'},{word:'袗褌邪',meaning:'鐖哥埜'},{word:'袗谢屑邪',meaning:'鑻规灉'}],
+    sentence:{kk:'袗薪邪 邪谢屑邪 卸械写褨.',zh:'濡堝鍚冧簡鑻规灉銆?}},
+  {letter:'訕 訖',hand:'訕 訖',ipa:'/忙/',mnemonic:'鐖?鈥?鍍?鐖?鐨勫紑鍙ｉ煶锛屾洿鐭績',
+    tip:'杩欎釜瀛楁瘝鏄搱钀ㄥ厠璇壒鏈夛紒涓枃鏅€氳瘽娌℃湁杩欎釜闊?,specialSeries:true,
+    examples:[{word:'訕泻械',meaning:'鐖朵翰'},{word:'訕褉褨锌',meaning:'瀛楁瘝'},{word:'訕写械屑褨',meaning:'婕備寒'}],
+    sentence:{kk:'訕泻械 屑械薪 邪薪邪 爷泄写械.',zh:'鐖哥埜鍜屽濡堝湪瀹堕噷銆?}},
+  {letter:'袘 斜',hand:'袘 斜',ipa:'/b/',mnemonic:'娉?鈥?鍚屾眽璇嫾闊砨',
+    examples:[{word:'袘邪谢邪',meaning:'瀛╁瓙'},{word:'袘邪谢褘覜',meaning:'楸?},{word:'袘邪褌锌邪',meaning:'姝ラ'}],
+    sentence:{kk:'袘邪谢邪 屑械泻褌械锌泻械 斜邪褉邪写褘.',zh:'瀛╁瓙鍘诲鏍°€?}},
+  {letter:'袙 胁',hand:'袙 胁',ipa:'/v/',mnemonic:'寮?鈥?涓婇娇鍜笅鍞?,
+    tip:'鍙湪淇勮鍊熻瘝涓嚭鐜帮紝鍝堣惃鍏嬫湰鏃忚瘝寰堝皯鐢?,
+    examples:[{word:'袙邪谐芯薪',meaning:'杞﹀帰'},{word:'袙械谢芯褋懈锌械写',meaning:'鑷杞?},{word:'袙邪蟹邪',meaning:'鑺辩摱'}],
+    sentence:{kk:'袙械谢芯褋懈锌械写 卸邪遥邪.',zh:'鑷杞︽槸鏂扮殑銆?}},
+  {letter:'袚 谐',hand:'袚 谐',ipa:'/伞/',mnemonic:'鍝?鈥?鍚屾眽璇嫾闊砱',
+    examples:[{word:'袚爷谢',meaning:'鑺?},{word:'袚邪蟹',meaning:'姘斾綋'},{word:'袚邪褉褘褕',meaning:'瀹囧畽'}],
+    sentence:{kk:'袚爷谢 萤褌械 訖写械屑褨.',zh:'鑺卞緢婕備寒銆?}},
+  {letter:'覓 覔',hand:'覓 覔',ipa:'/蕘/',mnemonic:'鍝?鈥?鍍忔硶璇皬鑸岄煶锛屽枆鍜欐繁澶勫彂闊?,
+    tip:'涓嶈璇绘垚g锛佸彂闊充綅缃湪鍠夊挋鍚庨儴',specialSeries:true,
+    examples:[{word:'覓邪谢褘屑',meaning:'绉戝瀹?},{word:'覓邪谢邪屑',meaning:'瀹囧畽'},{word:'覓邪褋褘褉',meaning:'涓栫邯'}],
+    sentence:{kk:'覓邪谢褘屑 覔邪谢邪屑写褘 蟹械褉褌褌械泄写褨.',zh:'绉戝瀹剁爺绌跺畤瀹欍€?}},
+  {letter:'袛 写',hand:'袛 写',ipa:'/d/',mnemonic:'寰?鈥?鍚屾眽璇嫾闊砫',
+    examples:[{word:'袛芯褋',meaning:'鏈嬪弸'},{word:'袛邪谢邪',meaning:'鑽夊師'},{word:'袛訖褉褨',meaning:'鑽?}],
+    sentence:{kk:'袛芯褋褘遥 泻褨屑?',zh:'浣犵殑鏈嬪弸鏄皝锛?}},
+  {letter:'袝 械',hand:'袝 械',ipa:'/je/',mnemonic:'鑰?鈥?鍙戦煶鍍?鑰?锛屽紑澶村甫y闊?,
+    examples:[{word:'袝谢',meaning:'鍥藉'},{word:'袝褌',meaning:'鑲?},{word:'袝褋褨泻',meaning:'闂?}],
+    sentence:{kk:'袝谢 褌褘薪褘褕褌褘覔褘 蟹芯褉.',zh:'鍥藉鐨勫拰骞冲緢閲嶈銆?}},
+  {letter:'衼 褢',hand:'衼 褢',ipa:'/jo/',mnemonic:'鍝?鈥?鍚屼縿璇紝甯闊?,
+    tip:'涓昏鐢ㄤ簬淇勮鍊熻瘝',
+    examples:[{word:'衼谢泻邪',meaning:'鍦ｈ癁鏍?},{word:'衼卸',meaning:'鍒虹尙'}],
+    sentence:{kk:'衼谢泻邪 卸邪褋褘谢.',zh:'鍦ｈ癁鏍戞槸缁胯壊鐨勩€?}},
+  {letter:'袞 卸',hand:'袞 卸',ipa:'/蕭/',mnemonic:'鏃?鈥?鍚屾眽璇嫾闊硆浣嗘祳鍖?,
+    examples:[{word:'袞芯谢',meaning:'璺?},{word:'袞邪薪',meaning:'鐏甸瓊'},{word:'袞邪蟹',meaning:'澶忓ぉ'}],
+    sentence:{kk:'袞邪蟹写邪 褘褋褌褘覜.',zh:'澶忓ぉ寰堢儹銆?}},
+  {letter:'袟 蟹',hand:'袟 蟹',ipa:'/z/',mnemonic:'鍏?鈥?鍚岃嫳璇瓃锛屽０甯︽尟鍔?,
+    examples:[{word:'袟邪褌',meaning:'鐗╁搧'},{word:'袟邪遥',meaning:'娉曞緥'},{word:'袟邪褍褘褌',meaning:'宸ュ巶'}],
+    sentence:{kk:'袟邪遥 屑邪遥褘蟹写褘.',zh:'娉曞緥寰堥噸瑕併€?}},
+  {letter:'袠 懈',hand:'袠 懈',ipa:'/瑟/',mnemonic:'浠?鈥?姣旀眽璇?浠?鏇寸煭鏇寸揣',
+    examples:[{word:'袠褌',meaning:'鐙?},{word:'袠薪械',meaning:'閽?},{word:'袠褨褋',meaning:'姘斿懗'}],
+    sentence:{kk:'袠褌 爷褉械写褨.',zh:'鐙楀湪鍙€?}},
+  {letter:'袡 泄',hand:'袡 泄',ipa:'/j/',mnemonic:'琛?鈥?寰堢煭锛屽儚鑻辫y',
+    examples:[{word:'覛邪泄',meaning:'鍝釜'},{word:'袗泄',meaning:'鏈堜寒'},{word:'袘芯泄',meaning:'韬珮'}],
+    sentence:{kk:'袘爷谐褨薪 邪泄 訖写械屑褨.',zh:'浠婃櫄鐨勬湀浜緢缇庛€?}},
+  {letter:'袣 泻',hand:'袣 泻',ipa:'/k/',mnemonic:'绉?鈥?鍚屾眽璇嫾闊砶',
+    examples:[{word:'袣爷薪',meaning:'澶槼/鏃ュ瓙'},{word:'袣褨褌邪锌',meaning:'涔?},{word:'袣萤谢',meaning:'婀?}],
+    sentence:{kk:'袣褨褌邪锌 卸邪覜褋褘.',zh:'涔﹀緢濂姐€?}},
+  {letter:'覛 覜',hand:'覛 覜',ipa:'/q/',mnemonic:'鍏?鈥?闊╄銊辨洿闈犲悗鐨勫彂闊?,
+    tip:'鑸屽ご闈犲悗锛屾瘮k鏇存繁',specialSeries:true,
+    examples:[{word:'覛邪蟹邪覜',meaning:'鍝堣惃鍏?},{word:'覛邪谢邪',meaning:'鍩庡競'},{word:'覛褘蟹',meaning:'濂冲'}],
+    sentence:{kk:'覛邪蟹邪覜 褌褨谢褨 鈥?冶谢褌 褌褨谢褨.',zh:'鍝堣惃鍏嬭鏄皯鏃忚瑷€銆?}},
+  {letter:'袥 谢',hand:'袥 谢',ipa:'/l/',mnemonic:'浜?鈥?鍚屾眽璇嫾闊砽',
+    examples:[{word:'袥邪覜',meaning:'灞辩緤缇?},{word:'袥邪褍邪蟹褘屑',meaning:'鑱屽姟'},{word:'袥訖蟹蟹邪褌',meaning:'浜彈'}],
+    sentence:{kk:'袥邪覜 褋械泻褨褉械写褨.',zh:'灞辩緤缇斿湪璺炽€?}},
+  {letter:'袦 屑',hand:'袦 屑',ipa:'/m/',mnemonic:'鎽?鈥?鍚屾眽璇嫾闊砿',
+    examples:[{word:'袦械薪',meaning:'鎴?},{word:'袦械泻褌械锌',meaning:'瀛︽牎'},{word:'袦邪谢',meaning:'鐗茬暅'}],
+    sentence:{kk:'袦械薪 褋褌褍写械薪褌锌褨薪.',zh:'鎴戞槸瀛︾敓銆?}},
+  {letter:'袧 薪',hand:'袧 薪',ipa:'/n/',mnemonic:'璁?鈥?鍚屾眽璇嫾闊硁',
+    examples:[{word:'袧械',meaning:'浠€涔?},{word:'袧邪薪',meaning:'闈㈠寘'},{word:'袧萤屑褨褉',meaning:'鍙风爜'}],
+    sentence:{kk:'袧邪薪 写訖屑写褨.',zh:'闈㈠寘濂藉悆銆?}},
+  {letter:'尧 遥',hand:'尧 遥',ipa:'/艐/',mnemonic:'鍡?鈥?鍚屾眽璇?鏄?鐨勫熬闊硁g',
+    tip:'涓枃鏈夎繖涓煶浣嗕笉鍦ㄥ紑澶达紒鑻辫sing鐨刵g',specialSeries:true,
+    examples:[{word:'孝邪遥',meaning:'鏃╂櫒'},{word:'覛邪遥褌邪褉',meaning:'涓€鏈?},{word:'袨遥',meaning:'鍙?}],
+    sentence:{kk:'孝邪遥 邪褋褌褘.',zh:'澶╀寒浜嗐€?}},
+  {letter:'袨 芯',hand:'袨 芯',ipa:'/o/',mnemonic:'鍝?鈥?鍢村攪鍦嗘嫝锛屽儚鍏浮鎵撻福',
+    examples:[{word:'袨谢',meaning:'浠?濂?瀹?},{word:'袨褉屑邪薪',meaning:'妫灄'},{word:'袨褌',meaning:'鐏?}],
+    sentence:{kk:'袨谢 屑械泻褌械锌褌械.',zh:'浠栧湪瀛︽牎銆?}},
+  {letter:'莹 萤',hand:'莹 萤',ipa:'/艙/',mnemonic:'鍘?鈥?鍢村攪鏀跺渾鍙?鍘?锛屽儚寰疯枚',
+    tip:'姹夎娌℃湁杩欎釜闊筹紝闇€瑕佺粌涔狅紒',specialSeries:true,
+    examples:[{word:'莹蟹械薪',meaning:'娌虫祦'},{word:'莹薪械褉',meaning:'鑹烘湳'},{word:'莹褌褨褉褨泻',meaning:'璋庤█'}],
+    sentence:{kk:'莹蟹械薪 褌械褉械遥.',zh:'娌虫祦寰堟繁銆?}},
+  {letter:'袩 锌',hand:'袩 锌',ipa:'/p/',mnemonic:'娉?鈥?鍚屾眽璇嫾闊硃',
+    examples:[{word:'袩褨谢',meaning:'澶ц薄'},{word:'袩訖褌械褉',meaning:'鍏瘬'},{word:'袩邪泄写邪',meaning:'鍒╃泭'}],
+    sentence:{kk:'袩訖褌械褉 泻械遥.',zh:'鍏瘬寰堝鏁炪€?}},
+  {letter:'袪 褉',hand:'袪 褉',ipa:'/r/',mnemonic:'鏃?鈥?鑸屽皷棰ら煶锛屽儚鎰忓ぇ鍒╄r',
+    tip:'闇€瑕佺粌涔犲脊鑸岋紒',specialSeries:true,
+    examples:[{word:'袪械遥',meaning:'鑴歌壊'},{word:'袪邪褏屑械褌',meaning:'璋㈣阿'},{word:'袪械褌',meaning:'娆?}],
+    sentence:{kk:'袪邪褏屑械褌, 写芯褋褌邪褉!',zh:'璋㈣阿锛屾湅鍙嬩滑锛?}},
+  {letter:'小 褋',hand:'小 褋',ipa:'/s/',mnemonic:'涓?鈥?鍚屾眽璇嫾闊硈',
+    examples:[{word:'小褍',meaning:'姘?},{word:'小萤蟹',meaning:'璇?},{word:'小邪覔邪褌',meaning:'灏忔椂/閽?}],
+    sentence:{kk:'小褍褘覜 褋褍.',zh:'鍐锋按銆?}},
+  {letter:'孝 褌',hand:'孝 褌',ipa:'/t/',mnemonic:'鐗?鈥?鍚屾眽璇嫾闊硉',
+    examples:[{word:'孝褨谢',meaning:'璇█/鑸屽ご'},{word:'孝邪褍',meaning:'灞?},{word:'孝爷泄械',meaning:'楠嗛┘'}],
+    sentence:{kk:'孝邪褍 斜懈褨泻.',zh:'灞卞緢楂樸€?}},
+  {letter:'校 褍',hand:'校 褍',ipa:'/w/',mnemonic:'涔?鈥?鍚屾眽璇?涔?',
+    examples:[{word:'校邪覜褘褌',meaning:'鏃堕棿'},{word:'野谢褌',meaning:'姘戞棌'},{word:'校薪懈胁械褉褋懈褌械褌',meaning:'澶у'}],
+    sentence:{kk:'校邪覜褘褌 邪谢褌褘薪薪邪薪 覜褘屑斜邪褌.',zh:'鏃堕棿姣旈粍閲戠弽璐点€?}},
+  {letter:'野 冶',hand:'野 冶',ipa:'/u/',mnemonic:'涔?鈥?鍢村攪鏀跺渾锛屽悓鑻辫boot鐨刼o',
+    tip:'鍖哄埆浜幮ｏ紝野鏄湡姝ｇ殑u闊?,specialSeries:true,
+    examples:[{word:'野谢',meaning:'鍎垮瓙'},{word:'野褕邪覜',meaning:'椋炴満'},{word:'野褋褌邪蟹',meaning:'鑰佸笀'}],
+    sentence:{kk:'野褕邪覜 褌械蟹 冶褕邪写褘.',zh:'椋炴満椋炲緱蹇€?}},
+  {letter:'耶 爷',hand:'耶 爷',ipa:'/y/',mnemonic:'浜?鈥?鍚屾眽璇硷紙娣わ級',
+    tip:'鍢村攪鏀跺渾锛屽儚鍚瑰彛鍝ㄧ殑鍢村瀷',specialSeries:true,
+    examples:[{word:'耶泄',meaning:'鎴垮瓙/瀹?},{word:'耶谢泻械薪',meaning:'澶?},{word:'耶褋褌械谢',meaning:'妗屽瓙'}],
+    sentence:{kk:'耶泄 爷谢泻械薪.',zh:'鎴垮瓙寰堝ぇ銆?}},
+  {letter:'肖 褎',hand:'肖 褎',ipa:'/f/',mnemonic:'浣?鈥?涓婇娇鍜笅鍞囷紝鍚岃嫳璇璮',
+    tip:'涓昏鍦ㄤ縿璇€熻瘝涓嚭鐜?,
+    examples:[{word:'肖褍褌斜芯谢',meaning:'瓒崇悆'},{word:'肖邪泻褌',meaning:'浜嬪疄'},{word:'肖械褉屑邪',meaning:'鍐滃満'}],
+    sentence:{kk:'肖褍褌斜芯谢 褌邪屑邪褕邪 褋锌芯褉褌.',zh:'瓒崇悆鏄緢濂界殑杩愬姩銆?}},
+  {letter:'啸 褏',hand:'啸 褏',ipa:'/蠂/',mnemonic:'鍠?鈥?鍍忔眽璇?鍠?浣嗗枆鍜欐洿鐢ㄥ姏',
+    examples:[{word:'啸邪谢褘覜',meaning:'浜烘皯'},{word:'啸邪褌',meaning:'淇?},{word:'啸邪斜邪褉',meaning:'娑堟伅'}],
+    sentence:{kk:'啸邪谢褘覜 斜褨褉谢褨谐褨 屑褘覜褌褘.',zh:'浜烘皯鐨勫洟缁撴槸寮哄ぇ鐨勩€?}},
+  {letter:'液 一',hand:'液 一',ipa:'/h/',mnemonic:'鍝?鈥?鍍忚嫳璇殑h锛岃交澹板懠姘?,
+    tip:'鍝堣惃鍏嬭鐗规湁锛岃交鍛间竴涓嬪氨濂?,specialSeries:true,
+    examples:[{word:'液邪褍邪',meaning:'绌烘皵'},{word:'液邪褌褌邪',meaning:'绔嬪埢'},{word:'液懈泻邪褟',meaning:'鏁呬簨'}],
+    sentence:{kk:'液邪褍邪 褌邪蟹邪.',zh:'绌烘皵寰堟竻鏂般€?}},
+  {letter:'笑 褑',hand:'笑 褑',ipa:'/ts/',mnemonic:'娆?鈥?鍚屾眽璇嫾闊砪',
+    tip:'涓昏鍦ㄤ縿璇€熻瘝',
+    examples:[{word:'笑懈褉泻',meaning:'椹垙鍥?},{word:'笑械屑械薪褌',meaning:'姘存偿'},{word:'笑懈褎褉',meaning:'鏁板瓧'}],
+    sentence:{kk:'笑懈褉泻 覜褘蟹褘覜.',zh:'椹垙鍥㈠緢鏈夎叮銆?}},
+  {letter:'效 褔',hand:'效 褔',ipa:'/t蕛/',mnemonic:'鍚?鈥?鍚屾眽璇嫾闊砪h',
+    tip:'淇勮鍊熻瘝涓父瑙?,
+    examples:[{word:'效邪泄',meaning:'鑼?},{word:'效械屑芯写邪薪',meaning:'琛屾潕绠?},{word:'效械泻',meaning:'鏀舵嵁'}],
+    sentence:{kk:'效邪泄 褘褋褌褘覜.',zh:'鑼舵槸鐑殑銆?}},
+  {letter:'楔 褕',hand:'楔 褕',ipa:'/蕛/',mnemonic:'鏄?鈥?鍚屾眽璇嫾闊硈h',
+    examples:[{word:'楔邪泄',meaning:'鑼?},{word:'楔邪褕',meaning:'澶村彂'},{word:'楔械斜械褉',meaning:'甯堝倕'}],
+    sentence:{kk:'楔邪泄 写訖屑写褨.',zh:'鑼跺緢濂藉枬銆?}},
+  {letter:'些 褖',hand:'些 褖',ipa:'/蓵/',mnemonic:'缁?鈥?鍍忔眽璇?瑗?浣嗘洿闀?,
+    tip:'淇勮鍊熻瘝锛屽埆鍜屝ㄦ贩娣?,
+    examples:[{word:'些械褌泻邪',meaning:'鍒峰瓙'},{word:'些懈',meaning:'鑿滄堡'},{word:'些褍泻邪',meaning:'姊奔'}],
+    sentence:{kk:'些械褌泻邪 褌褨褋 褌邪蟹邪谢邪泄写褘.',zh:'鐗欏埛鐢ㄦ潵鍒风墮銆?}},
+  {letter:'歇 褗',hand:'歇 褗',ipa:'-',mnemonic:'纭煶绗﹀彿 鈥?涓嶅彂闊筹紝鍒嗛殧闊宠妭',
+    tip:'鍙湪淇勮鍊熻瘝涓嚭鐜?,
+    examples:[{word:'袨斜褗械泻褌',meaning:'鐗╀綋'},{word:'小褍斜褗械泻褌',meaning:'涓讳綋'}],
+    sentence:{kk:'袨斜褗械泻褌 爷谢泻械薪.',zh:'鐗╀綋寰堝ぇ銆?}},
+  {letter:'蝎 褘',hand:'蝎 褘',ipa:'/莎/',mnemonic:'鍘?鈥?鍍忔眽璇?楗?浣嗗槾寮犲紑',
+    tip:'鑸屽ご鍚庣缉锛屽枆鍜欎笉鍦嗗攪锛屾眽璇病鏈夎繖涓煶',specialSeries:true,
+    examples:[{word:'蝎褋褌褘覜',meaning:'鐑?},{word:'蝎褉褘褋',meaning:'骞哥'},{word:'蝎遥覔邪泄',meaning:'鏂瑰悜'}],
+    sentence:{kk:'袘爷谐褨薪 褘褋褌褘覜.',zh:'浠婂ぉ寰堢儹銆?}},
+  {letter:'袉 褨',hand:'袉 褨',ipa:'/i/',mnemonic:'涓€ 鈥?鍍忔眽璇?涓€"浣嗘洿绱?,
+    tip:'鍜屾眽璇?涓€"寰堝儚锛屽尯鍒槸鍢存洿绱у紶',specialSeries:true,
+    examples:[{word:'袉薪褨',meaning:'寮熷紵'},{word:'袉蟹',meaning:'瓒宠抗'},{word:'袉褉褨',meaning:'澶х殑'}],
+    sentence:{kk:'袉薪褨 屑械泻褌械锌泻械 泻械褌褌褨.',zh:'寮熷紵鍘诲鏍′簡銆?}},
+  {letter:'鞋 褜',hand:'鞋 褜',ipa:'-',mnemonic:'杞煶绗﹀彿 鈥?涓嶅彂闊筹紝杞寲鍓嶉潰杈呴煶',
+    tip:'鍙湪淇勮鍊熻瘝涓嚭鐜?,
+    examples:[{word:'袗谢褜斜芯屑',meaning:'鐩稿唽'},{word:'袪械谢褜褋',meaning:'閾佽建'}],
+    sentence:{kk:'袗谢褜斜芯屑 訖写械屑褨.',zh:'鐩稿唽寰堟紓浜€?}},
+  {letter:'协 褝',hand:'协 褝',ipa:'/e/',mnemonic:'璇?鈥?鍚屾眽璇?璇?',
+    tip:'涓昏鍦ㄦ劅鍙硅瘝鍜屽€熻瘝',
+    examples:[{word:'协褏芯',meaning:'鍥炲０'},{word:'协薪械褉谐懈褟',meaning:'鑳介噺'},{word:'协泻褉邪薪',meaning:'灞忓箷'}],
+    sentence:{kk:'协泻褉邪薪 爷谢泻械薪.',zh:'灞忓箷寰堝ぇ銆?}},
+  {letter:'挟 褞',hand:'挟 褞',ipa:'/ju/',mnemonic:'鐢?鈥?鍍忔眽璇?鐢?',
+    examples:[{word:'挟褉懈褋褌',meaning:'寰嬪笀'},{word:'挟斜懈谢械泄',meaning:'绾康鏃?},{word:'挟褉褌邪',meaning:'姣℃埧'}],
+    sentence:{kk:'挟褉褌邪 泻萤褕锌械谢褨 爷泄.',zh:'姣℃埧鏄父鐗ф埧灞嬨€?}},
+  {letter:'携 褟',hand:'携 褟',ipa:'/ja/',mnemonic:'鍛€ 鈥?鍚屾眽璇?鍛€"',
+    examples:[{word:'携斜谢芯泻芯',meaning:'鑻规灉'},{word:'携蟹褘泻',meaning:'璇█'},{word:'携褉屑邪褉泻邪',meaning:'闆嗗競'}],
+    sentence:{kk:'携蟹褘泻 鈥?褌褨谢 写械谐械薪 屑邪覔褘薪邪.',zh:'携蟹褘泻鎰忔€濇槸"璇█"銆?}}
 ];
 
 // ---- 9 special letters ----
-const SPECIAL_LETTERS = ['Ә ә','Ғ ғ','Қ қ','Ң ң','Ө ө','Ұ ұ','Ү ү','Һ һ','І і'];
+const SPECIAL_LETTERS = ['訕 訖','覓 覔','覛 覜','尧 遥','莹 萤','野 冶','耶 爷','液 一','袉 褨'];
 
 // ---- Kazakh Latin Alphabet (2025 standard) ----
 const LATIN_ALPHABET = [
-  {letter:'A a',ipa:'/ɑ/',cyr:'А а',mnemonic:'A — ашық дауысты',examples:[{word:'Ana',meaning:'ана / мама'},{word:'Ata',meaning:'ата / папа'},{word:'Alma',meaning:'алма / яблоко'}],sentence:{kk:'Ana alma jedi.',zh:'Ана алма жеді. / Мама съела яблоко.'}},
-  {letter:'Ä ä',ipa:'/æ/',cyr:'Ә ә',mnemonic:'Ä — ädebï',examples:[{word:'Äke',meaning:'әке / отец'},{word:'Ärip',meaning:'әріп / буква'},{word:'Ädemi',meaning:'әдемі / красивый'}],sentence:{kk:'Äke men ana üide.',zh:'Әке мен ана үйде. / Папа и мама дома.'}},
-  {letter:'B b',ipa:'/b/',cyr:'Б б',mnemonic:'B — bala',examples:[{word:'Bala',meaning:'бала / ребенок'},{word:'Balıq',meaning:'балық / рыба'},{word:'Batpa',meaning:'батпа / шаг'}],sentence:{kk:'Bala mektepke baradı.',zh:'Бала мектепке барады. / Ребенок идет в школу.'}},
-  {letter:'D d',ipa:'/d/',cyr:'Д д',mnemonic:'D — dos',examples:[{word:'Dos',meaning:'дос / друг'},{word:'Dala',meaning:'дала / степь'},{word:'Däri',meaning:'дәрі / лекарство'}],sentence:{kk:'Dosıñ kim?',zh:'Досың кім? / Кто твой друг?'}},
-  {letter:'E e',ipa:'/je/',cyr:'Е е',mnemonic:'E — el',examples:[{word:'El',meaning:'ел / страна'},{word:'Et',meaning:'ет / мясо'},{word:'Esik',meaning:'есік / дверь'}],sentence:{kk:'El tınıştığı zor.',zh:'Ел тыныштығы зор. / Спокойствие страны важно.'}},
-  {letter:'F f',ipa:'/f/',cyr:'Ф ф',mnemonic:'F — fakıltet',examples:[{word:'Fýtbol',meaning:'футбол'},{word:'Fakt',meaning:'факт'},{word:'Ferma',meaning:'ферма'}],sentence:{kk:'Fýtbol tamaşa sport.',zh:'Футбол тамаша спорт. / Футбол — отличный спорт.'}},
-  {letter:'G g',ipa:'/ɡ/',cyr:'Г г',mnemonic:'G — gül',examples:[{word:'Gül',meaning:'гүл / цветок'},{word:'Gaz',meaning:'газ'},{word:'Garıs',meaning:'гарыш / космос'}],sentence:{kk:'Gül öte ädemi.',zh:'Гүл өте әдемі. / Цветок очень красивый.'}},
-  {letter:'Ğ ğ',ipa:'/ʁ/',cyr:'Ғ ғ',mnemonic:'Ğ — ğalım',examples:[{word:'Ğalım',meaning:'ғалым / ученый'},{word:'Ğalam',meaning:'ғалам / вселенная'},{word:'Ğasır',meaning:'ғасыр / век'}],sentence:{kk:'Ğalım ğalamdı zertteidi.',zh:'Ғалым ғаламды зерттейді. / Ученый изучает вселенную.'}},
-  {letter:'H h',ipa:'/h/',cyr:'Х х, Һ һ',mnemonic:'H — halıq',examples:[{word:'Halıq',meaning:'халық / народ'},{word:'Habar',meaning:'хабар / новость'},{word:'Haua',meaning:'һауа / воздух'}],sentence:{kk:'Halıq birligi mıqtı.',zh:'Халық бірлігі мықты. / Единство народа сильно.'}},
-  {letter:'I ı',ipa:'/ɯ/',cyr:'Ы ы',mnemonic:'I — ıstıq',examples:[{word:'Istıq',meaning:'ыстық / жарко'},{word:'Irıs',meaning:'ырыс / счастье'},{word:'Iñğaı',meaning:'ыңғай / направление'}],sentence:{kk:'Bügın ıstıq.',zh:'Бүгін ыстық. / Сегодня жарко.'}},
-  {letter:'İ i',ipa:'/i/',cyr:'І і',mnemonic:'İ — ini',examples:[{word:'İni',meaning:'іні / младший брат'},{word:'İz',meaning:'із / след'},{word:'İri',meaning:'ірі / крупный'}],sentence:{kk:'İni mektepke ketti.',zh:'Іні мектепке кетті. / Младший брат пошел в школу.'}},
-  {letter:'J j',ipa:'/ʒ/',cyr:'Ж ж',mnemonic:'J — jol',examples:[{word:'Jol',meaning:'жол / дорога'},{word:'Jan',meaning:'жан / душа'},{word:'Jaz',meaning:'жаз / лето'}],sentence:{kk:'Jazda ıstıq.',zh:'Жазда ыстық. / Летом жарко.'}},
-  {letter:'K k',ipa:'/k/',cyr:'К к',mnemonic:'K — kün',examples:[{word:'Kün',meaning:'күн / солнце'},{word:'Kitap',meaning:'кітап / книга'},{word:'Köl',meaning:'көл / озеро'}],sentence:{kk:'Kitap jaqsı.',zh:'Кітап жақсы. / Книга хорошая.'}},
-  {letter:'Q q',ipa:'/q/',cyr:'Қ қ',mnemonic:'Q — qazaq',examples:[{word:'Qazaq',meaning:'қазақ / казах'},{word:'Qala',meaning:'қала / город'},{word:'Qız',meaning:'қыз / девушка'}],sentence:{kk:'Qazaq tili — ult tili.',zh:'Қазақ тілі — ұлт тілі. / Казахский — национальный язык.'}},
-  {letter:'L l',ipa:'/l/',cyr:'Л л',mnemonic:'L — laq',examples:[{word:'Laq',meaning:'лақ / козленок'},{word:'Lauazım',meaning:'лауазым / должность'},{word:'Läzzat',meaning:'ләззат / удовольствие'}],sentence:{kk:'Laq sekiredi.',zh:'Лақ секіреді. / Козленок прыгает.'}},
-  {letter:'M m',ipa:'/m/',cyr:'М м',mnemonic:'M — men',examples:[{word:'Men',meaning:'мен / я'},{word:'Mektep',meaning:'мектеп / школа'},{word:'Mal',meaning:'мал / скот'}],sentence:{kk:'Men studentpin.',zh:'Мен студентпін. / Я студент.'}},
-  {letter:'N n',ipa:'/n/',cyr:'Н н',mnemonic:'N — nan',examples:[{word:'Ne',meaning:'не / что'},{word:'Nan',meaning:'нан / хлеб'},{word:'Nömir',meaning:'нөмір / номер'}],sentence:{kk:'Nan dämdi.',zh:'Нан дәмді. / Хлеб вкусный.'}},
-  {letter:'Ñ ñ',ipa:'/ŋ/',cyr:'Ң ң',mnemonic:'Ñ — tañ',examples:[{word:'Tañ',meaning:'таң / утро'},{word:'Qañtar',meaning:'қаңтар / январь'},{word:'Oñ',meaning:'оң / правый'}],sentence:{kk:'Tañ astı.',zh:'Таң асты. / Рассвело.'}},
-  {letter:'O o',ipa:'/o/',cyr:'О о',mnemonic:'O — orman',examples:[{word:'Ol',meaning:'ол / он/она'},{word:'Orman',meaning:'орман / лес'},{word:'Ot',meaning:'от / огонь'}],sentence:{kk:'Ol mektepte.',zh:'Ол мектепте. / Он в школе.'}},
-  {letter:'Ö ö',ipa:'/œ/',cyr:'Ө ө',mnemonic:'Ö — özen',examples:[{word:'Özen',meaning:'өзен / река'},{word:'Öner',meaning:'өнер / искусство'},{word:'Ötirik',meaning:'өтірік / ложь'}],sentence:{kk:'Özen tereñ.',zh:'Өзен терең. / Река глубокая.'}},
-  {letter:'P p',ipa:'/p/',cyr:'П п',mnemonic:'P — pıl',examples:[{word:'Pıl',meaning:'піл / слон'},{word:'Päter',meaning:'пәтер / квартира'},{word:'Paıda',meaning:'пайда / польза'}],sentence:{kk:'Päter keñ.',zh:'Пәтер кең. / Квартира просторная.'}},
-  {letter:'R r',ipa:'/r/',cyr:'Р р',mnemonic:'R — rahmet',examples:[{word:'Rahmet',meaning:'рахмет / спасибо'},{word:'Ret',meaning:'рет / раз'},{word:'Ren',meaning:'рең / цвет лица'}],sentence:{kk:'Rahmet, dostar!',zh:'Рахмет, достар! / Спасибо, друзья!'}},
-  {letter:'S s',ipa:'/s/',cyr:'С с',mnemonic:'S — söz',examples:[{word:'Söz',meaning:'сөз / слово'},{word:'Su',meaning:'су / вода'},{word:'Sağat',meaning:'сағат / час'}],sentence:{kk:'Suyıq su.',zh:'Суық су. / Холодная вода.'}},
-  {letter:'Ş ş',ipa:'/ʃ/',cyr:'Ш ш',mnemonic:'Ş — şaş',examples:[{word:'Şaş',meaning:'шаш / волосы'},{word:'Şaı',meaning:'шай / чай'},{word:'Şeber',meaning:'шебер / мастер'}],sentence:{kk:'Şaı dämdi.',zh:'Шай дәмді. / Чай вкусный.'}},
-  {letter:'T t',ipa:'/t/',cyr:'Т т',mnemonic:'T — tıl',examples:[{word:'Tıl',meaning:'тіл / язык'},{word:'Taw',meaning:'тау / гора'},{word:'Tüıe',meaning:'түйе / верблюд'}],sentence:{kk:'Taw bïik.',zh:'Тау биік. / Гора высокая.'}},
-  {letter:'U u',ipa:'/w/',cyr:'У у',mnemonic:'U — uaqıt',examples:[{word:'Uaqıt',meaning:'уақыт / время'},{word:'Ult',meaning:'ұлт / нация'},{word:'Unïversitet',meaning:'университет'}],sentence:{kk:'Uaqıt altınnan qımbat.',zh:'Уақыт алтыннан қымбат. / Время дороже золота.'}},
-  {letter:'Ū ū',ipa:'/u/',cyr:'Ұ ұ',mnemonic:'Ū — ūl',examples:[{word:'Ūl',meaning:'ұл / сын'},{word:'Ūşaq',meaning:'ұшақ / самолет'},{word:'Ūstaz',meaning:'ұстаз / учитель'}],sentence:{kk:'Ūşaq tez ūşadı.',zh:'Ұшақ тез ұшады. / Самолет летит быстро.'}},
-  {letter:'Ü ü',ipa:'/y/',cyr:'Ү ү',mnemonic:'Ü — üı',examples:[{word:'Üı',meaning:'үй / дом'},{word:'Ülken',meaning:'үлкен / большой'},{word:'Üstel',meaning:'үстел / стол'}],sentence:{kk:'Üı ülken.',zh:'Үй үлкен. / Дом большой.'}},
-  {letter:'V v',ipa:'/v/',cyr:'В в',mnemonic:'V — vagon',examples:[{word:'Vagon',meaning:'вагон'},{word:'Velosïped',meaning:'велосипед'},{word:'Vaza',meaning:'ваза'}],sentence:{kk:'Velosïped jaña.',zh:'Велосипед жаңа. / Велосипед новый.'}},
-  {letter:'Y y',ipa:'/j/',cyr:'Й й, Ы ы',mnemonic:'Y — aı',examples:[{word:'Aı',meaning:'ай / луна'},{word:'Qaı',meaning:'қай / какой'},{word:'Boı',meaning:'бой / рост'}],sentence:{kk:'Bügın aı ädemi.',zh:'Бүгін ай әдемі. / Сегодня луна красивая.'}},
-  {letter:'Z z',ipa:'/z/',cyr:'З з',mnemonic:'Z — zañ',examples:[{word:'Zañ',meaning:'заң / закон'},{word:'Zat',meaning:'зат / предмет'},{word:'Zawıt',meaning:'зауыт / завод'}],sentence:{kk:'Zañ mañızdı.',zh:'Заң маңызды. / Закон важен.'}}
+  {letter:'A a',ipa:'/蓱/',cyr:'袗 邪',mnemonic:'A 鈥?邪褕褘覜 写邪褍褘褋褌褘',examples:[{word:'Ana',meaning:'邪薪邪 / 屑邪屑邪'},{word:'Ata',meaning:'邪褌邪 / 锌邪锌邪'},{word:'Alma',meaning:'邪谢屑邪 / 褟斜谢芯泻芯'}],sentence:{kk:'Ana alma jedi.',zh:'袗薪邪 邪谢屑邪 卸械写褨. / 袦邪屑邪 褋褗械谢邪 褟斜谢芯泻芯.'}},
+  {letter:'脛 盲',ipa:'/忙/',cyr:'訕 訖',mnemonic:'脛 鈥?盲deb茂',examples:[{word:'脛ke',meaning:'訖泻械 / 芯褌械褑'},{word:'脛rip',meaning:'訖褉褨锌 / 斜褍泻胁邪'},{word:'脛demi',meaning:'訖写械屑褨 / 泻褉邪褋懈胁褘泄'}],sentence:{kk:'脛ke men ana 眉ide.',zh:'訕泻械 屑械薪 邪薪邪 爷泄写械. / 袩邪锌邪 懈 屑邪屑邪 写芯屑邪.'}},
+  {letter:'B b',ipa:'/b/',cyr:'袘 斜',mnemonic:'B 鈥?bala',examples:[{word:'Bala',meaning:'斜邪谢邪 / 褉械斜械薪芯泻'},{word:'Bal谋q',meaning:'斜邪谢褘覜 / 褉褘斜邪'},{word:'Batpa',meaning:'斜邪褌锌邪 / 褕邪谐'}],sentence:{kk:'Bala mektepke barad谋.',zh:'袘邪谢邪 屑械泻褌械锌泻械 斜邪褉邪写褘. / 袪械斜械薪芯泻 懈写械褌 胁 褕泻芯谢褍.'}},
+  {letter:'D d',ipa:'/d/',cyr:'袛 写',mnemonic:'D 鈥?dos',examples:[{word:'Dos',meaning:'写芯褋 / 写褉褍谐'},{word:'Dala',meaning:'写邪谢邪 / 褋褌械锌褜'},{word:'D盲ri',meaning:'写訖褉褨 / 谢械泻邪褉褋褌胁芯'}],sentence:{kk:'Dos谋帽 kim?',zh:'袛芯褋褘遥 泻褨屑? / 袣褌芯 褌胁芯泄 写褉褍谐?'}},
+  {letter:'E e',ipa:'/je/',cyr:'袝 械',mnemonic:'E 鈥?el',examples:[{word:'El',meaning:'械谢 / 褋褌褉邪薪邪'},{word:'Et',meaning:'械褌 / 屑褟褋芯'},{word:'Esik',meaning:'械褋褨泻 / 写胁械褉褜'}],sentence:{kk:'El t谋n谋艧t谋臒谋 zor.',zh:'袝谢 褌褘薪褘褕褌褘覔褘 蟹芯褉. / 小锌芯泻芯泄褋褌胁懈械 褋褌褉邪薪褘 胁邪卸薪芯.'}},
+  {letter:'F f',ipa:'/f/',cyr:'肖 褎',mnemonic:'F 鈥?fak谋ltet',examples:[{word:'F媒tbol',meaning:'褎褍褌斜芯谢'},{word:'Fakt',meaning:'褎邪泻褌'},{word:'Ferma',meaning:'褎械褉屑邪'}],sentence:{kk:'F媒tbol tama艧a sport.',zh:'肖褍褌斜芯谢 褌邪屑邪褕邪 褋锌芯褉褌. / 肖褍褌斜芯谢 鈥?芯褌谢懈褔薪褘泄 褋锌芯褉褌.'}},
+  {letter:'G g',ipa:'/伞/',cyr:'袚 谐',mnemonic:'G 鈥?g眉l',examples:[{word:'G眉l',meaning:'谐爷谢 / 褑胁械褌芯泻'},{word:'Gaz',meaning:'谐邪蟹'},{word:'Gar谋s',meaning:'谐邪褉褘褕 / 泻芯褋屑芯褋'}],sentence:{kk:'G眉l 枚te 盲demi.',zh:'袚爷谢 萤褌械 訖写械屑褨. / 笑胁械褌芯泻 芯褔械薪褜 泻褉邪褋懈胁褘泄.'}},
+  {letter:'臑 臒',ipa:'/蕘/',cyr:'覓 覔',mnemonic:'臑 鈥?臒al谋m',examples:[{word:'臑al谋m',meaning:'覔邪谢褘屑 / 褍褔械薪褘泄'},{word:'臑alam',meaning:'覔邪谢邪屑 / 胁褋械谢械薪薪邪褟'},{word:'臑as谋r',meaning:'覔邪褋褘褉 / 胁械泻'}],sentence:{kk:'臑al谋m 臒alamd谋 zertteidi.',zh:'覓邪谢褘屑 覔邪谢邪屑写褘 蟹械褉褌褌械泄写褨. / 校褔械薪褘泄 懈蟹褍褔邪械褌 胁褋械谢械薪薪褍褞.'}},
+  {letter:'H h',ipa:'/h/',cyr:'啸 褏, 液 一',mnemonic:'H 鈥?hal谋q',examples:[{word:'Hal谋q',meaning:'褏邪谢褘覜 / 薪邪褉芯写'},{word:'Habar',meaning:'褏邪斜邪褉 / 薪芯胁芯褋褌褜'},{word:'Haua',meaning:'一邪褍邪 / 胁芯蟹写褍褏'}],sentence:{kk:'Hal谋q birligi m谋qt谋.',zh:'啸邪谢褘覜 斜褨褉谢褨谐褨 屑褘覜褌褘. / 袝写懈薪褋褌胁芯 薪邪褉芯写邪 褋懈谢褜薪芯.'}},
+  {letter:'I 谋',ipa:'/莎/',cyr:'蝎 褘',mnemonic:'I 鈥?谋st谋q',examples:[{word:'Ist谋q',meaning:'褘褋褌褘覜 / 卸邪褉泻芯'},{word:'Ir谋s',meaning:'褘褉褘褋 / 褋褔邪褋褌褜械'},{word:'I帽臒a谋',meaning:'褘遥覔邪泄 / 薪邪锌褉邪胁谢械薪懈械'}],sentence:{kk:'B眉g谋n 谋st谋q.',zh:'袘爷谐褨薪 褘褋褌褘覜. / 小械谐芯写薪褟 卸邪褉泻芯.'}},
+  {letter:'陌 i',ipa:'/i/',cyr:'袉 褨',mnemonic:'陌 鈥?ini',examples:[{word:'陌ni',meaning:'褨薪褨 / 屑谢邪写褕懈泄 斜褉邪褌'},{word:'陌z',meaning:'褨蟹 / 褋谢械写'},{word:'陌ri',meaning:'褨褉褨 / 泻褉褍锌薪褘泄'}],sentence:{kk:'陌ni mektepke ketti.',zh:'袉薪褨 屑械泻褌械锌泻械 泻械褌褌褨. / 袦谢邪写褕懈泄 斜褉邪褌 锌芯褕械谢 胁 褕泻芯谢褍.'}},
+  {letter:'J j',ipa:'/蕭/',cyr:'袞 卸',mnemonic:'J 鈥?jol',examples:[{word:'Jol',meaning:'卸芯谢 / 写芯褉芯谐邪'},{word:'Jan',meaning:'卸邪薪 / 写褍褕邪'},{word:'Jaz',meaning:'卸邪蟹 / 谢械褌芯'}],sentence:{kk:'Jazda 谋st谋q.',zh:'袞邪蟹写邪 褘褋褌褘覜. / 袥械褌芯屑 卸邪褉泻芯.'}},
+  {letter:'K k',ipa:'/k/',cyr:'袣 泻',mnemonic:'K 鈥?k眉n',examples:[{word:'K眉n',meaning:'泻爷薪 / 褋芯谢薪褑械'},{word:'Kitap',meaning:'泻褨褌邪锌 / 泻薪懈谐邪'},{word:'K枚l',meaning:'泻萤谢 / 芯蟹械褉芯'}],sentence:{kk:'Kitap jaqs谋.',zh:'袣褨褌邪锌 卸邪覜褋褘. / 袣薪懈谐邪 褏芯褉芯褕邪褟.'}},
+  {letter:'Q q',ipa:'/q/',cyr:'覛 覜',mnemonic:'Q 鈥?qazaq',examples:[{word:'Qazaq',meaning:'覜邪蟹邪覜 / 泻邪蟹邪褏'},{word:'Qala',meaning:'覜邪谢邪 / 谐芯褉芯写'},{word:'Q谋z',meaning:'覜褘蟹 / 写械胁褍褕泻邪'}],sentence:{kk:'Qazaq tili 鈥?ult tili.',zh:'覛邪蟹邪覜 褌褨谢褨 鈥?冶谢褌 褌褨谢褨. / 袣邪蟹邪褏褋泻懈泄 鈥?薪邪褑懈芯薪邪谢褜薪褘泄 褟蟹褘泻.'}},
+  {letter:'L l',ipa:'/l/',cyr:'袥 谢',mnemonic:'L 鈥?laq',examples:[{word:'Laq',meaning:'谢邪覜 / 泻芯蟹谢械薪芯泻'},{word:'Lauaz谋m',meaning:'谢邪褍邪蟹褘屑 / 写芯谢卸薪芯褋褌褜'},{word:'L盲zzat',meaning:'谢訖蟹蟹邪褌 / 褍写芯胁芯谢褜褋褌胁懈械'}],sentence:{kk:'Laq sekiredi.',zh:'袥邪覜 褋械泻褨褉械写褨. / 袣芯蟹谢械薪芯泻 锌褉褘谐邪械褌.'}},
+  {letter:'M m',ipa:'/m/',cyr:'袦 屑',mnemonic:'M 鈥?men',examples:[{word:'Men',meaning:'屑械薪 / 褟'},{word:'Mektep',meaning:'屑械泻褌械锌 / 褕泻芯谢邪'},{word:'Mal',meaning:'屑邪谢 / 褋泻芯褌'}],sentence:{kk:'Men studentpin.',zh:'袦械薪 褋褌褍写械薪褌锌褨薪. / 携 褋褌褍写械薪褌.'}},
+  {letter:'N n',ipa:'/n/',cyr:'袧 薪',mnemonic:'N 鈥?nan',examples:[{word:'Ne',meaning:'薪械 / 褔褌芯'},{word:'Nan',meaning:'薪邪薪 / 褏谢械斜'},{word:'N枚mir',meaning:'薪萤屑褨褉 / 薪芯屑械褉'}],sentence:{kk:'Nan d盲mdi.',zh:'袧邪薪 写訖屑写褨. / 啸谢械斜 胁泻褍褋薪褘泄.'}},
+  {letter:'脩 帽',ipa:'/艐/',cyr:'尧 遥',mnemonic:'脩 鈥?ta帽',examples:[{word:'Ta帽',meaning:'褌邪遥 / 褍褌褉芯'},{word:'Qa帽tar',meaning:'覜邪遥褌邪褉 / 褟薪胁邪褉褜'},{word:'O帽',meaning:'芯遥 / 锌褉邪胁褘泄'}],sentence:{kk:'Ta帽 ast谋.',zh:'孝邪遥 邪褋褌褘. / 袪邪褋褋胁械谢芯.'}},
+  {letter:'O o',ipa:'/o/',cyr:'袨 芯',mnemonic:'O 鈥?orman',examples:[{word:'Ol',meaning:'芯谢 / 芯薪/芯薪邪'},{word:'Orman',meaning:'芯褉屑邪薪 / 谢械褋'},{word:'Ot',meaning:'芯褌 / 芯谐芯薪褜'}],sentence:{kk:'Ol mektepte.',zh:'袨谢 屑械泻褌械锌褌械. / 袨薪 胁 褕泻芯谢械.'}},
+  {letter:'脰 枚',ipa:'/艙/',cyr:'莹 萤',mnemonic:'脰 鈥?枚zen',examples:[{word:'脰zen',meaning:'萤蟹械薪 / 褉械泻邪'},{word:'脰ner',meaning:'萤薪械褉 / 懈褋泻褍褋褋褌胁芯'},{word:'脰tirik',meaning:'萤褌褨褉褨泻 / 谢芯卸褜'}],sentence:{kk:'脰zen tere帽.',zh:'莹蟹械薪 褌械褉械遥. / 袪械泻邪 谐谢褍斜芯泻邪褟.'}},
+  {letter:'P p',ipa:'/p/',cyr:'袩 锌',mnemonic:'P 鈥?p谋l',examples:[{word:'P谋l',meaning:'锌褨谢 / 褋谢芯薪'},{word:'P盲ter',meaning:'锌訖褌械褉 / 泻胁邪褉褌懈褉邪'},{word:'Pa谋da',meaning:'锌邪泄写邪 / 锌芯谢褜蟹邪'}],sentence:{kk:'P盲ter ke帽.',zh:'袩訖褌械褉 泻械遥. / 袣胁邪褉褌懈褉邪 锌褉芯褋褌芯褉薪邪褟.'}},
+  {letter:'R r',ipa:'/r/',cyr:'袪 褉',mnemonic:'R 鈥?rahmet',examples:[{word:'Rahmet',meaning:'褉邪褏屑械褌 / 褋锌邪褋懈斜芯'},{word:'Ret',meaning:'褉械褌 / 褉邪蟹'},{word:'Ren',meaning:'褉械遥 / 褑胁械褌 谢懈褑邪'}],sentence:{kk:'Rahmet, dostar!',zh:'袪邪褏屑械褌, 写芯褋褌邪褉! / 小锌邪褋懈斜芯, 写褉褍蟹褜褟!'}},
+  {letter:'S s',ipa:'/s/',cyr:'小 褋',mnemonic:'S 鈥?s枚z',examples:[{word:'S枚z',meaning:'褋萤蟹 / 褋谢芯胁芯'},{word:'Su',meaning:'褋褍 / 胁芯写邪'},{word:'Sa臒at',meaning:'褋邪覔邪褌 / 褔邪褋'}],sentence:{kk:'Suy谋q su.',zh:'小褍褘覜 褋褍. / 啸芯谢芯写薪邪褟 胁芯写邪.'}},
+  {letter:'艦 艧',ipa:'/蕛/',cyr:'楔 褕',mnemonic:'艦 鈥?艧a艧',examples:[{word:'艦a艧',meaning:'褕邪褕 / 胁芯谢芯褋褘'},{word:'艦a谋',meaning:'褕邪泄 / 褔邪泄'},{word:'艦eber',meaning:'褕械斜械褉 / 屑邪褋褌械褉'}],sentence:{kk:'艦a谋 d盲mdi.',zh:'楔邪泄 写訖屑写褨. / 效邪泄 胁泻褍褋薪褘泄.'}},
+  {letter:'T t',ipa:'/t/',cyr:'孝 褌',mnemonic:'T 鈥?t谋l',examples:[{word:'T谋l',meaning:'褌褨谢 / 褟蟹褘泻'},{word:'Taw',meaning:'褌邪褍 / 谐芯褉邪'},{word:'T眉谋e',meaning:'褌爷泄械 / 胁械褉斜谢褞写'}],sentence:{kk:'Taw b茂ik.',zh:'孝邪褍 斜懈褨泻. / 袚芯褉邪 胁褘褋芯泻邪褟.'}},
+  {letter:'U u',ipa:'/w/',cyr:'校 褍',mnemonic:'U 鈥?uaq谋t',examples:[{word:'Uaq谋t',meaning:'褍邪覜褘褌 / 胁褉械屑褟'},{word:'Ult',meaning:'冶谢褌 / 薪邪褑懈褟'},{word:'Un茂versitet',meaning:'褍薪懈胁械褉褋懈褌械褌'}],sentence:{kk:'Uaq谋t alt谋nnan q谋mbat.',zh:'校邪覜褘褌 邪谢褌褘薪薪邪薪 覜褘屑斜邪褌. / 袙褉械屑褟 写芯褉芯卸械 蟹芯谢芯褌邪.'}},
+  {letter:'弄 奴',ipa:'/u/',cyr:'野 冶',mnemonic:'弄 鈥?奴l',examples:[{word:'弄l',meaning:'冶谢 / 褋褘薪'},{word:'弄艧aq',meaning:'冶褕邪覜 / 褋邪屑芯谢械褌'},{word:'弄staz',meaning:'冶褋褌邪蟹 / 褍褔懈褌械谢褜'}],sentence:{kk:'弄艧aq tez 奴艧ad谋.',zh:'野褕邪覜 褌械蟹 冶褕邪写褘. / 小邪屑芯谢械褌 谢械褌懈褌 斜褘褋褌褉芯.'}},
+  {letter:'脺 眉',ipa:'/y/',cyr:'耶 爷',mnemonic:'脺 鈥?眉谋',examples:[{word:'脺谋',meaning:'爷泄 / 写芯屑'},{word:'脺lken',meaning:'爷谢泻械薪 / 斜芯谢褜褕芯泄'},{word:'脺stel',meaning:'爷褋褌械谢 / 褋褌芯谢'}],sentence:{kk:'脺谋 眉lken.',zh:'耶泄 爷谢泻械薪. / 袛芯屑 斜芯谢褜褕芯泄.'}},
+  {letter:'V v',ipa:'/v/',cyr:'袙 胁',mnemonic:'V 鈥?vagon',examples:[{word:'Vagon',meaning:'胁邪谐芯薪'},{word:'Velos茂ped',meaning:'胁械谢芯褋懈锌械写'},{word:'Vaza',meaning:'胁邪蟹邪'}],sentence:{kk:'Velos茂ped ja帽a.',zh:'袙械谢芯褋懈锌械写 卸邪遥邪. / 袙械谢芯褋懈锌械写 薪芯胁褘泄.'}},
+  {letter:'Y y',ipa:'/j/',cyr:'袡 泄, 蝎 褘',mnemonic:'Y 鈥?a谋',examples:[{word:'A谋',meaning:'邪泄 / 谢褍薪邪'},{word:'Qa谋',meaning:'覜邪泄 / 泻邪泻芯泄'},{word:'Bo谋',meaning:'斜芯泄 / 褉芯褋褌'}],sentence:{kk:'B眉g谋n a谋 盲demi.',zh:'袘爷谐褨薪 邪泄 訖写械屑褨. / 小械谐芯写薪褟 谢褍薪邪 泻褉邪褋懈胁邪褟.'}},
+  {letter:'Z z',ipa:'/z/',cyr:'袟 蟹',mnemonic:'Z 鈥?za帽',examples:[{word:'Za帽',meaning:'蟹邪遥 / 蟹邪泻芯薪'},{word:'Zat',meaning:'蟹邪褌 / 锌褉械写屑械褌'},{word:'Zaw谋t',meaning:'蟹邪褍褘褌 / 蟹邪胁芯写'}],sentence:{kk:'Za帽 ma帽谋zd谋.',zh:'袟邪遥 屑邪遥褘蟹写褘. / 袟邪泻芯薪 胁邪卸械薪.'}}
 ];
 
 // ---- Arabic alphabet (Kazakh Arabic script) ----
 const ARABIC_ALPHABET = [
-  {letter:'ٵ',forms:'ا ,ٵ ,ـا ,ـٵ',ipa:'/ɑ/',mnemonic:'啊 — 长音',
-    examples:[{word:'انا',meaning:'妈妈'},{word:'اتا',meaning:'爸爸'}],
-    sentence:{kk:'انا الما جەدى.',zh:'妈妈吃了苹果。'}},
-  {letter:'ٶ',forms:'ٶ ,ـٶ ,ٶ ,ـٶ',ipa:'/æ/',mnemonic:'爱 — 短促',
-    examples:[{word:'اكە',meaning:'父亲'},{word:'ارىپ',meaning:'字母'}],
-    sentence:{kk:'اكە مەن انا ۇيدە.',zh:'爸爸和妈妈在家里。'}},
-  {letter:'ب',forms:'ب ,ـب ,ـب ,بـ',ipa:'/b/',mnemonic:'波',
-    examples:[{word:'بالا',meaning:'孩子'},{word:'بالىق',meaning:'鱼'}],
-    sentence:{kk:'بالا مەكتەپكە بارادى.',zh:'孩子去学校。'}},
-  {letter:'ۆ',forms:'ۆ ,ـۆ ,ـۆ ,ۆـ',ipa:'/v/',mnemonic:'弗',
-    examples:[{word:'ۆاگون',meaning:'车厢'}],
-    sentence:{kk:'ۆاگون ۇلكەن.',zh:'车厢很大。'}},
-  {letter:'گ',forms:'گ ,ـگ ,ـگ ,گـ',ipa:'/ɡ/',mnemonic:'哥',
-    examples:[{word:'گۇل',meaning:'花'},{word:'گاز',meaning:'气体'}],
-    sentence:{kk:'گۇل وتە ادەمى.',zh:'花很漂亮。'}},
-  {letter:'ع',forms:'ع ,ـع ,ـع ,عـ',ipa:'/ʁ/',mnemonic:'哈 — 喉咙深处',
-    examples:[{word:'عالىم',meaning:'科学家'},{word:'عالام',meaning:'宇宙'}],
-    sentence:{kk:'عالىم عالامدى زەرتتەيدى.',zh:'科学家研究宇宙。'}},
-  {letter:'د',forms:'د ,ـد ,ـد ,د',ipa:'/d/',mnemonic:'得',
-    examples:[{word:'دوس',meaning:'朋友'},{word:'دالا',meaning:'草原'}],
-    sentence:{kk:'دوسىڭ كىم؟',zh:'你的朋友是谁？'}},
-  {letter:'ە',forms:'ە ,ـە ,ـە ,ە',ipa:'/je/',mnemonic:'耶',
-    examples:[{word:'ەل',meaning:'国家'},{word:'ەت',meaning:'肉'}],
-    sentence:{kk:'ەل تىنىشتىعى زور.',zh:'国家的和平很重要。'}},
-  {letter:'ج',forms:'ج ,ـج ,ـج ,جـ',ipa:'/ʒ/',mnemonic:'日',
-    examples:[{word:'جول',meaning:'路'},{word:'جان',meaning:'灵魂'}],
-    sentence:{kk:'جازدا ىستىق.',zh:'夏天很热。'}},
-  {letter:'ز',forms:'ز ,ـز ,ـز ,ز',ipa:'/z/',mnemonic:'兹',
-    examples:[{word:'زات',meaning:'物品'},{word:'زاڭ',meaning:'法律'}],
-    sentence:{kk:'زاڭ ماڭىزدى.',zh:'法律很重要。'}},
-  {letter:'ي',forms:'ي ,ـي ,ـي ,يـ',ipa:'/j/',mnemonic:'衣',
-    examples:[{word:'قاي',meaning:'哪个'},{word:'اي',meaning:'月亮'}],
-    sentence:{kk:'بۇگىن اي ادەمى.',zh:'今晚的月亮很美。'}},
-  {letter:'ك',forms:'ك ,ـك ,ـك ,كـ',ipa:'/k/',mnemonic:'科',
-    examples:[{word:'كۇن',meaning:'太阳'},{word:'كىتاپ',meaning:'书'}],
-    sentence:{kk:'كىتاپ جاقسى.',zh:'书很好。'}},
-  {letter:'ق',forms:'ق ,ـق ,ـق ,قـ',ipa:'/q/',mnemonic:'克 — 更深',
-    examples:[{word:'قازاق',meaning:'哈萨克'},{word:'قالا',meaning:'城市'}],
-    sentence:{kk:'قازاق تىلى — ۇلت تىلى.',zh:'哈萨克语是民族语言。'}},
-  {letter:'ل',forms:'ل ,ـل ,ـل ,لـ',ipa:'/l/',mnemonic:'了',
-    examples:[{word:'لاق',meaning:'山羊羔'},{word:'لاززات',meaning:'享受'}],
-    sentence:{kk:'لاق سەكىرەدى.',zh:'山羊羔在跳。'}},
-  {letter:'م',forms:'م ,ـم ,ـم ,مـ',ipa:'/m/',mnemonic:'摸',
-    examples:[{word:'مەن',meaning:'我'},{word:'مەكتەپ',meaning:'学校'}],
-    sentence:{kk:'مەن ستۋدەنتپىن.',zh:'我是学生。'}},
-  {letter:'ن',forms:'ن ,ـن ,ـن ,نـ',ipa:'/n/',mnemonic:'讷',
-    examples:[{word:'نە',meaning:'什么'},{word:'نان',meaning:'面包'}],
-    sentence:{kk:'نان دامدى.',zh:'面包好吃。'}},
-  {letter:'ڭ',forms:'ڭ ,ـڭ ,ـڭ ,ڭـ',ipa:'/ŋ/',mnemonic:'嗯 — ng',
-    examples:[{word:'تاڭ',meaning:'早晨'},{word:'قاڭتار',meaning:'一月'}],
-    sentence:{kk:'تاڭ استى.',zh:'天亮了。'}},
-  {letter:'و',forms:'و ,ـو ,ـو ,و',ipa:'/o/',mnemonic:'哦',
-    examples:[{word:'ول',meaning:'他/她'},{word:'ورمان',meaning:'森林'}],
-    sentence:{kk:'ول مەكتەپتە.',zh:'他在学校。'}},
-  {letter:'ءو',forms:'ءو ,ـءو ,ـءو ,ءو',ipa:'/œ/',mnemonic:'厄 — 圆唇',
-    examples:[{word:'ءوزەن',meaning:'河流'},{word:'ونەر',meaning:'艺术'}],
-    sentence:{kk:'ءوزەن تەرەڭ.',zh:'河流很深。'}},
-  {letter:'پ',forms:'پ ,ـپ ,ـپ ,پـ',ipa:'/p/',mnemonic:'泼',
-    examples:[{word:'پىل',meaning:'大象'},{word:'پاتەر',meaning:'公寓'}],
-    sentence:{kk:'پاتەر كەڭ.',zh:'公寓很宽敞。'}},
-  {letter:'ر',forms:'ر ,ـر ,ـر ,ر',ipa:'/r/',mnemonic:'日 — 弹舌',
-    examples:[{word:'راحمەت',meaning:'谢谢'},{word:'رەت',meaning:'次'}],
-    sentence:{kk:'راحمەت، دوستار!',zh:'谢谢，朋友们！'}},
-  {letter:'س',forms:'س ,ـس ,ـس ,سـ',ipa:'/s/',mnemonic:'丝',
-    examples:[{word:'سۋ',meaning:'水'},{word:'سوز',meaning:'话'}],
-    sentence:{kk:'سۋىق سۋ.',zh:'冷水。'}},
-  {letter:'ت',forms:'ت ,ـت ,ـت ,تـ',ipa:'/t/',mnemonic:'特',
-    examples:[{word:'تىل',meaning:'语言'},{word:'تۋ',meaning:'山'}],
-    sentence:{kk:'تۋ بيىك.',zh:'山很高。'}},
-  {letter:'ش',forms:'ش ,ـش ,ـش ,شـ',ipa:'/ʃ/',mnemonic:'是',
-    examples:[{word:'شاي',meaning:'茶'},{word:'شاش',meaning:'头发'}],
-    sentence:{kk:'شاي دامدى.',zh:'茶很好喝。'}},
-  {letter:'ى',forms:'ى ,ـى ,ـى ,ى',ipa:'/ɯ/',mnemonic:'厄',
-    examples:[{word:'ىستىق',meaning:'热'},{word:'ىرىس',meaning:'幸福'}],
-    sentence:{kk:'بۇگىن ىستىق.',zh:'今天很热。'}},
-  {letter:'ۇ',forms:'ۇ ,ـۇ ,ـۇ ,ۇ',ipa:'/u/',mnemonic:'乌',
-    examples:[{word:'ۇل',meaning:'儿子'},{word:'ۇشاق',meaning:'飞机'}],
-    sentence:{kk:'ۇشاق تەز ۇشادى.',zh:'飞机飞得快。'}},
-  {letter:'ءۇ',forms:'ءۇ ,ـءۇ ,ـءۇ ,ءۇ',ipa:'/y/',mnemonic:'于',
-    examples:[{word:'ءۇي',meaning:'家'},{word:'ءۇلكەن',meaning:'大'}],
-    sentence:{kk:'ءۇي ءۇلكەن.',zh:'房子很大。'}},
-  {letter:'ح',forms:'ح ,ـح ,ـح ,حـ',ipa:'/χ/',mnemonic:'喝',
-    examples:[{word:'حالىق',meaning:'人民'},{word:'حات',meaning:'信'}],
-    sentence:{kk:'حالىق بىرلىگى مىقتى.',zh:'人民的团结强大。'}},
-  {letter:'ھ',forms:'ھ ,ـھ ,ـھ ,ھـ',ipa:'/h/',mnemonic:'哈 — 轻呼',
-    examples:[{word:'ھاۋا',meaning:'空气'},{word:'ھيكاي',meaning:'故事'}],
-    sentence:{kk:'ھاۋا تازا.',zh:'空气清新。'}},
-  {letter:'ف',forms:'ف ,ـف ,ـف ,فـ',ipa:'/f/',mnemonic:'佛',
-    examples:[{word:'فۋتبول',meaning:'足球'},{word:'فەرما',meaning:'农场'}],
-    sentence:{kk:'فۋتبول تاماشا سپورت.',zh:'足球是很好的运动。'}}
+  {letter:'俚',forms:'丕 ,俚 ,賭丕 ,賭俚',ipa:'/蓱/',mnemonic:'鍟?鈥?闀块煶',
+    examples:[{word:'丕賳丕',meaning:'濡堝'},{word:'丕鬲丕',meaning:'鐖哥埜'}],
+    sentence:{kk:'丕賳丕 丕賱賲丕 噩蹠丿賶.',zh:'濡堝鍚冧簡鑻规灉銆?}},
+  {letter:'俣',forms:'俣 ,賭俣 ,俣 ,賭俣',ipa:'/忙/',mnemonic:'鐖?鈥?鐭績',
+    examples:[{word:'丕賰蹠',meaning:'鐖朵翰'},{word:'丕乇賶倬',meaning:'瀛楁瘝'}],
+    sentence:{kk:'丕賰蹠 賲蹠賳 丕賳丕 蹏賷丿蹠.',zh:'鐖哥埜鍜屽濡堝湪瀹堕噷銆?}},
+  {letter:'亘',forms:'亘 ,賭亘 ,賭亘 ,亘賭',ipa:'/b/',mnemonic:'娉?,
+    examples:[{word:'亘丕賱丕',meaning:'瀛╁瓙'},{word:'亘丕賱賶賯',meaning:'楸?}],
+    sentence:{kk:'亘丕賱丕 賲蹠賰鬲蹠倬賰蹠 亘丕乇丕丿賶.',zh:'瀛╁瓙鍘诲鏍°€?}},
+  {letter:'蹎',forms:'蹎 ,賭蹎 ,賭蹎 ,蹎賭',ipa:'/v/',mnemonic:'寮?,
+    examples:[{word:'蹎丕诏賵賳',meaning:'杞﹀帰'}],
+    sentence:{kk:'蹎丕诏賵賳 蹏賱賰蹠賳.',zh:'杞﹀帰寰堝ぇ銆?}},
+  {letter:'诏',forms:'诏 ,賭诏 ,賭诏 ,诏賭',ipa:'/伞/',mnemonic:'鍝?,
+    examples:[{word:'诏蹏賱',meaning:'鑺?},{word:'诏丕夭',meaning:'姘斾綋'}],
+    sentence:{kk:'诏蹏賱 賵鬲蹠 丕丿蹠賲賶.',zh:'鑺卞緢婕備寒銆?}},
+  {letter:'毓',forms:'毓 ,賭毓 ,賭毓 ,毓賭',ipa:'/蕘/',mnemonic:'鍝?鈥?鍠夊挋娣卞',
+    examples:[{word:'毓丕賱賶賲',meaning:'绉戝瀹?},{word:'毓丕賱丕賲',meaning:'瀹囧畽'}],
+    sentence:{kk:'毓丕賱賶賲 毓丕賱丕賲丿賶 夭蹠乇鬲鬲蹠賷丿賶.',zh:'绉戝瀹剁爺绌跺畤瀹欍€?}},
+  {letter:'丿',forms:'丿 ,賭丿 ,賭丿 ,丿',ipa:'/d/',mnemonic:'寰?,
+    examples:[{word:'丿賵爻',meaning:'鏈嬪弸'},{word:'丿丕賱丕',meaning:'鑽夊師'}],
+    sentence:{kk:'丿賵爻賶诃 賰賶賲責',zh:'浣犵殑鏈嬪弸鏄皝锛?}},
+  {letter:'蹠',forms:'蹠 ,賭蹠 ,賭蹠 ,蹠',ipa:'/je/',mnemonic:'鑰?,
+    examples:[{word:'蹠賱',meaning:'鍥藉'},{word:'蹠鬲',meaning:'鑲?}],
+    sentence:{kk:'蹠賱 鬲賶賳賶卮鬲賶毓賶 夭賵乇.',zh:'鍥藉鐨勫拰骞冲緢閲嶈銆?}},
+  {letter:'噩',forms:'噩 ,賭噩 ,賭噩 ,噩賭',ipa:'/蕭/',mnemonic:'鏃?,
+    examples:[{word:'噩賵賱',meaning:'璺?},{word:'噩丕賳',meaning:'鐏甸瓊'}],
+    sentence:{kk:'噩丕夭丿丕 賶爻鬲賶賯.',zh:'澶忓ぉ寰堢儹銆?}},
+  {letter:'夭',forms:'夭 ,賭夭 ,賭夭 ,夭',ipa:'/z/',mnemonic:'鍏?,
+    examples:[{word:'夭丕鬲',meaning:'鐗╁搧'},{word:'夭丕诃',meaning:'娉曞緥'}],
+    sentence:{kk:'夭丕诃 賲丕诃賶夭丿賶.',zh:'娉曞緥寰堥噸瑕併€?}},
+  {letter:'賷',forms:'賷 ,賭賷 ,賭賷 ,賷賭',ipa:'/j/',mnemonic:'琛?,
+    examples:[{word:'賯丕賷',meaning:'鍝釜'},{word:'丕賷',meaning:'鏈堜寒'}],
+    sentence:{kk:'亘蹏诏賶賳 丕賷 丕丿蹠賲賶.',zh:'浠婃櫄鐨勬湀浜緢缇庛€?}},
+  {letter:'賰',forms:'賰 ,賭賰 ,賭賰 ,賰賭',ipa:'/k/',mnemonic:'绉?,
+    examples:[{word:'賰蹏賳',meaning:'澶槼'},{word:'賰賶鬲丕倬',meaning:'涔?}],
+    sentence:{kk:'賰賶鬲丕倬 噩丕賯爻賶.',zh:'涔﹀緢濂姐€?}},
+  {letter:'賯',forms:'賯 ,賭賯 ,賭賯 ,賯賭',ipa:'/q/',mnemonic:'鍏?鈥?鏇存繁',
+    examples:[{word:'賯丕夭丕賯',meaning:'鍝堣惃鍏?},{word:'賯丕賱丕',meaning:'鍩庡競'}],
+    sentence:{kk:'賯丕夭丕賯 鬲賶賱賶 鈥?蹏賱鬲 鬲賶賱賶.',zh:'鍝堣惃鍏嬭鏄皯鏃忚瑷€銆?}},
+  {letter:'賱',forms:'賱 ,賭賱 ,賭賱 ,賱賭',ipa:'/l/',mnemonic:'浜?,
+    examples:[{word:'賱丕賯',meaning:'灞辩緤缇?},{word:'賱丕夭夭丕鬲',meaning:'浜彈'}],
+    sentence:{kk:'賱丕賯 爻蹠賰賶乇蹠丿賶.',zh:'灞辩緤缇斿湪璺炽€?}},
+  {letter:'賲',forms:'賲 ,賭賲 ,賭賲 ,賲賭',ipa:'/m/',mnemonic:'鎽?,
+    examples:[{word:'賲蹠賳',meaning:'鎴?},{word:'賲蹠賰鬲蹠倬',meaning:'瀛︽牎'}],
+    sentence:{kk:'賲蹠賳 爻鬲蹕丿蹠賳鬲倬賶賳.',zh:'鎴戞槸瀛︾敓銆?}},
+  {letter:'賳',forms:'賳 ,賭賳 ,賭賳 ,賳賭',ipa:'/n/',mnemonic:'璁?,
+    examples:[{word:'賳蹠',meaning:'浠€涔?},{word:'賳丕賳',meaning:'闈㈠寘'}],
+    sentence:{kk:'賳丕賳 丿丕賲丿賶.',zh:'闈㈠寘濂藉悆銆?}},
+  {letter:'诃',forms:'诃 ,賭诃 ,賭诃 ,诃賭',ipa:'/艐/',mnemonic:'鍡?鈥?ng',
+    examples:[{word:'鬲丕诃',meaning:'鏃╂櫒'},{word:'賯丕诃鬲丕乇',meaning:'涓€鏈?}],
+    sentence:{kk:'鬲丕诃 丕爻鬲賶.',zh:'澶╀寒浜嗐€?}},
+  {letter:'賵',forms:'賵 ,賭賵 ,賭賵 ,賵',ipa:'/o/',mnemonic:'鍝?,
+    examples:[{word:'賵賱',meaning:'浠?濂?},{word:'賵乇賲丕賳',meaning:'妫灄'}],
+    sentence:{kk:'賵賱 賲蹠賰鬲蹠倬鬲蹠.',zh:'浠栧湪瀛︽牎銆?}},
+  {letter:'亍賵',forms:'亍賵 ,賭亍賵 ,賭亍賵 ,亍賵',ipa:'/艙/',mnemonic:'鍘?鈥?鍦嗗攪',
+    examples:[{word:'亍賵夭蹠賳',meaning:'娌虫祦'},{word:'賵賳蹠乇',meaning:'鑹烘湳'}],
+    sentence:{kk:'亍賵夭蹠賳 鬲蹠乇蹠诃.',zh:'娌虫祦寰堟繁銆?}},
+  {letter:'倬',forms:'倬 ,賭倬 ,賭倬 ,倬賭',ipa:'/p/',mnemonic:'娉?,
+    examples:[{word:'倬賶賱',meaning:'澶ц薄'},{word:'倬丕鬲蹠乇',meaning:'鍏瘬'}],
+    sentence:{kk:'倬丕鬲蹠乇 賰蹠诃.',zh:'鍏瘬寰堝鏁炪€?}},
+  {letter:'乇',forms:'乇 ,賭乇 ,賭乇 ,乇',ipa:'/r/',mnemonic:'鏃?鈥?寮硅垖',
+    examples:[{word:'乇丕丨賲蹠鬲',meaning:'璋㈣阿'},{word:'乇蹠鬲',meaning:'娆?}],
+    sentence:{kk:'乇丕丨賲蹠鬲貙 丿賵爻鬲丕乇!',zh:'璋㈣阿锛屾湅鍙嬩滑锛?}},
+  {letter:'爻',forms:'爻 ,賭爻 ,賭爻 ,爻賭',ipa:'/s/',mnemonic:'涓?,
+    examples:[{word:'爻蹕',meaning:'姘?},{word:'爻賵夭',meaning:'璇?}],
+    sentence:{kk:'爻蹕賶賯 爻蹕.',zh:'鍐锋按銆?}},
+  {letter:'鬲',forms:'鬲 ,賭鬲 ,賭鬲 ,鬲賭',ipa:'/t/',mnemonic:'鐗?,
+    examples:[{word:'鬲賶賱',meaning:'璇█'},{word:'鬲蹕',meaning:'灞?}],
+    sentence:{kk:'鬲蹕 亘賷賶賰.',zh:'灞卞緢楂樸€?}},
+  {letter:'卮',forms:'卮 ,賭卮 ,賭卮 ,卮賭',ipa:'/蕛/',mnemonic:'鏄?,
+    examples:[{word:'卮丕賷',meaning:'鑼?},{word:'卮丕卮',meaning:'澶村彂'}],
+    sentence:{kk:'卮丕賷 丿丕賲丿賶.',zh:'鑼跺緢濂藉枬銆?}},
+  {letter:'賶',forms:'賶 ,賭賶 ,賭賶 ,賶',ipa:'/莎/',mnemonic:'鍘?,
+    examples:[{word:'賶爻鬲賶賯',meaning:'鐑?},{word:'賶乇賶爻',meaning:'骞哥'}],
+    sentence:{kk:'亘蹏诏賶賳 賶爻鬲賶賯.',zh:'浠婂ぉ寰堢儹銆?}},
+  {letter:'蹏',forms:'蹏 ,賭蹏 ,賭蹏 ,蹏',ipa:'/u/',mnemonic:'涔?,
+    examples:[{word:'蹏賱',meaning:'鍎垮瓙'},{word:'蹏卮丕賯',meaning:'椋炴満'}],
+    sentence:{kk:'蹏卮丕賯 鬲蹠夭 蹏卮丕丿賶.',zh:'椋炴満椋炲緱蹇€?}},
+  {letter:'亍蹏',forms:'亍蹏 ,賭亍蹏 ,賭亍蹏 ,亍蹏',ipa:'/y/',mnemonic:'浜?,
+    examples:[{word:'亍蹏賷',meaning:'瀹?},{word:'亍蹏賱賰蹠賳',meaning:'澶?}],
+    sentence:{kk:'亍蹏賷 亍蹏賱賰蹠賳.',zh:'鎴垮瓙寰堝ぇ銆?}},
+  {letter:'丨',forms:'丨 ,賭丨 ,賭丨 ,丨賭',ipa:'/蠂/',mnemonic:'鍠?,
+    examples:[{word:'丨丕賱賶賯',meaning:'浜烘皯'},{word:'丨丕鬲',meaning:'淇?}],
+    sentence:{kk:'丨丕賱賶賯 亘賶乇賱賶诏賶 賲賶賯鬲賶.',zh:'浜烘皯鐨勫洟缁撳己澶с€?}},
+  {letter:'诰',forms:'诰 ,賭诰 ,賭诰 ,诰賭',ipa:'/h/',mnemonic:'鍝?鈥?杞诲懠',
+    examples:[{word:'诰丕蹕丕',meaning:'绌烘皵'},{word:'诰賷賰丕賷',meaning:'鏁呬簨'}],
+    sentence:{kk:'诰丕蹕丕 鬲丕夭丕.',zh:'绌烘皵娓呮柊銆?}},
+  {letter:'賮',forms:'賮 ,賭賮 ,賭賮 ,賮賭',ipa:'/f/',mnemonic:'浣?,
+    examples:[{word:'賮蹕鬲亘賵賱',meaning:'瓒崇悆'},{word:'賮蹠乇賲丕',meaning:'鍐滃満'}],
+    sentence:{kk:'賮蹕鬲亘賵賱 鬲丕賲丕卮丕 爻倬賵乇鬲.',zh:'瓒崇悆鏄緢濂界殑杩愬姩銆?}}
 ];
 
 // ---- Common Kazakh phrases ----
 const PHRASE_CATEGORIES = [
-  {id:'greetings',name:'问候交际',nameKK:'سالمدەسۋ / Сәлемдесу'},
-  {id:'fruits',name:'水果品',nameKK:'جەمىستەر / Жемістер'},
-  {id:'weather',name:'天气',nameKK:'اۋا رايى / Ауа райы'},
-  {id:'weekdays',name:'星期',nameKK:'اپتا كۇندەرى / Апта күндері'},
-  {id:'months',name:'月份',nameKK:'ايلار / Айлар'},
-  {id:'transport',name:'交通工具',nameKK:'كولىك / Көлік'},
-  {id:'subjects',name:'学科课程',nameKK:'پاندەر / Пәндер'},
-  {id:'food',name:'日常饮食',nameKK:'تاعام / Тағам'}
+  {id:'greetings',name:'闂€欎氦闄?,nameKK:'爻丕賱賲丿蹠爻蹕 / 小訖谢械屑写械褋褍'},
+  {id:'fruits',name:'姘存灉鍝?,nameKK:'噩蹠賲賶爻鬲蹠乇 / 袞械屑褨褋褌械褉'},
+  {id:'weather',name:'澶╂皵',nameKK:'丕蹕丕 乇丕賷賶 / 袗褍邪 褉邪泄褘'},
+  {id:'weekdays',name:'鏄熸湡',nameKK:'丕倬鬲丕 賰蹏賳丿蹠乇賶 / 袗锌褌邪 泻爷薪写械褉褨'},
+  {id:'months',name:'鏈堜唤',nameKK:'丕賷賱丕乇 / 袗泄谢邪褉'},
+  {id:'transport',name:'浜ら€氬伐鍏?,nameKK:'賰賵賱賶賰 / 袣萤谢褨泻'},
+  {id:'subjects',name:'瀛︾璇剧▼',nameKK:'倬丕賳丿蹠乇 / 袩訖薪写械褉'},
+  {id:'food',name:'鏃ュ父楗',nameKK:'鬲丕毓丕賲 / 孝邪覔邪屑'}
 ];
 
 const PHRASES = {
   greetings:[
-    {kk:'Сәлеметсіз бе',zh:'您好'},
-    {kk:'Сәлем',zh:'你好'},
-    {kk:'Қайырлы таң',zh:'早安'},
-    {kk:'Қайырлы күн',zh:'午安'},
-    {kk:'Қайырлы кеш',zh:'晚安'},
-    {kk:'Сау болыңыз',zh:'再见'},
-    {kk:'Рахмет',zh:'谢谢'},
-    {kk:'Өтінемін',zh:'请/不客气'},
-    {kk:'Кешіріңіз',zh:'对不起/打扰一下'},
-    {kk:'Қалайсыз?',zh:'你好吗？'},
-    {kk:'Жақсымын',zh:'我很好'},
-    {kk:'Сіздің атыңыз кім?',zh:'您叫什么名字？'}
+    {kk:'小訖谢械屑械褌褋褨蟹 斜械',zh:'鎮ㄥソ'},
+    {kk:'小訖谢械屑',zh:'浣犲ソ'},
+    {kk:'覛邪泄褘褉谢褘 褌邪遥',zh:'鏃╁畨'},
+    {kk:'覛邪泄褘褉谢褘 泻爷薪',zh:'鍗堝畨'},
+    {kk:'覛邪泄褘褉谢褘 泻械褕',zh:'鏅氬畨'},
+    {kk:'小邪褍 斜芯谢褘遥褘蟹',zh:'鍐嶈'},
+    {kk:'袪邪褏屑械褌',zh:'璋㈣阿'},
+    {kk:'莹褌褨薪械屑褨薪',zh:'璇?涓嶅姘?},
+    {kk:'袣械褕褨褉褨遥褨蟹',zh:'瀵逛笉璧?鎵撴壈涓€涓?},
+    {kk:'覛邪谢邪泄褋褘蟹?',zh:'浣犲ソ鍚楋紵'},
+    {kk:'袞邪覜褋褘屑褘薪',zh:'鎴戝緢濂?},
+    {kk:'小褨蟹写褨遥 邪褌褘遥褘蟹 泻褨屑?',zh:'鎮ㄥ彨浠€涔堝悕瀛楋紵'}
   ],
   fruits:[
-    {kk:'Алма',zh:'苹果'},
-    {kk:'Алмұрт',zh:'梨'},
-    {kk:'Банан',zh:'香蕉'},
-    {kk:'Жүзім',zh:'葡萄'},
-    {kk:'Қарбыз',zh:'西瓜'},
-    {kk:'Құлпынай',zh:'草莓'},
-    {kk:'Апельсин',zh:'橙子'},
-    {kk:'Шабдалы',zh:'桃子'},
-    {kk:'Өрік',zh:'杏'},
-    {kk:'Анар',zh:'石榴'},
-    {kk:'Мандарин',zh:'橘子'},
-    {kk:'Лимон',zh:'柠檬'}
+    {kk:'袗谢屑邪',zh:'鑻规灉'},
+    {kk:'袗谢屑冶褉褌',zh:'姊?},
+    {kk:'袘邪薪邪薪',zh:'棣欒晧'},
+    {kk:'袞爷蟹褨屑',zh:'钁¤悇'},
+    {kk:'覛邪褉斜褘蟹',zh:'瑗跨摐'},
+    {kk:'覛冶谢锌褘薪邪泄',zh:'鑽夎帗'},
+    {kk:'袗锌械谢褜褋懈薪',zh:'姗欏瓙'},
+    {kk:'楔邪斜写邪谢褘',zh:'妗冨瓙'},
+    {kk:'莹褉褨泻',zh:'鏉?},
+    {kk:'袗薪邪褉',zh:'鐭虫Υ'},
+    {kk:'袦邪薪写邪褉懈薪',zh:'姗樺瓙'},
+    {kk:'袥懈屑芯薪',zh:'鏌犳'}
   ],
   weather:[
-    {kk:'Күн ашық',zh:'晴天'},
-    {kk:'Жаңбыр жауып тұр',zh:'正在下雨'},
-    {kk:'Қар жауып тұр',zh:'正在下雪'},
-    {kk:'Күн бұлтты',zh:'多云'},
-    {kk:'Жел соғып тұр',zh:'正在刮风'},
-    {kk:'Ыстық',zh:'热'},
-    {kk:'Суық',zh:'冷'},
-    {kk:'Жылы',zh:'暖和'},
-    {kk:'Салқын',zh:'凉爽'},
-    {kk:'Боран',zh:'暴风雪'},
-    {kk:'Температура',zh:'温度'},
-    {kk:'Күн күркіреді',zh:'打雷'}
+    {kk:'袣爷薪 邪褕褘覜',zh:'鏅村ぉ'},
+    {kk:'袞邪遥斜褘褉 卸邪褍褘锌 褌冶褉',zh:'姝ｅ湪涓嬮洦'},
+    {kk:'覛邪褉 卸邪褍褘锌 褌冶褉',zh:'姝ｅ湪涓嬮洩'},
+    {kk:'袣爷薪 斜冶谢褌褌褘',zh:'澶氫簯'},
+    {kk:'袞械谢 褋芯覔褘锌 褌冶褉',zh:'姝ｅ湪鍒'},
+    {kk:'蝎褋褌褘覜',zh:'鐑?},
+    {kk:'小褍褘覜',zh:'鍐?},
+    {kk:'袞褘谢褘',zh:'鏆栧拰'},
+    {kk:'小邪谢覜褘薪',zh:'鍑夌埥'},
+    {kk:'袘芯褉邪薪',zh:'鏆撮闆?},
+    {kk:'孝械屑锌械褉邪褌褍褉邪',zh:'娓╁害'},
+    {kk:'袣爷薪 泻爷褉泻褨褉械写褨',zh:'鎵撻浄'}
   ],
   weekdays:[
-    {kk:'Дүйсенбі',zh:'星期一'},
-    {kk:'Сейсенбі',zh:'星期二'},
-    {kk:'Сәрсенбі',zh:'星期三'},
-    {kk:'Бейсенбі',zh:'星期四'},
-    {kk:'Жұма',zh:'星期五'},
-    {kk:'Сенбі',zh:'星期六'},
-    {kk:'Жексенбі',zh:'星期日'},
-    {kk:'Бүгін',zh:'今天'},
-    {kk:'Ертең',zh:'明天'},
-    {kk:'Кеше',zh:'昨天'},
-    {kk:'Апта',zh:'星期/周'},
-    {kk:'Демалыс',zh:'周末/休息'}
+    {kk:'袛爷泄褋械薪斜褨',zh:'鏄熸湡涓€'},
+    {kk:'小械泄褋械薪斜褨',zh:'鏄熸湡浜?},
+    {kk:'小訖褉褋械薪斜褨',zh:'鏄熸湡涓?},
+    {kk:'袘械泄褋械薪斜褨',zh:'鏄熸湡鍥?},
+    {kk:'袞冶屑邪',zh:'鏄熸湡浜?},
+    {kk:'小械薪斜褨',zh:'鏄熸湡鍏?},
+    {kk:'袞械泻褋械薪斜褨',zh:'鏄熸湡鏃?},
+    {kk:'袘爷谐褨薪',zh:'浠婂ぉ'},
+    {kk:'袝褉褌械遥',zh:'鏄庡ぉ'},
+    {kk:'袣械褕械',zh:'鏄ㄥぉ'},
+    {kk:'袗锌褌邪',zh:'鏄熸湡/鍛?},
+    {kk:'袛械屑邪谢褘褋',zh:'鍛ㄦ湯/浼戞伅'}
   ],
   months:[
-    {kk:'Қаңтар',zh:'一月'},
-    {kk:'Ақпан',zh:'二月'},
-    {kk:'Наурыз',zh:'三月'},
-    {kk:'Сәуір',zh:'四月'},
-    {kk:'Мамыр',zh:'五月'},
-    {kk:'Маусым',zh:'六月'},
-    {kk:'Шілде',zh:'七月'},
-    {kk:'Тамыз',zh:'八月'},
-    {kk:'Қыркүйек',zh:'九月'},
-    {kk:'Қазан',zh:'十月'},
-    {kk:'Қараша',zh:'十一月'},
-    {kk:'Желтоқсан',zh:'十二月'},
-    {kk:'Жыл',zh:'年'},
-    {kk:'Ай',zh:'月'}
+    {kk:'覛邪遥褌邪褉',zh:'涓€鏈?},
+    {kk:'袗覜锌邪薪',zh:'浜屾湀'},
+    {kk:'袧邪褍褉褘蟹',zh:'涓夋湀'},
+    {kk:'小訖褍褨褉',zh:'鍥涙湀'},
+    {kk:'袦邪屑褘褉',zh:'浜旀湀'},
+    {kk:'袦邪褍褋褘屑',zh:'鍏湀'},
+    {kk:'楔褨谢写械',zh:'涓冩湀'},
+    {kk:'孝邪屑褘蟹',zh:'鍏湀'},
+    {kk:'覛褘褉泻爷泄械泻',zh:'涔濇湀'},
+    {kk:'覛邪蟹邪薪',zh:'鍗佹湀'},
+    {kk:'覛邪褉邪褕邪',zh:'鍗佷竴鏈?},
+    {kk:'袞械谢褌芯覜褋邪薪',zh:'鍗佷簩鏈?},
+    {kk:'袞褘谢',zh:'骞?},
+    {kk:'袗泄',zh:'鏈?}
   ],
   transport:[
-    {kk:'Көлік',zh:'交通工具'},
-    {kk:'Машина/Автомобиль',zh:'汽车'},
-    {kk:'Автобус',zh:'公交车'},
-    {kk:'Пойыз',zh:'火车'},
-    {kk:'Ұшақ',zh:'飞机'},
-    {kk:'Метро',zh:'地铁'},
-    {kk:'Такси',zh:'出租车'},
-    {kk:'Велосипед',zh:'自行车'},
-    {kk:'Мотоцикл',zh:'摩托车'},
-    {kk:'Кеме',zh:'船'},
-    {kk:'Жолаушы',zh:'乘客'},
-    {kk:'Билет',zh:'票'}
+    {kk:'袣萤谢褨泻',zh:'浜ら€氬伐鍏?},
+    {kk:'袦邪褕懈薪邪/袗胁褌芯屑芯斜懈谢褜',zh:'姹借溅'},
+    {kk:'袗胁褌芯斜褍褋',zh:'鍏氦杞?},
+    {kk:'袩芯泄褘蟹',zh:'鐏溅'},
+    {kk:'野褕邪覜',zh:'椋炴満'},
+    {kk:'袦械褌褉芯',zh:'鍦伴搧'},
+    {kk:'孝邪泻褋懈',zh:'鍑虹杞?},
+    {kk:'袙械谢芯褋懈锌械写',zh:'鑷杞?},
+    {kk:'袦芯褌芯褑懈泻谢',zh:'鎽╂墭杞?},
+    {kk:'袣械屑械',zh:'鑸?},
+    {kk:'袞芯谢邪褍褕褘',zh:'涔樺'},
+    {kk:'袘懈谢械褌',zh:'绁?}
   ],
   subjects:[
-    {kk:'Химия',zh:'化学'},
-    {kk:'Физика',zh:'物理'},
-    {kk:'Математика',zh:'数学'},
-    {kk:'Биология',zh:'生物'},
-    {kk:'Тарих',zh:'历史'},
-    {kk:'География',zh:'地理'},
-    {kk:'Эдебиет',zh:'文学'},
-    {kk:'Тіл',zh:'语言'},
-    {kk:'Музыка',zh:'音乐'},
-    {kk:'Спорт',zh:'体育'},
-    {kk:'Информатика',zh:'计算机'},
-    {kk:'Университет',zh:'大学'}
+    {kk:'啸懈屑懈褟',zh:'鍖栧'},
+    {kk:'肖懈蟹懈泻邪',zh:'鐗╃悊'},
+    {kk:'袦邪褌械屑邪褌懈泻邪',zh:'鏁板'},
+    {kk:'袘懈芯谢芯谐懈褟',zh:'鐢熺墿'},
+    {kk:'孝邪褉懈褏',zh:'鍘嗗彶'},
+    {kk:'袚械芯谐褉邪褎懈褟',zh:'鍦扮悊'},
+    {kk:'协写械斜懈械褌',zh:'鏂囧'},
+    {kk:'孝褨谢',zh:'璇█'},
+    {kk:'袦褍蟹褘泻邪',zh:'闊充箰'},
+    {kk:'小锌芯褉褌',zh:'浣撹偛'},
+    {kk:'袠薪褎芯褉屑邪褌懈泻邪',zh:'璁＄畻鏈?},
+    {kk:'校薪懈胁械褉褋懈褌械褌',zh:'澶у'}
   ],
   food:[
-    {kk:'Нан',zh:'面包'},
-    {kk:'Сүт',zh:'牛奶'},
-    {kk:'Ет',zh:'肉'},
-    {kk:'Балық',zh:'鱼'},
-    {kk:'Күріш',zh:'米饭'},
-    {kk:'Көкөніс',zh:'蔬菜'},
-    {kk:'Жеміс',zh:'水果'},
-    {kk:'Сорпа',zh:'汤'},
-    {kk:'Бешбармақ',zh:'手抓肉（传统菜）'},
-    {kk:'Қуырдақ',zh:'炒肉'},
-    {kk:'Шай',zh:'茶'},
-    {kk:'Кофе',zh:'咖啡'}
+    {kk:'袧邪薪',zh:'闈㈠寘'},
+    {kk:'小爷褌',zh:'鐗涘ザ'},
+    {kk:'袝褌',zh:'鑲?},
+    {kk:'袘邪谢褘覜',zh:'楸?},
+    {kk:'袣爷褉褨褕',zh:'绫抽キ'},
+    {kk:'袣萤泻萤薪褨褋',zh:'钄彍'},
+    {kk:'袞械屑褨褋',zh:'姘存灉'},
+    {kk:'小芯褉锌邪',zh:'姹?},
+    {kk:'袘械褕斜邪褉屑邪覜',zh:'鎵嬫姄鑲夛紙浼犵粺鑿滐級'},
+    {kk:'覛褍褘褉写邪覜',zh:'鐐掕倝'},
+    {kk:'楔邪泄',zh:'鑼?},
+    {kk:'袣芯褎械',zh:'鍜栧暋'}
   ]
 };
 
 // ---- Learning plan (8-day) ----
 const LEARNING_PLAN = [
-  {day:1,title:'元音基础',task:'学А, Ә, Е, О, Ө, Ұ, Ү, Ы, І — 掌握9个元音字母',
-    quote:{text:'Білім — біліктілік.',trans:'知识就是力量。',scene:'第一课鼓励语'},
-    items:['А а','Ә ә','Е е','О о','Ө ө','Ұ ұ','Ү ү','Ы ы','І і']},
-  {day:2,title:'基础辅音 I',task:'学Б, В, Г, Ғ, Д, Ж, З 共7个辅音',
-    quote:{text:'Білекті бірді жығады, білімді мыңды жығады.',trans:'有力气只能打败一人，有学问能打败千人。',scene:'鼓励持续学习'},
-    items:['Б б','В в','Г г','Ғ ғ','Д д','Ж ж','З з']},
-  {day:3,title:'基础辅音 II',task:'学К, Қ, Л, М, Н, Ң, П 共7个辅音',
-    quote:{text:'Оқу — білім бұлағы.',trans:'学习是知识的源泉。',scene:'第3天鼓励'},
-    items:['К к','Қ қ','Л л','М м','Н н','Ң ң','П п']},
-  {day:4,title:'基础辅音 III',task:'学Р, С, Т, У, Ф, Х, Һ 共7个辅音',
-    quote:{text:'Білмесең де білгің келсе — үйрен.',trans:'即使不会，想学就学。',scene:'第4天鼓励'},
-    items:['Р р','С с','Т т','У у','Ф ф','Х х','Һ һ']},
-  {day:5,title:'剩余字母与借词字母',task:'学Ц, Ч, Ш, Щ, Ъ, Ы, Ь, Э, Ю, Я — 为俄语借词做准备',
-    quote:{text:'Тіл тас жарады, тас жармаса бас жарады.',trans:'语言能破石，不破石头也破头（语言的力量）。',scene:'第5天鼓励'},
-    items:['Ц ц','Ч ч','Ш ш','Щ щ','Ъ ъ','Ь ь','Э э','Ю ю','Я я']},
-  {day:6,title:'拼读与词汇 I',task:'掌握CVC结构的简单词，如ана, ата, бала, кітап',
-    quote:{text:'Көз қорқақ, қол батыр.',trans:'眼睛害怕，手勇敢。',scene:'开始阅读'},
+  {day:1,title:'鍏冮煶鍩虹',task:'瀛π? 訕, 袝, 袨, 莹, 野, 耶, 蝎, 袉 鈥?鎺屾彙9涓厓闊冲瓧姣?,
+    quote:{text:'袘褨谢褨屑 鈥?斜褨谢褨泻褌褨谢褨泻.',trans:'鐭ヨ瘑灏辨槸鍔涢噺銆?,scene:'绗竴璇鹃紦鍔辫'},
+    items:['袗 邪','訕 訖','袝 械','袨 芯','莹 萤','野 冶','耶 爷','蝎 褘','袉 褨']},
+  {day:2,title:'鍩虹杈呴煶 I',task:'瀛π? 袙, 袚, 覓, 袛, 袞, 袟 鍏?涓緟闊?,
+    quote:{text:'袘褨谢械泻褌褨 斜褨褉写褨 卸褘覔邪写褘, 斜褨谢褨屑写褨 屑褘遥写褘 卸褘覔邪写褘.',trans:'鏈夊姏姘斿彧鑳芥墦璐ヤ竴浜猴紝鏈夊闂兘鎵撹触鍗冧汉銆?,scene:'榧撳姳鎸佺画瀛︿範'},
+    items:['袘 斜','袙 胁','袚 谐','覓 覔','袛 写','袞 卸','袟 蟹']},
+  {day:3,title:'鍩虹杈呴煶 II',task:'瀛π? 覛, 袥, 袦, 袧, 尧, 袩 鍏?涓緟闊?,
+    quote:{text:'袨覜褍 鈥?斜褨谢褨屑 斜冶谢邪覔褘.',trans:'瀛︿範鏄煡璇嗙殑婧愭硥銆?,scene:'绗?澶╅紦鍔?},
+    items:['袣 泻','覛 覜','袥 谢','袦 屑','袧 薪','尧 遥','袩 锌']},
+  {day:4,title:'鍩虹杈呴煶 III',task:'瀛π? 小, 孝, 校, 肖, 啸, 液 鍏?涓緟闊?,
+    quote:{text:'袘褨谢屑械褋械遥 写械 斜褨谢谐褨遥 泻械谢褋械 鈥?爷泄褉械薪.',trans:'鍗充娇涓嶄細锛屾兂瀛﹀氨瀛︺€?,scene:'绗?澶╅紦鍔?},
+    items:['袪 褉','小 褋','孝 褌','校 褍','肖 褎','啸 褏','液 一']},
+  {day:5,title:'鍓╀綑瀛楁瘝涓庡€熻瘝瀛楁瘝',task:'瀛π? 效, 楔, 些, 歇, 蝎, 鞋, 协, 挟, 携 鈥?涓轰縿璇€熻瘝鍋氬噯澶?,
+    quote:{text:'孝褨谢 褌邪褋 卸邪褉邪写褘, 褌邪褋 卸邪褉屑邪褋邪 斜邪褋 卸邪褉邪写褘.',trans:'璇█鑳界牬鐭筹紝涓嶇牬鐭冲ご涔熺牬澶达紙璇█鐨勫姏閲忥級銆?,scene:'绗?澶╅紦鍔?},
+    items:['笑 褑','效 褔','楔 褕','些 褖','歇 褗','鞋 褜','协 褝','挟 褞','携 褟']},
+  {day:6,title:'鎷艰涓庤瘝姹?I',task:'鎺屾彙CVC缁撴瀯鐨勭畝鍗曡瘝锛屽邪薪邪, 邪褌邪, 斜邪谢邪, 泻褨褌邪锌',
+    quote:{text:'袣萤蟹 覜芯褉覜邪覜, 覜芯谢 斜邪褌褘褉.',trans:'鐪肩潧瀹虫€曪紝鎵嬪媷鏁€?,scene:'寮€濮嬮槄璇?},
     items:[]},
-  {day:7,title:'拼读与词汇 II',task:'学习更长词汇，练习见面问候完整句',
-    quote:{text:'Еңбек етсең емерсің.',trans:'劳动就会吃饱。',scene:'第7天总结'},
+  {day:7,title:'鎷艰涓庤瘝姹?II',task:'瀛︿範鏇撮暱璇嶆眹锛岀粌涔犺闈㈤棶鍊欏畬鏁村彞',
+    quote:{text:'袝遥斜械泻 械褌褋械遥 械屑械褉褋褨遥.',trans:'鍔冲姩灏变細鍚冮ケ銆?,scene:'绗?澶╂€荤粨'},
     items:[]},
-  {day:8,title:'综合复习',task:'完整复习所有字母，模拟对话，学习计划完成！',
-    quote:{text:'Білім — өмір шырағы.',trans:'知识是生活的明灯。',scene:'结业语'},
+  {day:8,title:'缁煎悎澶嶄範',task:'瀹屾暣澶嶄範鎵€鏈夊瓧姣嶏紝妯℃嫙瀵硅瘽锛屽涔犺鍒掑畬鎴愶紒',
+    quote:{text:'袘褨谢褨屑 鈥?萤屑褨褉 褕褘褉邪覔褘.',trans:'鐭ヨ瘑鏄敓娲荤殑鏄庣伅銆?,scene:'缁撲笟璇?},
     items:[]}
 ];
 
 // ---- Practice question bank ----
 const PRACTICE_QUESTIONS = [
   // Letter matching
-  {type:'match',q:'Қазақ тілі"中第一个字母是什么？',options:['Қ','К','Х','Ғ'],answer:0,
+  {type:'match',q:'覛邪蟹邪覜 褌褨谢褨"涓涓€涓瓧姣嶆槸浠€涔堬紵',options:['覛','袣','啸','覓'],answer:0,
     page:['zh-cyr','zh-arab']},
-  {type:'match',q:'哪个字母是哈萨克语特有的？',options:['Ң','Н','М','Л'],answer:0,
+  {type:'match',q:'鍝釜瀛楁瘝鏄搱钀ㄥ厠璇壒鏈夌殑锛?,options:['尧','袧','袦','袥'],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'Ә 的发音是什么？',options:['/æ/','/ɑ/','/e/','/i/'],answer:0,
+  {type:'match',q:'訕 鐨勫彂闊虫槸浠€涔堬紵',options:['/忙/','/蓱/','/e/','/i/'],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'Ғ 的发音部位在哪？',options:['喉咙深处','舌尖','牙齿','嘴唇'],answer:0,
+  {type:'match',q:'覓 鐨勫彂闊抽儴浣嶅湪鍝紵',options:['鍠夊挋娣卞','鑸屽皷','鐗欓娇','鍢村攪'],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'Р 是什么类型的音？',options:['颤音','塞音','鼻音','边音'],answer:0,
+  {type:'match',q:'袪 鏄粈涔堢被鍨嬬殑闊筹紵',options:['棰ら煶','濉為煶','榧婚煶','杈归煶'],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'Ұ 和 Ү 的区别是什么？',options:['圆唇vs展唇','长音vs短音','前舌vs后舌','送气vs不送气'],answer:0,
+  {type:'match',q:'野 鍜?耶 鐨勫尯鍒槸浠€涔堬紵',options:['鍦嗗攪vs灞曞攪','闀块煶vs鐭煶','鍓嶈垖vs鍚庤垖','閫佹皵vs涓嶉€佹皵'],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'І 的发音最像汉语哪个音？',options:['一','以','于','乌'],answer:0,
+  {type:'match',q:'袉 鐨勫彂闊虫渶鍍忔眽璇摢涓煶锛?,options:['涓€','浠?,'浜?,'涔?],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'Һ 的正确发音是？',options:['轻呼h','喉咙k','舌尖t','唇音p'],answer:0,
+  {type:'match',q:'液 鐨勬纭彂闊虫槸锛?,options:['杞诲懠h','鍠夊挋k','鑸屽皷t','鍞囬煶p'],answer:0,
     page:['zh-cyr','cyr-lat']},
   // Dictation-style in matching
-  {type:'match',q:'"Ана"是什么意思？',options:['妈妈','爸爸','姐姐','奶奶'],answer:0,
+  {type:'match',q:'"袗薪邪"鏄粈涔堟剰鎬濓紵',options:['濡堝','鐖哥埜','濮愬','濂跺ザ'],answer:0,
     page:['zh-cyr','zh-arab']},
-  {type:'match',q:'"Күн"是什么意思？',options:['太阳/天','月亮','星星','云'],answer:0,
+  {type:'match',q:'"袣爷薪"鏄粈涔堟剰鎬濓紵',options:['澶槼/澶?,'鏈堜寒','鏄熸槦','浜?],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'"Су"的中文是？',options:['水','火','土','风'],answer:0,
+  {type:'match',q:'"小褍"鐨勪腑鏂囨槸锛?,options:['姘?,'鐏?,'鍦?,'椋?],answer:0,
     page:['zh-cyr','zh-arab']},
-  {type:'match',q:'"Рахмет"的中文是？',options:['谢谢','你好','再见','对不起'],answer:0,
+  {type:'match',q:'"袪邪褏屑械褌"鐨勪腑鏂囨槸锛?,options:['璋㈣阿','浣犲ソ','鍐嶈','瀵逛笉璧?],answer:0,
     page:['zh-cyr','cyr-lat']},
   // Fill-in
-  {type:'fill',q:'哈萨克语"苹果"是 ＿',answer:'алма',altAnswers:['алма','alma'],
+  {type:'fill',q:'鍝堣惃鍏嬭"鑻规灉"鏄?锛?,answer:'邪谢屑邪',altAnswers:['邪谢屑邪','alma'],
     page:['zh-cyr','zh-arab']},
-  {type:'fill',q:'Кітап 的中文是 ＿',answer:'书',altAnswers:['书','书本'],
+  {type:'fill',q:'袣褨褌邪锌 鐨勪腑鏂囨槸 锛?,answer:'涔?,altAnswers:['涔?,'涔︽湰'],
     page:['zh-cyr','cyr-lat']},
-  {type:'fill',q:'"我"的哈萨克语是 ＿',answer:'мен',altAnswers:['мен','men'],
+  {type:'fill',q:'"鎴?鐨勫搱钀ㄥ厠璇槸 锛?,answer:'屑械薪',altAnswers:['屑械薪','men'],
     page:['zh-cyr','cyr-lat']},
-  {type:'fill',q:'"你好"的哈萨克语是 ＿',answer:'сәлем',altAnswers:['сәлем','salem','sälem'],
+  {type:'fill',q:'"浣犲ソ"鐨勫搱钀ㄥ厠璇槸 锛?,answer:'褋訖谢械屑',altAnswers:['褋訖谢械屑','salem','s盲lem'],
     page:['zh-cyr','cyr-lat']},
-  {type:'fill',q:'"家/房子"的哈萨克语是 ＿',answer:'үй',altAnswers:['үй','üy','ui'],
+  {type:'fill',q:'"瀹?鎴垮瓙"鐨勫搱钀ㄥ厠璇槸 锛?,answer:'爷泄',altAnswers:['爷泄','眉y','ui'],
     page:['zh-cyr','cyr-lat']},
   // Scene selection
-  {type:'scene',q:'早上见到老师应该说？',options:['Қайырлы таң','Қайырлы кеш','Сау бол','Рахмет'],answer:0,
+  {type:'scene',q:'鏃╀笂瑙佸埌鑰佸笀搴旇璇达紵',options:['覛邪泄褘褉谢褘 褌邪遥','覛邪泄褘褉谢褘 泻械褕','小邪褍 斜芯谢','袪邪褏屑械褌'],answer:0,
     page:['zh-cyr','zh-arab']},
-  {type:'scene',q:'别人帮忙后应该说？',options:['Рахмет','Кешіріңіз','Сәлем','Жақсы'],answer:0,
+  {type:'scene',q:'鍒汉甯繖鍚庡簲璇ヨ锛?,options:['袪邪褏屑械褌','袣械褕褨褉褨遥褨蟹','小訖谢械屑','袞邪覜褋褘'],answer:0,
     page:['zh-cyr','zh-arab']},
-  {type:'scene',q:'离开时应该说？',options:['Сау болыңыз','Сәлеметсіз бе','Рахмет','Қалайсыз'],answer:0,
+  {type:'scene',q:'绂诲紑鏃跺簲璇ヨ锛?,options:['小邪褍 斜芯谢褘遥褘蟹','小訖谢械屑械褌褋褨蟹 斜械','袪邪褏屑械褌','覛邪谢邪泄褋褘蟹'],answer:0,
     page:['zh-cyr','zh-arab']},
-  {type:'scene',q:'想吃水果应该说？',options:['Алма жегім келеді','Нан жегім келеді','Су ішкім келеді','Ұйықтағым келеді'],answer:0,
+  {type:'scene',q:'鎯冲悆姘存灉搴旇璇达紵',options:['袗谢屑邪 卸械谐褨屑 泻械谢械写褨','袧邪薪 卸械谐褨屑 泻械谢械写褨','小褍 褨褕泻褨屑 泻械谢械写褨','野泄褘覜褌邪覔褘屑 泻械谢械写褨'],answer:0,
     page:['zh-cyr','zh-arab']},
   // More letter matching
-  {type:'match',q:'Ө 的发音像英语哪个音？',options:['ur（burn的元音）','ee（see的元音）','oo（boot的元音）','ah（father的元音）'],answer:0,
+  {type:'match',q:'莹 鐨勫彂闊冲儚鑻辫鍝釜闊筹紵',options:['ur锛坆urn鐨勫厓闊筹級','ee锛坰ee鐨勫厓闊筹級','oo锛坆oot鐨勫厓闊筹級','ah锛坒ather鐨勫厓闊筹級'],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'Ң 的发音在汉语中出现在哪里？',options:['ang（昂的尾音）','an（安的尾音）','en（恩的尾音）','in（因的尾音）'],answer:0,
+  {type:'match',q:'尧 鐨勫彂闊冲湪姹夎涓嚭鐜板湪鍝噷锛?,options:['ang锛堟槀鐨勫熬闊筹級','an锛堝畨鐨勫熬闊筹級','en锛堟仼鐨勫熬闊筹級','in锛堝洜鐨勫熬闊筹級'],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'Ы 的发音特点是什么？',options:['舌后不圆唇','舌前圆唇','双唇颤抖','声带不振动'],answer:0,
+  {type:'match',q:'蝎 鐨勫彂闊崇壒鐐规槸浠€涔堬紵',options:['鑸屽悗涓嶅渾鍞?,'鑸屽墠鍦嗗攪','鍙屽攪棰ゆ姈','澹板甫涓嶆尟鍔?],answer:0,
     page:['zh-cyr','cyr-lat']},
-  {type:'match',q:'"Бала"是什么意思？',options:['孩子','男孩','女孩','婴儿'],answer:0,
+  {type:'match',q:'"袘邪谢邪"鏄粈涔堟剰鎬濓紵',options:['瀛╁瓙','鐢峰','濂冲','濠村効'],answer:0,
     page:['zh-cyr','zh-arab']}
 ];
 
@@ -1166,19 +1166,19 @@ function updateGreeting(page){
   if(page==='home'){
     const now = new Date();
     const hour = now.getHours();
-    let timeWord = '早上好';
-    if(hour>=12&&hour<14) timeWord='中午好';
-    else if(hour>=14&&hour<18) timeWord='下午好';
-    else if(hour>=18) timeWord='晚上好';
-    h.textContent = timeWord+'！今天学哈萨克语吧';
+    let timeWord = '鏃╀笂濂?;
+    if(hour>=12&&hour<14) timeWord='涓崍濂?;
+    else if(hour>=14&&hour<18) timeWord='涓嬪崍濂?;
+    else if(hour>=18) timeWord='鏅氫笂濂?;
+    h.textContent = timeWord+'锛佷粖澶╁鍝堣惃鍏嬭鍚?;
   } else {
     const names = {
-      'zh-cyr':'汉语→西里尔文',
-      'arab-cyr':'老哈文→西里尔',
-      'zh-arab':'汉语→老哈文',
-      'cyr-lat':'西里尔→拉丁'
+      'zh-cyr':'姹夎鈫掕タ閲屽皵鏂?,
+      'arab-cyr':'鑰佸搱鏂団啋瑗块噷灏?,
+      'zh-arab':'姹夎鈫掕€佸搱鏂?,
+      'cyr-lat':'瑗块噷灏斺啋鎷変竵'
     };
-    h.textContent = names[page]||'学习';
+    h.textContent = names[page]||'瀛︿範';
   }
 }
 
@@ -1192,43 +1192,43 @@ function renderAlphabet(prefix){
   const isArabToCyr = prefix==='arab-cyr'||prefix==='arabcyr';
   const isCyrToLat = prefix==='cyr-lat'||prefix==='cyrlat';
   const isArabic = isArabicOnly || isArabToCyr;
-  // For arab→cyr: show Cyrillic letters with Arabic reference
-  // For cyr→lat: show Latin letters with Cyrillic reference
-  // For zh→arab: show Arabic letters
+  // For arab鈫抍yr: show Cyrillic letters with Arabic reference
+  // For cyr鈫抣at: show Latin letters with Cyrillic reference
+  // For zh鈫抋rab: show Arabic letters
   // For other: show Cyrillic letters
   let data, label;
-  if(isArabicOnly){ data = ARABIC_ALPHABET; label = '阿拉伯字母'; }
-  else if(isCyrToLat){ data = LATIN_ALPHABET; label = '拉丁字母'; }
-  else { data = CYRILLIC_ALPHABET; label = '西里尔字母'; }
-  let html='<div class="section-title">🔤 '+label+' · '+data.length+' 个字母</div>';
+  if(isArabicOnly){ data = ARABIC_ALPHABET; label = '闃挎媺浼瓧姣?; }
+  else if(isCyrToLat){ data = LATIN_ALPHABET; label = '鎷変竵瀛楁瘝'; }
+  else { data = CYRILLIC_ALPHABET; label = '瑗块噷灏斿瓧姣?; }
+  let html='<div class="section-title">馃敜 '+label+' 路 '+data.length+' 涓瓧姣?/div>';
 
   // Special letters section (Cyrillic only, not for arab-cyr or cyr-lat)
   if(!isArabic && !isCyrToLat){
-    html+='<div class="section-title" style="margin-top:20px;font-size:1em;color:var(--gold)">⭐ 9个特有字母（汉语没有对应音）</div>';
+    html+='<div class="section-title" style="margin-top:20px;font-size:1em;color:var(--gold)">猸?9涓壒鏈夊瓧姣嶏紙姹夎娌℃湁瀵瑰簲闊筹級</div>';
     html+='<div class="special-grid">';
     SPECIAL_LETTERS.forEach(l=>{
       const ll = l.split(' ')[0];
       html+=`<div class="special-card">
         <div class="sc-title">${l}</div>
-        <div class="sc-note">✨ 哈萨克语特有！需要重点练习</div>
+        <div class="sc-note">鉁?鍝堣惃鍏嬭鐗规湁锛侀渶瑕侀噸鐐圭粌涔?/div>
       </div>`;
     });
     html+='</div>';
   }
 
   // Letter grid
-  html+='<div class="section-title" style="margin-top:20px">全部字母</div>';
+  html+='<div class="section-title" style="margin-top:20px">鍏ㄩ儴瀛楁瘝</div>';
   html+='<div class="alphabet-grid">';
   data.forEach((d,i)=>{
     const isSpecial = !isArabic && !isCyrToLat && SPECIAL_LETTERS.some(s=>s.split(' ')[0]===d.letter.split(' ')[0]);
-    // For arab→cyr: add Arabic script reference
+    // For arab鈫抍yr: add Arabic script reference
     let refLine = '';
     if(isArabToCyr && ARABIC_ALPHABET[i]){
-      refLine = `<div class="source" style="margin-top:4px;font-size:.85em">Араб жазуы: <b style="font-size:1.2em;color:var(--kz-pine)">${ARABIC_ALPHABET[i].letter}</b></div>`;
+      refLine = `<div class="source" style="margin-top:4px;font-size:.85em">袗褉邪斜 卸邪蟹褍褘: <b style="font-size:1.2em;color:var(--kz-pine)">${ARABIC_ALPHABET[i].letter}</b></div>`;
     }
-    // For cyr→lat: add Cyrillic reference
+    // For cyr鈫抣at: add Cyrillic reference
     if(isCyrToLat && d.cyr){
-      refLine = `<div class="source" style="margin-top:4px;font-size:.85em">Кириллица: <b style="font-size:1.2em;color:var(--kz-teal)">${d.cyr}</b></div>`;
+      refLine = `<div class="source" style="margin-top:4px;font-size:.85em">袣懈褉懈谢谢懈褑邪: <b style="font-size:1.2em;color:var(--kz-teal)">${d.cyr}</b></div>`;
     }
     html+=`<div class="letter-card${isSpecial?' special':''}">
       <div class="letter-display">
@@ -1237,12 +1237,12 @@ function renderAlphabet(prefix){
         <span class="letter-ipa">${d.ipa}</span>
       </div>
       ${refLine}
-      <div class="mnemonic">💡 ${d.mnemonic}</div>
+      <div class="mnemonic">馃挕 ${d.mnemonic}</div>
       <div class="examples">${d.examples.map(e=>`<span class="ex">${e.word} <span class="meaning">${e.meaning}</span></span>`).join('')}</div>
-      <div class="sentence">📖 ${d.sentence.kk}<br><span style="font-size:.85em;color:var(--text2)">${d.sentence.zh}</span></div>
-      ${d.tip?`<div class="tip">⚠️ ${d.tip}</div>`:''}
-      ${d.forms?`<div class="source">4种形态：${d.forms}</div>`:''}
-      <div class="source">📚 来源：最新哈萨克文字母标准</div>
+      <div class="sentence">馃摉 ${d.sentence.kk}<br><span style="font-size:.85em;color:var(--text2)">${d.sentence.zh}</span></div>
+      ${d.tip?`<div class="tip">鈿狅笍 ${d.tip}</div>`:''}
+      ${d.forms?`<div class="source">4绉嶅舰鎬侊細${d.forms}</div>`:''}
+      <div class="source">馃摎 鏉ユ簮锛氭渶鏂板搱钀ㄥ厠鏂囧瓧姣嶆爣鍑?/div>
     </div>`;
   });
   html+='</div>';
@@ -1257,16 +1257,16 @@ let translitDir = 'zh2kk';
 
 // Keep cyr2Latin for internal use (Latin alphabet display)
 function cyr2Latin(text){
-  const m={'а':'a','ә':'ä','б':'b','в':'v','г':'g','ғ':'ğ','д':'d','е':'e',
-    'ё':'ë','ж':'j','з':'z','и':'i','й':'ı','к':'k','қ':'q','л':'l','м':'m',
-    'н':'n','ң':'ñ','о':'o','ө':'ö','п':'p','р':'r','с':'s','т':'t','у':'y',
-    'ұ':'ū','ү':'ü','ф':'f','х':'h','һ':'h','ц':'ts','ч':'ch','ш':'ş','щ':'şş',
-    'ъ':'','ы':'y','і':'i','ь':'','э':'è','ю':'iu','я':'ia',
-    'А':'A','Ә':'Ä','Б':'B','В':'V','Г':'G','Ғ':'Ğ','Д':'D','Е':'E',
-    'Ё':'Ë','Ж':'J','З':'Z','И':'I','Й':'Y','К':'K','Қ':'Q','Л':'L','М':'M',
-    'Н':'N','Ң':'Ñ','О':'O','Ө':'Ö','П':'P','Р':'R','С':'S','Т':'T','У':'Y',
-    'Ұ':'Ū','Ү':'Ü','Ф':'F','Х':'X','Һ':'H','Ц':'Ts','Ч':'Ch','Ш':'Ş','Щ':'Şş',
-    'Ъ':'','Ы':'Y','І':'I','Ь':'','Э':'E','Ю':'Iu','Я':'Ia'};
+  const m={'邪':'a','訖':'盲','斜':'b','胁':'v','谐':'g','覔':'臒','写':'d','械':'e',
+    '褢':'毛','卸':'j','蟹':'z','懈':'i','泄':'谋','泻':'k','覜':'q','谢':'l','屑':'m',
+    '薪':'n','遥':'帽','芯':'o','萤':'枚','锌':'p','褉':'r','褋':'s','褌':'t','褍':'y',
+    '冶':'奴','爷':'眉','褎':'f','褏':'h','一':'h','褑':'ts','褔':'ch','褕':'艧','褖':'艧艧',
+    '褗':'','褘':'y','褨':'i','褜':'','褝':'猫','褞':'iu','褟':'ia',
+    '袗':'A','訕':'脛','袘':'B','袙':'V','袚':'G','覓':'臑','袛':'D','袝':'E',
+    '衼':'脣','袞':'J','袟':'Z','袠':'I','袡':'Y','袣':'K','覛':'Q','袥':'L','袦':'M',
+    '袧':'N','尧':'脩','袨':'O','莹':'脰','袩':'P','袪':'R','小':'S','孝':'T','校':'Y',
+    '野':'弄','耶':'脺','肖':'F','啸':'X','液':'H','笑':'Ts','效':'Ch','楔':'艦','些':'艦艧',
+    '歇':'','蝎':'Y','袉':'I','鞋':'','协':'E','挟':'Iu','携':'Ia'};
   let r='';
   for(let c of text){
     if(m[c]) r+=m[c];
@@ -1281,26 +1281,26 @@ function renderTranslit(prefix){
   currentTranslitPage = prefix;
   translitDir = 'zh2kk';
 
-  let html = '<div class="section-title">🔄 翻译工具（百度翻译）</div>'
-    + '<div style="font-size:.82em;color:var(--text2);margin-bottom:10px">输入中文或哈萨克文，自动翻译</div>'
+  let html = '<div class="section-title">馃攧 缈昏瘧宸ュ叿锛堢櫨搴︾炕璇戯級</div>'
+    + '<div style="font-size:.82em;color:var(--text2);margin-bottom:10px">杈撳叆涓枃鎴栧搱钀ㄥ厠鏂囷紝鑷姩缈昏瘧</div>'
     + '<div class="translit-area">'
     + '<div class="translit-tabs" style="margin-bottom:8px">'
-    + '<button class="active" id="translitDirBtn" onclick="swapTranslitDir()">中文 → Қазақша</button>'
+    + '<button class="active" id="translitDirBtn" onclick="swapTranslitDir()">涓枃 鈫?覛邪蟹邪覜褕邪</button>'
     + '</div>'
-    + '<div class="translit-row"><textarea id="translitInput" placeholder="输入中文或哈萨克文..."></textarea></div>'
+    + '<div class="translit-row"><textarea id="translitInput" placeholder="杈撳叆涓枃鎴栧搱钀ㄥ厠鏂?.."></textarea></div>'
     + '<div class="translit-actions">'
-    + '<button class="primary" onclick="doTranslit()">🌐 翻译</button>'
-    + '<button onclick="swapTranslitDir()">🔄 互换语言</button>'
-    + '<button onclick="copyTranslit()">📋 复制结果</button>'
-    + '<button class="danger" onclick="clearTranslit()">🗑️ 清空</button>'
-    + '<button onclick="toggleHistory()">📜 历史</button>'
+    + '<button class="primary" onclick="doTranslit()">馃寪 缈昏瘧</button>'
+    + '<button onclick="swapTranslitDir()">馃攧 浜掓崲璇█</button>'
+    + '<button onclick="copyTranslit()">馃搵 澶嶅埗缁撴灉</button>'
+    + '<button class="danger" onclick="clearTranslit()">馃棏锔?娓呯┖</button>'
+    + '<button onclick="toggleHistory()">馃摐 鍘嗗彶</button>'
     + '</div>'
-    + '<div class="translit-row"><textarea id="translitOutput" placeholder="翻译结果..." readonly style="min-height:80px"></textarea></div>'
+    + '<div class="translit-row"><textarea id="translitOutput" placeholder="缈昏瘧缁撴灉..." readonly style="min-height:80px"></textarea></div>'
     + '<div id="translitError" class="error-msg" style="display:none"></div>'
     + '<div id="translitHistory" class="history-list" style="display:none"></div>'
     + '<div class="batch-zone" onclick="document.getElementById(\'batchFile\').click()" ondragover="this.classList.add(\'dragover\')" ondragleave="this.classList.remove(\'dragover\')" ondrop="handleBatchDrop(event,\'' + prefix + '\')">'
-    + '📄 上传 TXT 文件 → 自动翻译并下载'
-    + '<span style="display:block;font-size:.78em;color:var(--text3);margin-top:4px">一行一句自动翻译，完成后自动下载</span>'
+    + '馃搫 涓婁紶 TXT 鏂囦欢 鈫?鑷姩缈昏瘧骞朵笅杞?
+    + '<span style="display:block;font-size:.78em;color:var(--text3);margin-top:4px">涓€琛屼竴鍙ヨ嚜鍔ㄧ炕璇戯紝瀹屾垚鍚庤嚜鍔ㄤ笅杞?/span>'
     + '<input type="file" id="batchFile" accept=".txt" onchange="handleBatchFile(event,\'' + prefix + '\')" style="display:none">'
     + '</div></div>';
   container.innerHTML = html;
@@ -1309,7 +1309,7 @@ function renderTranslit(prefix){
 function swapTranslitDir(){
   translitDir = translitDir==='zh2kk' ? 'kk2zh' : 'zh2kk';
   const btn = document.getElementById('translitDirBtn');
-  btn.textContent = translitDir==='zh2kk' ? '中文 → Қазақша' : 'Қазақша → 中文';
+  btn.textContent = translitDir==='zh2kk' ? '涓枃 鈫?覛邪蟹邪覜褕邪' : '覛邪蟹邪覜褕邪 鈫?涓枃';
 }
 
 function doTranslit(){
@@ -1320,7 +1320,7 @@ function doTranslit(){
   const text = input.value.trim();
   if(!text){ output.value=''; return; }
 
-  output.value = '翻译中...';
+  output.value = '缈昏瘧涓?..';
   const to = translitDir==='zh2kk' ? 'kaz' : 'zh';
   const from = 'auto';
 
@@ -1339,14 +1339,14 @@ function doTranslit(){
           output.value = result2;
         } else {
           output.value = '';
-          error.textContent = '翻译失败，请检查网络或稍后再试';
+          error.textContent = '缈昏瘧澶辫触锛岃妫€鏌ョ綉缁滄垨绋嶅悗鍐嶈瘯';
           error.style.display='block';
         }
       });
     }
   }).catch(e=>{
     output.value = '';
-    error.textContent = '翻译失败：' + e.message;
+    error.textContent = '缈昏瘧澶辫触锛? + e.message;
     error.style.display='block';
   });
 }
@@ -1354,7 +1354,7 @@ function doTranslit(){
 function copyTranslit(){
   const output = document.getElementById('translitOutput');
   if(output&&output.value){
-    navigator.clipboard.writeText(output.value).then(()=>showToast('已复制！','success'));
+    navigator.clipboard.writeText(output.value).then(()=>showToast('宸插鍒讹紒','success'));
   }
 }
 
@@ -1374,7 +1374,7 @@ function toggleHistory(){
   if(el.style.display==='block'){el.style.display='none';return;}
   const list = state.history.slice(0,20);
   el.innerHTML = list.map(h=>`<div class="h-item" onclick="restoreHistory('${h.src.replace(/'/g,"\\'")}')">
-    <span>${h.src} → ${h.dst}</span>
+    <span>${h.src} 鈫?${h.dst}</span>
     <small style="color:var(--text2)">${h.time||''}</small>
   </div>`).join('');
   el.style.display='block';
@@ -1396,7 +1396,7 @@ function handleBatchFile(event,prefix){
     doTranslit(prefix);
     const out = document.getElementById('translitOutput');
     downloadText(out.value, file.name.replace('.txt','_translit.txt'));
-    showToast('批量转写完成并下载！','success');
+    showToast('鎵归噺杞啓瀹屾垚骞朵笅杞斤紒','success');
   };
   reader.readAsText(file);
 }
@@ -1412,7 +1412,7 @@ function handleBatchDrop(event,prefix){
     doTranslit(prefix);
     const out = document.getElementById('translitOutput');
     downloadText(out.value, file.name.replace('.txt','_translit.txt'));
-    showToast('批量转写完成！','success');
+    showToast('鎵归噺杞啓瀹屾垚锛?,'success');
   };
   reader.readAsText(file);
 }
@@ -1436,32 +1436,32 @@ function renderPractice(prefix){
   const mapping = {'zhcyr':'zh-cyr','arabcyr':'arab-cyr','zharab':'zh-arab','cyrlat':'cyr-lat'};
   const modeKey = mapping[prefix]||'zh-cyr';
 
-  let html = `<div class="section-title">📝 练习系统</div>
+  let html = `<div class="section-title">馃摑 缁冧範绯荤粺</div>
   <div class="card practice-card">
     <div class="progress" id="practiceProgress"></div>
     <div id="practiceArea">
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px 0">
         <button onclick="startPractice('${prefix}','match')" class="home-btn" style="background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;height:60px;font-size:.9em">
-          🔤 字母匹配
+          馃敜 瀛楁瘝鍖归厤
         </button>
         <button onclick="startPractice('${prefix}','dictation')" class="home-btn" style="background:linear-gradient(135deg,var(--green),#3dbdb5);color:#fff;height:60px;font-size:.9em">
-          🎧 听写练习
+          馃帶 鍚啓缁冧範
         </button>
         <button onclick="startPractice('${prefix}','fill')" class="home-btn" style="background:linear-gradient(135deg,var(--orange),#e88a30);color:#fff;height:60px;font-size:.9em">
-          ✍️ 拼写填空
+          鉁嶏笍 鎷煎啓濉┖
         </button>
         <button onclick="startPractice('${prefix}','scene')" class="home-btn" style="background:linear-gradient(135deg,var(--pink),#e85a8a);color:#fff;height:60px;font-size:.9em">
-          🎭 场景选择
+          馃幁 鍦烘櫙閫夋嫨
         </button>
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="section-title" style="font-size:1em">❌ 错题本</div>
+    <div class="section-title" style="font-size:1em">鉂?閿欓鏈?/div>
     <div class="error-book" id="errorBook">${renderErrorBook()}</div>
   </div>
   <div class="card">
-    <div class="section-title" style="font-size:1em">🏆 成就</div>
+    <div class="section-title" style="font-size:1em">馃弳 鎴愬氨</div>
     <div class="achieve-grid" id="achieveGrid">${renderAchievements()}</div>
   </div>`;
   container.innerHTML = html;
@@ -1510,8 +1510,8 @@ function showPracticeQ(){
     html+=`</div>`;
   } else if(q.type==='fill'){
     html+=`<div class="fill-input">
-      <input type="text" id="fillAnswer" placeholder="输入答案..." onkeydown="if(event.key==='Enter')checkFill()" autocomplete="off">
-      <button onclick="checkFill()">✓ 确认</button>
+      <input type="text" id="fillAnswer" placeholder="杈撳叆绛旀..." onkeydown="if(event.key==='Enter')checkFill()" autocomplete="off">
+      <button onclick="checkFill()">鉁?纭</button>
     </div>`;
   }
   html+=`<div id="practiceFeedback" style="margin-top:12px;min-height:30px"></div>`;
@@ -1534,7 +1534,7 @@ function checkPractice(idx){
   if(correct){
     practiceScore++;
     btns[idx].classList.add('correct');
-    feed.innerHTML = `<div class="result" style="color:var(--green)">✅ 正确！</div>`;
+    feed.innerHTML = `<div class="result" style="color:var(--green)">鉁?姝ｇ‘锛?/div>`;
     // Remove from error book if correct 3 times
     if(state.errorBook[q.q]){
       state.errorBook[q.q] = (state.errorBook[q.q]||0)+1;
@@ -1547,7 +1547,7 @@ function checkPractice(idx){
     // Add to error book
     state.errorBook[q.q] = (state.errorBook[q.q]||0)+1;
     saveState();
-    feed.innerHTML = `<div class="result" style="color:var(--accent)">❌ 错误! 正确答案是: ${q.options[q.answer]}</div>`;
+    feed.innerHTML = `<div class="result" style="color:var(--accent)">鉂?閿欒! 姝ｇ‘绛旀鏄? ${q.options[q.answer]}</div>`;
   }
   btns.forEach(b=>b.style.pointerEvents='none');
   setTimeout(()=>{
@@ -1565,11 +1565,11 @@ function checkFill(){
   const feed = document.getElementById('practiceFeedback');
   if(correct){
     practiceScore++;
-    feed.innerHTML = `<div class="result" style="color:var(--green)">✅ 正确！</div>`;
+    feed.innerHTML = `<div class="result" style="color:var(--green)">鉁?姝ｇ‘锛?/div>`;
   } else {
     state.errorBook[q.q] = (state.errorBook[q.q]||0)+1;
     saveState();
-    feed.innerHTML = `<div class="result" style="color:var(--accent)">❌ 错误! 正确答案是: ${q.answer}</div>`;
+    feed.innerHTML = `<div class="result" style="color:var(--accent)">鉂?閿欒! 姝ｇ‘绛旀鏄? ${q.answer}</div>`;
   }
   input.disabled=true;
   setTimeout(()=>{
@@ -1583,12 +1583,12 @@ function renderPracticeResult(){
   const pct = Math.round((practiceScore/practiceTotal)*100);
   const passed = pct>=70;
   area.innerHTML = `<div style="padding:24px;text-align:center">
-    <div style="font-size:3em;margin-bottom:12px">${passed?'🎉':'💪'}</div>
-    <div style="font-size:1.4em;font-weight:700;margin-bottom:8px">${passed?'太棒了！':'继续加油！'}</div>
-    <div style="font-size:1.1em">得分: ${practiceScore}/${practiceTotal} (${pct}%)</div>
-    ${passed?'<div style="margin-top:12px;color:var(--green)">✅ 合格！可以继续下一关</div>'
-      :'<div style="margin-top:12px;color:var(--orange)">⚠ 建议复习后重试</div>'}
-    <button class="home-btn" style="background:var(--primary);color:#fff;height:50px;margin:16px auto" onclick="renderPractice(practiceMode)">🔄 返回练习菜单</button>
+    <div style="font-size:3em;margin-bottom:12px">${passed?'馃帀':'馃挭'}</div>
+    <div style="font-size:1.4em;font-weight:700;margin-bottom:8px">${passed?'澶浜嗭紒':'缁х画鍔犳补锛?}</div>
+    <div style="font-size:1.1em">寰楀垎: ${practiceScore}/${practiceTotal} (${pct}%)</div>
+    ${passed?'<div style="margin-top:12px;color:var(--green)">鉁?鍚堟牸锛佸彲浠ョ户缁笅涓€鍏?/div>'
+      :'<div style="margin-top:12px;color:var(--orange)">鈿?寤鸿澶嶄範鍚庨噸璇?/div>'}
+    <button class="home-btn" style="background:var(--primary);color:#fff;height:50px;margin:16px auto" onclick="renderPractice(practiceMode)">馃攧 杩斿洖缁冧範鑿滃崟</button>
   </div>`;
   // Check achievement
   checkAchievements();
@@ -1600,10 +1600,10 @@ function renderPracticeResult(){
    ===================================================================== */
 // Simple speech synth for Kazakh approximations
 const DICTATION_WORDS = [
-  {word:'Ана',zh:'妈妈'},{word:'Ата',zh:'爸爸'},{word:'Алма',zh:'苹果'},
-  {word:'Бала',zh:'孩子'},{word:'Кітап',zh:'书'},{word:'Гүл',zh:'花'},
-  {word:'Су',zh:'水'},{word:'Нан',zh:'面包'},{word:'Үй',zh:'家'},
-  {word:'Күн',zh:'太阳'},{word:'Жол',zh:'路'},{word:'Тау',zh:'山'}
+  {word:'袗薪邪',zh:'濡堝'},{word:'袗褌邪',zh:'鐖哥埜'},{word:'袗谢屑邪',zh:'鑻规灉'},
+  {word:'袘邪谢邪',zh:'瀛╁瓙'},{word:'袣褨褌邪锌',zh:'涔?},{word:'袚爷谢',zh:'鑺?},
+  {word:'小褍',zh:'姘?},{word:'袧邪薪',zh:'闈㈠寘'},{word:'耶泄',zh:'瀹?},
+  {word:'袣爷薪',zh:'澶槼'},{word:'袞芯谢',zh:'璺?},{word:'孝邪褍',zh:'灞?}
 ];
 let dictationWords = [];
 let dictIdx = 0;
@@ -1618,17 +1618,17 @@ function startDictation(prefix){
 function renderDictationQ(){
   if(dictIdx>=dictationWords.length){
     return `<div style="text-align:center;padding:20px">
-      <div style="font-size:2em">🎧 听写完成！</div>
-      <button class="home-btn" style="background:var(--primary);color:#fff;height:50px;margin:16px auto" onclick="renderPractice(practiceMode)">返回</button>
+      <div style="font-size:2em">馃帶 鍚啓瀹屾垚锛?/div>
+      <button class="home-btn" style="background:var(--primary);color:#fff;height:50px;margin:16px auto" onclick="renderPractice(practiceMode)">杩斿洖</button>
     </div>`;
   }
   const w = dictationWords[dictIdx];
   return `<div class="dictation-area">
-    <div class="dict-play" onclick="playDictation('${w.word}')">🔊</div>
-    <div style="color:var(--text2);font-size:.85em;margin-bottom:8px">点击喇叭听发音，然后输入字母</div>
+    <div class="dict-play" onclick="playDictation('${w.word}')">馃攰</div>
+    <div style="color:var(--text2);font-size:.85em;margin-bottom:8px">鐐瑰嚮鍠囧彮鍚彂闊筹紝鐒跺悗杈撳叆瀛楁瘝</div>
     <div class="dict-input">
-      <input type="text" id="dictAnswer" placeholder="输入..." autocomplete="off" onkeydown="if(event.key==='Enter')checkDict('${w.word}')">
-      <button onclick="checkDict('${w.word}')">✓</button>
+      <input type="text" id="dictAnswer" placeholder="杈撳叆..." autocomplete="off" onkeydown="if(event.key==='Enter')checkDict('${w.word}')">
+      <button onclick="checkDict('${w.word}')">鉁?/button>
     </div>
     <div id="dictFeedback" style="margin-top:8px;min-height:24px"></div>
   </div>`;
@@ -1647,9 +1647,9 @@ function checkDict(correctWord){
   const feed = document.getElementById('dictFeedback');
   if(ans.toLowerCase()===correctWord.toLowerCase()){
     practiceScore++;
-    feed.innerHTML = `<span style="color:var(--green);font-weight:700">✅ 正确！</span>`;
+    feed.innerHTML = `<span style="color:var(--green);font-weight:700">鉁?姝ｇ‘锛?/span>`;
   } else {
-    feed.innerHTML = `<span style="color:var(--accent);font-weight:700">❌ 应该是: ${correctWord}</span>`;
+    feed.innerHTML = `<span style="color:var(--accent);font-weight:700">鉂?搴旇鏄? ${correctWord}</span>`;
     state.errorBook[correctWord] = (state.errorBook[correctWord]||0)+1;
     saveState();
   }
@@ -1670,11 +1670,11 @@ function updateErrorBook(){
 
 function renderErrorBook(){
   const entries = Object.entries(state.errorBook||{});
-  if(!entries.length) return '<div style="color:var(--text2);padding:12px;text-align:center">✨ 没有错题，继续保持！</div>';
+  if(!entries.length) return '<div style="color:var(--text2);padding:12px;text-align:center">鉁?娌℃湁閿欓锛岀户缁繚鎸侊紒</div>';
   return entries.map(([q,count])=>{
     const remaining = Math.max(0,3-count);
     return `<div class="e-item">
-      <span>❌ ${q}</span>
+      <span>鉂?${q}</span>
       <span class="e-count">${remaining}</span>
     </div>`;
   }).join('');
@@ -1684,14 +1684,14 @@ function renderErrorBook(){
    ACHIEVEMENTS
    ===================================================================== */
 const ACHIEVEMENTS = [
-  {id:'first_letter',name:'初识字母',emoji:'🔤',desc:'完成第一次字母学习',check:()=>Object.keys(state.plan||{}).length>0},
-  {id:'practice_master',name:'练习达人',emoji:'📝',desc:'完成练习得分≥70%',check:()=>practiceScore>0},
-  {id:'day_3',name:'坚持3天',emoji:'🔥',desc:'完成3天学习计划',check:()=>(state.completedDays||[]).length>=3},
-  {id:'day_7',name:'一周打卡',emoji:'📅',desc:'完成7天学习计划',check:()=>(state.completedDays||[]).length>=7},
-  {id:'day_8',name:'毕业了！',emoji:'🎓',desc:'完成全部8天学习',check:()=>(state.completedDays||[]).length>=8},
-  {id:'word_master',name:'词汇大师',emoji:'📚',desc:'收藏5个以上词汇',check:()=>Object.keys(state.favorites||{}).length>=5},
-  {id:'translator',name:'转写达人',emoji:'🔄',desc:'使用转写工具10次以上',check:()=>state.history&&state.history.length>=10},
-  {id:'error_clean',name:'错题清空',emoji:'🧹',desc:'错题本全部清空',check:()=>Object.keys(state.errorBook||{}).length===0&&(state.completedDays||[]).length>0}
+  {id:'first_letter',name:'鍒濊瘑瀛楁瘝',emoji:'馃敜',desc:'瀹屾垚绗竴娆″瓧姣嶅涔?,check:()=>Object.keys(state.plan||{}).length>0},
+  {id:'practice_master',name:'缁冧範杈句汉',emoji:'馃摑',desc:'瀹屾垚缁冧範寰楀垎鈮?0%',check:()=>practiceScore>0},
+  {id:'day_3',name:'鍧氭寔3澶?,emoji:'馃敟',desc:'瀹屾垚3澶╁涔犺鍒?,check:()=>(state.completedDays||[]).length>=3},
+  {id:'day_7',name:'涓€鍛ㄦ墦鍗?,emoji:'馃搮',desc:'瀹屾垚7澶╁涔犺鍒?,check:()=>(state.completedDays||[]).length>=7},
+  {id:'day_8',name:'姣曚笟浜嗭紒',emoji:'馃帗',desc:'瀹屾垚鍏ㄩ儴8澶╁涔?,check:()=>(state.completedDays||[]).length>=8},
+  {id:'word_master',name:'璇嶆眹澶у笀',emoji:'馃摎',desc:'鏀惰棌5涓互涓婅瘝姹?,check:()=>Object.keys(state.favorites||{}).length>=5},
+  {id:'translator',name:'杞啓杈句汉',emoji:'馃攧',desc:'浣跨敤杞啓宸ュ叿10娆′互涓?,check:()=>state.history&&state.history.length>=10},
+  {id:'error_clean',name:'閿欓娓呯┖',emoji:'馃Ч',desc:'閿欓鏈叏閮ㄦ竻绌?,check:()=>Object.keys(state.errorBook||{}).length===0&&(state.completedDays||[]).length>0}
 ];
 
 function checkAchievements(){
@@ -1701,7 +1701,7 @@ function checkAchievements(){
       unlocked.add(a.id);
       state.completedDays = [...unlocked];
       saveState();
-      showToast(`🏆 解锁成就: ${a.name}!`,'success');
+      showToast(`馃弳 瑙ｉ攣鎴愬氨: ${a.name}!`,'success');
     }
   });
 }
@@ -1731,19 +1731,19 @@ function renderPlan(prefix){
     if(!completed.has('day_'+i)){currentDay=i;break;}
   }
 
-  let html = `<div class="section-title">📅 学习计划 (8天掌握)</div>`;
+  let html = `<div class="section-title">馃搮 瀛︿範璁″垝 (8澶╂帉鎻?</div>`;
   // Daily quote
   const dayData = LEARNING_PLAN[currentDay-1];
   if(dayData){
     html+=`<div class="day-quote">
-      <div class="dq-text">💬 ${dayData.quote.text}</div>
-      <div class="dq-trans">${dayData.quote.trans} — ${dayData.quote.scene}</div>
+      <div class="dq-text">馃挰 ${dayData.quote.text}</div>
+      <div class="dq-trans">${dayData.quote.trans} 鈥?${dayData.quote.scene}</div>
     </div>`;
   }
 
   // Day task card
   html+=`<div class="card glass" style="text-align:center;margin:16px 0">
-    <div style="font-size:1.8em;font-weight:800;color:var(--primary)">第 ${currentDay} 天</div>
+    <div style="font-size:1.8em;font-weight:800;color:var(--primary)">绗?${currentDay} 澶?/div>
     <div style="font-weight:600;margin:8px 0">${dayData?.title||''}</div>
     <div style="font-size:.9em;color:var(--text2);margin-bottom:12px">${dayData?.task||''}</div>
     <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">`;
@@ -1754,7 +1754,7 @@ function renderPlan(prefix){
   }
   html+=`</div>
     <div style="margin-top:16px;display:flex;gap:10px;justify-content:center">
-      <button onclick="completeDay('${prefix}')" style="background:var(--green);color:#fff;padding:12px 24px">✓ 完成今日学习</button>
+      <button onclick="completeDay('${prefix}')" style="background:var(--green);color:#fff;padding:12px 24px">鉁?瀹屾垚浠婃棩瀛︿範</button>
     </div>
   </div>`;
 
@@ -1762,7 +1762,7 @@ function renderPlan(prefix){
   const pct = Math.round((completed.size/8)*100);
   html+=`<div style="background:var(--glass);border-radius:var(--radius);padding:16px;margin:12px 0">
     <div style="display:flex;justify-content:space-between;font-size:.85em;margin-bottom:6px">
-      <span>总进度</span><span>${completed.size}/8 天</span>
+      <span>鎬昏繘搴?/span><span>${completed.size}/8 澶?/span>
     </div>
     <div style="height:8px;background:var(--glass-border);border-radius:4px;overflow:hidden">
       <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--green),var(--primary));border-radius:4px;transition:width .5s"></div>
@@ -1776,7 +1776,7 @@ function renderPlan(prefix){
     const isComplete = completed.has(dayKey);
     const isCurrent = (i+1)===currentDay;
     html+=`<div class="plan-day ${isComplete?'completed':''} ${isCurrent?'current':''}">
-      <div class="day-num">${isComplete?'✅':(i+1)}</div>
+      <div class="day-num">${isComplete?'鉁?:(i+1)}</div>
       <div class="day-title">${d.title}</div>
       <div class="day-task">${d.task}</div>
     </div>`;
@@ -1798,7 +1798,7 @@ function completeDay(prefix){
     state.completedDays = [...completed];
     saveState();
     checkAchievements();
-    showToast(`🎉 第 ${currentDay} 天完成！`,'success');
+    showToast(`馃帀 绗?${currentDay} 澶╁畬鎴愶紒`,'success');
     renderPlan(prefix);
   }
 }
@@ -1812,15 +1812,15 @@ function renderPhrases(prefix){
   const container = document.getElementById(prefix+'-phrases');
   if(!container) return;
 
-  let html = `<div class="section-title">💬 常用语库</div>
+  let html = `<div class="section-title">馃挰 甯哥敤璇簱</div>
   <div class="phrase-cats">`;
   PHRASE_CATEGORIES.forEach((cat,i)=>{
     html+=`<button class="${i===phraseCat?'active':''}" onclick="switchPhraseCat(${i},'${prefix}')">${cat.name}</button>`;
   });
   html+=`</div>
   <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-    <input type="text" id="phraseSearch" placeholder="搜索词汇..." style="flex:1;min-width:100px" oninput="filterPhrases('${prefix}')">
-    <button class="export-btn" onclick="exportPhrases()">📥 导出TXT</button>
+    <input type="text" id="phraseSearch" placeholder="鎼滅储璇嶆眹..." style="flex:1;min-width:100px" oninput="filterPhrases('${prefix}')">
+    <button class="export-btn" onclick="exportPhrases()">馃摜 瀵煎嚭TXT</button>
   </div>
   <div class="phrase-list" id="phraseList">`;
   html+=renderPhraseList(prefix, phraseCat, '');
@@ -1844,7 +1844,7 @@ function renderPhraseList(prefix, catIdx, search){
         <div class="kk-text">${item.kk}</div>
         <div class="zh-text">${item.zh}</div>
       </div>
-      <button class="fav-btn ${isFav?'active':''}" onclick="toggleFav('${catId}','${item.kk}','${item.zh}')">${isFav?'★':'☆'}</button>
+      <button class="fav-btn ${isFav?'active':''}" onclick="toggleFav('${catId}','${item.kk}','${item.zh}')">${isFav?'鈽?:'鈽?}</button>
     </div>`;
   }).join('');
 }
@@ -1866,10 +1866,10 @@ function toggleFav(catId, kk, zh){
   const key = catId+':'+kk;
   if(state.favorites[key]){
     delete state.favorites[key];
-    showToast('已取消收藏','info');
+    showToast('宸插彇娑堟敹钘?,'info');
   } else {
     state.favorites[key] = {kk,zh,cat:catId};
-    showToast('⭐ 已收藏','success');
+    showToast('猸?宸叉敹钘?,'success');
   }
   saveState();
   // Re-render
@@ -1881,21 +1881,21 @@ function toggleFav(catId, kk, zh){
 }
 
 function exportPhrases(){
-  let text = '=== 哈萨克语常用语 ===\n\n';
+  let text = '=== 鍝堣惃鍏嬭甯哥敤璇?===\n\n';
   PHRASE_CATEGORIES.forEach(cat=>{
-    text+=`\n【${cat.name}】\n${'='.repeat(20)}\n`;
+    text+=`\n銆?{cat.name}銆慭n${'='.repeat(20)}\n`;
     (PHRASES[cat.id]||[]).forEach(p=>{
-      text+=`${p.kk} — ${p.zh}\n`;
+      text+=`${p.kk} 鈥?${p.zh}\n`;
     });
   });
   // Favorites
   const favs = Object.values(state.favorites||{});
   if(favs.length){
-    text+=`\n\n=== ⭐ 收藏词汇 (${favs.length}个) ===\n${'='.repeat(30)}\n`;
-    favs.forEach(f=>text+=`${f.kk} — ${f.zh}\n`);
+    text+=`\n\n=== 猸?鏀惰棌璇嶆眹 (${favs.length}涓? ===\n${'='.repeat(30)}\n`;
+    favs.forEach(f=>text+=`${f.kk} 鈥?${f.zh}\n`);
   }
   downloadText(text, 'kazakh_phrases.txt');
-  showToast('📥 导出成功！','success');
+  showToast('馃摜 瀵煎嚭鎴愬姛锛?,'success');
 }
 
 /* =====================================================================
@@ -1904,7 +1904,7 @@ function exportPhrases(){
 function toggleTheme(){
   document.body.classList.toggle('dark');
   state.theme = document.body.classList.contains('dark')?'dark':'light';
-  document.getElementById('themeBtn').textContent = state.theme==='dark'?'☀️':'🌙';
+  document.getElementById('themeBtn').textContent = state.theme==='dark'?'鈽€锔?:'馃寵';
   saveState();
 }
 
@@ -2001,7 +2001,7 @@ async function baiduTranslate(text, from='auto', to='zh'){
 }
 
 /* =====================================================================
-   GLOBAL SEARCH (不背单词 style)
+   GLOBAL SEARCH (涓嶈儗鍗曡瘝 style)
    ===================================================================== */
 
 // Build search index from all data
@@ -2017,16 +2017,16 @@ function buildSearchIndex(){
         zh: ex.meaning,
         ipa: ca.ipa,
         letter: letterClean,
-        contexts: [{kk: ca.sentence.kk, zh: ca.sentence.zh, type:'例句'}]
+        contexts: [{kk: ca.sentence.kk, zh: ca.sentence.zh, type:'渚嬪彞'}]
       });
     });
     // Also index the letter itself
     index.push({
       word: letterClean,
-      zh: '字母 ' + letterClean,
+      zh: '瀛楁瘝 ' + letterClean,
       ipa: ca.ipa,
       letter: letterClean,
-      contexts: ca.examples.map(ex=>({kk: ex.word, zh: ex.meaning, type:'例词'})),
+      contexts: ca.examples.map(ex=>({kk: ex.word, zh: ex.meaning, type:'渚嬭瘝'})),
       isLetter: true
     });
   });
@@ -2036,7 +2036,7 @@ function buildSearchIndex(){
       index.push({
         word: p.kk,
         zh: p.zh,
-        contexts: [{kk: p.kk, zh: p.zh, type:'常用语'}]
+        contexts: [{kk: p.kk, zh: p.zh, type:'甯哥敤璇?}]
       });
     });
   });
@@ -2049,7 +2049,7 @@ function buildSearchIndex(){
         zh: ex.meaning,
         ipa: aa.ipa,
         letter: letterClean,
-        contexts: [{kk: aa.sentence.kk, zh: aa.sentence.zh, type:'例句'}]
+        contexts: [{kk: aa.sentence.kk, zh: aa.sentence.zh, type:'渚嬪彞'}]
       });
     });
   });
@@ -2117,7 +2117,7 @@ function triggerOnlineSearch(q, localResults, panel){
       const panel = document.getElementById('searchPanel');
       const existingHtml = panel.innerHTML;
       panel.innerHTML = existingHtml + `<div class="sp-item" style="border-top:2px dashed var(--kz-gold-bg);cursor:default">
-        <div style="font-size:.72em;color:var(--text3);margin-bottom:4px">🔍 百度翻译 · ${q}</div>
+        <div style="font-size:.72em;color:var(--text3);margin-bottom:4px">馃攳 鐧惧害缈昏瘧 路 ${q}</div>
         <div class="sp-word" style="font-size:1.1em">${result}</div>
         <div class="sp-contexts" style="margin-top:4px">
           <div class="sp-context"><span class="ctx-kk">${q}</span><span class="ctx-zh">${result}</span></div>
@@ -2130,13 +2130,13 @@ function triggerOnlineSearch(q, localResults, panel){
 
 function renderSearchResults(results, query, panel){
   if(!results.length){
-    panel.innerHTML = '<div class="sp-empty">未找到相关结果</div>';
+    panel.innerHTML = '<div class="sp-empty">鏈壘鍒扮浉鍏崇粨鏋?/div>';
     panel.classList.add('show');
     return;
   }
   let html = '';
   results.forEach(r=>{
-    const link = r.letter ? `<span style="font-size:.72em;color:var(--text3)">🔤 字母 ${r.letter}</span>` : '';
+    const link = r.letter ? `<span style="font-size:.72em;color:var(--text3)">馃敜 瀛楁瘝 ${r.letter}</span>` : '';
     html += `<div class="sp-item" onclick="doSearchSelect('${r.word.replace(/'/g,"\\'")}')">
       <div class="sp-word">${r.word}${r.ipa?' <span class="sp-ipa">'+r.ipa+'</span>':''}</div>
       <div class="sp-meaning">${r.zh}</div>
@@ -2147,7 +2147,7 @@ function renderSearchResults(results, query, panel){
         <span class="ctx-zh">${ctx.zh}</span>
       </div>`;
     });
-    if(r.contexts.length>4) html += `<div style="font-size:.72em;color:var(--text3);text-align:right;padding:2px 4px 0">+${r.contexts.length-4} 更多</div>`;
+    if(r.contexts.length>4) html += `<div style="font-size:.72em;color:var(--text3);text-align:right;padding:2px 4px 0">+${r.contexts.length-4} 鏇村</div>`;
     html += `</div></div>`;
   });
   panel.innerHTML = html;
@@ -2206,7 +2206,7 @@ function init(){
     }
   });
   document.body.classList.add('has-home');
-  // Home page background (不背单词 style — random beautiful photo)
+  // Home page background (涓嶈儗鍗曡瘝 style 鈥?random beautiful photo)
   const homePage = document.getElementById('page-home');
   if(homePage){
     const images = [
@@ -2225,7 +2225,7 @@ function init(){
   // Apply saved theme
   if(state.theme==='dark'){
     document.body.classList.add('dark');
-    document.getElementById('themeBtn').textContent = '☀️';
+    document.getElementById('themeBtn').textContent = '鈽€锔?;
   }
   // Apply font size
   setFontSize(state.fontSize);
@@ -2236,18 +2236,18 @@ function init(){
   // Update greeting
   const h = document.getElementById('greetingText');
   const hour = new Date().getHours();
-  let g = '🌅 早上好！';
-  if(hour>=12&&hour<14) g='☀️ 中午好！';
-  else if(hour>=14&&hour<18) g='🌤️ 下午好！';
-  else if(hour>=18) g='🌙 晚上好！';
-  h.textContent = g+' 今天学哈萨克语吧';
+  let g = '馃寘 鏃╀笂濂斤紒';
+  if(hour>=12&&hour<14) g='鈽€锔?涓崍濂斤紒';
+  else if(hour>=14&&hour<18) g='馃尋锔?涓嬪崍濂斤紒';
+  else if(hour>=18) g='馃寵 鏅氫笂濂斤紒';
+  h.textContent = g+' 浠婂ぉ瀛﹀搱钀ㄥ厠璇惂';
 
   // PWA service worker registration
   if('serviceWorker' in navigator){
     // For GitHub Pages, skip SW registration
   }
 
-  console.log('🥟 QazaqTanu initialized');
+  console.log('馃 QazaqTanu initialized');
 }
 
 // Start when DOM ready
@@ -2260,3 +2260,4 @@ if(document.readyState==='loading'){
 
 </body>
 </html>
+

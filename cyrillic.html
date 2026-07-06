@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="kk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>🌸 Кирил Әліпбиі · 哈萨克西里尔字母</title>
-<meta name="description" content="哈萨克西里尔字母学习 - Сәлем! Қазақ тілін үйрен!">
+<title>馃尭 袣懈褉懈谢 訕谢褨锌斜懈褨 路 鍝堣惃鍏嬭タ閲屽皵瀛楁瘝</title>
+<meta name="description" content="鍝堣惃鍏嬭タ閲屽皵瀛楁瘝瀛︿範 - 小訖谢械屑! 覛邪蟹邪覜 褌褨谢褨薪 爷泄褉械薪!">
 <link rel="manifest" href="manifest.json">
-<style>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><style>
 :root{--bg:linear-gradient(135deg,#1a1a2e 0%,#16213e 30%,#0f3460 70%,#1a1a2e 100%);--card:rgba(255,255,255,0.06);--card-hover:rgba(255,255,255,0.1);--card-solid:rgba(30,30,55,0.92);--text:#f0f0f0;--text-sec:rgba(255,255,255,0.55);--text-muted:rgba(255,255,255,0.3);--border:rgba(255,255,255,0.07);--shadow:0 4px 24px rgba(0,0,0,0.4);--shadow-sm:0 2px 8px rgba(0,0,0,0.3);--accent:#e91e63;--accent2:#7b1fa2;--accent3:#2196f3;--accent4:#4caf50;--accent5:#ff9800;--nav-bg:rgba(20,20,40,0.88);--radius-sm:8px;--radius-md:12px;--radius-lg:18px;--radius-xl:22px;--font:'Noto Sans','Arial',sans-serif;--font-zh:'Noto Sans SC','Microsoft YaHei','PingFang SC',sans-serif;--font-ab:'Noto Naskh Arabic','Traditional Arabic','Scheherazade',serif}
 [data-theme="light"]{--bg:linear-gradient(135deg,#fce4ec 0%,#f3e5f5 30%,#e8eaf6 70%,#e0f7fa 100%);--card:rgba(255,255,255,0.6);--card-hover:rgba(255,255,255,0.85);--card-solid:#fff;--text:#2d2d2d;--text-sec:#666;--text-muted:#aaa;--border:rgba(0,0,0,0.06);--shadow:0 4px 20px rgba(0,0,0,0.07);--shadow-sm:0 2px 6px rgba(0,0,0,0.04);--accent:#c2185b;--accent2:#5e35b1;--accent3:#1565c0;--accent4:#2e7d32;--accent5:#e65100;--nav-bg:rgba(255,255,255,0.78)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -39,7 +39,7 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
 .letter-card:hover .sound-icon{opacity:.7}
 .letter-card.playing{border-color:var(--accent);box-shadow:0 0 24px rgba(233,30,99,.25);animation:pulse .4s cubic-bezier(.4,0,.2,1)}
 .letter-card.learned{border-color:var(--accent4);background:rgba(76,175,80,.08)}
-.letter-card.learned::after{content:'✓';position:absolute;top:2px;left:5px;font-size:10px;color:var(--accent4);font-weight:700;z-index:2}
+.letter-card.learned::after{content:'鉁?;position:absolute;top:2px;left:5px;font-size:10px;color:var(--accent4);font-weight:700;z-index:2}
 .letter-card.learned .cyr{color:var(--accent4)}
 @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
 .data-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:var(--radius-md);margin:8px 0;font-size:13px}
@@ -133,91 +133,91 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
 <body>
 <nav class="top-nav">
   <div class="nav-left">
-    <a href="./" class="nav-back">← Басты бет</a>
+    <a href="./" class="nav-back">鈫?袘邪褋褌褘 斜械褌</a>
   </div>
   <div class="nav-right">
-    <button class="nav-btn" onclick="toggleSearch()">🔍 Іздеу</button>
-    <button class="nav-btn" onclick="toggleStats()">📊 Стат</button>
-    <button class="nav-btn quiz-btn" onclick="toggleQuiz()">🎯 Тест</button>
-    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☀️</button>
+    <button class="nav-btn" onclick="toggleSearch()">馃攳 袉蟹写械褍</button>
+    <button class="nav-btn" onclick="toggleStats()">馃搳 小褌邪褌</button>
+    <button class="nav-btn quiz-btn" onclick="toggleQuiz()">馃幆 孝械褋褌</button>
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">鈽€锔?/button>
   </div>
 </nav>
 
 <div class="page-wrap">
   <!-- Learning path banner -->
   <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:8px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:11px;color:var(--text-sec)">
-    <span style="font-weight:600;color:var(--text);margin-right:4px">📌 Оқу барысы:</span>
-    <span style="background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">① Дауыстылар</span>
-    <span style="color:var(--text-muted)">→</span>
-    <span>② Дауыссыздар</span>
-    <span style="color:var(--text-muted)">→</span>
-    <span>③ Сөздер</span>
-    <span style="color:var(--text-muted)">→</span>
-    <span>④ Тест</span>
+    <span style="font-weight:600;color:var(--text);margin-right:4px">馃搶 袨覜褍 斜邪褉褘褋褘:</span>
+    <span style="background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">鈶?袛邪褍褘褋褌褘谢邪褉</span>
+    <span style="color:var(--text-muted)">鈫?/span>
+    <span>鈶?袛邪褍褘褋褋褘蟹写邪褉</span>
+    <span style="color:var(--text-muted)">鈫?/span>
+    <span>鈶?小萤蟹写械褉</span>
+    <span style="color:var(--text-muted)">鈫?/span>
+    <span>鈶?孝械褋褌</span>
   </div>
   <div class="section-card">
     <div style="text-align:center;margin-bottom:12px">
-      <h1 style="font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="pageTitle">🌸 Кирил Әліпбиі</h1>
-      <p style="font-size:13px;color:var(--text-sec);margin-top:2px" id="pageSubtitle">点击字母听发音 🔊 | 右键标记已学 ✓</p>
+      <h1 style="font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="pageTitle">馃尭 袣懈褉懈谢 訕谢褨锌斜懈褨</h1>
+      <p style="font-size:13px;color:var(--text-sec);margin-top:2px" id="pageSubtitle">鐐瑰嚮瀛楁瘝鍚彂闊?馃攰 | 鍙抽敭鏍囪宸插 鉁?/p>
     </div>
 
     <div class="highlight-box">
-      <h3>💡 9个哈萨克独有的西里尔字母</h3>
-      <p id="specialHint">先记住这9个特殊字母，你就认识了哈萨克字母的一半！</p>
+      <h3>馃挕 9涓搱钀ㄥ厠鐙湁鐨勮タ閲屽皵瀛楁瘝</h3>
+      <p id="specialHint">鍏堣浣忚繖9涓壒娈婂瓧姣嶏紝浣犲氨璁よ瘑浜嗗搱钀ㄥ厠瀛楁瘝鐨勪竴鍗婏紒</p>
     </div>
 
     <!-- Stats bar -->
     <div class="stats-bar" id="statsBar">
-      <span class="stats-item">📚 <strong id="learnedCount">0</strong>/<span id="totalCount">42</span> 已学</span>
-      <span class="stats-item">📈 <span id="progressPct">0%</span></span>
+      <span class="stats-item">馃摎 <strong id="learnedCount">0</strong>/<span id="totalCount">42</span> 宸插</span>
+      <span class="stats-item">馃搱 <span id="progressPct">0%</span></span>
     </div>
 
     <!-- Search -->
     <div class="search-box" id="searchBox">
-      <input class="search-input" id="searchInput" placeholder="🔍 Әріп бойынша іздеу..." oninput="filterLetters()">
+      <input class="search-input" id="searchInput" placeholder="馃攳 訕褉褨锌 斜芯泄褘薪褕邪 褨蟹写械褍..." oninput="filterLetters()">
     </div>
 
     <!-- Quiz panel -->
     <div class="quiz-panel" id="quizPanel">
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:12px;color:var(--text-sec)">🎯 Тыңдау тесті</span>
-        <button onclick="toggleQuiz()" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px">✕</button>
+        <span style="font-size:12px;color:var(--text-sec)">馃幆 孝褘遥写邪褍 褌械褋褌褨</span>
+        <button onclick="toggleQuiz()" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px">鉁?/button>
       </div>
       <div class="quiz-qsound">
-        <span class="play-hint" onclick="replayQuizSound()">🔊 Тыңдау</span>
-        <span style="margin-left:8px;font-size:11px;color:var(--text-muted)">哪个字母？</span>
+        <span class="play-hint" onclick="replayQuizSound()">馃攰 孝褘遥写邪褍</span>
+        <span style="margin-left:8px;font-size:11px;color:var(--text-muted)">鍝釜瀛楁瘝锛?/span>
       </div>
-      <div class="quiz-q" id="quizQuestion">🔊</div>
+      <div class="quiz-q" id="quizQuestion">馃攰</div>
       <div class="quiz-options" id="quizOptions"></div>
-      <div class="quiz-score">Ұпай: <strong id="quizScore">0</strong> / <span id="quizTotal">0</span></div>
-      <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuiz()" disabled>Келесі →</button>
+      <div class="quiz-score">野锌邪泄: <strong id="quizScore">0</strong> / <span id="quizTotal">0</span></div>
+      <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuiz()" disabled>袣械谢械褋褨 鈫?/button>
     </div>
 
     <!-- Translation widget -->
     <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;margin:12px 0">
       <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
-        <span style="font-size:16px">🌍</span>
-        <span style="font-size:13px;font-weight:700;color:var(--text)">Аудару · 翻译</span>
-        <span style="font-size:11px;color:var(--text-muted)">Қытайша ↔ Қазақша</span>
+        <span style="font-size:16px">馃實</span>
+        <span style="font-size:13px;font-weight:700;color:var(--text)">袗褍写邪褉褍 路 缈昏瘧</span>
+        <span style="font-size:11px;color:var(--text-muted)">覛褘褌邪泄褕邪 鈫?覛邪蟹邪覜褕邪</span>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <input id="srcText" placeholder="输入中文或哈萨克语..." style="flex:1;min-width:160px;padding:9px 12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:13px;outline:none;background:var(--card-solid);color:var(--text);font-family:var(--font-zh);transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+        <input id="srcText" placeholder="杈撳叆涓枃鎴栧搱钀ㄥ厠璇?.." style="flex:1;min-width:160px;padding:9px 12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:13px;outline:none;background:var(--card-solid);color:var(--text);font-family:var(--font-zh);transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
         <div style="display:flex;gap:4px">
-          <button onclick="speakInput()" style="padding:9px 10px;background:var(--card);color:var(--accent);border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;cursor:pointer;transition:all .2s" title="朗读输入">🔊</button>
-          <button onclick="translateText()" style="padding:9px 18px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(92,107,192,.3);font-family:var(--font-zh)">翻译</button>
-          <button onclick="clearTrans()" style="padding:9px 10px;background:var(--card);color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;cursor:pointer" title="清空">✕</button>
+          <button onclick="speakInput()" style="padding:9px 10px;background:var(--card);color:var(--accent);border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;cursor:pointer;transition:all .2s" title="鏈楄杈撳叆">馃攰</button>
+          <button onclick="translateText()" style="padding:9px 18px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(92,107,192,.3);font-family:var(--font-zh)">缈昏瘧</button>
+          <button onclick="clearTrans()" style="padding:9px 10px;background:var(--card);color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;cursor:pointer" title="娓呯┖">鉁?/button>
         </div>
       </div>
       <div id="dstBox" style="display:none;margin-top:8px;padding:10px 12px;background:var(--card-solid);border-radius:var(--radius-sm);border:1px solid var(--border);font-size:13px;color:var(--text);line-height:1.6;word-break:break-word">
         <span id="dstText" style="display:block;margin-bottom:6px"></span>
-        <button onclick="speakOutput()" style="padding:5px 12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer" title="朗读结果">🔊 朗读</button>
+        <button onclick="speakOutput()" style="padding:5px 12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer" title="鏈楄缁撴灉">馃攰 鏈楄</button>
       </div>
     </div>
     <script>
     function translateText(){
       var s=document.getElementById('srcText').value.trim();if(!s)return;
       var d=document.getElementById('dstBox');d.style.display='block';
-      document.getElementById('dstText').textContent='⏳ Аударылуда...';
+      document.getElementById('dstText').textContent='鈴?袗褍写邪褉褘谢褍写邪...';
       var x=new XMLHttpRequest();
       x.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&dt=t&q='+encodeURIComponent(s),true);
       x.onload=function(){
@@ -227,49 +227,49 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
           if(!t||t===s){
             var x2=new XMLHttpRequest();
             x2.open('GET','https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=kk&dt=t&q='+encodeURIComponent(s),true);
-            x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];document.getElementById('dstText').textContent=t2||'Аудару мүмкін емес'}catch(e){document.getElementById('dstText').textContent='Қате'}};
+            x2.onload=function(){try{var r2=JSON.parse(this.responseText);var t2='';if(r2&&r2[0])for(var i=0;i<r2[0].length;i++)if(r2[0][i]&&r2[0][i][0])t2+=r2[0][i][0];document.getElementById('dstText').textContent=t2||'袗褍写邪褉褍 屑爷屑泻褨薪 械屑械褋'}catch(e){document.getElementById('dstText').textContent='覛邪褌械'}};
             x2.send();
           }else{document.getElementById('dstText').textContent=t;}
-        }catch(e){document.getElementById('dstText').textContent='Қате'}
+        }catch(e){document.getElementById('dstText').textContent='覛邪褌械'}
       };
-      x.onerror=function(){document.getElementById('dstText').textContent='⚠ Желі қатесі'};
+      x.onerror=function(){document.getElementById('dstText').textContent='鈿?袞械谢褨 覜邪褌械褋褨'};
       x.send();
     }
     function speakInput(){var t=document.getElementById('srcText').value.trim();if(!t)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';u.rate=.85;speechSynthesis.speak(u)}
-    function speakOutput(){var t=document.getElementById('dstText').textContent;if(!t||t.startsWith('⏳')||t.startsWith('⚠'))return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';u.rate=.85;speechSynthesis.speak(u)}
+    function speakOutput(){var t=document.getElementById('dstText').textContent;if(!t||t.startsWith('鈴?)||t.startsWith('鈿?))return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=t.match(/[\u0400-\u04ff\u0600-\u06ff]/)?'kk-KZ':'zh-CN';u.rate=.85;speechSynthesis.speak(u)}
     function clearTrans(){document.getElementById('srcText').value='';document.getElementById('dstBox').style.display='none'}
     document.addEventListener('DOMContentLoaded',function(){var e=document.getElementById('srcText');if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter'&&!ev.shiftKey){ev.preventDefault();translateText()}})});
     </script>
 
     <!-- Special letters table -->
-    <div class="section-title" id="secSpec"><span class="ico">✨</span> Арнайы әріптер · 特殊字母</div>
+    <div class="section-title" id="secSpec"><span class="ico">鉁?/span> 袗褉薪邪泄褘 訖褉褨锌褌械褉 路 鐗规畩瀛楁瘝</div>
     <table class="data-table" id="specialTable">
-      <tr><th width="60">Әріп</th><th width="55">IPA</th><th id="specialHead3">像什么</th><th>Мысал</th><th width="50" id="specialHead4">عرب</th></tr>
+      <tr><th width="60">訕褉褨锌</th><th width="55">IPA</th><th id="specialHead3">鍍忎粈涔?/th><th>袦褘褋邪谢</th><th width="50" id="specialHead4">毓乇亘</th></tr>
     </table>
 
     <!-- Vowels hard -->
-    <div class="section-title" id="secHard"><span class="ico">🔴</span> Жуан дауыстылар · 后元音</div>
+    <div class="section-title" id="secHard"><span class="ico">馃敶</span> 袞褍邪薪 写邪褍褘褋褌褘谢邪褉 路 鍚庡厓闊?/div>
     <div class="letter-grid" id="vowelHard"></div>
 
     <!-- Vowels soft -->
-    <div class="section-title" id="secSoft"><span class="ico">🟣</span> Жіңішке дауыстылар · 前元音</div>
+    <div class="section-title" id="secSoft"><span class="ico">馃煟</span> 袞褨遥褨褕泻械 写邪褍褘褋褌褘谢邪褉 路 鍓嶅厓闊?/div>
     <div class="letter-grid" id="vowelSoft"></div>
 
     <!-- Consonants -->
-    <div class="section-title" id="secCons"><span class="ico">🌿</span> Дауыссыздар · 辅音</div>
+    <div class="section-title" id="secCons"><span class="ico">馃尶</span> 袛邪褍褘褋褋褘蟹写邪褉 路 杈呴煶</div>
     <div class="letter-grid" id="consonants"></div>
 
     <!-- Words -->
-    <div class="section-title" id="secWords"><span class="ico">📖</span> Сөздер · 常用单词</div>
+    <div class="section-title" id="secWords"><span class="ico">馃摉</span> 小萤蟹写械褉 路 甯哥敤鍗曡瘝</div>
     <table class="data-table" id="wordTable">
-      <tr><th>Қазақша</th><th>IPA</th><th id="wordHead3">意思</th></tr>
+      <tr><th>覛邪蟹邪覜褕邪</th><th>IPA</th><th id="wordHead3">鎰忔€?/th></tr>
     </table>
 
-    <div class="tip-box">🌟 <b>Кеңес:</b> Сәлем（你好）和 Рахмет（谢谢）是最实用的词，见到哈萨克朋友直接用！</div>
-    <div class="tip-box">🌸 <b>Дауыстылар үндестігі（元音和谐）：</b>这是哈萨克语的灵魂！后元音词如 <b>бала</b>，前元音词如 <b>көше</b>。混用元音 → 外来词。</div>
+    <div class="tip-box">馃専 <b>袣械遥械褋:</b> 小訖谢械屑锛堜綘濂斤級鍜?袪邪褏屑械褌锛堣阿璋級鏄渶瀹炵敤鐨勮瘝锛岃鍒板搱钀ㄥ厠鏈嬪弸鐩存帴鐢紒</div>
+    <div class="tip-box">馃尭 <b>袛邪褍褘褋褌褘谢邪褉 爷薪写械褋褌褨谐褨锛堝厓闊冲拰璋愶級锛?/b>杩欐槸鍝堣惃鍏嬭鐨勭伒榄傦紒鍚庡厓闊宠瘝濡?<b>斜邪谢邪</b>锛屽墠鍏冮煶璇嶅 <b>泻萤褕械</b>銆傛贩鐢ㄥ厓闊?鈫?澶栨潵璇嶃€?/div>
   </div>
 
-  <div class="page-footer">🌸 Бауырсақ · 2026</div>
+  <div class="page-footer">馃尭 袘邪褍褘褉褋邪覜 路 2026</div>
 </div>
 
 <div id="toast"></div>
@@ -277,14 +277,14 @@ body{font-family:var(--font-zh);background:var(--bg);min-height:100vh;color:var(
 <!-- Stats modal -->
 <div class="modal-overlay" id="statsModal">
   <div class="modal-box">
-    <div class="modal-title">📊 Оқу статистикасы</div>
+    <div class="modal-title">馃搳 袨覜褍 褋褌邪褌懈褋褌懈泻邪褋褘</div>
     <div class="modal-stats">
-      <div class="modal-stat"><div class="val" id="mLearned">0</div><div class="lbl">Үйренілген</div></div>
-      <div class="modal-stat"><div class="val" id="mTotal">0</div><div class="lbl">Барлығы</div></div>
-      <div class="modal-stat"><div class="val green" id="mPct">0%</div><div class="lbl">Прогресс</div></div>
-      <div class="modal-stat"><div class="val gold" id="mScore">0</div><div class="lbl">Тест ұпайы</div></div>
+      <div class="modal-stat"><div class="val" id="mLearned">0</div><div class="lbl">耶泄褉械薪褨谢谐械薪</div></div>
+      <div class="modal-stat"><div class="val" id="mTotal">0</div><div class="lbl">袘邪褉谢褘覔褘</div></div>
+      <div class="modal-stat"><div class="val green" id="mPct">0%</div><div class="lbl">袩褉芯谐褉械褋褋</div></div>
+      <div class="modal-stat"><div class="val gold" id="mScore">0</div><div class="lbl">孝械褋褌 冶锌邪泄褘</div></div>
     </div>
-    <button class="modal-close" onclick="toggleStats()">Жабу</button>
+    <button class="modal-close" onclick="toggleStats()">袞邪斜褍</button>
   </div>
 </div>
 
@@ -298,13 +298,13 @@ var SHOW_ZH = USER_TYPE === 1 || USER_TYPE === 3;
 var SHOW_AB = USER_TYPE === 2;
 
 // === Theme ===
-function initTheme(){var s=localStorage.getItem('kazakhTheme')||'dark';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='light'?'🌙':'☀️'}
-function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='light'?'🌙':'☀️'}
+function initTheme(){var s=localStorage.getItem('kazakhTheme')||'dark';document.documentElement.setAttribute('data-theme',s);var b=document.getElementById('themeBtn');if(b)b.textContent=s==='light'?'馃寵':'鈽€锔?}
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('kazakhTheme',n);var b=document.getElementById('themeBtn');if(b)b.textContent=n==='light'?'馃寵':'鈽€锔?}
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(function(){t.style.display='none'},1800)}
 
 // === Audio ===
-var LS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ъ':'hard','ы':'yh','і':'ii_','ь':'soft','э':'eh','ю':'yoo','я':'yah'}
-var WM={'сәлем':'salem','рахмет':'rahmet','қош бол':'kosh_bol','жақсы':'zhaksy','қазақ':'qazaq','махаббат':'mahabbat','алма':'alma','гүл':'gul','күн':'kun','ай':'ay'}
+var LS={'邪':'a','訖':'ae','斜':'b','胁':'v','谐':'g','覔':'gh_','写':'d','械':'e','褢':'yo','卸':'zh','蟹':'z','懈':'i','泄':'y','泻':'k','覜':'q_','谢':'l','屑':'m','薪':'n','遥':'ng_','芯':'o','萤':'oe_','锌':'p','褉':'r','褋':'s','褌':'t','褍':'oo','冶':'uu_','爷':'ue_','褎':'f','褏':'kh','一':'h_','褑':'ts','褔':'ch','褕':'sh','褖':'shch','褗':'hard','褘':'yh','褨':'ii_','褜':'soft','褝':'eh','褞':'yoo','褟':'yah'}
+var WM={'褋訖谢械屑':'salem','褉邪褏屑械褌':'rahmet','覜芯褕 斜芯谢':'kosh_bol','卸邪覜褋褘':'zhaksy','覜邪蟹邪覜':'qazaq','屑邪褏邪斜斜邪褌':'mahabbat','邪谢屑邪':'alma','谐爷谢':'gul','泻爷薪':'kun','邪泄':'ay'}
 function playFile(f){return new Promise(function(r){var a=new Audio('sounds/'+f+'.mp3');a.onerror=function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)};a.onended=r;a.play().catch(function(){var a2=new Audio('sounds/'+f+'.wav');a2.onended=r;a2.play().catch(r)})})}
 function speakText(t){var l=t.toLowerCase().trim();if(WM[l]){playFile(WM[l]);return}var d=0;for(var i=0;i<l.length;i++){(function(s){setTimeout(function(){playFile(LS[s]||'')},d);d+=300})(l[i])}}
 
@@ -312,70 +312,70 @@ function speakText(t){var l=t.toLowerCase().trim();if(WM[l]){playFile(WM[l]);ret
 function getP(){try{return JSON.parse(localStorage.getItem('kazakhProgress')||'{}')}catch(e){return{}}}
 function saveP(p){localStorage.setItem('kazakhProgress',JSON.stringify(p))}
 function isL(l){var p=getP();return p[l]&&p[l].learned}
-function markL(l){var p=getP();p[l]={learned:true,date:new Date().toISOString().split('T')[0]};saveP(p);toast('✓ 已标记: '+l);updateStats()}
-function unmarkL(l){var p=getP();delete p[l];saveP(p);toast('已取消: '+l);updateStats()}
+function markL(l){var p=getP();p[l]={learned:true,date:new Date().toISOString().split('T')[0]};saveP(p);toast('鉁?宸叉爣璁? '+l);updateStats()}
+function unmarkL(l){var p=getP();delete p[l];saveP(p);toast('宸插彇娑? '+l);updateStats()}
 
 // === Data ===
 var SPECIALS=[
-  {l:'Ә ә',ipa:'/æ/',zh:'猫 cat 的 a',ex:'Сәлем 你好',ab:'اە'},
-  {l:'Ғ ғ',ipa:'/ʁ/',zh:'小舌音，像漱口',ex:'Аға 哥哥',ab:'ع'},
-  {l:'Қ қ',ipa:'/q/',zh:'喉咙深处的 k',ex:'Қазақ 哈萨克',ab:'ق'},
-  {l:'Ң ң',ipa:'/ŋ/',zh:'后鼻音 eng',ex:'Таң 早晨',ab:'ڭ'},
-  {l:'Ө ө',ipa:'/ɵ/',zh:'类似bird的ir',ex:'Өзен 河流',ab:'و'},
-  {l:'Ұ ұ',ipa:'/ʊ/',zh:'短促"呜"',ex:'Ұлт 民族',ab:'و'},
-  {l:'Ү ү',ipa:'/ʉ/',zh:'靠前"乌"',ex:'Үй 房子',ab:'ۇ'},
-  {l:'І і',ipa:'/ɪ/',zh:'短促"衣"',ex:'Іні 弟弟',ab:'ى'},
-  {l:'Һ һ',ipa:'/h/',zh:'轻呼气',ex:'(借词中用)',ab:'ھ'},
+  {l:'訕 訖',ipa:'/忙/',zh:'鐚?cat 鐨?a',ex:'小訖谢械屑 浣犲ソ',ab:'丕蹠'},
+  {l:'覓 覔',ipa:'/蕘/',zh:'灏忚垖闊筹紝鍍忔急鍙?,ex:'袗覔邪 鍝ュ摜',ab:'毓'},
+  {l:'覛 覜',ipa:'/q/',zh:'鍠夊挋娣卞鐨?k',ex:'覛邪蟹邪覜 鍝堣惃鍏?,ab:'賯'},
+  {l:'尧 遥',ipa:'/艐/',zh:'鍚庨蓟闊?eng',ex:'孝邪遥 鏃╂櫒',ab:'诃'},
+  {l:'莹 萤',ipa:'/傻/',zh:'绫讳技bird鐨刬r',ex:'莹蟹械薪 娌虫祦',ab:'賵'},
+  {l:'野 冶',ipa:'/蕣/',zh:'鐭績"鍛?',ex:'野谢褌 姘戞棌',ab:'賵'},
+  {l:'耶 爷',ipa:'/蕢/',zh:'闈犲墠"涔?',ex:'耶泄 鎴垮瓙',ab:'蹏'},
+  {l:'袉 褨',ipa:'/瑟/',zh:'鐭績"琛?',ex:'袉薪褨 寮熷紵',ab:'賶'},
+  {l:'液 一',ipa:'/h/',zh:'杞诲懠姘?,ex:'(鍊熻瘝涓敤)',ab:'诰'},
 ];
 var SPEC_AB=[
-  {l:'Ә ә',ipa:'/æ/',zh:'daۋىس',ex:'سالم (Сәлем)',ab:'اە'},
-  {l:'Ғ ғ',ipa:'/ʁ/',zh:'تاماق شايقاۋ',ex:'اعا (Аға)',ab:'ع'},
-  {l:'Қ қ',ipa:'/q/',zh:'تامەكتىك ك',ex:'قازاق (Қазақ)',ab:'ق'},
-  {l:'Ң ң',ipa:'/ŋ/',zh:'اڭ داعى ڭ',ex:'تاڭ (Таң)',ab:'ڭ'},
-  {l:'Ө ө',ipa:'/ɵ/',zh:'و-دان بەتتى',ex:'وزەن (Өзен)',ab:'و'},
-  {l:'Ұ ұ',ipa:'/ʊ/',zh:'قىسقا ۇ',ex:'ۇلت (Ұлт)',ab:'و'},
-  {l:'Ү ү',ipa:'/ʉ/',zh:'قاتاڭ ۇ',ex:'ۇي (Үй)',ab:'ۇ'},
-  {l:'І і',ipa:'/ɪ/',zh:'قىسقا ى',ex:'ىنى (Іні)',ab:'ى'},
-  {l:'Һ һ',ipa:'/h/',zh:'جەڭىل ھ',ex:'(سوزدەردە)',ab:'ھ'},
+  {l:'訕 訖',ipa:'/忙/',zh:'da蹕賶爻',ex:'爻丕賱賲 (小訖谢械屑)',ab:'丕蹠'},
+  {l:'覓 覔',ipa:'/蕘/',zh:'鬲丕賲丕賯 卮丕賷賯丕蹕',ex:'丕毓丕 (袗覔邪)',ab:'毓'},
+  {l:'覛 覜',ipa:'/q/',zh:'鬲丕賲蹠賰鬲賶賰 賰',ex:'賯丕夭丕賯 (覛邪蟹邪覜)',ab:'賯'},
+  {l:'尧 遥',ipa:'/艐/',zh:'丕诃 丿丕毓賶 诃',ex:'鬲丕诃 (孝邪遥)',ab:'诃'},
+  {l:'莹 萤',ipa:'/傻/',zh:'賵-丿丕賳 亘蹠鬲鬲賶',ex:'賵夭蹠賳 (莹蟹械薪)',ab:'賵'},
+  {l:'野 冶',ipa:'/蕣/',zh:'賯賶爻賯丕 蹏',ex:'蹏賱鬲 (野谢褌)',ab:'賵'},
+  {l:'耶 爷',ipa:'/蕢/',zh:'賯丕鬲丕诃 蹏',ex:'蹏賷 (耶泄)',ab:'蹏'},
+  {l:'袉 褨',ipa:'/瑟/',zh:'賯賶爻賯丕 賶',ex:'賶賳賶 (袉薪褨)',ab:'賶'},
+  {l:'液 一',ipa:'/h/',zh:'噩蹠诃賶賱 诰',ex:'(爻賵夭丿蹠乇丿蹠)',ab:'诰'},
 ];
 var VHARD=[
-  {l:'А а',ipa:'/ɑ/ a',zh:'啊',ab:'ا'},{l:'О о',ipa:'/o/ o',zh:'喔',ab:'و'},
-  {l:'Ұ ұ',ipa:'/ʊ/ ű',zh:'乌',ab:'و'},{l:'Ы ы',ipa:'/ɤ/ y',zh:'呃',ab:'ى'},
+  {l:'袗 邪',ipa:'/蓱/ a',zh:'鍟?,ab:'丕'},{l:'袨 芯',ipa:'/o/ o',zh:'鍠?,ab:'賵'},
+  {l:'野 冶',ipa:'/蕣/ 疟',zh:'涔?,ab:'賵'},{l:'蝎 褘',ipa:'/嗓/ y',zh:'鍛?,ab:'賶'},
 ];
 var VSOFT=[
-  {l:'Ә ә',ipa:'/æ/ ä',zh:'哎',ab:'اە'},{l:'Е е',ipa:'/je/ e',zh:'耶',ab:'ە'},
-  {l:'Ө ө',ipa:'/ɵ/ ö',zh:'鹅',ab:'و'},{l:'Ү ү',ipa:'/ʉ/ ű',zh:'淤',ab:'ۇ'},
-  {l:'І і',ipa:'/ɪ/ i',zh:'伊',ab:'ى'},
+  {l:'訕 訖',ipa:'/忙/ 盲',zh:'鍝?,ab:'丕蹠'},{l:'袝 械',ipa:'/je/ e',zh:'鑰?,ab:'蹠'},
+  {l:'莹 萤',ipa:'/傻/ 枚',zh:'楣?,ab:'賵'},{l:'耶 爷',ipa:'/蕢/ 疟',zh:'娣?,ab:'蹏'},
+  {l:'袉 褨',ipa:'/瑟/ i',zh:'浼?,ab:'賶'},
 ];
 var CONS=[
-  {l:'Б б',ipa:'b',zh:'波',ab:'б'},{l:'В в',ipa:'v',zh:'V',ab:'ۋ'},
-  {l:'Г г',ipa:'ɡ',zh:'哥',ab:'گ'},{l:'Ғ ғ',ipa:'ʁ',zh:'哈',ab:'ع'},
-  {l:'Д д',ipa:'d',zh:'德',ab:'د'},{l:'Ж ж',ipa:'ʒ',zh:'浊',ab:'ج'},
-  {l:'З з',ipa:'z',zh:'兹',ab:'ز'},{l:'И и',ipa:'i/j',zh:'伊',ab:'ي'},
-  {l:'Й й',ipa:'j',zh:'耶',ab:'ي'},{l:'К к',ipa:'k',zh:'科',ab:'ك'},
-  {l:'Қ қ',ipa:'q',zh:'克',ab:'ق'},{l:'Л л',ipa:'l',zh:'勒',ab:'ل'},
-  {l:'М м',ipa:'m',zh:'姆',ab:'م'},{l:'Н н',ipa:'n',zh:'讷',ab:'ن'},
-  {l:'Ң ң',ipa:'ŋ',zh:'昂',ab:'ڭ'},{l:'П п',ipa:'p',zh:'坡',ab:'پ'},
-  {l:'Р р',ipa:'r',zh:'勒',ab:'ر'},{l:'С с',ipa:'s',zh:'斯',ab:'س'},
-  {l:'Т т',ipa:'t',zh:'特',ab:'ت'},{l:'У у',ipa:'w',zh:'乌',ab:'ۋ'},
-  {l:'Ф ф',ipa:'f',zh:'夫',ab:'ف'},{l:'Х х',ipa:'x',zh:'哈',ab:'ح'},
-  {l:'Ц ц',ipa:'ts',zh:'次',ab:'تس'},{l:'Ч ч',ipa:'tʃ',zh:'吃',ab:'چ'},
-  {l:'Ш ш',ipa:'ʃ',zh:'师',ab:'ش'},{l:'Щ щ',ipa:'ʃtʃ',zh:'师吃',ab:'شش'},
-  {l:'Ы ы',ipa:'ɤ',zh:'呃',ab:'ى'},{l:'І і',ipa:'ɪ',zh:'伊',ab:'ى'},
-  {l:'Э э',ipa:'e',zh:'诶',ab:'ە'},{l:'Ю ю',ipa:'ju',zh:'优',ab:'يۋ'},
-  {l:'Я я',ipa:'ja',zh:'亚',ab:'يا'},
+  {l:'袘 斜',ipa:'b',zh:'娉?,ab:'斜'},{l:'袙 胁',ipa:'v',zh:'V',ab:'蹕'},
+  {l:'袚 谐',ipa:'伞',zh:'鍝?,ab:'诏'},{l:'覓 覔',ipa:'蕘',zh:'鍝?,ab:'毓'},
+  {l:'袛 写',ipa:'d',zh:'寰?,ab:'丿'},{l:'袞 卸',ipa:'蕭',zh:'娴?,ab:'噩'},
+  {l:'袟 蟹',ipa:'z',zh:'鍏?,ab:'夭'},{l:'袠 懈',ipa:'i/j',zh:'浼?,ab:'賷'},
+  {l:'袡 泄',ipa:'j',zh:'鑰?,ab:'賷'},{l:'袣 泻',ipa:'k',zh:'绉?,ab:'賰'},
+  {l:'覛 覜',ipa:'q',zh:'鍏?,ab:'賯'},{l:'袥 谢',ipa:'l',zh:'鍕?,ab:'賱'},
+  {l:'袦 屑',ipa:'m',zh:'濮?,ab:'賲'},{l:'袧 薪',ipa:'n',zh:'璁?,ab:'賳'},
+  {l:'尧 遥',ipa:'艐',zh:'鏄?,ab:'诃'},{l:'袩 锌',ipa:'p',zh:'鍧?,ab:'倬'},
+  {l:'袪 褉',ipa:'r',zh:'鍕?,ab:'乇'},{l:'小 褋',ipa:'s',zh:'鏂?,ab:'爻'},
+  {l:'孝 褌',ipa:'t',zh:'鐗?,ab:'鬲'},{l:'校 褍',ipa:'w',zh:'涔?,ab:'蹕'},
+  {l:'肖 褎',ipa:'f',zh:'澶?,ab:'賮'},{l:'啸 褏',ipa:'x',zh:'鍝?,ab:'丨'},
+  {l:'笑 褑',ipa:'ts',zh:'娆?,ab:'鬲爻'},{l:'效 褔',ipa:'t蕛',zh:'鍚?,ab:'趩'},
+  {l:'楔 褕',ipa:'蕛',zh:'甯?,ab:'卮'},{l:'些 褖',ipa:'蕛t蕛',zh:'甯堝悆',ab:'卮卮'},
+  {l:'蝎 褘',ipa:'嗓',zh:'鍛?,ab:'賶'},{l:'袉 褨',ipa:'瑟',zh:'浼?,ab:'賶'},
+  {l:'协 褝',ipa:'e',zh:'璇?,ab:'蹠'},{l:'挟 褞',ipa:'ju',zh:'浼?,ab:'賷蹕'},
+  {l:'携 褟',ipa:'ja',zh:'浜?,ab:'賷丕'},
 ];
 var WORDS=[
-  {kk:'Сәлем',pron:'/sæˈlʲem/',zh:'你好 👋',ab:'سالەم'},
-  {kk:'Рахмет',pron:'/rɑχˈmʲet/',zh:'谢谢 🙏',ab:'راحمەت'},
-  {kk:'Жақсы',pron:'/ʒɑqˈsə/',zh:'好 👍',ab:'جاقسى'},
-  {kk:'Қазақ',pron:'/qɑˈzɑq/',zh:'哈萨克',ab:'قازاق'},
-  {kk:'Махаббат',pron:'/mɑχɑbˈbɑt/',zh:'爱 ❤️',ab:'ماحاببات'},
-  {kk:'Алма',pron:'/ɑlˈmɑ/',zh:'苹果 🍎',ab:'الما'},
-  {kk:'Гүл',pron:'/ɡʉl/',zh:'花 🌸',ab:'گول'},
-  {kk:'Күн',pron:'/kʉn/',zh:'太阳/天 ☀️',ab:'كۇن'},
-  {kk:'Ай',pron:'/ɑj/',zh:'月亮 🌙',ab:'اي'},
-  {kk:'Қош бол',pron:'/qoʃ bol/',zh:'再见 👋',ab:'قوش بول'},
+  {kk:'小訖谢械屑',pron:'/s忙藞l什em/',zh:'浣犲ソ 馃憢',ab:'爻丕賱蹠賲'},
+  {kk:'袪邪褏屑械褌',pron:'/r蓱蠂藞m什et/',zh:'璋㈣阿 馃檹',ab:'乇丕丨賲蹠鬲'},
+  {kk:'袞邪覜褋褘',pron:'/蕭蓱q藞s蓹/',zh:'濂?馃憤',ab:'噩丕賯爻賶'},
+  {kk:'覛邪蟹邪覜',pron:'/q蓱藞z蓱q/',zh:'鍝堣惃鍏?,ab:'賯丕夭丕賯'},
+  {kk:'袦邪褏邪斜斜邪褌',pron:'/m蓱蠂蓱b藞b蓱t/',zh:'鐖?鉂わ笍',ab:'賲丕丨丕亘亘丕鬲'},
+  {kk:'袗谢屑邪',pron:'/蓱l藞m蓱/',zh:'鑻规灉 馃崕',ab:'丕賱賲丕'},
+  {kk:'袚爷谢',pron:'/伞蕢l/',zh:'鑺?馃尭',ab:'诏賵賱'},
+  {kk:'袣爷薪',pron:'/k蕢n/',zh:'澶槼/澶?鈽€锔?,ab:'賰蹏賳'},
+  {kk:'袗泄',pron:'/蓱j/',zh:'鏈堜寒 馃寵',ab:'丕賷'},
+  {kk:'覛芯褕 斜芯谢',pron:'/qo蕛 bol/',zh:'鍐嶈 馃憢',ab:'賯賵卮 亘賵賱'},
 ];
 
 // === Get all letters for total count ===
@@ -390,7 +390,7 @@ function renderCard(d){
   var cls=isL(letter)?' letter-card learned':' letter-card';
   var zhHtml=SHOW_ZH?'<div class="zh">'+d.zh+'</div>':'';
   var abHtml=SHOW_AB?'<div class="ab">'+(d.ab||'')+'</div>':'';
-  return '<div class="'+cls+'" data-letter="'+letter+'" onclick="handleClick(this,\''+d.l+'\')" oncontextmenu="return handleContext(event,this,\''+letter+'\')"><span class="sound-icon">🔊</span><div class="cyr">'+d.l+'</div><div class="ipa">'+d.ipa+'</div>'+zhHtml+abHtml+'</div>';
+  return '<div class="'+cls+'" data-letter="'+letter+'" onclick="handleClick(this,\''+d.l+'\')" oncontextmenu="return handleContext(event,this,\''+letter+'\')"><span class="sound-icon">馃攰</span><div class="cyr">'+d.l+'</div><div class="ipa">'+d.ipa+'</div>'+zhHtml+abHtml+'</div>';
 }
 
 function handleClick(el,letter){
@@ -410,26 +410,26 @@ function handleContext(e,el,letter){
 function render(){
   // Title & headers
   if(SHOW_ZH){
-    document.getElementById('pageTitle').innerHTML='🌸 Кирил Әліпбиі · 西里尔字母';
-    document.getElementById('pageSubtitle').textContent='点击字母听发音 🔊 | 右键标记已学 ✓';
-    var h3=document.getElementById('specialHead3');if(h3)h3.textContent='像什么';
-    var hw=document.getElementById('wordHead3');if(hw)hw.textContent='意思';
-    var s1=document.getElementById('secSpec');if(s1)s1.innerHTML='<span class="ico">✨</span> Арнайы әріптер · 特殊字母';
-    var s2=document.getElementById('secHard');if(s2)s2.innerHTML='<span class="ico">🔴</span> Жуан дауыстылар · 后元音';
-    var s3=document.getElementById('secSoft');if(s3)s3.innerHTML='<span class="ico">🟣</span> Жіңішке дауыстылар · 前元音';
-    var s4=document.getElementById('secCons');if(s4)s4.innerHTML='<span class="ico">🌿</span> Дауыссыздар · 辅音';
-    var s5=document.getElementById('secWords');if(s5)s5.innerHTML='<span class="ico">📖</span> Сөздер · 常用单词';
+    document.getElementById('pageTitle').innerHTML='馃尭 袣懈褉懈谢 訕谢褨锌斜懈褨 路 瑗块噷灏斿瓧姣?;
+    document.getElementById('pageSubtitle').textContent='鐐瑰嚮瀛楁瘝鍚彂闊?馃攰 | 鍙抽敭鏍囪宸插 鉁?;
+    var h3=document.getElementById('specialHead3');if(h3)h3.textContent='鍍忎粈涔?;
+    var hw=document.getElementById('wordHead3');if(hw)hw.textContent='鎰忔€?;
+    var s1=document.getElementById('secSpec');if(s1)s1.innerHTML='<span class="ico">鉁?/span> 袗褉薪邪泄褘 訖褉褨锌褌械褉 路 鐗规畩瀛楁瘝';
+    var s2=document.getElementById('secHard');if(s2)s2.innerHTML='<span class="ico">馃敶</span> 袞褍邪薪 写邪褍褘褋褌褘谢邪褉 路 鍚庡厓闊?;
+    var s3=document.getElementById('secSoft');if(s3)s3.innerHTML='<span class="ico">馃煟</span> 袞褨遥褨褕泻械 写邪褍褘褋褌褘谢邪褉 路 鍓嶅厓闊?;
+    var s4=document.getElementById('secCons');if(s4)s4.innerHTML='<span class="ico">馃尶</span> 袛邪褍褘褋褋褘蟹写邪褉 路 杈呴煶';
+    var s5=document.getElementById('secWords');if(s5)s5.innerHTML='<span class="ico">馃摉</span> 小萤蟹写械褉 路 甯哥敤鍗曡瘝';
   }else{
-    document.getElementById('pageTitle').innerHTML='🌸 قازاق كيريل ٵلىپبئى';
-    document.getElementById('pageSubtitle').textContent='ءارىپ باسىپ تىڭداڭىز 🔊 | ون جاق باسىپ بەلگىلەڭىز ✓';
-    document.getElementById('specialHint').textContent='وسى 9 ارنايى ءارىپتى جاتتاپ الىڭىز، قازاق ءارىپتەرىنىڭ جارتىسىن تانىسىز!';
-    var h3=document.getElementById('specialHead3');if(h3)h3.textContent='ءارىپ سيپاتى';
-    var hw=document.getElementById('wordHead3');if(hw)hw.textContent='ماعىناسى';
-    var s1=document.getElementById('secSpec');if(s1)s1.innerHTML='<span class="ico">✨</span> Арнайы әріптер';
-    var s2=document.getElementById('secHard');if(s2)s2.innerHTML='<span class="ico">🔴</span> Жуан дауыстылар';
-    var s3=document.getElementById('secSoft');if(s3)s3.innerHTML='<span class="ico">🟣</span> Жіңішке дауыстылар';
-    var s4=document.getElementById('secCons');if(s4)s4.innerHTML='<span class="ico">🌿</span> Дауыссыздар';
-    var s5=document.getElementById('secWords');if(s5)s5.innerHTML='<span class="ico">📖</span> Сөздер';
+    document.getElementById('pageTitle').innerHTML='馃尭 賯丕夭丕賯 賰賷乇賷賱 俚賱賶倬亘卅賶';
+    document.getElementById('pageSubtitle').textContent='亍丕乇賶倬 亘丕爻賶倬 鬲賶诃丿丕诃賶夭 馃攰 | 賵賳 噩丕賯 亘丕爻賶倬 亘蹠賱诏賶賱蹠诃賶夭 鉁?;
+    document.getElementById('specialHint').textContent='賵爻賶 9 丕乇賳丕賷賶 亍丕乇賶倬鬲賶 噩丕鬲鬲丕倬 丕賱賶诃賶夭貙 賯丕夭丕賯 亍丕乇賶倬鬲蹠乇賶賳賶诃 噩丕乇鬲賶爻賶賳 鬲丕賳賶爻賶夭!';
+    var h3=document.getElementById('specialHead3');if(h3)h3.textContent='亍丕乇賶倬 爻賷倬丕鬲賶';
+    var hw=document.getElementById('wordHead3');if(hw)hw.textContent='賲丕毓賶賳丕爻賶';
+    var s1=document.getElementById('secSpec');if(s1)s1.innerHTML='<span class="ico">鉁?/span> 袗褉薪邪泄褘 訖褉褨锌褌械褉';
+    var s2=document.getElementById('secHard');if(s2)s2.innerHTML='<span class="ico">馃敶</span> 袞褍邪薪 写邪褍褘褋褌褘谢邪褉';
+    var s3=document.getElementById('secSoft');if(s3)s3.innerHTML='<span class="ico">馃煟</span> 袞褨遥褨褕泻械 写邪褍褘褋褌褘谢邪褉';
+    var s4=document.getElementById('secCons');if(s4)s4.innerHTML='<span class="ico">馃尶</span> 袛邪褍褘褋褋褘蟹写邪褉';
+    var s5=document.getElementById('secWords');if(s5)s5.innerHTML='<span class="ico">馃摉</span> 小萤蟹写械褉';
   }
 
   // Special table
@@ -545,8 +545,8 @@ function toggleQuiz(){
 
 function showQuiz(){
   if(QUIZ_INDEX>=QUIZ_DATA.length){
-    document.getElementById('quizQuestion').textContent='✅';
-    document.getElementById('quizOptions').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:16px;font-size:14px;color:var(--accent4)">🎉 Барлық әріптерді өттіңіз! Молодец!</div>';
+    document.getElementById('quizQuestion').textContent='鉁?;
+    document.getElementById('quizOptions').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:16px;font-size:14px;color:var(--accent4)">馃帀 袘邪褉谢褘覜 訖褉褨锌褌械褉写褨 萤褌褌褨遥褨蟹! 袦芯谢芯写械褑!</div>';
     document.getElementById('quizNextBtn').disabled=true;
     document.getElementById('quizScore').textContent=QUIZ_SCORE;
     document.getElementById('quizTotal').textContent=QUIZ_DATA.length;
@@ -555,9 +555,9 @@ function showQuiz(){
   var q=QUIZ_DATA[QUIZ_INDEX];
   QUIZ_CURRENT=q;
   QUIZ_ANSWERED=false;
-  document.getElementById('quizQuestion').textContent='🔊';
+  document.getElementById('quizQuestion').textContent='馃攰';
   document.getElementById('quizNextBtn').disabled=true;
-  document.getElementById('quizNextBtn').textContent='Келесі →';
+  document.getElementById('quizNextBtn').textContent='袣械谢械褋褨 鈫?;
 
   var optsHtml='';
   for(var i=0;i<q.options.length;i++){
@@ -607,7 +607,7 @@ var quizParam=new URLSearchParams(window.location.search).get('quiz');
 if(quizParam==='1'){setTimeout(function(){toggleQuiz()},500)}
 </script>
 
-<!-- 🔧 直接点击播放修正 - 无setTimeout，兼容移动端 -->
+<!-- 馃敡 鐩存帴鐐瑰嚮鎾斁淇 - 鏃爏etTimeout锛屽吋瀹圭Щ鍔ㄧ -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Direct play on letter card click (no setTimeout, works on mobile)
@@ -637,3 +637,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
