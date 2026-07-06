@@ -2255,13 +2255,32 @@ if(document.readyState==='loading'){
   document.addEventListener('DOMContentLoaded', init);
 } else {
   init();
-</script>
-<script>
+}
+
+
+// Audio playback for letter cards
 (function(){
-var LS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ъ':'hard','ы':'yh','і':'ii_','ь':'soft','э':'eh','ю':'yoo','я':'yah'};
-function ps(k){var a=new Audio("sounds/"+k+".mp3");a.play().catch(function(){var a2=new Audio("sounds/"+k+".wav");a2.play().catch(function(){})});}
-function pl(t){var f=t.trim().charAt(0).toLowerCase();var k=LS[f];if(k)ps(k);}
-document.addEventListener("click",function(e){var c=e.target.closest(".letter-card");if(c){var m=c.querySelector(".letter-main");if(m)pl(m.textContent);}});
+var _LS = {'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ъ':'hard','ы':'yh','і':'ii_','ь':'soft','э':'eh','ю':'yoo','я':'yah'};
+document.addEventListener('click', function(e){
+  var card = e.target.closest('.letter-card');
+  if (card) {
+    var main = card.querySelector('.letter-main');
+    if (main) {
+      var txt = main.textContent.trim();
+      var first = txt.charAt(0).toLowerCase();
+      var sf = _LS[first];
+      if (sf) {
+        var au = new Audio('sounds/' + sf + '.mp3');
+        au.play().catch(function(){
+          var au2 = new Audio('sounds/' + sf + '.wav');
+          au2.play().catch(function(){});
+        });
+      }
+    }
+  }
+});
 })();
 </script>
+
+</body>
 </html>
