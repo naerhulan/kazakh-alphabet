@@ -2258,31 +2258,27 @@ if(document.readyState==='loading'){
 }
 
 <script>
-// Audio playback for letter cards
+
+<script>
 (function(){
-  // Map lowercase Cyrillic letter to audio filename
   var LS={'а':'a','ә':'ae','б':'b','в':'v','г':'g','ғ':'gh_','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','қ':'q_','л':'l','м':'m','н':'n','ң':'ng_','о':'o','ө':'oe_','п':'p','р':'r','с':'s','т':'t','у':'oo','ұ':'uu_','ү':'ue_','ф':'f','х':'kh','һ':'h_','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ъ':'hard','ы':'yh','і':'ii_','ь':'soft','э':'eh','ю':'yoo','я':'yah'};
-  
-  function playSound(key){
-    var a=new Audio('sounds/'+key+'.mp3');
+  function ps(k){
+    var a=new Audio('sounds/'+k+'.mp3');
     a.play().catch(function(){
-      var a2=new Audio('sounds/'+key+'.wav');
+      var a2=new Audio('sounds/'+k+'.wav');
       a2.play().catch(function(){});
     });
   }
-  
-  function playLetter(text){
-    var first=text.trim().charAt(0).toLowerCase();
-    var file=LS[first];
-    if(file) playSound(file);
+  function pl(t){
+    var f=t.trim().charAt(0).toLowerCase();
+    var k=LS[f];
+    if(k) ps(k);
   }
-  
-  // Listen for clicks on letter cards
   document.addEventListener('click',function(e){
-    var card=e.target.closest('.letter-card');
-    if(card){
-      var main=card.querySelector('.letter-main');
-      if(main) playLetter(main.textContent);
+    var c=e.target.closest('.letter-card');
+    if(c){
+      var m=c.querySelector('.letter-main');
+      if(m) pl(m.textContent);
     }
   });
 })();
