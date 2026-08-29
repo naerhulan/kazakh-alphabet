@@ -227,9 +227,9 @@ function unmarkL(l){var p=getP();delete p[l];saveP(p);toast('已取消: '+l);upd
 
 // Data
 var LETTERS=[
-  {ar:'ا',cyr:'А а',zh:'啊',key:'a'},{ar:'اە',cyr:'Ә ә',zh:'哎',key:'ae'},{ar:'ب',cyr:'Б б',zh:'波',key:'b'},
+  {ar:'ا',cyr:'А а',zh:'啊',key:'a'},{ar:'ا',cyr:'Ә ә',zh:'哎',key:'ae'},{ar:'ب',cyr:'Б б',zh:'波',key:'b'},
   {ar:'ۋ',cyr:'В в',zh:'V',key:'v'},{ar:'گ',cyr:'Г г',zh:'哥',key:'g'},{ar:'ع',cyr:'Ғ ғ',zh:'哈',key:'gh_'},
-  {ar:'د',cyr:'Д д',zh:'德',key:'d'},{ar:'ە',cyr:'Е е',zh:'耶',key:'e'},{ar:'ج',cyr:'Ж ж',zh:'浊',key:'zh'},
+  {ar:'د',cyr:'Д д',zh:'德',key:'d'},{ar:'ە',cyr:'Е е',zh:'耶',key:'e'},{ar:'ج',cyr:'Ж ж',zh:'只',key:'zh'},
   {ar:'ز',cyr:'З з',zh:'兹',key:'z'},{ar:'ي',cyr:'И и',zh:'伊',key:'i'},{ar:'ي',cyr:'Й й',zh:'耶',key:'y'},
   {ar:'ك',cyr:'К к',zh:'科',key:'k'},{ar:'ق',cyr:'Қ қ',zh:'克',key:'q_'},{ar:'ل',cyr:'Л л',zh:'勒',key:'l'},
   {ar:'م',cyr:'М м',zh:'姆',key:'m'},{ar:'ن',cyr:'Н н',zh:'讷',key:'n'},{ar:'ڭ',cyr:'Ң ң',zh:'昂',key:'ng_'},
@@ -242,7 +242,7 @@ var LETTERS=[
   {ar:'يۋ',cyr:'Ю ю',zh:'优',key:'yoo'},{ar:'يا',cyr:'Я я',zh:'亚',key:'yah'},
 ];
 var SPECIALS=[
-  {ar:'اە',cyr:'Ә ә',zh:'爱',desc:'cat的a',key:'ae'},{ar:'ع',cyr:'Ғ ғ',zh:'喝',desc:'小舌音',key:'gh_'},
+  {ar:'ا',cyr:'Ә ә',zh:'爱',desc:'cat的a',key:'ae'},{ar:'ع',cyr:'Ғ ғ',zh:'喝',desc:'小舌音',key:'gh_'},
   {ar:'ق',cyr:'Қ қ',zh:'科',desc:'喉咙深处',key:'q_'},{ar:'ڭ',cyr:'Ң ң',zh:'eng',desc:'后鼻音',key:'ng_'},
   {ar:'و',cyr:'Ө ө',zh:'厄圆',desc:'圆唇厄',key:'oe_'},{ar:'و',cyr:'Ұ ұ',zh:'短乌',desc:'短促乌',key:'uu_'},
   {ar:'ۇ',cyr:'Ү ү',zh:'淤',desc:'前圆唇',key:'ue_'},{ar:'ى',cyr:'І і',zh:'短伊',desc:'短促衣',key:'ii_'},
